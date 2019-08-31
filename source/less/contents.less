@@ -1,0 +1,60 @@
+.contents {
+	display: block;
+	position: relative;
+	width: 500px;
+	height: 800px;
+	margin: 0 auto;
+	background-repeat: no-repeat;
+	background-image: url("../img/manga/00 - Оглавление2.jpg");
+	background-size: contain;
+}
+
+.contents__wrapper {
+	position: absolute;
+	top: 38%;
+	transform: rotate(-5deg);
+}
+
+.contents__title {
+	margin: 0;
+	margin-left: 35px;
+	font-family: @ff-subtitle;
+	font-size: @title-fz;
+	line-height: @base-lh;
+	
+}
+
+.contents__underline {
+	border-bottom: 1px solid @text;
+}
+
+.contents__list {
+	.set-ul();
+	margin-left: 35px;
+}
+
+.contents__item {
+	margin-bottom: 10px;
+}
+
+.contents__link {
+	font-family: @ff-title;
+	font-size: @subtitle-fz;
+	color: @main-color;
+	&:hover,
+	&:focus {
+		color: lighten(@main-color, 15%);
+		text-decoration: underline;
+	}
+	&:active {
+		text-decoration: none;
+	}
+	&--disabled {
+		color: @disabled;
+		cursor: default;
+		&:hover {
+			color: @disabled;
+			text-decoration: none;
+		}
+	}
+}

@@ -1,0 +1,70 @@
+.profile-menu {
+    position: absolute;
+    right: 0;
+    width: 250px;
+    margin-right: 45px;
+}
+
+.profile__name {
+    align-self: center;
+    font-family: @ff-title;
+    font-size: @subtitle-fz;
+    color: @newlink;
+}
+
+.profile-menu__list {
+    .set-ul();
+    position: relative;
+    animation: fadeIn 0.7s ease;
+    
+    
+}
+
+.profile-menu__link {
+    display: block;
+    padding: 15px 10px;
+    color: @newlink;
+    background-color: fade(@gen-color,40%);
+    border-top: 1px solid @gen-light-color;
+    border-bottom: 1px solid @gen-dark-color;
+
+    &--bottom {
+        border: none;
+    }
+
+    &:hover,
+    &:focus {
+        color: @newlink-light;
+        background-color: @gen-light-color;
+    }
+
+    &:active {
+        background-color: @gen-dark-color;
+    }
+}
+
+.profile-menu__button {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: @gen-color;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+        color: @newlink-light;
+        background-color: @gen-light-color;
+    }
+}
+
+.profile-menu--closed .profile-menu__list {
+    display: none;
+}
+
+@media(max-width: @mobile-width) {
+    .profile-menu {
+        position: static;
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,28 @@
+Ещё одной функцией PHP для разбора файла является fread(), \n с помощью которой можно читать различные фрагменты файла указанной длины. Чтобы прочитать файл в PHP целиком, в качестве размера фрагмента я указал размер файла, полученный с помощью функции filesize():
+if (file_exists($filename) && is_readable ($filename)) {
+    $fp = @fopen($filename, 'r');
+    if ($fp) {
+      echo '<p style="color: red;">'.filesize($filename).'</p>';
+        $lines = explode("f", fread($fp, filesize($filename)));
+        
+        echo '<p style="color: red;">'.$lines[1].' переменная lines</p>';
+    }
+ 
+    if (!empty($lines)) {
+        foreach ($lines as $line) {
+            if (!empty($line)) {
+                $params = explode(':', $line);
+                echo '<p style="color: red;">'.$line.'</p>';
+                
+                if (!empty($params[0]) && !empty($params[1]) && $params[1] != 'Fake') {
+                    $client = Clients::model()->find('unique_id IN (:id1, :id2)', array(':id1' => strtolower($params[0]), ':id2' => strtoupper($params[0])));
+                    if ($client) {
+                        $client->phone = str_replace(array("\r", "\n"), "", $params[1]);
+                        $client->save();
+                    }
+                }
+            }
+        }
+    }
+    else echo "Check the filename, file doesn't exists!";
+}

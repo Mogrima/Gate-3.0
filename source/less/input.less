@@ -1,0 +1,46 @@
+.input {
+	display: block;
+	box-sizing: border-box;
+	width: 300px;
+	padding: 10px 15px;
+	padding-right: 40px;
+	font: inherit;
+	color: @text;
+
+	/* background-color: @hover; */
+	border: 2px solid @text;
+	border-radius: 4px;
+}
+
+.input__wrapper {
+	margin: @base-mr 0;
+	&--flex {
+		margin-top: 0;
+	}
+}
+
+.input__sign {
+	 display: block;
+	 width: 370px;
+	 margin: 0 auto;
+	 font-family: @ff-subtitle;
+	 font-size: 18px;
+}
+
+.input__sign--left {
+	width: 365px;	
+	margin: 0;	
+	margin-right: auto;
+}
+
+@media (min-width: @mobile-width) and (max-width: @desktop-width) {
+	.input__sign--left {
+		width: 100%;
+	}
+}
+
+@media (max-width: @mobile-width) {
+	.input__sign {
+		width: 100%;
+	}
+}

@@ -1,0 +1,17 @@
+/* Для самого главного заголовка страницы, для h1 */
+.title {
+	margin: 16px 0;
+	padding: 0 24px;
+
+	font-family: 'Cormorant Infant Rg', serif;
+	font-size: 30px;
+	line-height: 1.5;
+	text-align: center;
+}
+
+@media(min-width: @tablet-width) {
+	.title {
+	margin: @title-mr 0;
+	font-size: @title-fz;
+	}
+}

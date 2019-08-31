@@ -1,0 +1,41 @@
+.close { 
+position: absolute; 
+top: 13px; 
+right: 24px; 
+width: 22px; 
+height: 22px; 
+
+font-size: 0; 
+
+background-color: transparent; 
+border: 0; 
+
+cursor: pointer; 
+} 
+
+.close::before, 
+.close::after { 
+content: ""; 
+
+position: absolute; 
+
+width: 19px; 
+height: 3px; 
+
+background-color: @link; 
+} 
+
+.close:hover::before, 
+.close:hover::after, 
+.close:focus::before, 
+.close:focus::after { 
+background-color: @hover; 
+} 
+
+.close::before { 
+transform: rotate(45deg); 
+} 
+
+.close::after { 
+transform: rotate(-45deg); 
+}

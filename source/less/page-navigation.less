@@ -1,0 +1,223 @@
+.page-navigation {
+	width: 980px;
+	margin: 0 auto;
+	font-family: 'Benguiat Rus', Garamond, serif;
+	font-weight: bold;
+	font-size: 22px;
+	line-height: 30px;
+	color: @bg;
+}
+
+.page-navigation__toggle {
+	display: none;
+}
+
+.page-navigation__list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.page-navigation__item {
+	flex-grow: 1;
+	min-width: 120px;
+	margin-bottom: 0px;
+	padding-right: 29px;
+	/* margin-right: 30px; */
+	text-align: center;
+	
+}
+
+.page-navigation__link {
+	display: block;
+	padding: 10px 15px;
+	color: @text;
+}
+
+.page-navigation__link--current {
+	color: @bg;
+}
+
+@media(max-width: @mobile-width) {
+	.page-navigation {
+		position: relative;
+		width: 320px;
+	}
+
+	.page-navigation__toggle {
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 2;
+
+		display: block;
+		width: 70px;
+		height: 50px;
+		background-color: transparent;
+		border: none;
+		color: @main-color;
+		/* &:hover,
+		&:focus {
+			background-color: #624530;
+		} */
+	}
+
+.page-navigation--opened .page-navigation__toggle {
+	top: 0;
+
+	&::before,
+	&::after {
+		content: "";
+
+		position: absolute;
+		top: 24px;
+		left: 18px;
+	
+		width: 36px;
+		height: 2px;
+	
+		background-color: @main-color;
+	}
+
+	&::before {
+		transform: rotate(45deg);
+	}
+	&::after {
+		transform: rotate(-45deg);
+	}
+
+	&:active::before,
+	&:active::after {
+		background-color: @main-color;
+	}
+
+	}
+
+	.page-navigation--opened .page-navigation__item--active a {
+		color: fade(@main-color, 50%);
+	}
+
+	.page-navigation__list {
+		flex-direction: column;
+	}
+
+	.page-navigation__item {
+		padding-right: 0;
+	}
+	.page-navigation--closed .page-navigation__toggle::before {
+		content: "";
+
+		position: absolute;
+		top: 15px;
+		left: 17px;
+
+		width: 36px;
+		height: 2px;
+
+		background-color: @main-color;
+		box-shadow: 0 8px 00 @main-color, 0 16px 0 0 @main-color;
+	}
+
+	.page-navigation--closed .page-navigation__item {
+		display: none;
+
+		&--active {
+	    	display: block;
+	    }
+	}
+
+	.page-navigation--nojs .page-navigation__toggle {
+	  	display: none;
+	  }
+
+	.page-navigation--nojs .main-nav__wrapper {
+	  	position: static;
+	  	min-height: 0;
+	  }
+
+	.page-navigation--nojs .page-navigation__item {
+	  	display: block;
+	  }
+}
+
+@media(min-width: @mobile-width) and (max-width: @desktop-width) {
+	.page-navigation {
+		width: 768px;
+	}
+	.page-navigation__list {
+
+	}
+	.page-navigation__item {
+		flex-grow: 0;
+		padding-right: 0;
+	}
+}
+
+/* Градиент меню */
+
+.page-navigation__link {
+	background: linear-gradient(45deg, #c2edb0, #97d1b3, #77bab4);
+}
+
+.page-navigation__link--green {
+	background: linear-gradient(45deg, #daec92, #aecc82, #95b97b);
+}
+
+.page-navigation__link--yellow {
+	background: linear-gradient(45deg, #eada8b, #c9b383, #b49a7b);
+}
+
+.page-navigation__link--peach {
+	background: linear-gradient(45deg, #e6b68e, #c08184, #ac657e);
+}
+
+.page-navigation__link--lilac {
+	background: linear-gradient(45deg, #f8c6c5, #cb8cc7, #b26cc8);
+}
+
+.page-navigation__link--purple {
+	background: linear-gradient(45deg, #d4c1c2, #a28fbd, #7964b9);
+}
+
+/* Градиент меню активное состояние*/
+
+.page-navigation__link:hover,
+.page-navigation__link:focus,
+.page-navigation__link:active {
+	background: linear-gradient(45deg, #bcfca1, #81e7b2, #58d9cd);
+}
+
+.page-navigation__link--green:hover,
+.page-navigation__link--green:focus,
+.page-navigation__link--green:active {
+	background: linear-gradient(45deg, #e5ff7f, #b3e668, #b3e668);
+}
+
+.page-navigation__link--yellow:hover,
+.page-navigation__link--yellow:focus,
+.page-navigation__link--yellow:active {
+	background: linear-gradient(45deg, #ffe876, #e4bd68, #d39d5c);
+}
+
+.page-navigation__link--peach:hover,
+.page-navigation__link--peach:focus,
+.page-navigation__link--peach:active {
+	background: linear-gradient(45deg, #fbb479, #dc656a, #d04173);
+}
+
+.page-navigation__link--lilac:hover,
+.page-navigation__link--lilac:focus,
+.page-navigation__link--lilac:active {
+	background: linear-gradient(45deg, #ffbfbe, #e473dd, #c24ee6);
+}
+
+.page-navigation__link--purple:hover,
+.page-navigation__link--purple:focus,
+.page-navigation__link--purple:active {
+	background: linear-gradient(45deg, #e4b1b4, #9d74d8, #6842db);
+}
