@@ -79,11 +79,11 @@ gulp.task("copy", function () {
 
  gulp.task("core", function() {
    return gulp.src("core/**/*.php")
-   .pipe(gulp.dest("Intogate/core"))
-   .pipe(gulp.dest("../Intogate/core"));
- });
+    .pipe(gulp.dest("Intogate/core"))
+    .pipe(gulp.dest("../Intogate/core"));
+  });
 
- gulp.task("server", function () {
+  gulp.task("server", function () {
   server.init({
     server: "Intogate/",
     notify: false,

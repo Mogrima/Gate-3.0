@@ -36,28 +36,31 @@
 .login__info-checkbox + .login__checkbox-name {
   color: #fdf30d;
 }
+
 .login__info-checkbox + .login__checkbox-name > .login__checkbox-indicator {
   /* background-color: #fff; */
   border-color: #fdf30d;
 }
+
 .login__info-checkbox:checked + .login__checkbox-name > .login__checkbox-indicator {
   background: #ffffff;
 }
+
 .login__info-checkbox + .login__checkbox-name:hover,
 .login__info-checkbox:focus + .login__checkbox-name,
 .login__info-checkbox:checked + .login__checkbox-name {
   color: #ffffff;
 }
 
-.login__restore { 
-color: @link; 
-text-decoration: underline; 
-} 
+.login__restore {
+  color: @link;
+  text-decoration: underline;
+}
 
-.login__restore:hover, 
-.login__restore:focus { 
-color: @bg; 
-text-decoration: none; 
+.login__restore:hover,
+.login__restore:focus {
+  color: @bg;
+  text-decoration: none;
 }
 
 .login__button {
@@ -68,33 +71,35 @@ text-decoration: none;
   margin-bottom: 40px;
   padding: 10px 10px;
   border: none;
-  font-family: 'Benguiat Rus';
+  font-family: "Times New Roman", "Times", serif;
   color: #fdf30d;
   background: transparent;
   cursor: pointer;
 }
+
 .login__button:hover {
   color: #1a172a;
 }
-.login__button:before {
+
+.login__button::before {
   border-color: #fdf30d;
 }
+
 .login__button:hover::after {
   background: #fdf30d;
 }
 
 .modal-show {
   display: block;
-  animation-name: fadeInDown; 
-  animation-duration: 1s; 
+  animation-name: fadeInDown;
+  animation-duration: 1s;
 }
 
 .modal-show--fadeIn {
   display: block;
-  -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
+  animation-name: fadeIn;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
 }
 
 .login__text {
@@ -106,6 +111,7 @@ text-decoration: none;
 
 .login__link-to-reg {
   color: #77bab4;
+
   &:hover {
     text-decoration: underline;
   }
@@ -135,11 +141,11 @@ text-decoration: none;
     align-items: center;
     width: 100%;
     margin-bottom: 24px;
-    
   }
 
   .login__checkbox-name {
-    margin-right: 47px !important;
+    // margin-right: 47px !important;
+    margin-right: 47px;
   }
 
   .login__restore {

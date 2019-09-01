@@ -1,21 +1,18 @@
 .spoiler {
   &::before {
-  content: "";
-  top: 4px;
-  left: -20px;
-  position: absolute;
-  background: url("../img/works-catalog/arrowx.svg") no-repeat 50% 50% / 1em 1em;
-  width: 16px;
-  height: 16px;
-  transition: transform 0.1s linear;
-  -webkit-transition: transform 0.1s linear;
+    content: "";
+    top: 4px;
+    left: -20px;
+    position: absolute;
+    background: url("../img/works-catalog/arrowx.svg") no-repeat 50% 50% / 1em 1em;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.1s linear;
   }
 }
 
 .spoiler[open]::before {
   transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
 }
 
 .spoiler__wrapper {
@@ -28,9 +25,9 @@
 
 .spoiler__title {
   padding-left: 20px;
-	color: #95b97b;
-	outline: none;
-	cursor: pointer;
+  color: #95b97b;
+  outline: none;
+  cursor: pointer;
 }
 
 .spoiler__title::-webkit-details-marker {
@@ -41,21 +38,20 @@
   list-style-type: none;
 }
 
-
 .spoiler__title:hover {
   color: #b3e668;
 }
 
 .spoiler__note {
-
   &:hover {
-	border-bottom: 1px solid #b3e668;
+    border-bottom: 1px solid #b3e668;
   }
 }
 
 .spoiler__text {
-	margin: 15px 0;
+  margin: 15px 0;
+
   &:first-child {
-  margin-top: 10px;
+    margin-top: 10px;
   }
 }

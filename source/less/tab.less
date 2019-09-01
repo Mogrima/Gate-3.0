@@ -20,15 +20,19 @@
   padding-top: 18px;
   border-top: 1px solid rgba(162, 143, 189, 0.5);
 }
+
 .tab__item:nth-of-type(1) {
   animation-delay: 0.5s;
 }
+
 .tab__item:nth-of-type(2) {
   animation-delay: 0.75s;
 }
+
 .tab__item:nth-of-type(3) {
   animation-delay: 1s;
 }
+
 .tab__item:last-of-type {
   padding-bottom: 0;
 }
@@ -52,10 +56,12 @@
   opacity: 0;
   transform: translate(0, 50%);
 }
-.tab__checkbox:checked ~ .tab__arrow:before {
+
+.tab__checkbox:checked ~ .tab__arrow::before {
   transform: translate(2px, 0) rotate(45deg);
 }
-.tab__checkbox:checked ~ .tab__arrow:after {
+
+.tab__checkbox:checked ~ .tab__arrow::after {
   transform: translate(-2px, 0) rotate(-45deg);
 }
 
@@ -65,30 +71,34 @@
   margin-top: 16px;
   right: 0;
 }
-.tab__arrow:before, .tab__arrow:after {
+
+.tab__arrow::before,
+.tab__arrow::after {
   content: "";
   position: absolute;
   background-color: @main-color;
   width: 3px;
   height: 9px;
 }
-.tab__arrow:before {
+
+.tab__arrow::before {
   transform: translate(-2px, 0) rotate(45deg);
 }
-.tab__arrow:after {
+
+.tab__arrow::after {
   transform: translate(2px, 0) rotate(-45deg);
 }
 
 .tab__subtitle {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  // -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  // -webkit-touch-callout: none;
+  // -webkit-user-select: none;
+  // -khtml-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
   user-select: none;
 
-  font-family: 'Cormorant Infant Rg', serif;
+  font-family: "Cormorant Infant Rg", serif;
   font-size: @subheading * 1.2;
   line-height: 1.5;
   font-weight: 300;
@@ -114,11 +124,15 @@
   z-index: 2;
 }
 
-.tab__text, .tab__arrow:before, .tab__arrow:after {
+.tab__text,
+.tab__arrow::before,
+.tab__arrow::after {
   transition: all 0.5s ease-in-out;
 }
 
-.flipIn, .tab__title, .tab__item {
+.flipIn,
+.tab__title,
+.tab__item {
   animation: flipdown 1s ease both;
 }
 
@@ -136,11 +150,13 @@
     padding-left: 10px;
     padding-right: 10px;
   }
+
   .tab__title {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 25px;
   }
+
   .tab__item {
     padding: 0;
   }
