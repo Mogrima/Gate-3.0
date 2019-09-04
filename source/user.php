@@ -217,46 +217,44 @@
                 <input type="hidden" name="MAX_FILE_SIZE" value="327680">
                   <?php
                     if (isset($_POST['submit'])) {
-                     $currentAvatar    = mysqli_real_escape_string($dbc, trim($_POST['avatar']));
-                     $new_picture = mysqli_real_escape_string($dbc, trim($_FILES['new_picture']['name']));
-                     $new_picture_type = $_FILES['new_picture']['type'];
-                     $new_picture_size = $_FILES['new_picture']['size'];
-                     if (!empty($new_picture)) {
-                         if ((($new_picture_type == 'image/gif') || ($new_picture_type == 'image/jpeg') || ($new_picture_type == 'image/pjpeg') || ($new_picture_type == 'image/png')) && ($new_picture_size > 0) && ($new_picture_size <= MM_MAXFILESIZE)) {
-                             if ($_FILES['new_picture']['error'] == 0) {
+                      $currentAvatar    = mysqli_real_escape_string($dbc, trim($_POST['avatar']));
+                      $new_picture = mysqli_real_escape_string($dbc, trim($_FILES['new_picture']['name']));
+                      $new_picture_type = $_FILES['new_picture']['type'];
+                      $new_picture_size = $_FILES['new_picture']['size'];
+                      if (!empty($new_picture)) {
+                          if ((($new_picture_type == 'image/gif') || ($new_picture_type == 'image/jpeg') || ($new_picture_type == 'image/pjpeg') || ($new_picture_type == 'image/png')) && ($new_picture_size > 0) && ($new_picture_size <= MM_MAXFILESIZE)) {
+                              if ($_FILES['new_picture']['error'] == 0) {
 
-                                 $target = MM_UPLOADPATH . basename($new_picture);
+                                  $target = MM_UPLOADPATH . basename($new_picture);
 
-                                 if (move_uploaded_file($_FILES['new_picture']['tmp_name'], $target)) {
-                                     if (!empty($currentAvatar) && ($currentAvatar != $new_picture) && ($currentAvatar != 'default.png')) {
-                                         @unlink(MM_UPLOADPATH . $currentAvatar);
-                                     }
+                                  if (move_uploaded_file($_FILES['new_picture']['tmp_name'], $target)) {
+                                      if (!empty($currentAvatar) && ($currentAvatar != $new_picture) && ($currentAvatar != 'default.png')) {
+                                          @unlink(MM_UPLOADPATH . $currentAvatar);
+                                      }
 
-                                     $query = "UPDATE user SET avatar = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
+                                      $query = "UPDATE user SET avatar = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
 
-                                     mysqli_query($dbc, $query);
-                                     $avatar_text = '<p class="profile__avatar-btn">Вы изменили аватар, перезагрузите страницу, чтобы изменения вступили в силу</p>';
-                                     echo $avatar_text;
+                                      mysqli_query($dbc, $query);
+                                      $avatar_text = '<p class="profile__avatar-btn">Вы изменили аватар, перезагрузите страницу, чтобы изменения вступили в силу</p>';
+                                      echo $avatar_text;
 
-                                     mysqli_close($dbc);
-                                 } else {
-                                     @unlink($_FILES['new_picture']['tmp_name']);
-                                     $avatar_text = '<p class="profile__avatar-btn">Извините, возникла ошибка при загрузке файла изображения.</p>';
-                                     echo $avatar_text;
-                                 }
-                             }
-                         } else {
+                                      mysqli_close($dbc);
+                                  } else {
+                                      @unlink($_FILES['new_picture']['tmp_name']);
+                                      $avatar_text = '<p class="profile__avatar-btn">Извините, возникла ошибка при загрузке файла изображения.</p>';
+                                      echo $avatar_text;
+                                  }
+                              }
+                          } else {
                             @unlink($_FILES['new_picture']['tmp_name']);
                             $avatar_text = '<p class="profile__avatar-btn"> Изображение для аватара должно быть в формате GIF, JPEG или PNG, и его размер не должен превыmать ' . (MM_MAXFILESIZE / 1024) . ' KB.</p>';
-                             echo $avatar_text;
+                            echo $avatar_text;
 
-                         }
-                     }
-
-                     else {
+                            }
+                      } else {
                         $avatar_text = '<p class="profile__avatar-btn">Не было внесено никакой информации</p>';
-                         echo $avatar_text;
-                     }
+                        echo $avatar_text;
+                      }
                     }
                     ?>
                   <p class="form-settings__wrapper">
@@ -288,7 +286,7 @@
                       $avatar_text = '';
                       echo '<p>Вы изменили сведения о поле</p>';
                     }
-                     ?>
+                  ?>
                   <span class="form-settings__sign">Ваш пол:</span>
                   <p class="form-settings__wrapper">
                     <input class="checkbox login__info-checkbox" type="radio" id="undfind" name="gender"
@@ -370,7 +368,7 @@
                   //    }
                   // Update the profile data in the database
 
-                       // Only set the picture column if there is a new picture
+                      // Only set the picture column if there is a new picture
                       //  if (!empty($new_picture)) {
                       //    $query = "UPDATE user SET gender = '$gender', birthdate = '$birthdate', "
                       //    . "user_other = '$other', text = '$self', picture = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
@@ -383,7 +381,7 @@
                       //  }
 
 
-                       // Confirm success with the user
+                      // Confirm success with the user
 
 
 

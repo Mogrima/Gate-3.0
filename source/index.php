@@ -57,7 +57,7 @@
         $query = $pdo->query($sql);
 
         require(BLOCKS .'works_section.php');
-         ?>
+        ?>
         <!-- ----------------------------------------------------------------------------------- -->
         <?php $news_title = 'Новости';
         $sql = 'SELECT * FROM `news` ORDER BY `date` DESC';
@@ -80,7 +80,7 @@
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
   <?php require_once(BLOCKS .'modal-login.php'); ?>
-   <?php require_once(BLOCKS .'modal-registration.php'); ?>
+  <?php require_once(BLOCKS .'modal-registration.php'); ?>
   <div class="overlay"></div>
   <script src="js/scripts.min.js"></script>
 </body>

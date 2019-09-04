@@ -87,8 +87,8 @@
             </div><button class="filter__button">Применить</button>
           </form>
         </section>
-       <!--$works_title заголовок section works  -->
-       <?php $works_title = 'Список произведений';
+        <!--$works_title заголовок section works  -->
+        <?php $works_title = 'Список произведений';
         // подключение к базе данных
         require_once(BUS.'/mysql__connect.php');
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
