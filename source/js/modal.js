@@ -1,4 +1,5 @@
-var overlay = document.querySelector(".overlay");
+document.addEventListener('DOMContentLoaded',function() {
+  var overlay = document.querySelector(".overlay");
 var storage = localStorage.getItem("user-name");
 
 var registrationLink = document.querySelector(".registration-link");
@@ -80,4 +81,6 @@ overlay.addEventListener("click", function (evt) {
   registrationForm.classList.remove("modal-show");
   loginForm.classList.remove("modal-show");
   overlay.classList.remove("modal-show");
+});
+
 });
