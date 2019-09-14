@@ -44,7 +44,7 @@
           <section class="login login--page">
           <?php
           require_once('./core/business/appvars.php');
-          require_once(BUS . 'signup2.php'); ?>
+          require_once(BUS . 'signup.php'); ?>
           <?php
             if (!empty($_SESSION['user_id'])) {
               echo '<p>Вы вошли как ' . $_SESSION['username'] . '</p>';
