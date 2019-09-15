@@ -34,10 +34,10 @@
           </button>
           <ul class="user-navigation__list">
             <li class="user-navigation__item">
-              <a class="user-navigation__link registration-link" href="/registration.html">Оформить читательский билет</a>
+              <a class="user-navigation__link registration-link" href="/registration.php">Оформить читательский билет</a>
             </li>
             <li class="user-navigation__item user-navigation__item--bottom">
-              <a class="user-navigation__link login-link" href="/login.html">Представиться</a>
+              <a class="user-navigation__link login-link" href="/login.php">Представиться</a>
             </li>
           </ul>
         </nav>

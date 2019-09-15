@@ -39,7 +39,7 @@
       }
     }
     else {
-      echo "Вы оставили какие-то поля пустые или пароли не совпадают. Если возникают ошибки с регистрации, пожалуйста, напишите нам <a class='link' href='mailto:VRATAproject@yandex.ru'>VRATAproject@yandex.ru</a>";
+      echo "Вы оставили какие-то поля пустыми или пароли не совпадают. Если возникают ошибки с регистрацией, пожалуйста, напишите нам: <a class='link' href='mailto:VRATAproject@yandex.ru'>VRATAproject@yandex.ru</a>";
     }
   }
  ?>
