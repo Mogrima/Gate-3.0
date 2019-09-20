@@ -8,6 +8,13 @@
 
 .attention--modal {
   display: none;
+  
+  margin: 0 auto;
+}
+
+.page-reg .attention--modal {
+  display: block;
+  margin-top: 10px;
 }
 
 .attention__restriction {
@@ -15,9 +22,13 @@
   text-align: center;
 }
 
-@media (min-width: 768px) and (max-width: @desktop-width) {
+@media (min-width: 768px) {
   .attention {
     width: 640px;
     margin: 0 auto;
+  }
+
+  .attention--modal {
+    width: 380px;
   }
 }

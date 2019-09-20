@@ -11,6 +11,7 @@
   display: none;
   position: fixed;
   top: 120px;
+  top: 30px;
   left: 50%;
   z-index: 6;
   margin-left: -210px;
@@ -25,11 +26,17 @@
   justify-content: space-between;
   width: 340px;
   margin: 0 auto;
-  margin-bottom: 48px;
+  margin-bottom: 30px;
 
   &--start {
     justify-content: flex-start;
     width: 300px;
+  }
+
+  &--last {
+    width: 300px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 }
 
@@ -68,7 +75,7 @@
   box-sizing: border-box;
   width: 180px;
   margin: 0 auto;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   padding: 10px 10px;
   border: none;
   font-family: "Times New Roman", "Times", serif;
@@ -132,8 +139,13 @@
 
   .login__reg,
   .login__log {
+    position: absolute;
+    z-index: 21;
+    top: 120px;
+    top: 0;
+    left: 0;
     margin: 0;
-    margin-left: -160px;
+    // margin-left: -160px;
   }
 
   .login__info {
