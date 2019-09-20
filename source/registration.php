@@ -72,7 +72,7 @@ require_once(BUS .'signup.php'); ?>
     </div>
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
-  <!-- <script src="js/jquery.min.js"></script> -->
+  <script src="js/jquery.min.js"></script>
   <script>
   $('#reg-form').submit(function (event) {
     event.preventDefault();
