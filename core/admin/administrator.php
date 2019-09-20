@@ -1,48 +1,32 @@
-<?php
-  session_start();
+<?php require_once('../business/session.php');
   require_once('../business/appvars.php');
-  require_once('../'.BUS.'/connectvars.php');
+  require_once(BUS_с. '/pagevars_c.php');
+  require_once(BUS_с. 'connectvars.php');
   // подключение к базе данных
-  require_once('../'.BUS.'/mysql__connect.php');
-  // If the session vars aren't set, try to set them with a cookie
-  if (!isset($_SESSION['user_id'])) {
-    if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-      $_SESSION['user_id'] = $_COOKIE['user_id'];
-      $_SESSION['username'] = $_COOKIE['username'];
-    }
-  }
+  require_once(BUS_с. 'mysql__connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <?php
     $website_title = 'Администратор';
-    require_once '../blocks/head.php' ?>
+    require_once(BLOCKS_c. 'head.php'); ?>
 </head>
 <body class="page">
   <div class="background-header"></div>
-  <?php require_once '../blocks/header.php' ?>
-  <?php require_once '../blocks/main-navigation.php' ?>
+  <?php require_once(BLOCKS_c. 'header.php'); ?>
+  <?php require_once(BLOCKS_c. 'main-navigation.php'); ?>
   <main class="page-main">
     <div class="container">
       <div class="substrate">
-      <?php
-        if (!isset($_SESSION['user_id'])) {
-            if ($_SESSION['user_id'] != '14') {
-            echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
-            exit();
-            }
-          }
-          else {
-            echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '. <a href="../logout.php">Log out</a>.</p>');
-          }
-      ?>
-      <a href="/admin/_adNews.php" class="button">Новости</a>
-      <a href="/admin/adWorks.php" class="button">Произведения</a>
-        <!-- Подложка -->
-      </div><!-- Подложка -->
+      <?php require_once(BUS_с. '/adminSession.php'); ?>
+      <a href="_adNews.php" class="button">Новости</a>
+      <a href="adWorks.php" class="button">Произведения</a>
+      </div>
     </div>
   </main>
-  <?php require_once('../blocks/footer.php'); ?>
+  <?php require_once(BLOCKS_c. 'footer.php'); ?>
+  <div class="overlay"></div>
+  <script src="../../js/scripts.min.js"></script>
  </body>
 </html>
