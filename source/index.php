@@ -9,6 +9,7 @@
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
     $website_title = 'Врата. Версия 6';
+    require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
 </head>
 
@@ -49,7 +50,7 @@
           <a href="login.php">Авторизоваться</a><br>
           <a href="registration.php">Зарегистрироваться</a> <br>
           <a href="addImage.php">добавить изображение</a> <br>
-          <a href="/admin/administrator.php">Администратор</a>
+          <a href="./core/admin/administrator.php">Администратор</a>
           <?php } ?>
           </p>
           <?php require_once BLOCKS .'search-block.php' ?>

@@ -24,6 +24,6 @@
       </div>
       <button class="button login__button" type="submit">Зарегистрироваться</button>
     </form>
-    <a class="link link--profile" href="./registration.php">Перейти на отдельную страницу регистрации</a>
+    <a class="login__info login__info--last link link--modal" href="./registration.php"><span>Если форма работает некорректно</span></a>
     <button class="close login__close-reg">Закрыть</button>
 </section>

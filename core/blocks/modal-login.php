@@ -17,6 +17,6 @@
       </div>
       <button class="button login__button" type="submit" value="enter" name="submit">Представиться</button>
     </form>
-    <a class="link link--profile" href="./login.php">Если форма работает некорректно</a>
+    <a class="login__info login__info--last link link--modal" href="./login.php">Если форма работает некорректно</a>
        <button class="close login__close-log">Закрыть</button>
 </section>
