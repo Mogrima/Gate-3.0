@@ -1,7 +1,10 @@
 <?php require_once('../business/session.php');
-        require_once('../business/appvars.php');
-        require_once('../'.BUS.'/connectvars.php');
-        require_once('../'.BUS.'/mysql__connect.php');?>
+  require_once('../business/appvars.php');
+  require_once(BUS_с. '/pagevars_c.php');
+  require_once(BUS_с. 'connectvars.php');
+  // подключение к базе данных
+  require_once(BUS_с. 'mysql__connect.php');
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -16,6 +19,7 @@
   <main class="page-main">
     <div class="container">
       <div class="substrate">
+      <?php require_once(BUS_с. '/adminSession.php'); ?>
       <?php
  
 $filename = "text.txt";
@@ -102,17 +106,6 @@ echo "<a href='adWorks?page=".++$page."'>Вперед</a> ";
 //     echo "<a href='adWorks?page=".++$i."'>Вперед</a> ";
 // }
 ?>
-      <?php
-        if (!isset($_SESSION['user_id'])) {
-            if ($_SESSION['user_id'] != '14') {
-            echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
-            exit();
-            }
-          }
-          else {
-            echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '. <a href="../logout.php">Log out</a>.</p>');
-          }
-      ?>
       <a href="/admin/administrator.php" class="button">Назад</a>
       <?php
        

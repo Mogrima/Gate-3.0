@@ -1,8 +1,10 @@
 <?php require_once('../business/session.php');
-        require_once('../business/appvars.php');
-        require_once('../'.BUS.'/connectvars.php');
-        // подключение к базе данных
-        require_once('../'.BUS.'/mysql__connect.php');?>
+  require_once('../business/appvars.php');
+  require_once(BUS_с. '/pagevars_c.php');
+  require_once(BUS_с. 'connectvars.php');
+  // подключение к базе данных
+  require_once(BUS_с. 'mysql__connect.php');
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -17,21 +19,8 @@
   <main class="page-main">
     <div class="container">
       <div class="substrate">
-      <?php
-        if (!isset($_SESSION['user_id'])) {
-            if ($_SESSION['user_id'] != '14') {
-            echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
-            exit();
-            }
-          }
-          else {
-            echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '. <a href="../logout.php">Log out</a>.</p>');
-          }
-      ?>
+      <?php require_once(BUS_с. '/adminSession.php'); ?>
       <a href="/admin/administrator.php" class="button">Назад</a>
-      <?php
-// require_once ('submitNews.php');
-?>
       <form class="form-addnews" action="submitNews.php" method="post" enctype="multipart/form-data">
         <!-- <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> -->
         <label for="news_title">Название новости</label>
@@ -58,8 +47,7 @@
                   <a class='btn btn-warning mb-5'>Прочитать больше</a>";
         }
         ?>
-        <!-- Подложка -->
-      </div><!-- Подложка -->
+      </div>
     </div>
   </main>
   <?php require_once('../blocks/footer.php'); ?>
