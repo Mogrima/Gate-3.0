@@ -22,7 +22,7 @@
                   <a class="profile-menu__link" href="/user.php">Перейти в личный кабинет</a>
               </li>
               <li class="profile-menu__item">
-                  <a class="profile-menu__link profile-menu__link--bottom" href="logout.php">Выйти</a>
+                  <a class="profile-menu__link profile-menu__link--bottom" href="<?=$logout_php?>">Выйти</a>
               </li>
           </ul>
       </nav>
@@ -34,10 +34,10 @@
           </button>
           <ul class="user-navigation__list">
             <li class="user-navigation__item">
-              <a class="user-navigation__link registration-link" href="/registration.php">Оформить читательский билет</a>
+              <a class="user-navigation__link registration-link" href="<?=$reg_php?>">Оформить читательский билет</a>
             </li>
             <li class="user-navigation__item user-navigation__item--bottom">
-              <a class="user-navigation__link login-link" href="/login.php">Представиться</a>
+              <a class="user-navigation__link login-link" href="<?=$login_php?>">Представиться</a>
             </li>
           </ul>
         </nav>
