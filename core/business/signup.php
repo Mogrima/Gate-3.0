@@ -17,7 +17,7 @@
         $username_count = $row["count"];
       }
       if ($username_count > 0) {
-         echo "Это имя уже кем-то занято";
+         echo "<p class='attention attention--modal'>Это имя уже кем-то занято</p>";
       }
       else {
         $stmt = $pdo->prepare("SELECT COUNT(*) AS count FROM `user` WHERE user_email=?");
@@ -25,21 +25,21 @@
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           $email_count = $row["count"];
           if ($email_count > 0) {
-            echo "Этот адрес электронной почты уже используется";
+            echo "<p class='attention attention--modal'>Этот адрес электронной почты уже используется</p>";
           }
           else {
             $password = md5($password);
             $sql = "INSERT INTO user(username, user_email, password) VALUES('$username', '$email', '$password')";
             $query = $pdo->prepare($sql);
             $query->execute([$username, $email, $password]);
-            echo "Вы успешно зарегистрировались! Теперь вы можете <a href='login.php'>представиться</a>";
+            echo "Вы успешно зарегистрировались! Теперь вы можете <a class='link link--profile' href='login.php'>представиться</a>";
             exit();
           }
         }
       }
     }
     else {
-      echo "Вы оставили какие-то поля пустыми или пароли не совпадают. Если возникают ошибки с регистрацией, пожалуйста, напишите нам: <a class='link' href='mailto:VRATAproject@yandex.ru'>VRATAproject@yandex.ru</a>";
+      echo "<p class='attention attention--modal'>Вы заполнили не все поля, либо указали данные неверно. Не получается зарегистрироваться? Напишите нам: <a class='link link--profile' href='mailto:VRATAproject@yandex.ru'>VRATAproject@yandex.ru</a></p>";
     }
   }
  ?>
