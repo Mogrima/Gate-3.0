@@ -6,7 +6,6 @@ require_once(BUS .'authorize.php'); ?>
 
 <head>
   <?php
-    require_once('./core/business/appvars.php');
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
@@ -40,16 +39,16 @@ require_once(BUS .'authorize.php'); ?>
           <h2 class="visually-hidden">Здесь можно представиться</h2>
           <p class="section-header login__title">Здравствуйте</p>
           <?php
-  if (empty($_SESSION['user_id'])) {
-    echo '<p class="error">' . $error_msg . '</p>';
-  ?>
+            if (empty($_SESSION['user_id'])) {
+              echo '<p class="error">' . $error_msg . '</p>';
+          ?>
           <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <p class="input__wrapper">
               <label for="user-name" class="visually-hidden">Ваше имя или электронная почта</label>
               <input id="user-name" class="input login__input login__input--page" type="text" name="username"
                 placeholder="Ваше имя или электронная почта..."">
-  </p>
-  <p class=" input__wrapper">
+            </p>
+            <p class=" input__wrapper">
               <label for="user-pass" class="visually-hidden">Ваш пароль</label>
               <input id="user-pass" class="input login__input login__input--page" type="password" name="password"
                 placeholder="Ваш ключ...">
@@ -62,14 +61,13 @@ require_once(BUS .'authorize.php'); ?>
             </div>
             <button class="button login__button" type="submit" value="enter" name="submit">Представиться</button>
           </form>
-
           <?php
-  }
-  else {
-    // подтверждение успешного входа в приложение
-    echo('<p class="login">Вы вошли как ' . $_SESSION['username'] . '</p>');
-  }
-?>
+            }
+          else {
+            // подтверждение успешного входа в приложение
+            echo('<p class="login">Вы вошли как ' . $_SESSION['username'] . '</p>');
+          }
+          ?>
         </section>
         <p class="login__text">Не зарегистрированы? <a class="login__link-to-reg" href="registration.php">Тогда вам
             сюда</a></p>
