@@ -1,19 +1,10 @@
 <?php
-  session_start();
-
-  // If the session vars aren't set, try to set them with a cookie
-  if (!isset($_SESSION['user_id'])) {
-    if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-      $_SESSION['user_id'] = $_COOKIE['user_id'];
-      $_SESSION['username'] = $_COOKIE['username'];
-    }
-  }
-?>
+require_once('./core/business/appvars.php');
+require_once(BUS .'signup.php'); ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <?php
-    require_once('./core/business/appvars.php');
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
@@ -42,9 +33,6 @@
           <?php require_once BLOCKS .'search-block.php' ?>
           </div>
           <section class="login login--page">
-          <?php
-          require_once('./core/business/appvars.php');
-          require_once(BUS . 'signup.php'); ?>
           <?php
             if (!empty($_SESSION['user_id'])) {
               echo '<p>Вы вошли как ' . $_SESSION['username'] . '</p>';
