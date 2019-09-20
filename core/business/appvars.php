@@ -8,5 +8,9 @@
   // Пути к папкам
   define('BUS', './core/business/');
   define('BLOCKS', './core/blocks/');
-  define('WORKS', '../img/works-catalog/')
+  define('WORKS', '../img/works-catalog/');
+
+  // Пути внутренних core папкам
+  define('BUS_с', '../business/');
+  define('BLOCKS_c', '../blocks/');
 ?>
