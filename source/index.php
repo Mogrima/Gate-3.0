@@ -97,69 +97,7 @@
   <?php require_once(BLOCKS .'modal-login.php'); ?>
   <?php require_once(BLOCKS .'modal-registration.php'); ?>
   <div class="overlay"></div>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/scripts.min.js"></script>
-  <script>
-    $('#login-form').submit(function (event) {
-      event.preventDefault();
-      var username = $('#login-name').val();
-      var password = $('#login-pass').val();
-
-      $.ajax({
-        url: "./core/business/auth_modal.php",
-        type: 'POST',
-        cache: false,
-        data: {
-          'username': username,
-          'password': password
-        },
-        dataType: 'html',
-        success: function (data) {
-          if (data == 'OK') {
-            $('#errorLogin').hide();
-            $('.login__button').text('Загрузка..');
-            document.location.reload(true); // перезагрузка страницы
-          } else {
-            $('#errorLogin').show();
-            $('#errorLogin').text(data);
-          }
-        }
-      });
-    });
-    $('#reg-form').submit(function (event) {
-      event.preventDefault();
-      var username = $('#username').val();
-      var userpass = $('#userpass').val();
-      var userpass2 = $('#userpass2').val();
-      var useremail = $('#useremail').val();
-
-      // $('#errorReg').show();
-      // $('#errorReg').text(password2);
-
-      $.ajax({
-        url: "./core/business/signup__modal.php",
-        type: 'POST',
-        cache: false,
-        data: {
-          'username': username,
-          'userpass': userpass,
-          'userpass2': userpass2,
-          'useremail': useremail
-        },
-        dataType: 'html',
-        success: function (data) {
-          if (data == 'OK') {
-            $('#errorReg').hide();
-            $('.login__button').text('Загрузка..');
-            document.location.reload(true); // перезагрузка страницы
-          } else {
-            $('#errorReg').show();
-            $('#errorReg').text(data);
-          }
-        }
-      });
-    });
-  </script>
+  <?php require_once(BLOCKS .'scripts-include.php'); ?>
 </body>
 
 </html>
