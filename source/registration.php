@@ -53,27 +53,27 @@
             ?>
             <h2 class="visually-hidden">Здесь можно зарегистрироваться</h2>
             <p class="section-header login__title">Добро пожаловать</p>
-            <form id="form-reg" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+            <p id="errorReg" class="attention attention--modal"></p>
+            <form id="reg-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
               <p class="input__wrapper">
                 <label for="user-name" class="visually-hidden">Ваше имя...</label>
-                <input id="user-name" class="input login__input login__input--page" type="text" name="username" placeholder="Ваше имя...">
+                <input id="username" class="input login__input" type="text" name="username" placeholder="Ваше имя..." required>
               </p>
               <p class="input__wrapper">
                 <label for="user-email" class="visually-hidden">Ваш почтовый ящик...</label>
-                <input id="user-email" class="input login__input login__input--page" type="email" name="useremail" placeholder="Ваш почтовый ящик...">
+                <input id="useremail" class="input login__input" type="email" name="useremail" placeholder="Ваш почтовый ящик..." required>
               </p>
               <p class="input__wrapper">
                 <label for="user-pass" class="visually-hidden">Придумайте пароль</label>
-                <input id="user-pass" class="input login__input login__input--page" type="password" name="userpass" placeholder="Придумайте пароль">
+                <input id="userpass" class="input login__input" type="password" name="userpass" placeholder="Придумайте пароль" required>
               </p>
               <p class="input__wrapper">
                 <label for="user-pass2" class="visually-hidden">Повторите пароль</label>
-                <input id="user-pass2" class="input login__input login__input--page" type="password" name="userpass2" placeholder="Повторите пароль">
+                <input id="userpass2" class="input login__input login__input--page" type="password" name="userpass2" placeholder="Повторите пароль" required>
               </p>
               <div class="login__info login__info--start">
                 <input id="remember" class="checkbox login__info-checkbox" type="checkbox" name="remember"> <label for="remember" class="checkbox__name login__checkbox-name"><span class="checkbox__indicator login__checkbox-indicator"></span>Запомните меня</label>
               </div>
-              <div class="alert alert-danger mt-2" id="errorBlock"></div>
               <button class="button login__button" value="submit" name="submit" type="submit">Зарегистрироваться</button>
             </form>
             <!-- <button>Закрыть</button> -->
@@ -84,34 +84,38 @@
     </div>
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
-  <script type="text/javascript" src="jquery.min.js"></script>
+  <!-- <script src="js/jquery.min.js"></script> -->
   <script>
-//   $('#form-reg').submit(function (event) {
-//       event.preventDefault();
-//       var name = $('#user-name').val();
-//       var email = $('#user-email').val();
-//       var password2 = $('#user-pass').val();
-//       var password = $('#user-pass2').val();
-//       var error = document.getElementById('errorBlock');
-//       console.log(error);
-//       $.ajax({
-//           url: "business/signup.php",
-//           type: 'POST',
-//           cache: false,
-//           data: {'username' : name, 'email' : email, 'password' : password, 'password2' : password2},
-//           dataType: 'html',
-//           success: function(data) {
+  $('#reg-form').submit(function (event) {
+    event.preventDefault();
+    var username = $('#username').val();
+    var userpass = $('#userpass').val();
+    var userpass2 = $('#userpass2').val();
+    var useremail = $('#useremail').val();
 
-//               error.innerHTML = data;
-//               // $('#form-reg').text('Вы зарегистрировались');
-
-//               // else {
-//               //     $('#errorBlock').show();
-//               //     $('#errorBlock').text(data);
-//               // }
-//           }
-//       });
-//   });
-// </script>
+    $.ajax({
+      url: "./core/business/signup__modal.php",
+      type: 'POST',
+      cache: false,
+      data: {
+        'username': username,
+        'userpass': userpass,
+        'userpass2': userpass2,
+        'useremail': useremail
+      },
+      dataType: 'html',
+      success: function (data) {
+        if (data == 'OK') {
+          $('#errorReg').hide();
+          $('.login__button').text('Загрузка..');
+          window.location.replace("./index.php"); // перезагрузка страницы
+        } else {
+          $('#errorReg').show();
+          $('#errorReg').text(data);
+        }
+      }
+    });
+  });
+  </script>
 </body>
 </html>
