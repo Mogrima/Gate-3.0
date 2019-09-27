@@ -42,20 +42,21 @@ require_once(BUS .'authorize.php'); ?>
             if (empty($_SESSION['user_id'])) {
               echo '<p class="error">' . $error_msg . '</p>';
           ?>
-          <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+          <form id="login-form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <p id="errorLogin" class="attention attention--modal"></p>
             <p class="input__wrapper">
-              <label for="user-name" class="visually-hidden">Ваше имя или электронная почта</label>
-              <input id="user-name" class="input login__input login__input--page" type="text" name="username"
-                placeholder="Ваше имя или электронная почта..."">
+              <label for="login-name" class="visually-hidden">Ваше имя</label>
+              <input id="login-name" class="input login__input login__input--page" type="text" name="username"
+                placeholder="Ваше имя..." required>
             </p>
-            <p class=" input__wrapper">
-              <label for="user-pass" class="visually-hidden">Ваш пароль</label>
-              <input id="user-pass" class="input login__input login__input--page" type="password" name="password"
-                placeholder="Ваш ключ...">
+            <p class="input__wrapper">
+              <label for="login-pass" class="visually-hidden">Ваш пароль</label>
+              <input id="login-pass" class="input login__input login__input--page" type="password" name="password"
+                placeholder="Ваш ключ..." required>
             </p>
             <div class="login__info">
-              <input id="remember" class="checkbox login__info-checkbox" type="checkbox" name="remember"> <label
-                for="remember" class="checkbox__name login__checkbox-name"><span
+              <input id="login-remember" class="checkbox login__info-checkbox" type="checkbox" name="remember"> <label
+                for="login-remember" class="checkbox__name login__checkbox-name"><span
                   class="checkbox__indicator login__checkbox-indicator"></span>Запомните меня</label>
               <a class="login__restore" href="#">Я забыл(а) пароль!</a>
             </div>
@@ -75,7 +76,9 @@ require_once(BUS .'authorize.php'); ?>
     </div>
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
+  <script src="js/jquery.min.js"></script>
   <script src="js/scripts.min.js"></script>
+  <?php require_once(BLOCKS .'auth-ajax.php'); ?>
 </body>
 
 </html>
