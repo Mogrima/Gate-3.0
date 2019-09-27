@@ -21,7 +21,8 @@
         if (data == 'OK') {
           $('#errorReg').hide();
           $('.login__button').text('Загрузка..');
-          document.location.reload(true); // перезагрузка страницы
+         // document.location.reload(true); // перезагрузка страницы
+         window.location.replace("./index.php");
         } else {
           $('#errorReg').show();
           $('#errorReg').text(data);

@@ -17,7 +17,8 @@
         if (data == 'OK') {
           $('#errorLogin').hide();
           $('.login__button').text('Загрузка..');
-          document.location.reload(true); // перезагрузка страницы
+          // document.location.reload(true); // перезагрузка страницы
+          window.location.replace("./index.php");
         } else {
           $('#errorLogin').show();
           $('#errorLogin').text(data);
