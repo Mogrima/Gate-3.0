@@ -1,14 +1,4 @@
-<?php
-  session_start();
-
-  // If the session vars aren't set, try to set them with a cookie
-  if (!isset($_SESSION['user_id'])) {
-    if (isset($_COOKIE['user_id']) && isset($_COOKIE['username'])) {
-      $_SESSION['user_id'] = $_COOKIE['user_id'];
-      $_SESSION['username'] = $_COOKIE['username'];
-    }
-  }
-  ?>
+<?php require_once('./core/business/session.php');?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -19,7 +9,8 @@
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
     $website_title = 'Профиль пользователя';
-    require_once BLOCKS .'head.php' ?>
+    require_once(BUS.'/pagevars.php');
+    require_once(BLOCKS .'head.php');?>
 </head>
 <?php
     // Make sure the user is logged in before going any further.
@@ -91,6 +82,7 @@
   <main class="page-main">
     <div class="container">
       <div class="substrate">
+      <?php require_once(BUS. '/adminSession.php'); ?>
         <div class="page-main__head">
           <h1 class="title"><?php echo ''.$_SESSION['username'].'' ?></h1>
           <<?php require_once BLOCKS .'search-block.php' ?>
