@@ -13,7 +13,7 @@ if(!isset($_SESSION['user_id'])) {
   if (!empty($username) && !empty($password)) {
     $password = md5($password);
     // // Поиск имени пользователя и его пароля в базе данных
-    $sql = 'SELECT `user_id`, `user_email`, `username` FROM `user` WHERE `username` =:username || `user_email` =:username && `password` =:password';
+    $sql = 'SELECT `user_id`, `user_email`, `username` FROM `user` WHERE `username` =:username && `password` =:password || `user_email` =:username && `password` =:password';
     $query = $pdo->prepare($sql);
     $query->execute(['username' => $username, 'password' => $password]);
 
