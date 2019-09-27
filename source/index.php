@@ -15,8 +15,8 @@
 
 <body class="page">
   <div class="background-header"></div>
-  <?php require_once BLOCKS .'header.php' ?>
-  <?php require_once BLOCKS .'main-navigation.php' ?>
+  <?php require_once(BLOCKS . 'header.php'); ?>
+  <?php require_once(BLOCKS . 'main-navigation.php'); ?>
   <main class="page-main">
     <div class="container">
       <div class="substrate">
@@ -52,7 +52,6 @@
           <a href="addImage.php">добавить изображение</a> <br>
           <a href="./core/admin/administrator.php">Администратор</a>
           <?php } ?>
-          </p>
           <?php require_once BLOCKS .'search-block.php' ?>
         </div>
         <!--$works_title заголовок section works  -->

@@ -8,6 +8,7 @@
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
     $website_title = 'Книги';
+    require_once(BUS.'/pagevars.php');
     require_once(BLOCKS . 'head.php'); ?>
 </head>
 <body class="page">
@@ -69,8 +70,8 @@
                 <legend class="filter__title">Размер:</legend>
                 <ul class="filter__list">
                   <li><input checked class="checkbox" id="little-checkbox" name="little" type="checkbox"> <label class="checkbox__name" for="little-checkbox"><span class="checkbox__indicator"></span>Рассказы</label></li>
-                  <li><input class="checkbox" id="middle-checkbox" name="middle" type="checkbox"> <label class="checkbox__name" for="middle-checkbox"><span class="checkbox__indicator"></span><p>Средний <span>(150 - 200 стр.)</span></p></label></li>
-                  <li><input class="checkbox" id="big-checkbox" name="big" type="checkbox"> <label class="checkbox__name" for="big-checkbox"><span class="checkbox__indicator"></span><p>Большой <span> (больше 200 стр.)</span></p></label></li>
+                  <li><input class="checkbox" id="middle-checkbox" name="middle" type="checkbox"> <label class="checkbox__name" for="middle-checkbox"><span class="checkbox__indicator"></span><span>Средний <span class="checkbox__clar">(150 - 200 стр.)</span></span></label></li>
+                  <li><input class="checkbox" id="big-checkbox" name="big" type="checkbox"> <label class="checkbox__name" for="big-checkbox"><span class="checkbox__indicator"></span><span>Большой <span class="checkbox__clar"> (больше 200 стр.)</span></span></label></li>
                 </ul>
               </fieldset>
               <fieldset class="filter__fieldset">
@@ -120,6 +121,6 @@
   <?php require_once(BLOCKS .'modal-login.php'); ?>
   <?php require_once(BLOCKS .'modal-registration.php'); ?>
   <div class="overlay"></div>
-  <script src="js/scripts.min.js"></script>
+  <?php require_once(BLOCKS .'scripts-include.php'); ?>
 </body>
 </html>

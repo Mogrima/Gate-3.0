@@ -1,6 +1,6 @@
 <header class="page-header">
       <div class="page-header__wrapper">
-        <a class="page-header__logo"><img class="page-header__logo-image" alt="Логотип Врата" width="164" height="54" src="/img/Logo.png" width="164"></a>
+        <a class="page-header__logo"><img class="page-header__logo-image" alt="Логотип Врата" width="164" height="54" src="/img/Logo.png"></a>
         <?php
         if (isset ($_SESSION['username'])) {
           $session_id = $_SESSION['user_id'];
