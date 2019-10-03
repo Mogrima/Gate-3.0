@@ -21,8 +21,9 @@
       <div class="substrate">
       <?php require_once(BUS_с. '/adminSession.php'); ?>
       <?php
- 
-$filename = "text.txt";
+      
+ clearstatcache();
+$filename = "songAttic.txt";
  
 
 // $string = 'The foreach construct provides an easy way to iterate over arrays. foreach ... In PHP 5, when foreach first starts executing, the internal array pointer is automatically reset to the first element of the array. This means that you do not need to call reset';
@@ -50,24 +51,57 @@ $s = "Диана лежала в своей пастели и всматрива
 //   echo $res . '<br>';
 // }
 
-if (file_exists($filename) && is_readable ($filename)) {
-  $fp = @fopen($filename, 'r');
-  if ($fp) {
-    echo '<p style="color: red;">'.filesize($filename).'</p>';
-    $lines = str_split_unicode(fread($fp, filesize($filename)), 4500);
-      // $lines = explode("f", fread($fp, filesize($filename)));
+// Начало загрузки книги в БД
+// Если держать код разкомментированным в таком виде, что загрузка заново
+// будет происходить каждый раз при перезагрузки страницы, тем самым
+// База данных будет все заполняться и заполняться
+
+// if (file_exists($filename) && is_readable ($filename)) {
+//   echo 'работает';
+//   $fp = @fopen($filename, 'r');
+//   echo 'работает 2';
+//   if ($fp) {
+//     echo '<p style="color: red;">'.filesize($filename).'</p>';
+//     // $lines = str_split_unicode(fread($fp, filesize($filename)), 2360);
+//     $lines = fread($fp, filesize($filename));
+//     echo $lines;
+//       // $lines = explode("f", fread($fp, filesize($filename)));
       
-      echo '<p style="color: red;">'.$lines[109].' переменная lines</p>';
-      foreach($lines as $res) {
-        $sql = "INSERT INTO test(title, text) VALUES('Истории тысячи миров', '$res')";
-        $query = $pdo->prepare($sql);
-        $query->execute(['Истории тысячи миров', $res]);
-      }
-  }
-}
+//       // echo '<p style="color: red;">'.$lines[109].' переменная lines</p>';
+//       // foreach($lines as $res) {
+//         // $sql = "INSERT INTO test(title, text) VALUES('Истории тысячи миров', 'Певчий чердак', '$res')";
+//         $sql = "INSERT INTO test(title, chapter, text) VALUES('Истории тысячи миров', 'Певчий чердак', '$lines')";
+//         $query = $pdo->prepare($sql);
+//         $query->execute(['Истории тысячи миров', 'Певчий чердак', $lines]);
+//       // }
+//   }
+// }
+
+// конец загрузки книги в БД
+
+// $sql = "SELECT * FROM `test`";
+// $result = $pdo->query($sql);
+// $row = $result->fetch(PDO::FETCH_OBJ);
+// $text = $row->text;
+// $lines = explode("</p>", $text);
+// echo $text;
+// echo count($lines);
+// $chapterPage = count($lines);
+
+// $i = 1;
+
+// foreach($lines as $res) {
+//   echo $res;
+//   echo $i;
+//   $i++;
+// }
+
+
+// if (fopen($filename, "r")) echo "File exists!";
 // помещаем номер страницы из массива GET в переменую $page
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
-
+$cursor = isset($_GET["cursor"]) ? (int) $_GET["cursor"] : 6;
+$n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
 // количество статей на страницу
 $on_page = 1;
 
@@ -75,7 +109,49 @@ $on_page = 1;
 $shift = ($page - 1) * $on_page;
 
 $sql = "SELECT * FROM `test` LIMIT $shift, $on_page";
+// $sql = "SELECT * FROM `test`";
 $result = $pdo->query($sql);
+$row = $result->fetch(PDO::FETCH_OBJ);
+$text = $row->text;
+$lines = explode("</p>", $text);
+// echo $lines[2];
+$chapterPages = count($lines);
+echo $chapterPages;
+$num = $chapterPages - $n;
+echo '<p style="color: pink">'. $num .'</p>';
+echo $n . '<b>Итерация</b>';
+
+function iterat($n, $lines) {
+  global $y;
+  $y = $n;
+  $count = 6;
+  $count += $n;
+  for ($i = $y; $i < $count; $i++) {
+    echo $lines[$i];
+    // echo '<p style="color: red">'.$i.'</p>';
+    // return $i;
+    // $n += $i;
+    $y = $i;
+    echo '<p style="color: red">'.$y.'</p>';
+    
+  }
+ return $y;
+}
+iterat($n, $lines);
+
+$n = $y + 1;
+
+echo '<br> '.$y . '<b>После Итерация и </b> ' .$n;
+// echo $n . '<b>y После Итерация</b>';
+
+
+// function iterat($i) {
+//   for ($i; $i < 6; $i++) {
+//     echo $i;
+//   }
+// }
+
+// iterat(2);
 
 // выводим заголовок и контент
 // foreach ($result as $row) {
@@ -83,20 +159,36 @@ $result = $pdo->query($sql);
 //     echo "<p>" . $row["text"] . "</p>";
 // }
 
-while($row = $result->fetch(PDO::FETCH_OBJ)) {
-  echo "<h1>" . $row->title . "</h1>";
-    echo "<p>" . $row->text . "</p>";
-}
+// while($row = $result->fetch(PDO::FETCH_OBJ)) {
+//   echo "<h1>" . $row->title . "</h1>";
+//     echo "<p>" . $row->text . "</p>";
+// }
 
 // получаем количество статей и сохраняем как элемент массива "all_articles"
 // $result = $this->db->select("SELECT count(*) AS all_articles FROM `articles`");
-$sql = 'SELECT `text` FROM `test`';
-$result = $pdo->query($sql);
+// $sql = 'SELECT `text` FROM `test`';
+// $result = $pdo->query($sql);
 
-$count = 108;
-$pages = ceil($count / $on_page);
+$count = 1;
+// $pages = ceil($count / $on_page);
 
-echo "<a href='adWorks?page=".++$page."'>Вперед</a> ";
+// $cursor += $cursor;
+if ($num <= 0) {
+  echo "<a href='adWorks.php?page=".++$page."&amp;cursor=".$count."&amp;n=".$n."'>Вперед на ". $page ." страницу</a> ";
+  echo "<a href='adWorks.php?page=".$page."&amp;n=".$n."'>Назад на ". $page ." страницу</a> ";
+}
+else {
+  $x = $n - 6;
+  echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."'>Вперед на ". $page ." страницу</a> ";
+  echo "<a href='adWorks.php?page=".$page."&amp;n=".$x."'>Назад на ". $page ." страницу</a> ";
+}
+// echo "<a href='adWorks.php?page=".++$page."'>Вперед на ". $page ." страницу</a> ";
+
+// if ($page > 2) {
+//   --$page;
+//   echo "<a href='adWorks.php?page=".--$page."'>Назад на ". $page ." страницу</a> ";
+// }
+// <a href='/news.php?id=$row->id' title='$row->title' class='btn btn-warning mb-5'>Прочитать больше</a>";
 
 // for ($i = 1; $i <= $pages; $i++) {
 //     // если текущая старница
@@ -106,7 +198,7 @@ echo "<a href='adWorks?page=".++$page."'>Вперед</a> ";
 //     echo "<a href='adWorks?page=".++$i."'>Вперед</a> ";
 // }
 ?>
-      <a href="/admin/administrator.php" class="button">Назад</a>
+      <a href="administrator.php" class="button">Назад</a>
       <?php
        
         // php код для отправки данных формы

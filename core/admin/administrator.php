@@ -22,6 +22,7 @@
       <?php require_once(BUS_с. '/adminSession.php'); ?>
       <a href="_adNews.php" class="button">Новости</a>
       <a href="adWorks.php" class="button">Произведения</a>
+      <a href="book.php" class="button">Книга</a>
       </div>
     </div>
   </main>
