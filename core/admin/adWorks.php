@@ -102,30 +102,65 @@ $s = "Диана лежала в своей пастели и всматрива
 $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
 $cursor = isset($_GET["cursor"]) ? (int) $_GET["cursor"] : 6;
 $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
+$pages = isset($_GET["pages"]) ? (int) $_GET["pages"] : 0;
 // количество статей на страницу
 $on_page = 1;
 
 // (номер страницы - 1) * статей на страницу
 $shift = ($page - 1) * $on_page;
 
-$sql = "SELECT * FROM `test` LIMIT $shift, $on_page";
+if (false) {
+  $textid = $_GET["textid"];
+  $sql = "SELECT * FROM `test` WHERE `id` = $textid LIMIT $shift, $on_page";
+  // $result = $pdo->query($sql);
+  // $row = $result->fetch(PDO::FETCH_OBJ);
+  // $text = $row->text;
+  // $lines = explode("</p>", $text);
+}
+else {
+  $sql = "SELECT * FROM `test` LIMIT $shift, $on_page";
+  // $sql = "SELECT * FROM `test`";
+}
+
 // $sql = "SELECT * FROM `test`";
 $result = $pdo->query($sql);
 $row = $result->fetch(PDO::FETCH_OBJ);
 $text = $row->text;
+$id = $row->id;
 $lines = explode("</p>", $text);
 // echo $lines[2];
-$chapterPages = count($lines);
+$chapterPages = count($lines) - 1;
 echo $chapterPages;
+echo '<p style="color: red">'. floor($chapterPages / 6) .'</p>';
 $num = $chapterPages - $n;
 echo '<p style="color: pink">'. $num .'</p>';
-echo $n . '<b>Итерация</b>';
+echo '<p style="color: green">'. $x .'</p>';
+// echo $n . '<b>Итерация</b>';
+// для ссылки на страницу назад
+$x = $n - 6;
 
-function iterat($n, $lines) {
+function iterat($n, $num, $lines) {
   global $y;
   $y = $n;
   $count = 6;
   $count += $n;
+  echo " $y до итерации равен y. <br>";
+  echo " $count до итерации равен count. ";
+
+  if ($num < 6) {
+    echo "num меньше 6<br>";
+    for ($i = $y; $i < $count; $i++) {
+      $y = $i;
+      echo '<p style="color: red">'.$y.'</p>';
+      
+      echo $lines[$i];
+      // echo '<p style="color: red">'.$i.'</p>';
+      // return $i;
+      // $n += $i;
+      
+      
+    }
+  }
   for ($i = $y; $i < $count; $i++) {
     echo $lines[$i];
     // echo '<p style="color: red">'.$i.'</p>';
@@ -135,12 +170,34 @@ function iterat($n, $lines) {
     echo '<p style="color: red">'.$y.'</p>';
     
   }
+  echo " После итерации $y равен y. <br>";
+  echo " $count После итерации равен count. ";
  return $y;
 }
-iterat($n, $lines);
+iterat($n, $num, $lines);
 
+// $id =$_GET['id'];
+
+$sql1 = "SELECT * FROM test WHERE `id`< $id";
+$query = $pdo->query($sql1);
+$pages1 = $query->fetchAll(PDO::FETCH_OBJ);
+$countPage = 0;
+foreach ($pages1 as $page1) {
+  $text = $page1->text;
+  $lines = explode("</p>", $text);
+$chapterPages = count($lines) - 1;
+$countPage += floor($chapterPages / 6);
+}
 $n = $y + 1;
+echo $countPage . ' dds';
+echo "<hr>";
+// счетчик страниц
+$pages = (($y + 1) / 6) + $countPage;
+$pages_next = $pages + 1;
+$pages_prev = $pages - 1;
 
+// iterat($n, $num, $lines);
+// $n = $y + 1;
 echo '<br> '.$y . '<b>После Итерация и </b> ' .$n;
 // echo $n . '<b>y После Итерация</b>';
 
@@ -173,15 +230,36 @@ $count = 1;
 // $pages = ceil($count / $on_page);
 
 // $cursor += $cursor;
-if ($num <= 0) {
-  echo "<a href='adWorks.php?page=".++$page."&amp;cursor=".$count."&amp;n=".$n."'>Вперед на ". $page ." страницу</a> ";
-  echo "<a href='adWorks.php?page=".$page."&amp;n=".$n."'>Назад на ". $page ." страницу</a> ";
+// переход к другому рассказу/главе
+if ($num <= 6) {
+  echo "<a href='adWorks.php?page=".$page."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
+  $n = 0;
+  $count = 0;
+  echo "<a href='adWorks.php?page=".++$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
+  
 }
-else {
-  $x = $n - 6;
-  echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."'>Вперед на ". $page ." страницу</a> ";
-  echo "<a href='adWorks.php?page=".$page."&amp;n=".$x."'>Назад на ". $page ." страницу</a> ";
+// else if (($num - $num) == 0) {
+//   echo "<a href='adWorks.php?page=".$page."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
+// }
+// переходы по страницам в пределах одного рассказа или главы
+else if ($x >= 0) {
+  echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
+  echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
+} 
+// переходы по страницам между рассказами или главами
+else if ($pages < (($countPage * 5) - 1)) {
+  $x = ($countPage * 5) - 1;
+  echo '$x значит' . $x;
+  echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
+  echo "<a href='adWorks.php?page=".--$page."&amp;cursor=".$count."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
+} 
+ else {
+  // первая страница
+  echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
 }
+echo "Текущая страница $pages";
+
+echo "<hr>";
 // echo "<a href='adWorks.php?page=".++$page."'>Вперед на ". $page ." страницу</a> ";
 
 // if ($page > 2) {
@@ -197,6 +275,27 @@ else {
 //     } 
 //     echo "<a href='adWorks?page=".++$i."'>Вперед</a> ";
 // }
+?>
+
+<h3>Содержание</h3>
+<?php
+// while($row = $query->fetch(PDO::FETCH_OBJ)) {
+//     echo "<h4><a href='adWorks.php?textid=".$row->id."'>$row->chapter</a></h4>";
+// }
+$sql = "SELECT * FROM `test` WHERE title = 'Истории тысячи миров'";
+$query = $pdo->query($sql);
+$contents = $query->fetchAll(PDO::FETCH_OBJ);
+$i = 0;
+foreach ($contents as $content) {
+  if ($comment->id == $id) {
+    // echo "текущее произведение страниц $textid = $i";
+    // return $i;
+  }
+  $i++;
+$n = 0;
+$count = 0;
+echo "<h3><a href='adWorks.php?page=".$i."cursor=".$count."&amp;n=".$n."&amp;id=".$content->id."'>" . $content->chapter . "</a></h3>";
+}
 ?>
       <a href="administrator.php" class="button">Назад</a>
       <?php
