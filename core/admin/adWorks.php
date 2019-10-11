@@ -232,6 +232,8 @@ $count = 1;
 // $cursor += $cursor;
 // переход к другому рассказу/главе
 if ($num <= 6) {
+  echo 'условие if 1';
+  echo "/// ($pages - $countPage) == 1<br>";
   echo "<a href='adWorks.php?page=".$page."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
   $n = 0;
   $count = 0;
@@ -243,11 +245,15 @@ if ($num <= 6) {
 // }
 // переходы по страницам в пределах одного рассказа или главы
 else if ($x >= 0) {
+  echo 'условие if 2';
   echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
   echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
 } 
 // переходы по страницам между рассказами или главами
-else if ($pages < (($countPage * 5) - 1)) {
+// выяснить что это первая страница следующего рассказа
+else if (($pages - $countPage) == 1) {
+  echo "/// ($pages - $countPage) == 1<br>";
+  echo 'условие if 3';
   $x = ($countPage * 5) - 1;
   echo '$x значит' . $x;
   echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";

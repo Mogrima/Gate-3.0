@@ -22,28 +22,60 @@
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="./book.css">
   <?php
-  $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
+  $filename = "text-min.txt";
 
-  // количество статей на страницу
-  $on_page = 1;
-  
-  // (номер страницы - 1) * статей на страницу
-  $shift = ($page - 1) * $on_page;
-  
-  $sql = "SELECT * FROM `test` LIMIT $shift, $on_page";
-  $result = $pdo->query($sql);
-  
-  // выводим заголовок и контент
-  foreach ($result as $row) {
-      echo "<h1>" . $row["title"] . "</h1>";
-      echo "<p>" . $row["text"] . "</p>";
-  }
+//   if (file_exists($filename) && is_readable ($filename)) {
+//   echo 'работает';
+//   $fp = @fopen($filename, 'r');
+//   echo 'работает 2';
+//   if ($fp) {
+//     echo '<p style="color: red;">'.filesize($filename).'</p>';
+//     // $lines = str_split_unicode(fread($fp, filesize($filename)), 2360);
+//     $lines = fread($fp, filesize($filename));
+//     echo $lines;
+//       // $lines = explode("f", fread($fp, filesize($filename)));
+      
+//       // echo '<p style="color: red;">'.$lines[109].' переменная lines</p>';
+//       // foreach($lines as $res) {
+//         // $sql = "INSERT INTO test(title, text) VALUES('Истории тысячи миров', 'Певчий чердак', '$res')";
+//         $sql = "INSERT INTO test1(title, text) VALUES('Истории тысячи миров', '$lines')";
+//         $query = $pdo->prepare($sql);
+//         $query->execute(['Истории тысячи миров', $lines]);
+//       // }
+//   }
+// }
 
-  echo "<a href='book.php?page=".++$page."'>Вперед на ". $page ." страницу</a> ";
+$sql = "SELECT * FROM `test1`";
+$result = $pdo->query($sql);
+$row = $result->fetch(PDO::FETCH_OBJ);
+$text = $row->text;
+$id = $row->id;
+$lines = explode("</p>", $text);
+$chapterPages = count($lines);
+echo $chapterPages;
 
-if ($page > 2) {
-  --$page;
-  echo "<a href='book.php?page=".--$page."'>Назад на ". $page ." страницу</a> ";
-}
+//   $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
+
+//   // количество статей на страницу
+//   $on_page = 1;
+  
+//   // (номер страницы - 1) * статей на страницу
+//   $shift = ($page - 1) * $on_page;
+  
+//   $sql = "SELECT * FROM `test` LIMIT $shift, $on_page";
+//   $result = $pdo->query($sql);
+  
+//   // выводим заголовок и контент
+//   foreach ($result as $row) {
+//       echo "<h1>" . $row["title"] . "</h1>";
+//       echo "<p>" . $row["text"] . "</p>";
+//   }
+
+//   echo "<a href='book.php?page=".++$page."'>Вперед на ". $page ." страницу</a> ";
+
+// if ($page > 2) {
+//   --$page;
+//   echo "<a href='book.php?page=".--$page."'>Назад на ". $page ." страницу</a> ";
+// }
   ?>
 </head>
