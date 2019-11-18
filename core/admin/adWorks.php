@@ -128,6 +128,9 @@ $row = $result->fetch(PDO::FETCH_OBJ);
 $text = $row->text;
 $id = $row->id;
 $lines = explode("</p>", $text);
+$joker = explode("</p>", $text);
+// joker1 это размер массива разбиение текста по абзацам
+$joker1 = count($joker);
 // echo $lines[2];
 $chapterPages = count($lines) - 1;
 echo $chapterPages;
@@ -186,10 +189,12 @@ foreach ($pages1 as $page1) {
   $text = $page1->text;
   $lines = explode("</p>", $text);
 $chapterPages = count($lines) - 1;
+// количество страниц прибавляем уже к существующим, это нужно для счетчика страниц
 $countPage += floor($chapterPages / 6);
+$countPage2 = floor($chapterPages / 6);
 }
 $n = $y + 1;
-echo $countPage . ' dds';
+echo '<p style="color: red">' . count($joker) . '</p>';
 echo "<hr>";
 // счетчик страниц
 $pages = (($y + 1) / 6) + $countPage;
@@ -199,6 +204,7 @@ $pages_prev = $pages - 1;
 // iterat($n, $num, $lines);
 // $n = $y + 1;
 echo '<br> '.$y . '<b>После Итерация и </b> ' .$n;
+echo "<p style='color: red'>$countPage2</p>";
 // echo $n . '<b>y После Итерация</b>';
 
 
@@ -225,15 +231,21 @@ echo '<br> '.$y . '<b>После Итерация и </b> ' .$n;
 // $result = $this->db->select("SELECT count(*) AS all_articles FROM `articles`");
 // $sql = 'SELECT `text` FROM `test`';
 // $result = $pdo->query($sql);
+// получаем общее количество строк
+$stmt = $pdo->query('SELECT COUNT(*) FROM test');
+$row = $stmt->fetch();
+$c=$row[0]; //количество строк
+echo 'количество строк' . $c .'<br>';
 
 $count = 1;
 // $pages = ceil($count / $on_page);
 
 // $cursor += $cursor;
 // переход к другому рассказу/главе
-if ($num <= 6) {
-  echo 'условие if 1';
+if (($num <= 6) && (($c - $page) > 0)) {
+  echo "условие if 1 и $page - $c";
   echo "/// ($pages - $countPage) == 1<br>";
+  echo "<br>Текущее состояние: page = $page; x = $x, countPage = $countPage, id = $id;<br>";
   echo "<a href='adWorks.php?page=".$page."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
   $n = 0;
   $count = 0;
@@ -244,23 +256,37 @@ if ($num <= 6) {
 //   echo "<a href='adWorks.php?page=".$page."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
 // }
 // переходы по страницам в пределах одного рассказа или главы
-else if ($x >= 0) {
-  echo 'условие if 2';
+else if ($x >= 0 || $n >= 0) {
+  echo "условие if 2 и $n - $joker1. $c - $page";
   echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
   echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
 } 
 // переходы по страницам между рассказами или главами
 // выяснить что это первая страница следующего рассказа
-else if (($pages - $countPage) == 1) {
+else if ((($pages - $countPage) == 1) && (($c - $page) > 0)) {
   echo "/// ($pages - $countPage) == 1<br>";
   echo 'условие if 3';
-  $x = ($countPage * 5) - 1;
+  echo "<br>($countPage * 5) - 1 = ;<br>";
+  echo "<br>Текущее состояние: page = $page; x = $x, countPage = $countPage, id = $id;<br>";
+  $x = ($countPage * $countPage2) - 1;
   echo '$x значит' . $x;
   echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
   echo "<a href='adWorks.php?page=".--$page."&amp;cursor=".$count."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
 } 
+// последняя страница
+else if ((($page - $c) <= 0) && (($n - $joker1) == 0)) {
+  echo "условие if 4 $page - $c и $n - $joker1. countPage = $countPage";
+  echo "<br>($countPage * 5) - 1 = ;<br>";
+  echo "<br>x = $x<br>";
+  $x = $countPage2 * 6;
+  echo "<br>Текущее состояние: page = $page; x = $x, countPage = $countPage, id = $id;<br>";
+  --$id;
+  // --$pages;
+  echo "<a href='adWorks.php?page=".--$page."&amp;cursor=".$count."&amp;n=".$x."&amp;pages=".$pages."&amp;id=".$id."'>Назад на ". $pages_prev ." страницу</a> ";
+}
  else {
   // первая страница
+  echo "условие else и $c - $page и $pages - $countPage. x = $x";
   echo "<a href='adWorks.php?page=".$page."&amp;cursor=".$count."&amp;n=".$n."&amp;pages=".$pages."&amp;id=".$id."'>Вперед на ". $pages_next ." страницу</a> ";
 }
 echo "Текущая страница $pages";
