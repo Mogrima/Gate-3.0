@@ -22,8 +22,15 @@
       <?php require_once(BUS_с. '/adminSession.php'); 
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
       // $pages = isset($_GET["pages"]) ? (int) $_GET["pages"] : 0;
+      $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
 
-      $sql = "SELECT * FROM `test`";
+      // количество статей на страницу
+      $on_page = 1;
+      // (номер страницы - 1) * статей на страницу
+      $shift = ($page - 1) * $on_page;
+      $title = 'Истории тысячи миров';
+
+      $sql = "SELECT * FROM `test` WHERE title = 'Истории тысячи миров' LIMIT $shift, $on_page";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
       $id = $row->id;
@@ -32,10 +39,20 @@
       $lines = explode("</p>", $text);
       $chapterPages = count($lines) - 1;
       $num = $chapterPages - $n;
+      //////////////////////////////////////////////////////////////
+      // получаем общее количество строк
+      $stmt = $pdo->query("SELECT COUNT(*) FROM test WHERE title = 'Истории тысячи миров'");
+      $row = $stmt->fetch();
+      $countChapters=$row[0]; //количество строк
+      $pageCountCurrent = $num / 6;
+      //////////////////////////////////////////////////////////////
       echo "<p style='color: grey'>chapterPages = $chapterPages - кол-во параграфов в главе $chapter.
             <br>n = $n - увеличивается при перелистывании страниц
             <br>num = $num - уменьшается при перелистывании страниц, счетчик оставшихся параграфов
-                             которые не были выведены еще.</p>";
+                             которые не были выведены еще.
+            <br>page - $page - номер текущей главы.
+            <br>количество глав в книге = $countChapters
+            <br>$pageCountCurrent - кол-во стр в текущей главе</p>";
 
       function iterat($n, $num, $lines) {
         global $y;
@@ -63,6 +80,8 @@
         echo " $count После итерации равен count. ";
         return $y;
       }
+      // сохраняем текущее значение $n до функции
+      $current_n = $n;
       iterat($n, $num, $lines);
       $n = $y + 1;
       $x = $n - 6 * 2;
@@ -73,26 +92,49 @@
       $query = $pdo->query($sql2);
       $paragraphs = $query->fetchAll(PDO::FETCH_OBJ);
       $countPage = 0;
+      $countPage1 = 0;
       foreach ($paragraphs as $paragraph) {
         $text = $paragraph->text;
         $lines = explode("</p>", $text);
       $countParagraphs = count($lines) - 1;
       // количество страниц прибавляем уже к существующим, это нужно для счетчика страниц
       $countPage += floor($countParagraphs / 6);
-      $countPage2 = floor($countParagraphs / 6);
+      $countPageCurrent = floor($countParagraphs / 6);
+
+      $countPage1 += $countParagraphs / 6;
       }
-      // количество страниц прибавляем уже к существующим, это нужно для счетчика страниц
-      $countPage += floor($countParagraphs / 6);
       // счетчик страниц
-      echo "(($y + 1) / 6) + $countParagraphs";
-      $pages = (($y + 1) / 6) + $countParagraphs;
+      $pages = (($y + 1) / 6) + $countPage;
       $pages_next = $pages + 1;
       $pages_prev = $pages - 1;
+      $a = $pageCountCurrent * 6;
+      echo "<p style='color: grey'>".ceil($pageCountCurrent)." - кол-во стр в текущей главе.
+            <br>".ceil($countPage1)." - кол-во стр, которые были до текущей главы</p>";
 /////////////Конец нумерации страниц////////////////////////////////////////////////////////////     
-
-      echo "<a href='adWorks2.php?n=".$n."'>Вперед на ". $pages_next ." страницу</a> ";
-      $n = $n - 6 * 2;
-      if ($n >= 0) echo "<a href='adWorks2.php?n=".$n."'>Назад на ". $pages_prev ." страницу</a> ";
+     
+      if ($num <= 6) {
+        echo "<p style='color:violet'>Условие 4 $countPage $countPageCurrent</p>";
+        $miniVar = 0;
+        $d_page = $page + 1;
+        echo "<a href='adWorks2.php?n=".$miniVar."&amp;page=".$d_page."'>Вперед на ". $pages_next ." страницу</a> ";
+        $n = $n - 6 * 2;
+        echo "<a href='adWorks2.php?n=".$n."&amp;page=".$page."'>Назад на ". $pages_prev ." страницу</a> ";
+      }
+      else if ($num > 6 && $pages != 1 && $current_n != 0) {
+        echo "<p style='color:violet'>Условие 3 $countPage $countPageCurrent</p>";
+        echo "<a href='adWorks2.php?n=".$n."&amp;page=".$page."'>Вперед на ". $pages_next ." страницу</a> ";
+        $n = $n - 6 * 2;
+        echo "<a href='adWorks2.php?n=".$n."&amp;page=".$page."'>Назад на ". $pages_prev ." страницу</a> ";
+      }
+      else if ($current_n >= 0 && $page = 1) {
+        echo "<p style='color:violet'>Условие 1 $page</p>";
+        echo "<a href='adWorks2.php?n=".$n."&amp;page=".$page."'>Вперед на ". $pages_next ." страницу</a> ";
+      }
+      else if ($current_n >= 0 && $page != 1) {
+        echo "<p style='color:violet'>Условие 2 $countPage $countPageCurrent</p>";
+        echo "<a href='adWorks2.php?n=".$n."&amp;page=".$page."'>Вперед на ". $pages_next ." страницу</a> ";
+        echo "<a href='adWorks2.php?n=".$n."&amp;page=".--$page."'>Назад на ". $pages_prev ." страницу</a> ";
+      }
       echo " Текущая страница $pages";
       ?>
 
@@ -110,7 +152,7 @@ foreach ($contents as $content) {
   $i++;
 $n = 0;
 $count = 0;
-echo "<h3><a href='adWorks2.php?page=".$i."cursor=".$count."&amp;n=".$n."&amp;id=".$content->id."'>" . $content->chapter . "</a></h3>";
+echo "<h3><a href='adWorks2.php?page=".$i."&amp;n=".$n."'>" . $content->chapter . "</a></h3>";
 }
 ?>
       <a href="administrator.php" class="button">Назад</a>
@@ -118,13 +160,5 @@ echo "<h3><a href='adWorks2.php?page=".$i."cursor=".$count."&amp;n=".$n."&amp;id
     </div>
   </main>
   <?php require_once('../blocks/footer.php'); ?>
-  <script>
-  let totalCount = 200;
-  let countInput = document.querySelector('.countInput');
-  let count = document.querySelector('.countSymbol');
-  countInput.addEventListener('input', function() {
-    count.innerHTML = totalCount - countInput.value.length;
-  });
-  </script>
  </body>
 </html>
