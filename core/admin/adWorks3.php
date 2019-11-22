@@ -22,27 +22,20 @@
       <div>
       <?php require_once(BUS_с. '/adminSession.php'); 
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
-      $titleChapterCurrent = isset($_GET["chapter"]) ? (string) $_GET["chapter"] : "";
-
-      $title = 'Истории тысячи миров';
 
       $sql = "SELECT * FROM `test` WHERE title = 'Истории тысячи миров 2'";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
       $id = $row->id;
       $text = $row->text;
-      $chapter = $row->chapter;
       $lines = explode("</p>", $text);
       $chapterPages = count($lines) - 1;
-      $num = $chapterPages - $n;
 
         // получаем массив с страницами
         $page_arr = array();
-        $count1 = (ceil($chapterPages/6)) * 6;
-        for($i = 6, $e = 0; $i <= $count1; $i = $i + 6, $e = $e + 6) {
-          // echo $i . "<br>";
+        $count = (ceil($chapterPages/6)) * 6;
+        for($i = 6, $e = 0; $i <= $count; $i = $i + 6, $e = $e + 6) {
           for($w = $e; $w < $i; $w++) {
-            // $page_x = '';
             $s = $lines[$w];
             $page_x = $page_x . $s;
           }
@@ -51,13 +44,8 @@
         }
         // print_r($page_arr);
       //////////////////////////////////////////////////////////////
-      echo "<p style='color: grey'>chapterPages = $chapterPages - кол-во параграфов в главе $chapter.
-            <br>n = $n - увеличивается при перелистывании страниц
-            <br>num = $num - уменьшается при перелистывании страниц, счетчик оставшихся параграфов
-                             которые не были выведены еще.
-            <br>page - $page - номер текущей главы.
-            <br>количество глав в книге = $countChapters
-            <br>".$contents['***'][1]."
+      echo "<p style='color: grey'>chapterPages = $chapterPages - кол-во параграфов.
+            <br>n = $n
             <br>".count($page_arr)." - количество страниц</p>";
       
       function counterPage($page_arr, $n) {
@@ -68,7 +56,6 @@
         $z = 0;
         foreach ($page_arr as $page) {
           if(preg_match_all('|<h2 class="section-book__title">(.+)</h2>|isU', $page, $arr)) {
-            // echo "Глава" .$arr[0][0];
             $titleChapter = $arr[1][0];
           }
           $numbering[$z] = $titleChapter;
@@ -90,12 +77,12 @@
         echo "<a href='adWorks3.php?n=".++$n."'>Вперед на ". $pages_next ." страницу</a> ";
       }
       else if (count($page_arr) - $n == 1) {
-        echo "<a href='adWorks3.php?n=".--$n."&amp;chapter=".$titleChapter."'>Назад на ". $pages_prev ." страницу</a> ";
+        echo "<a href='adWorks3.php?n=".--$n."'>Назад на ". $pages_prev ." страницу</a> ";
       }
       else {
         $x = $n + 1;
-        echo "<a href='adWorks3.php?n=".$x."&amp;chapter=".$titleChapter."'>Вперед на ". $pages_next ." страницу</a> ";
-        echo "<a href='adWorks3.php?n=".--$n."&amp;chapter=".$titleChapter."'>Назад на ". $pages_prev ." страницу</a> ";
+        echo "<a href='adWorks3.php?n=".$x."'>Вперед на ". $pages_next ." страницу</a> ";
+        echo "<a href='adWorks3.php?n=".--$n."'>Назад на ". $pages_prev ." страницу</a> ";
       }
       echo " Текущая страница $pages";
       ?>
@@ -103,6 +90,8 @@
 <h3>Содержание</h3>
 <?php
 echo "<br> Текущая глава $nameContent";
+// Два цикла. 1 - создает массив с названиям глав и номерами их первых страниц
+// 2 - перебирает первый массив и выводит содержание по главам с ссылками
 $i = 0;
 $contents = array();
 foreach ($page_arr as $page) {
