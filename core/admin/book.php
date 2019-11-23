@@ -5,77 +5,139 @@
   // подключение к базе данных
   require_once(BUS_с. 'mysql__connect.php');
 ?>
+      <?php
+      $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
+
+      $sql = "SELECT * FROM `test` WHERE title = 'Истории тысячи миров 2'";
+      $result = $pdo->query($sql);
+      $row = $result->fetch(PDO::FETCH_OBJ);
+      $id = $row->id;
+      $text = $row->text;
+      $lines = explode("</p>", $text);
+      $chapterPages = count($lines) - 1;
+
+        // получаем массив с страницами
+        $page_arr = array();
+        $count = (ceil($chapterPages/6)) * 6;
+        for($i = 6, $e = 0; $i <= $count; $i = $i + 6, $e = $e + 6) {
+          for($w = $e; $w < $i; $w++) {
+            $s = $lines[$w];
+            $page_x = $page_x . $s;
+          }
+          $page_arr[] = $page_x;
+          $page_x = '';
+        }
+
+      function counterPage($page_arr, $n) {
+        echo $page_arr[$n];
+      }
+      $numbering = array();
+      // function counterContent($page_arr, $numbering) {
+        $z = 0;
+        foreach ($page_arr as $page) {
+          if(preg_match_all('|<h2 class="section-book__title">(.+)</h2>|isU', $page, $arr)) {
+            $titleChapter = $arr[1][0];
+          }
+          $numbering[$z] = $titleChapter;
+          $z++;
+        }
+        // return $numbering;
+      // }
+      // print_r($numbering);
+      // Сохраняем название главы в переменную
+      $nameContent = $numbering[$n];
+      
+//////////////Нумерация страниц/////////////////////////////////////////////////////////////////
+      // счетчик страниц
+      $pages = $n + 1;
+      $pages_next = $pages + 1;
+      $pages_prev = $pages - 1;
+/////////////Конец нумерации страниц////////////////////////////////////////////////////////////     
+      ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="format-detection" content="telephone=no">
-  <title>Книга</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-32x32.png">
-  <link rel="manifest" href="favicon/site.webmanifest">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="./book.css">
-  <?php
-  $filename = "text-min.txt";
-
-//   if (file_exists($filename) && is_readable ($filename)) {
-//   echo 'работает';
-//   $fp = @fopen($filename, 'r');
-//   echo 'работает 2';
-//   if ($fp) {
-//     echo '<p style="color: red;">'.filesize($filename).'</p>';
-//     // $lines = str_split_unicode(fread($fp, filesize($filename)), 2360);
-//     $lines = fread($fp, filesize($filename));
-//     echo $lines;
-//       // $lines = explode("f", fread($fp, filesize($filename)));
-      
-//       // echo '<p style="color: red;">'.$lines[109].' переменная lines</p>';
-//       // foreach($lines as $res) {
-//         // $sql = "INSERT INTO test(title, text) VALUES('Истории тысячи миров', 'Певчий чердак', '$res')";
-//         $sql = "INSERT INTO test1(title, text) VALUES('Истории тысячи миров', '$lines')";
-//         $query = $pdo->prepare($sql);
-//         $query->execute(['Истории тысячи миров', $lines]);
-//       // }
-//   }
-// }
-
-$sql = "SELECT * FROM `test1`";
-$result = $pdo->query($sql);
-$row = $result->fetch(PDO::FETCH_OBJ);
-$text = $row->text;
-$id = $row->id;
-$lines = explode("</p>", $text);
-$chapterPages = count($lines);
-echo $chapterPages;
-
-//   $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
-
-//   // количество статей на страницу
-//   $on_page = 1;
-  
-//   // (номер страницы - 1) * статей на страницу
-//   $shift = ($page - 1) * $on_page;
-  
-//   $sql = "SELECT * FROM `test` LIMIT $shift, $on_page";
-//   $result = $pdo->query($sql);
-  
-//   // выводим заголовок и контент
-//   foreach ($result as $row) {
-//       echo "<h1>" . $row["title"] . "</h1>";
-//       echo "<p>" . $row["text"] . "</p>";
-//   }
-
-//   echo "<a href='book.php?page=".++$page."'>Вперед на ". $page ." страницу</a> ";
-
-// if ($page > 2) {
-//   --$page;
-//   echo "<a href='book.php?page=".--$page."'>Назад на ". $page ." страницу</a> ";
-// }
-  ?>
+  <title>Истории тысячи миров</title>
+  <link href="img/favicon.png" rel="apple-touch-icon" sizes="180x180">
+  <link href="img/favicon.png" rel="icon" sizes="32x32" type="image/png">
+  <link href="img/favicon.png" rel="icon" sizes="16x16" type="image/png">
+  <link href="/site.webmanifest" rel="manifest">
+  <link color="#5bbad5" href="img/favicon.png" rel="mask-icon">
+  <meta content="#da532c" name="msapplication-TileColor">
+  <meta content="#ffffff" name="theme-color">
+  <link rel="stylesheet" href="book.css">
 </head>
+<body>
+	<input type="checkbox" id="content-nav__toggle" hidden>
+	<header class="book-header">
+		<h1 class="title book-header__title">Истории тысячи миров</h1>
+		<a class="link-book link-book--to-back" href="../works-catalog.html">К другим книгам</a>
+	</header>
+			<nav class="content-nav">
+				<label for="content-nav__toggle" class="content-nav__toggle" onclick></label>
+				<h2 class="content-nav__title">Оглавление</h2>
+				<ul class="content-nav__list">
+          <?php
+          $i = 0;
+          $contents = array();
+          foreach ($page_arr as $page) {
+            if(preg_match_all('|<h2 class="section-book__title">(.+)</h2>|isU', $page, $arr)) {
+              $titleChapter = $arr[1][0];
+              $contents[$i] = $titleChapter;
+            }
+            $i++;
+          }
+          foreach ($contents as $content => $post) {
+            echo "<li class'content-nav__item'><a class='content-nav__link' href='book.php?n=".$content."'>" . $post . "</a></li>";
+            $i++;
+          }?>
+		        </ul>
+		    </nav>
+	    <div class="mask-content"></div>
+	<main class="book-main">
+		<article class="section-book">
+			<h2 class="section-book__title"><?=$numbering[$n]?></h2>
+			<div class="book-columns">
+				<div class="book-columns__column book-columns__column--left">
+					<div class="paragraph-wrapper">
+					<?php counterPage($page_arr, $n);?>
+					</div>
+					<div class="number-page"><span><?=$pages?></span></div>
+				</div>
+				<div class="book-columns__column book-columns__column--right">
+					<div class="paragraph-wrapper">
+          <?php 
+          $n_x = $n + 1;
+          counterPage($page_arr, $n_x);?>
+					</div>
+					<div class="number-page number-page--right"><span><?=++$pages?></span></div>
+				</div>
+			</div>
+			<div class="page-navigation">
+        <?php
+        if ($n == 0) {
+        echo "<a href='book.php?n=".++$n_x."'>Вперед на ". ++$pages ." страницу</a> ";
+      }
+      else if (count($page_arr) - $n <= 6) {
+        
+        echo "<a href='book.php?n=".--$n."'>Назад на ". $pages_prev ." страницу</a> ";
+      }
+      else {
+        echo count($page_arr) . "$n";
+        $x = $n + 1;
+        echo "<a href='book.php?n=".++$n_x."'>Вперед на ". ++$pages ." страницу</a> ";
+        echo "<a href='book.php?n=".--$n."'>Назад на ". $pages_prev ." страницу</a> ";
+      }
+        ?>
+				<!-- <a class="link-book page-navigation__link page-navigation__link--prev" href="../specialTreatment/42.html"><span class="visually-hidden">Предыдущая страница</span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 106.5 17.79"><defs><style>.cls-1{fill:#1a172a;}</style></defs><g id="Слой_2" data-name="Слой 2"><g id="Layer_2" data-name="Layer 2"><path class="cls-1" d="M106.1,8.17a.88.88,0,0,0-.5-.17A76.24,76.24,0,0,1,83.65,5.14a42.32,42.32,0,0,1-4.81-1.75,2.14,2.14,0,1,0-3.31.2l0,.05.06,0a.65.65,0,0,0,.17.16h0l.11.06s0,0,0,0A42.37,42.37,0,0,0,87.65,8H19.42a2.5,2.5,0,0,0-4.66,0h-1.3A3.56,3.56,0,0,0,6.57,8H4.83a2.51,2.51,0,1,0,0,1.79H6.57a3.55,3.55,0,0,0,6.89,0h1.3a2.49,2.49,0,0,0,4.66,0H87.65c-8,1.73-11.78,4.1-11.86,4.15a.9.9,0,0,0-.2.19h0l-.06.07a2.15,2.15,0,1,0,3.32.19c3.7-1.63,12.4-4.61,26.76-4.61a1,1,0,0,0,.35-.07.91.91,0,0,0,.55-.82A.89.89,0,0,0,106.1,8.17ZM10,10.68a1.79,1.79,0,1,1,1.75-2.15.91.91,0,0,0-.08.37.86.86,0,0,0,.08.36A1.79,1.79,0,0,1,10,10.68Z"/></g></g></svg>
+				</a>
+			    <a class="link-book page-navigation__link" href="../inextinguishableFire/44.html"><span class="visually-hidden">Следующая страница</span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 106.5 17.79"><defs><style>.cls-1{fill:#1a172a;}</style></defs><g id="Слой_2" data-name="Слой 2"><g id="Layer_2" data-name="Layer 2"><path class="cls-1" d="M106.1,8.17a.88.88,0,0,0-.5-.17A76.24,76.24,0,0,1,83.65,5.14a42.32,42.32,0,0,1-4.81-1.75,2.14,2.14,0,1,0-3.31.2l0,.05.06,0a.65.65,0,0,0,.17.16h0l.11.06s0,0,0,0A42.37,42.37,0,0,0,87.65,8H19.42a2.5,2.5,0,0,0-4.66,0h-1.3A3.56,3.56,0,0,0,6.57,8H4.83a2.51,2.51,0,1,0,0,1.79H6.57a3.55,3.55,0,0,0,6.89,0h1.3a2.49,2.49,0,0,0,4.66,0H87.65c-8,1.73-11.78,4.1-11.86,4.15a.9.9,0,0,0-.2.19h0l-.06.07a2.15,2.15,0,1,0,3.32.19c3.7-1.63,12.4-4.61,26.76-4.61a1,1,0,0,0,.35-.07.91.91,0,0,0,.55-.82A.89.89,0,0,0,106.1,8.17ZM10,10.68a1.79,1.79,0,1,1,1.75-2.15.91.91,0,0,0-.08.37.86.86,0,0,0,.08.36A1.79,1.79,0,0,1,10,10.68Z"/></g></g></svg>
+				</a> -->
+			</div>
+		</article>
+	</main>
+</body>
+</html>
