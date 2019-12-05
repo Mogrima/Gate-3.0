@@ -30,6 +30,8 @@
       $text = $row->text;
       $lines = explode("</p>", $text);
       $chapterPages = count($lines) - 1;
+      $chapters = explode("</chapter>", $text);
+      $chapters_count = count($chapters) - 1;
 
         // получаем массив с страницами
         $page_arr = array();
@@ -46,7 +48,8 @@
       //////////////////////////////////////////////////////////////
       echo "<p style='color: grey'>chapterPages = $chapterPages - кол-во параграфов.
             <br>n = $n
-            <br>".count($page_arr)." - количество страниц</p>";
+            <br>".count($page_arr)." - количество страниц
+            <br> $chapters_count - количество глав</p>";
       
       function counterPage($page_arr, $n) {
         echo $page_arr[$n];
@@ -55,7 +58,7 @@
       // function counterContent($page_arr, $numbering) {
         $z = 0;
         foreach ($page_arr as $page) {
-          if(preg_match_all('|<h2 class="section-book__title">(.+)</h2>|isU', $page, $arr)) {
+          if(preg_match_all('|<h3 class="section-book__title">(.+)</h3>|isU', $page, $arr)) {
             $titleChapter = $arr[1][0];
           }
           $numbering[$z] = $titleChapter;
@@ -95,7 +98,7 @@ echo "<br> Текущая глава $nameContent";
 $i = 0;
 $contents = array();
 foreach ($page_arr as $page) {
-  if(preg_match_all('|<h2 class="section-book__title">(.+)</h2>|isU', $page, $arr)) {
+  if(preg_match_all('|<h3 class="section-book__title">(.+)</h3>|isU', $page, $arr)) {
     $titleChapter = $arr[1][0];
     $contents[$i] = $titleChapter;
   }
