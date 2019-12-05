@@ -14,19 +14,26 @@
       $id = $row->id;
       $text = $row->text;
       $lines = explode("</p>", $text);
+      $chapterPages = count($lines) - 1;
       $chapters = explode('</chapter>', $text);
       $chapters_count = count($chapters) - 1;
 
         // получаем массив с страницами
         $page_arr = array();
         $count = (ceil($chapterPages/6)) * 6;
-        for($i = 6, $e = 0; $i <= $count; $i = $i + 6, $e = $e + 6) {
-          for($w = $e; $w < $i; $w++) {
-            $s = $lines[$w];
-            $page_x = $page_x . $s;
+        for($c = 0; $c <= $chapters_count; $c++) {
+          $chapters_line = explode("</p>", $chapters[$c]);
+          $chapters_line_count = (count($chapters_line) - 1);
+          $num_page = ceil($chapters_line_count / 6) * 6;
+          for($i = 6, $e = 0; $i <= $num_page; $i = $i + 6, $e = $e + 6) {
+              for($w = $e; $w < $i; $w++) {
+                $s = $chapters_line[$w];
+                $page_x = $page_x . $s;
+              }
+            
+            $page_arr[] = $page_x;
+            $page_x = '';
           }
-          $page_arr[] = $page_x;
-          $page_x = '';
         }
 
       function counterPage($page_arr, $n) {
@@ -36,7 +43,7 @@
       // function counterContent($page_arr, $numbering) {
         $z = 0;
         foreach ($page_arr as $page) {
-          if(preg_match_all('|<h3 class="visually-hidden">(.+)</h3>|isU', $page, $arr)) {
+          if(preg_match_all('|<h3 class="section-book__title">(.+)</h3>|isU', $page, $arr)) {
             $titleChapter = $arr[1][0];
           }
           $numbering[$z] = $titleChapter;
@@ -83,7 +90,7 @@
           $i = 0;
           $contents = array();
           foreach ($page_arr as $page) {
-            if(preg_match_all('|<h3 class="visually-hidden">(.+)</h3>|isU', $page, $arr)) {
+            if(preg_match_all('|<h3 class="section-book__title">(.+)</h3>|isU', $page, $arr)) {
               $titleChapter = $arr[1][0];
               $contents[$i] = $titleChapter;
             }

@@ -36,14 +36,29 @@
         // получаем массив с страницами
         $page_arr = array();
         $count = (ceil($chapterPages/6)) * 6;
-        for($i = 6, $e = 0; $i <= $count; $i = $i + 6, $e = $e + 6) {
-          for($w = $e; $w < $i; $w++) {
-            $s = $lines[$w];
-            $page_x = $page_x . $s;
+        for($c = 0; $c <= $chapters_count; $c++) {
+          $chapters_line = explode("</p>", $chapters[$c]);
+          $chapters_line_count = (count($chapters_line) - 1);
+          $num_page = ceil($chapters_line_count / 6) * 6;
+          echo  "<br> $chapters_line_count - кол-во параграфов и $num_page - кол-во страниц и $c - номер итерации";
+          for($i = 6, $e = 0; $i <= $num_page; $i = $i + 6, $e = $e + 6) {
+              for($w = $e; $w < $i; $w++) {
+                $s = $chapters_line[$w];
+                $page_x = $page_x . $s;
+              }
+            
+            $page_arr[] = $page_x;
+            $page_x = '';
           }
-          $page_arr[] = $page_x;
-          $page_x = '';
         }
+        // for($i = 6, $e = 0; $i <= $count; $i = $i + 6, $e = $e + 6) {
+        //   for($w = $e; $w < $i; $w++) {
+        //     $s = $lines[$w];
+        //     $page_x = $page_x . $s;
+        //   }
+        //   $page_arr[] = $page_x;
+        //   $page_x = '';
+        // }
         // print_r($page_arr);
       //////////////////////////////////////////////////////////////
       echo "<p style='color: grey'>chapterPages = $chapterPages - кол-во параграфов.
