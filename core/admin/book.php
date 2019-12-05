@@ -8,7 +8,7 @@
       <?php
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
 
-      $sql = "SELECT * FROM `test` WHERE title = 'Истории тысячи миров 2'";
+      $sql = "SELECT * FROM `test` WHERE title = 'Истории тысячи миров 3'";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
       $id = $row->id;
@@ -22,10 +22,10 @@
         $page_arr = array();
         $count = (ceil($chapterPages/6)) * 6;
         for($c = 0; $c <= $chapters_count; $c++) {
-          $chapters_line = explode("</p>", $chapters[$c]);
+          $chapters_line = explode("&shy", $chapters[$c]);
           $chapters_line_count = (count($chapters_line) - 1);
-          $num_page = ceil($chapters_line_count / 6) * 6;
-          for($i = 6, $e = 0; $i <= $num_page; $i = $i + 6, $e = $e + 6) {
+          $num_page = ceil($chapters_line_count / 36) * 36;
+          for($i = 36, $e = 0; $i <= $num_page; $i = $i + 36, $e = $e + 36) {
               for($w = $e; $w < $i; $w++) {
                 $s = $chapters_line[$w];
                 $page_x = $page_x . $s;
@@ -43,7 +43,7 @@
       // function counterContent($page_arr, $numbering) {
         $z = 0;
         foreach ($page_arr as $page) {
-          if(preg_match_all('|<h3 class="section-book__title">(.+)</h3>|isU', $page, $arr)) {
+          if(preg_match_all('|<h3>(.+)</h3>|isU', $page, $arr)) {
             $titleChapter = $arr[1][0];
           }
           $numbering[$z] = $titleChapter;
@@ -90,7 +90,7 @@
           $i = 0;
           $contents = array();
           foreach ($page_arr as $page) {
-            if(preg_match_all('|<h3 class="section-book__title">(.+)</h3>|isU', $page, $arr)) {
+            if(preg_match_all('|<h3>(.+)</h3>|isU', $page, $arr)) {
               $titleChapter = $arr[1][0];
               $contents[$i] = $titleChapter;
             }
@@ -132,10 +132,11 @@
         echo "<a href='book.php?n=".--$n."'>Назад на ". $pages_prev ." страницу</a> ";
       }
       else {
-        echo count($page_arr) . "$n";
+        echo count($page_arr);
         $x = $n + 1;
+        $x_2 = $n - 2;
         echo "<a href='book.php?n=".++$n_x."'>Вперед на ". ++$pages ." страницу</a> ";
-        echo "<a href='book.php?n=".--$n."'>Назад на ". $pages_prev ." страницу</a> ";
+        echo "<a href='book.php?n=".$x_2."'>Назад на ". $pages_prev ." страницу</a> ";
       }
         ?>
 				<!-- <a class="link-book page-navigation__link page-navigation__link--prev" href="../specialTreatment/42.html"><span class="visually-hidden">Предыдущая страница</span>
