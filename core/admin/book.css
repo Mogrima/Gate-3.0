@@ -189,6 +189,7 @@ h3 {
 .page-navigation__link {
   position: relative;
   width: 100px;
+  margin: 0 auto;
 }
 .page-navigation__link--prev svg {
   -webkit-transform: rotate(180deg);
