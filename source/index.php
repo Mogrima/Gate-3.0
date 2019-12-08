@@ -51,6 +51,7 @@
           <a href="registration.php">Зарегистрироваться</a> <br>
           <a href="addImage.php">добавить изображение</a> <br>
           <a href="./core/admin/administrator.php">Администратор</a>
+          <a href="book.php">Ссылка на читалку</a>
           <?php } ?>
           <?php require_once BLOCKS .'search-block.php' ?>
         </div>
