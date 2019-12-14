@@ -52,6 +52,7 @@
           <a href="addImage.php">добавить изображение</a> <br>
           <a href="./core/admin/administrator.php">Администратор</a>
           <a href="book.php">Ссылка на читалку</a>
+          <a href="../core/admin/adWorks3.php">Ссылка на adWorks</a>
           <?php } ?>
           <?php require_once BLOCKS .'search-block.php' ?>
         </div>
