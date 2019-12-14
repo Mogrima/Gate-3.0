@@ -13,6 +13,7 @@
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
       $id = $row->id;
+      $title = $row->works_title;
       $text = $row->text;
       $lines = explode("</p>", $text);
       $chapterPages = count($lines) - 1;
@@ -67,7 +68,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Истории тысячи миров</title>
+  <title><?=$title?></title>
   <link href="img/favicon.png" rel="apple-touch-icon" sizes="180x180">
   <link href="img/favicon.png" rel="icon" sizes="32x32" type="image/png">
   <link href="img/favicon.png" rel="icon" sizes="16x16" type="image/png">
@@ -80,7 +81,7 @@
 <body>
 	<input type="checkbox" id="content-nav__toggle" hidden>
 	<header class="book-header">
-		<h1 class="title book-header__title">Истории тысячи миров</h1>
+		<h1 class="title book-header__title"><?=$title?></h1>
 		<a class="link-book link-book--to-back" href="works-catalog.php">К другим книгам</a>
 	</header>
 			<nav class="content-nav">
