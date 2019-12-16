@@ -34,12 +34,13 @@
             <div class="preview__wrapper">
               <div class="preview__content">
                 <img class="preview__content-img" src="./img/works-catalog/01.jpg" alt="" srcset="">
-                <a class="preview__button button" href="#">Читать</a></div>
+                <a class="preview__button button" href="#">Читать</a>
+              </div>
               <div class="preview__desc">
                 <div class="preview__genre">
                   <h3>Жанр:</h3> Сказки для взрослых
                 </div>
-                <p class="preview__attention attention">Предупреждения: Сцены жестокости и насилия, нетрадиционные
+                <p class="attention preview__attention">Предупреждения: Сцены жестокости и насилия, нетрадиционные
                   отношения</p>
                 <h3>Описание:</h3>
                 <p class="preview__text">Диана спит и видит необычные сны. Время ложится перед ее взором точно полотно,

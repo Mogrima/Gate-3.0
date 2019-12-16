@@ -1,5 +1,3 @@
-.preview__wrapper {}
-
 .preview__content {
   display: flex;
   flex-direction: column;
@@ -23,7 +21,7 @@
 }
 
 .preview__genre {
-  margin: 16px;
+  margin: 16px 0;
 }
 
 .preview__genre {
@@ -50,5 +48,30 @@ h3 {
 @media (max-width: @mobile-width) {
   .preview__button {
     font-size: 20px;
+  }
+}
+
+@media (min-width: @tablet-width) {
+  .preview__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 24px 20px 0 20px;
+  }
+
+  .preview__content {
+    box-sizing: border-box;
+    width: 39%;
+    margin: 0;
+    margin-right: 5%;
+  }
+
+  .preview__desc {
+    flex-grow: 1;
+    width: 56%;
+    padding: 0;
+  }
+
+  .preview__attention {
+    width: auto;
   }
 }
