@@ -7,6 +7,15 @@
   border-radius: 10px;
 }
 
+.reviews__form-title {
+  margin: 0;
+  font-weight: normal;
+  font-family: @ff-title, serif;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
 .reviews__form-wrapper {
   display: flex;
   justify-content: space-between;
@@ -108,6 +117,10 @@
     padding-left: 40px;
   }
 
+  .reviews__form-title {
+    margin-bottom: 24px;
+  }
+
   .reviews__input {
     box-sizing: border-box;
     width: 300px;
@@ -173,5 +186,11 @@
 
   .reviews__author-picture {
     display: none;
+  }
+}
+
+@media (min-width: @desktop-width) {
+  .reviews__form-title {
+    margin-bottom: 24px;
   }
 }
