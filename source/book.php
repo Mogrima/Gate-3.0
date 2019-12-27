@@ -29,11 +29,11 @@
             <li class="breadcrumb__item">Книги</li>
             <li class="breadcrumb__item breadcrumb__item--current">Истории тысячи миров</li>
           </ul>
-          <section>
+          <section class="preview">
             <h2 class="visually-hidden">Описание книги Истории тысячи миров</h2>
             <div class="preview__wrapper">
               <div class="preview__content">
-                <img class="preview__content-img" src="./img/works-catalog/01.jpg" alt="" srcset="">
+                <img class="preview__content-img" src="./img/works-catalog/01.jpg" alt="Истории тысячи миров">
                 
               </div>
               <div class="preview__desc">
@@ -96,6 +96,7 @@
           </div>
         </section>
           <?php require_once(BLOCKS . 'search-block.php'); ?>
+        </div>
         </div>
       </div>
   </main>
