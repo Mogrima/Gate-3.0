@@ -4,15 +4,19 @@
     top: 4px;
     left: -20px;
     position: absolute;
-    background: url("../img/works-catalog/arrowx.svg") no-repeat 50% 50% / 1em 1em;
+    background-image: url("../img/works-catalog/arrowx.svg");
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+    background-position: 50% 50%;
     width: 16px;
     height: 16px;
     transition: transform 0.1s linear;
+    transform: rotate(90deg);
   }
 }
 
 .spoiler[open]::before {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 .spoiler__wrapper {
