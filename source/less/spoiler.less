@@ -1,4 +1,5 @@
 .spoiler {
+  position: relative;
   &::before {
     content: "";
     top: 4px;
@@ -57,5 +58,17 @@
 
   &:first-child {
     margin-top: 10px;
+  }
+}
+
+@media (max-width: @mobile-width) {
+  .spoiler {
+    &::before {
+      left: 15px;
+    }
+  }
+
+  .spoiler__title {
+    padding-left: 40px;
   }
 }
