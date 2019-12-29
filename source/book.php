@@ -36,9 +36,11 @@
           <h1 class="title"><?=$title?> 18+</h1>
           <ul class="breadcrumb">
             <li class="breadcrumb__item">
-              <a class="breadcrumb__link" href="index.html.html">Новости</a>
+              <a class="breadcrumb__link" href="index.php">Новости</a>
             </li>
-            <li class="breadcrumb__item">Книги</li>
+            <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="works-catalog.php">Книги</a>
+            </li>
             <li class="breadcrumb__item breadcrumb__item--current"><?=$title?></li>
           </ul>
           <section class="preview">
@@ -95,27 +97,19 @@
             <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
           </form>
           <div class="reviews__list">
-            <blockquote class="reviews__item">
-              <div class="header-title">
-                <cite class="header-title__title reviews__author-name">Трэвис Баркер</cite> <time class="reviews__time" datetime="2016-01-11">11 января</time>
-              </div>
-              <div class="reviews__author-picture"><img alt="Фото Трэвиса Баркера" class="reviews__author-image" height="33" src="img/reviews/persona-1.jpg" width="50"></div>
-              <p class="reviews__text">Спасибо за лысину! Был проездом в Москве, заскочил побриться, чтобы было видно новую татуировку!</p>
-            </blockquote>
-            <blockquote class="reviews__item">
-              <div class="header-title">
-                <cite class="header-title__title reviews__author-name">Джон Смит</cite> <time class="reviews__time" datetime="2016-01-11">11 января</time>
-              </div>
-              <div class="reviews__author-picture"><img alt="Фото Джона Смита" class="reviews__author-image" height="33" src="img/reviews/persona-2.jpg" width="50"></div>
-              <p class="reviews__text">Отличную стрижку мне сделали ребята.</p>
-            </blockquote>
-            <blockquote class="reviews__item">
-              <div class="header-title">
-                <cite class="header-title__title reviews__author-name">Иван Бородайло</cite> <time class="reviews__time" datetime="2016-01-11">11 января</time>
-              </div>
-              <div class="reviews__author-picture"><img alt="Фото Ивана Бородайло" class="reviews__author-image" height="33" src="img/reviews/persona-3.jpg" width="50"></div>
-              <p class="reviews__text">В Бородинском ваша борода в надёжных руках!</p>
-            </blockquote>
+          <?php $sql = "SELECT * FROM `comments` WHERE page = '".$type."' AND article_id = :id ORDER BY `id` DESC";
+                $query = $pdo->prepare($sql);
+                $query->execute(['id' => $_GET['id']]);
+                $comments = $query->fetchAll(PDO::FETCH_OBJ);
+                foreach($comments as $comment) {
+                    echo "<blockquote class='reviews__item'>
+                      <div class='header-title'>
+                        <cite class='header-title__title reviews__author-name'>$comment->author</cite><time class='reviews__time' datetime='$comment->date'>$comment->date</time>
+                      </div>
+                      <div class='reviews__author-picture'><img alt='Фото $comment->author' class='reviews__author-image' height='33' src='img/reviews/persona-2.jpg' width='50'></div>
+                      <p class='reviews__text'>$comment->comment</p>
+                      </blockquote>";
+                } ?>
           </div>
         </section>
           <?php require_once(BLOCKS . 'search-block.php'); ?>
