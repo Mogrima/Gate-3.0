@@ -82,6 +82,10 @@
           }
           }
         ?>
+        <?php if (!isset($_SESSION['user_id'])) {
+    echo "<p class='reviews__form-title'>Пожалуйста, авторизуйтесь, чтобы делиться впечатлениями.</p>";
+  }
+  else { ?>
           <h2 class="reviews__form-title">Поделиться впечатлениями</h2>
           <form action="/book.php?id=<?=$_GET['id']?>" class="reviews__form" method="post">
             <div class="reviews__form-wrapper">
@@ -96,6 +100,7 @@
             </p>
             <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
           </form>
+          <?php } ?>
           <div class="reviews__list">
           <?php $sql = "SELECT * FROM `comments` WHERE page = '".$type."' AND article_id = :id ORDER BY `id` DESC";
                 $query = $pdo->prepare($sql);
