@@ -13,6 +13,7 @@
     require_once(BLOCKS . 'head.php'); 
     
     $book_id = $_GET["id"];
+    $type = 'book';
     $sql = "SELECT * FROM `works_catalog` WHERE id = $book_id";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
@@ -61,23 +62,37 @@
             </div>
           </section>
           <section class="reviews">
+          <?php
+          if(isset($_POST['submit'])) {
+            if($_POST['name'] != '' && $_POST['reviews'] != '') {
+              $username = trim(filter_var($_POST['name'], FILTER_SANITIZE_STRING));
+              $mess = trim(filter_var($_POST['reviews'], FILTER_SANITIZE_STRING));
+              $article_id = $_GET["id"];
+              $page = $type;
+
+              $sql = "INSERT INTO comments(page, author, comment, article_id) VALUES('$page', '$username', '$mess', '$article_id')";
+              $query = $pdo->prepare($sql);
+              $query->execute([$page, $username, $mess, $article_id]);
+              echo "Данные отправлены!";
+          }
+          else { 
+            echo "Данные не заполнены!";
+          }
+          }
+        ?>
           <h2 class="reviews__form-title">Поделиться впечатлениями</h2>
-          <form action="#" class="reviews__form" method="post">
+          <form action="/book.php?id=<?=$_GET['id']?>" class="reviews__form" method="post">
             <div class="reviews__form-wrapper">
               <p class="input__wrapper input__wrapper--flex">
                 <label class="input__sign input__sign--left" for="reviews-name">Назовитесь:</label>
-                <input class="input reviews__input" id="reviews-name" type="text" name="name" placeholder="имя..." required>
-              </p>
-              <p class="input__wrapper input__wrapper--flex">
-                <label class="input__sign input__sign--left" for="reviews-email">Ваша почта:</label>
-                <input class="input reviews__input" id="reviews-email" type="email" name="email" placeholder="почтовый ящик..." required>
+                <input class="input reviews__input" id="reviews-name" type="text" name="name" placeholder="имя..." value="<?=$_SESSION['username']?>" required>
               </p>
             </div>
             <p class="input__wrapper input__wrapper--flex">
               <label class="visually-hidden" for="reviews-massage">Здесь вы можете оставить свой отзыв:</label> 
-              <textarea class="input reviews__massage" id="reviews-massage" name="reviews">ваш отзыв...</textarea>
+              <textarea class="input reviews__massage" id="reviews-massage" name="reviews">ваш отзыв</textarea>
             </p>
-            <button class="button feedback__button">Выразить мнение</button>
+            <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
           </form>
           <div class="reviews__list">
             <blockquote class="reviews__item">
