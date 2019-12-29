@@ -10,7 +10,18 @@
     require_once(BUS.'/mysql__connect.php');
     $website_title = 'Книги';
     require_once(BUS.'/pagevars.php');
-    require_once(BLOCKS . 'head.php'); ?>
+    require_once(BLOCKS . 'head.php'); 
+    
+    $book_id = $_GET["id"];
+    $sql = "SELECT * FROM `works_catalog` WHERE id = $book_id";
+      $result = $pdo->query($sql);
+      $row = $result->fetch(PDO::FETCH_OBJ);
+      $id = $row->id;
+      $title = $row->works_title;
+      $desc = $row->works_desc;
+      $works_image_src = '../img/works-catalog/'.$row->works_image;
+      $genre = $row->genre;
+      $warning = $row->warning;?>
 </head>
 
 <body class="page">
@@ -21,35 +32,32 @@
     <div class="container">
       <div class="substrate">
         <div class="page-main__head">
-          <h1 class="title">Истории тысячи миров 18+</h1>
+          <h1 class="title"><?=$title?> 18+</h1>
           <ul class="breadcrumb">
             <li class="breadcrumb__item">
               <a class="breadcrumb__link" href="index.html.html">Новости</a>
             </li>
             <li class="breadcrumb__item">Книги</li>
-            <li class="breadcrumb__item breadcrumb__item--current">Истории тысячи миров</li>
+            <li class="breadcrumb__item breadcrumb__item--current"><?=$title?></li>
           </ul>
           <section class="preview">
-            <h2 class="visually-hidden">Описание книги Истории тысячи миров</h2>
+            <h2 class="visually-hidden">Описание книги <?=$title?></h2>
             <div class="preview__wrapper">
               <div class="preview__content">
-                <img class="preview__content-img" src="./img/works-catalog/01.jpg" alt="Истории тысячи миров">
+                <img class="preview__content-img" src="<?=$works_image_src?>" alt="<?=$title?>">
                 
               </div>
               <div class="preview__desc">
                 <div class="preview__genre">
-                  <h3 class="preview__caption">Жанр:</h3> Сказки для взрослых
+                  <h3 class="preview__caption">Жанр:</h3> <?=$genre?>
                 </div>
-                <p class="attention preview__attention"><strong class="preview__caption">Предупреждения:</strong> Сцены жестокости и насилия, нетрадиционные
-                  отношения</p>
+                <?php if ($warning != '') { ?>
+                <p class="attention preview__attention"><strong class="preview__caption">Предупреждения:</strong><?=$warning?></p>
+                <?php } ?>
                 <h3 class="preview__caption">Сюжет:</h3>
-                <p class="preview__text">Диана спит и видит необычные сны. Время ложится перед ее взором точно полотно,
-                  а жизни проносятся одна за другой. И каждую ночь ей предстают все новые места, где каждый герой живет
-                  своей непростой жизнью, сталкивается со своими страшными истинами, готовится сделать решающий шаг. И
-                  пускай Диана еще слишком мала, с каждой ночью она становится мудрее многих взрослых, открывая для себя
-                  то, что не под силу узнать никому – мудрость из мрачных историй тысяч миров. </p>
+                <p class="preview__text"><?=$desc?> </p>
               </div>
-              <a class="preview__button button" href="#">Читать</a>
+              <a class="preview__button button" href="reader.php?id=<?=$id?>">Читать</a>
             </div>
           </section>
           <section class="reviews">
