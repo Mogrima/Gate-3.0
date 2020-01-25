@@ -102,19 +102,59 @@
           </form>
           <?php } ?>
           <div class="reviews__list">
-          <?php $sql = "SELECT * FROM `comments` WHERE page = '".$type."' AND article_id = :id ORDER BY `id` DESC";
-                $query = $pdo->prepare($sql);
-                $query->execute(['id' => $_GET['id']]);
-                $comments = $query->fetchAll(PDO::FETCH_OBJ);
-                foreach($comments as $comment) {
-                    echo "<blockquote class='reviews__item'>
-                      <div class='header-title'>
-                        <cite class='header-title__title reviews__author-name'>$comment->author</cite><time class='reviews__time' datetime='$comment->date'>$comment->date</time>
-                      </div>
-                      <div class='reviews__author-picture'><img alt='Фото $comment->author' class='reviews__author-image' height='33' src='img/reviews/persona-2.jpg' width='50'></div>
-                      <p class='reviews__text'>$comment->comment</p>
-                      </blockquote>";
-                } ?>
+          <?php
+          // помещаем номер страницы из массива GET в переменую $page
+           $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
+           // количество статей на страницу
+          $on_page = 3;
+
+          // (номер страницы - 1) * статей на страницу
+          $shift = ($page - 1) * $on_page;
+          $sql = "SELECT * FROM `comments` LIMIT $shift, $on_page";
+          $result = $pdo->query($sql);
+          // $row = $result->fetch(PDO::FETCH_OBJ);
+          while($row = $result->fetch(PDO::FETCH_OBJ)) {
+            echo "<p> 1 $row->comment</p>";
+          }
+          // $comment = $row->comment;
+          // echo $comment;
+          // получение полного количества новостей
+          $stmt = $pdo->query('SELECT COUNT(*) FROM comments');
+          $row = $stmt->fetch();
+          $c=$row[0]; //количество строк
+          echo 'количество строк' . $c .'<br>';
+          $countPage = ceil($c / $on_page);
+          echo 'количество страниц' . $countPage .'<br>';
+
+          //  $sql2 = mysqli_query("SELECT FOUND_ROWS()");
+          //  $result2 = mysqli_fetch_array($sql2, MYSQL_ASSOC);
+          //  $countAllNews = $result2["FOUND_ROWS()"];
+          //  // номер последней страницы
+          //  $lastPage = ceil($countAllNews/$countView);
+          //  ?>
+           <div id="work_area">
+           <ul class="pagination">
+           <div class="pagination__wrapper">
+        <?php if($page > 1) { ?>
+            <li><a href="/book.php?id=<?=$book_id?>&amp;page=1">&lt;&lt;</a></li>
+            <li><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$page-1;?>">&lt;</a></li>
+        <?php } ?>
+        
+        <?php for($i = 1; $i<=$countPage; $i++) { 
+          ?>
+            <li class="pagination__item"> <a <?=($i == $page) ? "" : "href='/book.php?id=$book_id&amp;page=$i'";?> <?=($i == $page) ? 'class="pagination__link pagination__link--current"' : 'class="pagination__link"';?>><?=$i;?></a> </li>
+        <?php } ?>
+        
+        <?php if($page < $countPage) { ?>
+            <li><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$page+1;?>">&gt;</a></li>
+            <li><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$countPage;?>">&gt;&gt;</a></li>
+        <?php } ?>
+       </div> 
+    </ul>
+    <br/>
+    <!-- вывод пагинатора -->
+</div>
+          
           </div>
         </section>
           <?php require_once(BLOCKS . 'search-block.php'); ?>
