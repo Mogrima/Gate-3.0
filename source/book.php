@@ -110,11 +110,17 @@
 
           // (номер страницы - 1) * статей на страницу
           $shift = ($page - 1) * $on_page;
-          $sql = "SELECT * FROM `comments` LIMIT $shift, $on_page";
+          $sql = "SELECT * FROM `comments` ORDER BY `date` DESC LIMIT $shift, $on_page";
           $result = $pdo->query($sql);
           // $row = $result->fetch(PDO::FETCH_OBJ);
           while($row = $result->fetch(PDO::FETCH_OBJ)) {
-            echo "<p> 1 $row->comment</p>";
+            echo "<blockquote class='reviews__item'>
+                      <div class='header-title'>
+                        <cite class='header-title__title reviews__author-name'>$row->author</cite><time class='reviews__time' datetime='$row->date'>$row->date</time>
+                      </div>
+                      <div class='reviews__author-picture'><img alt='Фото $row->author' class='reviews__author-image' height='33' src='img/reviews/persona-2.jpg' width='50'></div>
+                      <p class='reviews__text'>$row->comment</p>
+                      </blockquote>";;
           }
           // $comment = $row->comment;
           // echo $comment;
@@ -122,9 +128,9 @@
           $stmt = $pdo->query('SELECT COUNT(*) FROM comments');
           $row = $stmt->fetch();
           $c=$row[0]; //количество строк
-          echo 'количество строк' . $c .'<br>';
+          // echo 'количество строк' . $c .'<br>';
           $countPage = ceil($c / $on_page);
-          echo 'количество страниц' . $countPage .'<br>';
+          // echo 'количество страниц' . $countPage .'<br>';
 
           //  $sql2 = mysqli_query("SELECT FOUND_ROWS()");
           //  $result2 = mysqli_fetch_array($sql2, MYSQL_ASSOC);
@@ -132,28 +138,30 @@
           //  // номер последней страницы
           //  $lastPage = ceil($countAllNews/$countView);
           //  ?>
-           <div id="work_area">
            <ul class="pagination">
-           <div class="pagination__wrapper">
         <?php if($page > 1) { ?>
-            <li><a href="/book.php?id=<?=$book_id?>&amp;page=1">&lt;&lt;</a></li>
-            <li><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$page-1;?>">&lt;</a></li>
+            <li  class="pagination__item"><a href="/book.php?id=<?=$book_id?>&amp;page=1" class="pagination__arrow  pagination__arrow--prev pagination__arrow--start"><span class="visually-hidden">в начало</span></a></li>
+            <li  class="pagination__item"><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$page-1;?>" class="pagination__arrow pagination__arrow--prev"><span class="visually-hidden">на предыдущую страницу</span></a></li>
         <?php } ?>
         
-        <?php for($i = 1; $i<=$countPage; $i++) { 
+        <?php
+          $x = 1;
+          $n = $page - $x;
+          ($n <= 0) ? $n = 1 : $n;
+          ($page == 1) ? $x = 2 : $x;
+          $f = $page + $x;
+          ($f >= $countPage) ? $f = $countPage : $f;
+          for($i = $n; $i<= $f; $i++) { 
           ?>
             <li class="pagination__item"> <a <?=($i == $page) ? "" : "href='/book.php?id=$book_id&amp;page=$i'";?> <?=($i == $page) ? 'class="pagination__link pagination__link--current"' : 'class="pagination__link"';?>><?=$i;?></a> </li>
         <?php } ?>
         
         <?php if($page < $countPage) { ?>
-            <li><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$page+1;?>">&gt;</a></li>
-            <li><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$countPage;?>">&gt;&gt;</a></li>
-        <?php } ?>
-       </div> 
+            <li  class="pagination__item"><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$page+1;?>" class="pagination__arrow pagination__arrow--next"><span class="visually-hidden">на следующую страницу</span></a></li>
+            <li  class="pagination__item"><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$countPage;?>" class="pagination__arrow pagination__arrow--next pagination__arrow--finish"><span class="visually-hidden">в конец</span></a></li>
+        <?php } ?> 
     </ul>
-    <br/>
     <!-- вывод пагинатора -->
-</div>
           
           </div>
         </section>
