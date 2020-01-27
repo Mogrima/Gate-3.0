@@ -110,9 +110,8 @@
 
           // (номер страницы - 1) * статей на страницу
           $shift = ($page - 1) * $on_page;
-          $sql = "SELECT * FROM `comments` ORDER BY `date` DESC LIMIT $shift, $on_page";
+          $sql = "SELECT * FROM `comments` WHERE article_id = $book_id ORDER BY `date` DESC LIMIT $shift, $on_page";
           $result = $pdo->query($sql);
-          // $row = $result->fetch(PDO::FETCH_OBJ);
           while($row = $result->fetch(PDO::FETCH_OBJ)) {
             echo "<blockquote class='reviews__item'>
                       <div class='header-title'>
@@ -122,22 +121,16 @@
                       <p class='reviews__text'>$row->comment</p>
                       </blockquote>";;
           }
-          // $comment = $row->comment;
-          // echo $comment;
+
           // получение полного количества новостей
-          $stmt = $pdo->query('SELECT COUNT(*) FROM comments');
+          $stmt = $pdo->query("SELECT COUNT(*) FROM comments WHERE article_id = $book_id");
           $row = $stmt->fetch();
           $c=$row[0]; //количество строк
           // echo 'количество строк' . $c .'<br>';
           $countPage = ceil($c / $on_page);
           // echo 'количество страниц' . $countPage .'<br>';
-
-          //  $sql2 = mysqli_query("SELECT FOUND_ROWS()");
-          //  $result2 = mysqli_fetch_array($sql2, MYSQL_ASSOC);
-          //  $countAllNews = $result2["FOUND_ROWS()"];
-          //  // номер последней страницы
-          //  $lastPage = ceil($countAllNews/$countView);
-          //  ?>
+          if ($countPage > 1) {
+            ?>
            <ul class="pagination">
         <?php if($page > 1) { ?>
             <li  class="pagination__item"><a href="/book.php?id=<?=$book_id?>&amp;page=1" class="pagination__arrow  pagination__arrow--prev pagination__arrow--start"><span class="visually-hidden">в начало</span></a></li>
@@ -161,6 +154,7 @@
             <li  class="pagination__item"><a href="/book.php?id=<?=$book_id?>&amp;page=<?=$countPage;?>" class="pagination__arrow pagination__arrow--next pagination__arrow--finish"><span class="visually-hidden">в конец</span></a></li>
         <?php } ?> 
     </ul>
+    <?php } ?> 
     <!-- вывод пагинатора -->
           
           </div>
