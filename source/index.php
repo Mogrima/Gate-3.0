@@ -76,21 +76,19 @@
         ?>
         <!-- ----------------------------------------------------------------------------------- -->
         <?php $news_title = 'Новости';
-        $sql = 'SELECT * FROM `news` ORDER BY `date` DESC';
+         $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
+        $on_page = 3;
+        $shift = ($page - 1) * $on_page;
+        $sql = "SELECT * FROM `news` ORDER BY `date` DESC LIMIT $shift, $on_page";
         $query = $pdo->query($sql);
-        require_once(BLOCKS . 'news.php'); ?>
-        <!-- <ul class="pagination">
-            <div class="pagination__wrapper">
-              <li class="pagination__item"><a class="pagination__link pagination__link--current">1</a>
-              </li>
-              <li class="pagination__item"><a class="pagination__link" href="#">2</a>
-              </li>
-              <li class="pagination__item"><a class="pagination__link" href="#">3</a>
-              </li>
-              <li class="pagination__item"><a class="pagination__link" href="#">4</a>
-              </li>
-            </div>
-          </ul> -->
+        $stmt = $pdo->query("SELECT COUNT(*) FROM news");
+        $row = $stmt->fetch();
+        $c=$row[0];
+        $countPage = ceil($c / $on_page);
+        require_once(BLOCKS . 'news.php');
+        $link = '/index.php';
+        $link_add = "";
+        require_once(BLOCKS . 'pagination.php'); ?>
       </div><!-- Подложка -->
     </div>
   </main>
