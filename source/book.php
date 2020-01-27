@@ -129,6 +129,7 @@
           // echo 'количество строк' . $c .'<br>';
           $countPage = ceil($c / $on_page);
           // echo 'количество страниц' . $countPage .'<br>';
+          $link = '/book.php';
           $link_add = "&amp;id=$book_id";
           require_once(BLOCKS . 'pagination.php');
           ?>
