@@ -10,13 +10,13 @@ if ($countPage > 1) {
       class="pagination__arrow pagination__arrow--prev"><span class="visually-hidden">на предыдущую страницу</span></a>
   </li>
   <?php } 
-$x = 1;
-$n = $page - $x;
-($n <= 0) ? $n = 1 : $n;
-($page == 1) ? $x = 2 : $x;
-$f = $page + $x;
-($f >= $countPage) ? $f = $countPage : $f;
-for($i = $n; $i<= $f; $i++) { 
+$numberOfLinks = 1;
+$startLink = $page - $numberOfLinks;
+($startLink <= 0) ? $startLink = 1 : $startLink;
+($page == 1) ? $numberOfLinks = 2 : $numberOfLinks;
+$finaltLink = $page + $numberOfLinks;
+($finaltLink >= $countPage) ? $finaltLink = $countPage : $finaltLink;
+for($i = $startLink; $i<= $finaltLink; $i++) { 
 ?>
   <li class="pagination__item"> <a <?=($i == $page) ? "" : "href='$link?page=$i$link_add'";?>
       <?=($i == $page) ? 'class="pagination__link pagination__link--current"' : 'class="pagination__link"';?>><?=$i;?></a>
