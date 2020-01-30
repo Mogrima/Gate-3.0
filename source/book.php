@@ -64,30 +64,8 @@
             </div>
           </section>
           <section class="reviews">
-          <?php
-          if(isset($_POST['submit'])) {
-            if($_POST['reviews'] != '') {
-              if(mb_strlen($_POST['reviews'], 'utf-8') <= 300) {
-                $username = $_SESSION['username'];
-                $mess = trim(filter_var($_POST['reviews'], FILTER_SANITIZE_STRING));
-                $article_id = $_GET["id"];
-                $page = $type;
-
-                $sql = "INSERT INTO comments(page, author, comment, article_id) VALUES('$page', '$username', '$mess', '$article_id')";
-                $query = $pdo->prepare($sql);
-                $query->execute(['page' => $page, 'username' => $username, 'mess' => $mess, 'article_id' => $article_id]);
-                $user_msg = 'Данные отправлены!';
-              }
-              else {
-                $user_msg = 'Количество введенных символов превышает 300 знаков';
-              }
-          }
-          else { 
-            $user_msg = 'Напишите комментарий';
-          }
-          }
-        ?>
-        <?php if (!isset($_SESSION['user_id'])) {
+        <?php require_once(BUS .'send_comment.php');
+        if (!isset($_SESSION['user_id'])) {
     echo "<p class='reviews__form-title'>Пожалуйста, авторизуйтесь, чтобы делиться впечатлениями.</p>";
   }
   else { ?>
