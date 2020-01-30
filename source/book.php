@@ -67,7 +67,7 @@
           <?php
           if(isset($_POST['submit'])) {
             if($_POST['reviews'] != '') {
-              if(mb_strlen($_POST['reviews']) < 300) {
+              if(mb_strlen($_POST['reviews'], 'utf-8') <= 300) {
                 $username = $_SESSION['username'];
                 $mess = trim(filter_var($_POST['reviews'], FILTER_SANITIZE_STRING));
                 $article_id = $_GET["id"];
@@ -76,14 +76,14 @@
                 $sql = "INSERT INTO comments(page, author, comment, article_id) VALUES('$page', '$username', '$mess', '$article_id')";
                 $query = $pdo->prepare($sql);
                 $query->execute([$page, $username, $mess, $article_id]);
-                echo mb_strlen($_POST['reviews']);
+                echo mb_strlen($_POST['reviews'], 'utf-8');
               }
               else {
                 $error_msg = 'Количество введенных символов превышает 300 знаков';
               }
           }
           else { 
-            echo "Напишите комментарий";
+            $error_msg = 'Напишите комментарий';;
           }
           }
         ?>
