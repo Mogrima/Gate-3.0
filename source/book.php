@@ -67,18 +67,23 @@
           <?php
           if(isset($_POST['submit'])) {
             if($_POST['reviews'] != '') {
-              $username = $_SESSION['username'];
-              $mess = trim(filter_var($_POST['reviews'], FILTER_SANITIZE_STRING));
-              $article_id = $_GET["id"];
-              $page = $type;
+              if(mb_strlen($_POST['reviews']) < 300) {
+                $username = $_SESSION['username'];
+                $mess = trim(filter_var($_POST['reviews'], FILTER_SANITIZE_STRING));
+                $article_id = $_GET["id"];
+                $page = $type;
 
-              $sql = "INSERT INTO comments(page, author, comment, article_id) VALUES('$page', '$username', '$mess', '$article_id')";
-              $query = $pdo->prepare($sql);
-              $query->execute([$page, $username, $mess, $article_id]);
-              echo "Данные отправлены!";
+                $sql = "INSERT INTO comments(page, author, comment, article_id) VALUES('$page', '$username', '$mess', '$article_id')";
+                $query = $pdo->prepare($sql);
+                $query->execute([$page, $username, $mess, $article_id]);
+                echo mb_strlen($_POST['reviews']);
+              }
+              else {
+                $error_msg = 'Количество введенных символов превышает 300 знаков';
+              }
           }
           else { 
-            echo "Данные не заполнены!";
+            echo "Напишите комментарий";
           }
           }
         ?>
@@ -90,7 +95,8 @@
           <form action="/book.php?id=<?=$_GET['id']?>" class="reviews__form" method="post">
             <p class="input__wrapper input__wrapper--flex">
               <label class="visually-hidden" for="reviews-massage">Здесь вы можете оставить свой отзыв:</label> 
-              <textarea class="input reviews__massage" id="reviews-massage" name="reviews" placeholder="ваш отзыв"></textarea>
+              <textarea class="input reviews__massage countInput" id="reviews-massage" maxlength="300" name="reviews" placeholder="ваш отзыв"></textarea>
+              <p><span class="countSymbol"></span></p>
             </p>
             <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
           </form>
@@ -139,6 +145,14 @@
   <?php require_once(BLOCKS .'modal-registration.php'); ?>
   <div class="overlay"></div>
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
+  <script>
+  let totalCount = 300;
+  let countInput = document.querySelector('.countInput');
+  let count = document.querySelector('.countSymbol');
+  countInput.addEventListener('input', function() {
+    count.innerHTML = totalCount - countInput.value.length;
+  });
+  </script>
 </body>
 
 </html>
