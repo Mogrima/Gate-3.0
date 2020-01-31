@@ -15,7 +15,6 @@ $succeful = false;
         $sql = "INSERT INTO comments(page, author, comment, article_id) VALUES('$page', '$username', '$mess', '$article_id')";
         $query = $pdo->prepare($sql);
         $query->execute(['page' => $page, 'username' => $username, 'mess' => $mess, 'article_id' => $article_id]);
-        $query->execute(['username' => $username, 'password' => $password]);
         $user_msg = 'Ваше впечатление опубликовано';
         $succeful = true;
       }
