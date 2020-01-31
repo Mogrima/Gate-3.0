@@ -74,7 +74,7 @@
             <p class="input__wrapper input__wrapper--flex">
               <label class="visually-hidden" for="reviews-massage">Здесь вы можете оставить свой отзыв:</label> 
               <textarea class="input reviews__massage countInput" id="reviews-massage" maxlength="600" name="reviews" placeholder="ваш отзыв"></textarea>
-              <p><span class="countSymbol"></span></p>
+              <p class="count-letter">Осталось <span class="count-letter_symbol">600</span> знаков</p>
             </p>
             <?php
           if (isset($user_msg)) {
@@ -136,7 +136,7 @@
   <script>
   let totalCount = 600;
   let countInput = document.querySelector('.countInput');
-  let count = document.querySelector('.countSymbol');
+  let count = document.querySelector('.count-letter_symbol');
   countInput.addEventListener('input', function() {
     count.innerHTML = totalCount - countInput.value.length;
   });
