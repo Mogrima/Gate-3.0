@@ -78,7 +78,7 @@
           ?>
             <p class="input__wrapper input__wrapper--flex">
               <label class="visually-hidden" for="reviews-massage">Здесь вы можете оставить свой отзыв:</label> 
-              <textarea class="input reviews__massage countInput" id="reviews-massage" maxlength="300" name="reviews" placeholder="ваш отзыв"></textarea>
+              <textarea class="input reviews__massage countInput" id="reviews-massage" maxlength="600" name="reviews" placeholder="ваш отзыв"></textarea>
               <p><span class="countSymbol"></span></p>
             </p>
             <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
@@ -129,7 +129,7 @@
   <div class="overlay"></div>
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
   <script>
-  let totalCount = 300;
+  let totalCount = 600;
   let countInput = document.querySelector('.countInput');
   let count = document.querySelector('.countSymbol');
   countInput.addEventListener('input', function() {

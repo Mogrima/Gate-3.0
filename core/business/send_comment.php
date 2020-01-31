@@ -5,7 +5,7 @@ require_once('connectvars.php');
 require_once(BUS.'/mysql__connect.php');
   if(isset($_POST['submit'])) {
     if($_POST['reviews'] != '') {
-      if(mb_strlen($_POST['reviews'], 'utf-8') <= 300) {
+      if(mb_strlen($_POST['reviews'], 'utf-8') <= 600) {
         $username = $_SESSION['username'];
         $mess = trim(filter_var($_POST['reviews'], FILTER_SANITIZE_STRING));
         $article_id = $_GET["id"];
