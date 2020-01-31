@@ -71,16 +71,21 @@
   else { ?>
           <h2 class="reviews__form-title">Поделиться впечатлениями</h2>
           <form action="/book.php?id=<?=$_GET['id']?>" class="reviews__form" method="post">
-          <?php
-          if (isset($user_msg)) {
-            echo '<p class="attention attention--user_msg">' . $user_msg . '</p>'; 
-          }
-          ?>
             <p class="input__wrapper input__wrapper--flex">
               <label class="visually-hidden" for="reviews-massage">Здесь вы можете оставить свой отзыв:</label> 
               <textarea class="input reviews__massage countInput" id="reviews-massage" maxlength="600" name="reviews" placeholder="ваш отзыв"></textarea>
               <p><span class="countSymbol"></span></p>
             </p>
+            <?php
+          if (isset($user_msg)) {
+            if ($succeful) {
+              echo '<p class="attention attention--user_msg attention--succeful-comment">' . $user_msg . '</p>';
+            }
+            else {
+              echo '<p class="attention attention--user_msg">' . $user_msg . '</p>'; 
+            }
+          }
+          ?>
             <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
           </form>
           <?php } ?>

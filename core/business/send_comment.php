@@ -3,6 +3,7 @@ require_once('appvars.php');
 require_once('connectvars.php');
 // подключение к базе данных
 require_once(BUS.'/mysql__connect.php');
+$succeful = false;
   if(isset($_POST['submit'])) {
     if($_POST['reviews'] != '') {
       if(mb_strlen($_POST['reviews'], 'utf-8') <= 600) {
@@ -15,14 +16,15 @@ require_once(BUS.'/mysql__connect.php');
         $query = $pdo->prepare($sql);
         $query->execute(['page' => $page, 'username' => $username, 'mess' => $mess, 'article_id' => $article_id]);
         $query->execute(['username' => $username, 'password' => $password]);
-        $user_msg = 'Данные отправлены!';
+        $user_msg = 'Ваше впечатление опубликовано';
+        $succeful = true;
       }
       else {
-        $user_msg = 'Количество введенных символов превышает 300 знаков';
+        $user_msg = 'Ваш отзыв превысил 600 знаков';
       }
   }
   else { 
-    $user_msg = 'Напишите комментарий';
-  }
+    $user_msg = 'Вы ничего не написали';
+    }
   }
 ?>
