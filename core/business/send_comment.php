@@ -1,8 +1,4 @@
-<?php require_once('session.php');
-require_once('appvars.php');
-require_once('connectvars.php');
-// подключение к базе данных
-require_once(BUS.'/mysql__connect.php');
+<?php
 $succeful = false;
   if(isset($_POST['submit'])) {
     if($_POST['reviews'] != '') {
