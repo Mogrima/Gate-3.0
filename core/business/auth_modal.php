@@ -28,8 +28,8 @@ if(!isset($_SESSION['user_id'])) {
       $_SESSION['user_id'] = $user_id;
       $_SESSION['username'] = $username;
       $_SESSION['user_email'] = $user->user_email;
-      setcookie('user_id', $user_id, time() + (60 * 60 * 24 * 30));
-      setcookie('username', $username, time() + (60 * 60 * 24 * 30));
+      setcookie('user_id', $user_id, time() + 3600 * 24 * 30, "/");
+      setcookie('username', $username, time() + 3600 * 24 * 30, "/");
       $error_msg = 'OK';
       echo 'OK';
     }
