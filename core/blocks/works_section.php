@@ -21,7 +21,7 @@
       echo "<figure class='works__item'>
               <figcaption class='works__title'>$row->works_title</figcaption>
               <img alt='$row->works_title' class='works__image' height='347' src='$works_image_src' width='258'>
-              <p class='works__description'>$row->works_desc</p><a class='button works__button' href='book.php?id=$row->id'>Открыть</a>
+              <p class='works__description'>$row->works_desc</p><a class='button works__button' href='$works_link$row->id'>Открыть</a>
             </figure>";
     }
   ?>

@@ -99,6 +99,7 @@
         // выключаем (прячем) заголовок
         $sectionTitleOn = false;
         $src_stat = '../img/works-catalog/';
+        $works_link = 'book.php?id=';
         require(BLOCKS .'works_section.php');
 
         // ------------------------------------------------------------------------------------- //
