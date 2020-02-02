@@ -54,6 +54,7 @@
         <?php $works_title = 'Список альбомов и рисунков';
         // выключаем (прячем) заголовок
         $sectionTitleOn = false;
+        $works_link = 'album.php?id=';
         $src_stat = '../img/arts-catalog/';
         
         // --------------------- пагинация ---------------------------------------------- //
@@ -61,9 +62,9 @@
         $on_page = 6;
         $shift = ($page - 1) * $on_page;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = "SELECT * FROM `art_album` ORDER BY `id` DESC LIMIT $shift, $on_page";
+        $sql = "SELECT * FROM `album_list` ORDER BY `id` DESC LIMIT $shift, $on_page";
         $query = $pdo->query($sql);
-        $stmt = $pdo->query("SELECT COUNT(*) FROM art_album");
+        $stmt = $pdo->query("SELECT COUNT(*) FROM album_list");
         $row = $stmt->fetch();
         $c=$row[0];
         $countPage = ceil($c / $on_page);
