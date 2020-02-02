@@ -52,31 +52,26 @@
           </form>
         </section> -->
         <?php $works_title = 'Список альбомов и рисунков';
-        // подключение к базе данных
-        require_once(BUS.'/mysql__connect.php');
-        // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = 'SELECT * FROM `art_album` ORDER BY `id` DESC';
-        $query = $pdo->query($sql);
-        // подключение самого шаблона католога, в котором уже прописан цикл для вывода данных
         // выключаем (прячем) заголовок
         $sectionTitleOn = false;
         $src_stat = '../img/arts-catalog/';
+        
+        // --------------------- пагинация ---------------------------------------------- //
+        $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
+        $on_page = 6;
+        $shift = ($page - 1) * $on_page;
+        // запрос на вывод данных каталога произведений из бд в порядке убывания по id
+        $sql = "SELECT * FROM `art_album` ORDER BY `id` DESC LIMIT $shift, $on_page";
+        $query = $pdo->query($sql);
+        $stmt = $pdo->query("SELECT COUNT(*) FROM art_album");
+        $row = $stmt->fetch();
+        $c=$row[0];
+        $countPage = ceil($c / $on_page);
+        // подключение самого шаблона католога, в котором уже прописан цикл для вывода данных
         require(BLOCKS .'works_section.php');
-
-        // ------------------------------------------------------------------------------------- //
-        ?>
-        <!-- <ul class="pagination">
-          <div class="pagination__wrapper">
-            <li class="pagination__item"><a class="pagination__link pagination__link--current">1</a>
-            </li>
-            <li class="pagination__item"><a class="pagination__link" href="#">2</a>
-            </li>
-            <li class="pagination__item"><a class="pagination__link" href="#">3</a>
-            </li>
-            <li class="pagination__item"><a class="pagination__link" href="#">4</a>
-            </li>
-          </div>
-        </ul> -->
+        $link = '/gallery.php';
+        $link_add = "";
+        require_once(BLOCKS . 'pagination.php'); ?>
       </div><!-- Подложка -->
     </div>
   </main>
