@@ -1,4 +1,4 @@
-<?php $sectionTitleOn; ?>
+<?php $sectionTitleOn;?>
 <section class="works">
   <?php if($sectionTitleOn) {
     echo '<h2 class="section-header">' .$works_title.'</h2>';
@@ -17,7 +17,7 @@
   <?php
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
         // задаю через переменную путь к изображению
-      $works_image_src = '../img/works-catalog/'.$row->works_image;
+      $works_image_src = $src_stat.$row->works_image;
       echo "<figure class='works__item'>
               <figcaption class='works__title'>$row->works_title</figcaption>
               <img alt='$row->works_title' class='works__image' height='347' src='$works_image_src' width='258'>
