@@ -51,59 +51,20 @@
             </fieldset><button class="filter__button filter__button--center">Применить</button>
           </form>
         </section> -->
-        <section class="works">
-          <h2 class="visually-hidden">Список альбомов</h2>
-          <div class="works__wrapper works__wrapper--inner">
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Сюжетные
-              </figcaption><img alt="Сюжетные" class="works__image" height="347" src="img/arts-catalog/Ритуал.jpg" width="258">
-              <p class="works__description">Работы разнопланового содержания – передающие конкретный момент, историю, случай.</p><a class="button works__button" href="inner-page/story.html">Открыть</a>
-            </figure>
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Портреты
-              </figcaption><img alt="Портреты" class="works__image" height="347" src="img/arts-catalog/gefest.jpg" width="258">
-              <p class="works__description">Лица, а то и переданные полностью образы знакомых и просто припомнившихся персон.</p><a class="button works__button" href="inner-page/portraits.html">Открыть</a>
-            </figure>
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Состояния
-              </figcaption><img alt="Состояния" class="works__image" height="347" src="img/arts-catalog/clarification.jpg" width="258">
-              <p class="works__description">Пускай человечество относится к эмоциям, как ко второстепенным в своей жизни проявлениям, именно они владеют нашей жизнью, прокладывают нам путь в мире.</p><a class="button works__button" href="inner-page/condition.html">Открыть</a>
-            </figure>
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Легенды
-              </figcaption><img alt="Легенды" class="works__image" height="347" src="img/arts-catalog/Ритуал1.jpg" width="258">
-              <p class="works__description"></p><a class="button works__button" href="inner-page/legend.html">Открыть</a>
-            </figure>
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Старые работы
-              </figcaption><img alt="Старые работы" class="works__image" height="347" src="img/arts-catalog/alive.jpg" width="258">
-              <p class="works__description">Следы давно минувших безвозвратно лет – самые старые из работ, на которых явственнее всего видны ошибки и стремления, а порой и изжившие себя взгляды.</p><a class="button works__button" href="inner-page/oldWorks.html">Открыть</a>
-            </figure>
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Наброски и зарисовки
-              </figcaption><img alt="Наброски и зарисовки" class="works__image" height="347" src="img/arts-catalog/ghost.jpg" width="258">
-              <p class="works__description">Изображения, которым никогда не обрести полноценную форму. Всего лишь зарисовки.</p><a class="button works__button" href="inner-page/sketches.html">Открыть</a>
-            </figure>
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Бесконечная история
-              </figcaption><img alt="Бесконечная история" class="works__image" height="347" src="" width="258">
-              <p class="works__description">Графическая история</p><a class="button works__button" href="manga/contents.html">Открыть</a>
-            </figure>
-            <figure class="works__item">
-              <figcaption class="works__title works__title--mt">
-                Дюран
-              </figcaption><img alt="Дюран" class="works__image" height="347" src="img/manga/duran/Обложка.jpeg" width="258">
-              <p class="works__description">Эпизоды</p><a class="button works__button" href="manga/duran.html">Открыть</a>
-            </figure>
-          </div>
-        </section>
+        <?php $works_title = 'Список альбомов и рисунков';
+        // подключение к базе данных
+        require_once(BUS.'/mysql__connect.php');
+        // запрос на вывод данных каталога произведений из бд в порядке убывания по id
+        $sql = 'SELECT * FROM `art_album` ORDER BY `id` DESC';
+        $query = $pdo->query($sql);
+        // подключение самого шаблона католога, в котором уже прописан цикл для вывода данных
+        // выключаем (прячем) заголовок
+        $sectionTitleOn = false;
+        $src_stat = '../img/arts-catalog/';
+        require(BLOCKS .'works_section.php');
+
+        // ------------------------------------------------------------------------------------- //
+        ?>
         <!-- <ul class="pagination">
           <div class="pagination__wrapper">
             <li class="pagination__item"><a class="pagination__link pagination__link--current">1</a>
