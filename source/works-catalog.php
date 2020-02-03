@@ -22,7 +22,7 @@
           <h1 class="title">Книги</h1>
           <ul class="breadcrumb">
             <li class="breadcrumb__item">
-              <a class="breadcrumb__link" href="index.html.html">Новости</a>
+              <a class="breadcrumb__link" href="index.php">Новости</a>
             </li>
             <li class="breadcrumb__item breadcrumb__item--current">Книги</li>
           </ul>
