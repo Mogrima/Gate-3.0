@@ -4,7 +4,7 @@
   }
   else { ?>
 <h2 class="reviews__form-title">Поделиться впечатлениями</h2>
-<form action="/book.php?id=<?=$_GET['id']?>" class="reviews__form" method="post">
+<form action="<?=$link_comment;?><?=$link_comment_get?>" class="reviews__form" method="post">
   <p class="input__wrapper input__wrapper--flex">
     <label class="visually-hidden" for="reviews-massage">Здесь вы можете оставить свой отзыв:</label>
     <textarea class="input reviews__massage countInput" id="reviews-massage" maxlength="600" name="reviews"

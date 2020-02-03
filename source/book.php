@@ -64,7 +64,11 @@
             </div>
           </section>
           <section class="reviews">
-          <?php require_once(BLOCKS .'comment.php');
+          <?php 
+          $get_id = $book_id;
+          $link_comment = '/book.php';
+          $link_comment_get = "?id=$get_id";
+          require_once(BLOCKS .'comment.php');
           $link = '/book.php';
           $link_add = "&amp;id=$book_id";
           require_once(BLOCKS . 'pagination.php'); ?>
