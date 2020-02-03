@@ -23,4 +23,26 @@
     ?>
   <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
 </form>
+<div class="reviews__list">
+  <?php
+  // помещаем номер страницы из массива GET в переменую $page
+    $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
+    // количество статей на страницу
+  $on_page = 3;
+
+  // (номер страницы - 1) * статей на страницу
+  $shift = ($page - 1) * $on_page;
+  $sql = "SELECT * FROM `comments` WHERE article_id = $book_id ORDER BY `date` DESC LIMIT $shift, $on_page";
+  $result = $pdo->query($sql);
+  while($row = $result->fetch(PDO::FETCH_OBJ)) {
+    echo "<blockquote class='reviews__item'>
+              <div class='header-title'>
+                <cite class='header-title__title reviews__author-name'>$row->author</cite><time class='reviews__time' datetime='$row->date'>$row->date</time>
+              </div>
+              <div class='reviews__author-picture'><img alt='Фото $row->author' class='reviews__author-image' height='33' src='img/reviews/persona-2.jpg' width='50'></div>
+              <p class='reviews__text'>$row->comment</p>
+              </blockquote>";;
+  }
+  ?>
+</div>
 <?php } ?>

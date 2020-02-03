@@ -1,4 +1,11 @@
 <?php
+// получение полного количества новостей
+$stmt = $pdo->query("SELECT COUNT(*) FROM comments WHERE article_id = $book_id");
+$row = $stmt->fetch();
+$c=$row[0]; //количество строк
+
+$countPage = ceil($c / $on_page);
+
 if ($countPage > 1) {
   ?>
 <ul class="pagination">
