@@ -86,9 +86,9 @@
      <div class="substrate substrate__album substrate__album--down">
         <section>
         <?php 
-         $book_id = 78;
+         $book_id = $_GET['id'];
          $type = 'album';
-         $get_id = $_GET['id'];
+         $get_id = $book_id;
         $link_comment = '/album.php';
         $link_comment_get = "?id=$get_id";
          require_once(BLOCKS .'comment.php');
@@ -104,6 +104,14 @@
   <?php require_once(BLOCKS .'modal-registration.php'); ?>
   <div class="overlay"></div>
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
-      <script src="js/album-slider.js"></script>
+  <script src="js/album-slider.js"></script>
+  <script>
+  let totalCountLetter = 600;
+  let countInput = document.querySelector('.countInput');
+  let count = document.querySelector('.count-letter_symbol');
+  countInput.addEventListener('input', function() {
+    count.innerHTML = totalCountLetter - countInput.value.length;
+  });
+  </script>
     </body>
     </html>
