@@ -49,13 +49,21 @@
                 <!-- <li id="slide_slice"> --> 
                 <ul class="slider__list"> 
                 <?php
-                  while($art = $query->fetch(PDO::FETCH_OBJ)) { ?>
+                $album_name = array();
+                $album_src = array();
+                  while($art = $query->fetch(PDO::FETCH_OBJ)) {
+                    $album_name[] = $art->works_title;;
+                    $album_src[] = $art->works_image;
+                  } 
+                  $arts_count = count($album_name);
+                  for($i = 0; $i < $arts_count; $i++) {
+                     ?>
                     <li class="slider__item">
-                      <h3 class="works__title album-slider__title"><?=$art->works_title?></h3>
-                      <img class="slider__img" src="img/<?=$art->works_image?>.jpg" width="460px" alt="<?=$art->works_title?>">
+                      <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3>
+                      <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="460px" alt="<?=$album_name[$i]?>">
                       <div class="count count-no-js"><span>1/7</span></div>
                     </li> 
-                 <?php } ?>
+                  <?php }?>
                 </ul> 
                 <!-- </div> --> 
                  <!-- Подсчет слайдов --> 
@@ -70,11 +78,9 @@
                <div class="slider__container-preview"> 
                 <ul class="slider__list-preview"> 
                  <?php
-                  $album_arts_preview = "SELECT * FROM `album_arts` WHERE album_id = $id ORDER BY `id` DESC";
-                  $query = $pdo->query($album_arts_preview);
-                  while($art_preview = $query->fetch(PDO::FETCH_OBJ)) { ?>
+                 for($i = 0; $i < $arts_count; $i++) { ?>
                     <li class="slider__item-preview">
-                      <img class="slider__img-nav" src="img/<?=$art_preview->works_image?>.jpg" width="150" alt="Азазель">
+                      <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150" alt="<?=$album_name[$i]?>">
                     </li> 
                  <?php } ?>
                 </ul> 
