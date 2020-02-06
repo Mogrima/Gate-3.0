@@ -97,6 +97,7 @@
          $get_id = $book_id;
         $link_comment = '/album.php';
         $link_comment_get = "?id=$get_id";
+        $comments_table = 'comments_art';
          require_once(BLOCKS .'comment.php');
          $link = '/book.php';
          $link_add = "&amp;id=$book_id";

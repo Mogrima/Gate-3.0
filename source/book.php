@@ -13,7 +13,6 @@
     require_once(BLOCKS . 'head.php'); 
     
     $book_id = $_GET["id"];
-    $type = 'book';
     $sql = "SELECT * FROM `works_catalog` WHERE id = $book_id";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
@@ -68,11 +67,12 @@
           $get_id = $book_id;
           $link_comment = '/book.php';
           $link_comment_get = "?id=$get_id";
+          $comments_table = 'comments_book';
           require_once(BLOCKS .'comment.php');
           $link = '/book.php';
           $link_add = "&amp;id=$book_id";
           // получение полного количества новостей
-          $stmt = $pdo->query("SELECT COUNT(*) FROM comments WHERE article_id = $book_id");
+          $stmt = $pdo->query("SELECT COUNT(*) FROM $comments_table WHERE article_id = $book_id");
           $row = $stmt->fetch();
           $c=$row[0]; //количество строк
 

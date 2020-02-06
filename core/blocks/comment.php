@@ -32,7 +32,7 @@
 
   // (номер страницы - 1) * статей на страницу
   $shift = ($page - 1) * $on_page;
-  $sql = "SELECT * FROM `comments` WHERE article_id = $book_id ORDER BY `date` DESC LIMIT $shift, $on_page";
+  $sql = "SELECT * FROM $comments_table WHERE `article_id` = $book_id ORDER BY `date` DESC LIMIT $shift, $on_page";
   $result = $pdo->query($sql);
   while($row = $result->fetch(PDO::FETCH_OBJ)) {
     echo "<blockquote class='reviews__item'>
