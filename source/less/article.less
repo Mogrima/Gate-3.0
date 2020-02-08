@@ -31,3 +31,18 @@
   margin-left: auto;
   font-style: italic;
 }
+
+.article__to-back {
+  svg {
+    transform: rotate(180deg);
+    path {
+      fill: @main-color;
+    }
+  }
+
+  &:hover {
+    path {
+      fill: lighten(@main-color, 30%);
+    }
+  }
+}
