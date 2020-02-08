@@ -12,7 +12,7 @@
         </div>
         <img alt='Рисунок новости' class='news__picture' height='123' src='$news_image_src' width='121'>
         <p class='news__text'>$row->intro</p><a class='button news__button'
-        href='news-page.php?id=$row->id&amp;page=$page'>Читать далее</a>
+        href='news.php?id=$row->id&amp;page=$page'>Читать далее</a>
     </li>";
     } ?>
     </ul>

@@ -85,7 +85,7 @@
         $row = $stmt->fetch();
         $c=$row[0];
         $countPage = ceil($c / $on_page);
-        require_once(BLOCKS . 'news.php');
+        require_once(BLOCKS . 'news-block.php');
         $link = '/index.php';
         $link_add = "";
         require_once(BLOCKS . 'pagination.php'); ?>
