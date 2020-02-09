@@ -58,6 +58,8 @@
         </div>
         <!--$works_title заголовок section works  -->
         <?php $works_title = 'Популярные произведения';
+        $src_stat = '../img/works-catalog/';
+        $works_link = 'book.php?id=';
         // включаем заголовки
         $sectionTitleOn = true;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
@@ -69,7 +71,9 @@
         require(BLOCKS .'works_section.php');
         // ------------------------------------------------------------------------------------- //
         $works_title = 'Популярные иллюстрации';
-        $sql = 'SELECT * FROM `works_catalog` ORDER BY `id` DESC';
+        $src_stat = '../img/arts-catalog/';
+        $works_link = 'album.php?id=';
+        $sql = 'SELECT * FROM `album_list` ORDER BY `id` DESC LIMIT 3';
         $query = $pdo->query($sql);
 
         require(BLOCKS .'works_section.php');
