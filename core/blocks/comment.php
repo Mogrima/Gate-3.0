@@ -39,7 +39,7 @@
               <div class='header-title'>
                 <cite class='header-title__title reviews__author-name'>$row->author</cite><time class='reviews__time' datetime='$row->date'>$row->date</time>
               </div>
-              <div class='reviews__author-picture'><img alt='Фото $row->author' class='reviews__author-image' height='33' src='img/reviews/persona-2.jpg' width='50'></div>
+              <div class='reviews__author-picture'><img alt='Фото $row->author' class='reviews__author-image' src='/$avatar1' width='70' height='70'></div>
               <p class='reviews__text'>$row->comment</p>
               </blockquote>";;
   }
