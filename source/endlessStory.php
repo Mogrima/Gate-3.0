@@ -43,7 +43,7 @@
               <p class="contents__title"><span class="contents__underline">Глава 1: Наследники</span></p>
               <h2 class="section-header">Оглавление</h2>
              <ol class="contents__list">
-               <li class="contents__item"><a class="contents__link" href="heirs of the gods of two worlds.html">1: Наследники Богов двух миров</a></li>
+               <li class="contents__item"><a class="contents__link" href="./manga.php">1: Наследники Богов двух миров</a></li>
                <li class="contents__item contents__link contents__link--disabled">2: Поезд на Восток</li>
                <li class="contents__item contents__link contents__link--disabled">3: Южный Лорд</li>
                <li class="contents__item contents__link contents__link--disabled">4: Лазарет</li>
