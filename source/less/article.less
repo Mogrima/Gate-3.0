@@ -3,9 +3,6 @@
   flex-direction: column-reverse;
 }
 
-.article__body {
-}
-
 .article__picture {
   width: 100%;
 }
@@ -42,6 +39,12 @@
     path {
       fill: lighten(@main-color, 30%);
     }
+  }
+}
+
+@media (min-width: @tablet-width) and (max-width: @desktop-width) {
+  .article__body {
+    padding: 0 20px;
   }
 }
 
