@@ -32,7 +32,7 @@
   <main class="page-main">
     <div class="container">
       <div class="substrate substrate__album"> <!--  Подложка -->
-        <div class="page-main__head">
+        <div class="page-main__head page-main__head--mb">
           <h1 class="title">Глава 1</h1>
           <ul class="breadcrumb">
             <li class="breadcrumb__item">
@@ -47,7 +47,6 @@
             <li class="breadcrumb__item breadcrumb__item--current">Наследники богов двух миров</li>
           </ul>
           <?php require_once(BLOCKS . 'search-block.php'); ?>
-          <p class="page-description">Таким образом реализация намеченных плановых заданий позволяет оценить значение систем массового участия. Таким образом реализация намеченных плановых заданий позволяет оценить значение систем массового участия. Таким образом реализация намеченных плановых заданий позволяет оценить значение систем массового участия.</p>
           </div>
           <div class="fotorama" data-width="800"  data-max-width="100%" data-allowfullscreen="native">
             <?php 
