@@ -1,5 +1,5 @@
 <section class="news">
-    <h2 class="section-header"><?=$news_title?></h2>
+    <h2 class="section-header"><a name="news"></a><?=$news_title?></h2>
     <ul class="news__list">
     <?php
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
