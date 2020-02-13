@@ -78,7 +78,7 @@
           <section class="feedback index-columns__column index-columns__column--right">
             <h2 class="section-header index-columns__title">Обратная связь</h2>
             <p class="feedback__description">Вы всегда можете оставить свое пожелание, замечание или предложение сугубо тет-а-тет, отправив его на нашу электронную почту, заполнив простую форму обратной связи. Это займет всего пару минут, нам важно Ваше мнение!</p>
-            <form action="#" class="feedback__form" method="post">
+            <form action="./core/business/feedback_send.php" class="feedback__form" method="post">
               <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-name">Как вас зовут?</label> <input class="input feedback__name" id="feedback-name" name="name" placeholder="имя..." type="text"></p>
               <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-email">Напишите почту для ответа:</label> <input class="input feedback__email" id="feedback-email" name="email" placeholder="почтовый ящик..." type="email"></p>
               <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-massage">Напишите ваш вопрос или пожелание:</label> 
