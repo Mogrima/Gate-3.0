@@ -18,11 +18,6 @@
   $msg = "$name отправил(а) следующее обращение:\n" .
     "$massage";
   mail($to, $subject, $msg, 'From:' . $email);
-
-  echo 'Thanks for submitting the form.<br />';
-  echo 'Вас зовут ' . $name;
-  echo ' ваше сообщение ' . $massage . '<br />';
-  echo 'Your email address is ' . $email;
 ?>
 </body>
 
