@@ -92,6 +92,7 @@
         require_once(BLOCKS . 'news-block.php');
         $link = '/index.php';
         $link_add = "";
+        $anchor = '#news';
         require_once(BLOCKS . 'pagination.php'); ?>
       </div><!-- Подложка -->
     </div>

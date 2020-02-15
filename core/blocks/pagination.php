@@ -3,10 +3,10 @@ if ($countPage > 1) {
   ?>
 <ul class="pagination">
   <?php if($page > 1) { ?>
-  <li class="pagination__item"><a href="<?=$link?>?page=1<?=$link_add?>"
+  <li class="pagination__item"><a href="<?=$link?>?page=1<?=$link_add?><?=$anchor?>"
       class="pagination__arrow  pagination__arrow--prev pagination__arrow--start"><span class="visually-hidden">в
         начало</span></a></li>
-  <li class="pagination__item"><a href="<?=$link?>?page=<?=$page-1;?><?=$link_add?>"
+  <li class="pagination__item"><a href="<?=$link?>?page=<?=$page-1;?><?=$link_add?><?=$anchor?>"
       class="pagination__arrow pagination__arrow--prev"><span class="visually-hidden">на предыдущую страницу</span></a>
   </li>
   <?php } 
@@ -18,16 +18,16 @@ $finaltLink = $page + $numberOfLinks;
 ($finaltLink >= $countPage) ? $finaltLink = $countPage : $finaltLink;
 for($i = $startLink; $i<= $finaltLink; $i++) { 
 ?>
-  <li class="pagination__item"> <a <?=($i == $page) ? "" : "href='$link?page=$i$link_add'";?>
+  <li class="pagination__item"> <a <?=($i == $page) ? "" : "href='$link?page=$i$link_add$anchor'";?>
       <?=($i == $page) ? 'class="pagination__link pagination__link--current"' : 'class="pagination__link"';?>><?=$i;?></a>
   </li>
   <?php }
 
  if($page < $countPage) { ?>
-  <li class="pagination__item"><a href="<?=$link?>?page=<?=$page+1;?><?=$link_add?>"
+  <li class="pagination__item"><a href="<?=$link?>?page=<?=$page+1;?><?=$link_add?><?=$anchor?>"
       class="pagination__arrow pagination__arrow--next"><span class="visually-hidden">на следующую страницу</span></a>
   </li>
-  <li class="pagination__item"><a href="<?=$link?>?page=<?=$countPage;?><?=$link_add?>"
+  <li class="pagination__item"><a href="<?=$link?>?page=<?=$countPage;?><?=$link_add?><?=$anchor?>"
       class="pagination__arrow pagination__arrow--next pagination__arrow--finish"><span class="visually-hidden">в
         конец</span></a></li>
   <?php } ?>
