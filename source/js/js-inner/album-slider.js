@@ -68,7 +68,7 @@ var addDataPosSlide = function () {
     for (var i = 0; i < slideItem.length; i++) {
         pos = i * -contentWidth; // вычисляем data-pos
         slideItem[i].setAttribute("data-pos", pos + "px"); // присваиваем каждому слайду data-pos
-        createDots("button"); // создаем дотсы для каждого слайда
+        createDots("li"); // создаем дотсы для каждого слайда
     }
 };
 
@@ -85,7 +85,9 @@ for (let i = 0; i < slide_previw.length; i++) {
 }
 
 // размер контейнера дотсов зависит от количества дотсов и всегда центруется (это в css)
-navList.style.width = (links.length * 12) * 2 + 'px';
+if(window.matchMedia('(min-width: 768px)').matches){
+    navList.style.width = (links.length * 12) * 2 + 'px';
+}
 
 var slideIndex = 1;
 
