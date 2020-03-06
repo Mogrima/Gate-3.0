@@ -82,7 +82,8 @@
               <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-name">Как вас зовут?</label> <input class="input feedback__name" id="feedback-name" name="name" placeholder="имя..." type="text"></p>
               <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-email">Напишите почту для ответа:</label> <input class="input feedback__email" id="feedback-email" name="email" placeholder="почтовый ящик..." type="email"></p>
               <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-massage">Напишите ваш вопрос или пожелание:</label> 
-              <textarea class="input feedback__massage" id="feedback-massage" name="massage" placeholder="ваше сообщение..."></textarea></p>
+              <textarea class="input feedback__massage countInput" id="feedback-massage" name="massage" maxlength="1000" placeholder="ваше сообщение..."></textarea>
+              <p class="count-letter">Осталось <span class="count-letter_symbol">1000</span> знаков</p></p>
               <button class="button feedback__button" name="submit" type="submit">Отправить</button>
             </form>
             <?php
@@ -120,5 +121,13 @@
   <div class="overlay overlay--dark"></div>
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
   <script src="js/popup-photo.js" type="text/javascript"></script>
+  <script>
+  let totalCount = 1000;
+  let countInput = document.querySelector('.countInput');
+  let count = document.querySelector('.count-letter_symbol');
+  countInput.addEventListener('input', function() {
+    count.innerHTML = totalCount - countInput.value.length;
+  });
+  </script>
 </body>
 </html>
