@@ -76,29 +76,52 @@
             <p class="about-social__description"><a class="link link--about" href="#">Девианарт</a> - представлен весь графический контент.</p>
           </section>
           <section class="feedback index-columns__column index-columns__column--right">
+          <?php
+            $succeful = false;
+              if(isset($_POST['submit'])) {
+                if(($_POST['massage'] != '') && ($_POST['name'] != '') && ($_POST['email'] != '')) {
+                  if(mb_strlen($_POST['massage'], 'utf-8') <= 1000) {
+                    $name = trim(filter_var($_POST['name'], FILTER_SANITIZE_STRING));
+                    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+                    $massage = trim(filter_var($_POST['massage'], FILTER_SANITIZE_STRING));
+
+                    $to = 'VRATAproject@yandex.ru';
+                    $subject = 'Обратная связь с сайта';
+                    $msg = "$name отправил(а) следующее обращение:\n" .
+                      "$massage";
+                    mail($to, $subject, $msg, 'From:' . $email);
+                    $user_msg = 'Ваше сообщение отправлено';
+                    $succeful = true;
+                  }
+                  else {
+                    $user_msg = 'Ваше сообщение превысило допустимое количество знаков - 1000';
+                  }
+                }
+                else {
+                  $user_msg = 'Не все поля заполнены';
+                }
+              }
+            ?>
             <h2 class="section-header index-columns__title">Обратная связь</h2>
             <p class="feedback__description">Вы всегда можете оставить свое пожелание, замечание или предложение сугубо тет-а-тет, отправив его на нашу электронную почту, заполнив простую форму обратной связи. Это займет всего пару минут, нам важно Ваше мнение!</p>
+            <?php
+              if (isset($user_msg)) {
+                if ($succeful) {
+                  echo '<p class="attention attention--user_msg attention--succeful-comment attention--w100">' . $user_msg . '</p>';
+                }
+              else {
+                  echo '<p class="attention attention--user_msg attention--w100">' . $user_msg . '</p>'; 
+                }
+              }
+            ?>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="feedback__form" method="post">
-              <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-name">Как вас зовут?</label> <input class="input feedback__name" id="feedback-name" name="name" placeholder="имя..." type="text"></p>
-              <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-email">Напишите почту для ответа:</label> <input class="input feedback__email" id="feedback-email" name="email" placeholder="почтовый ящик..." type="email"></p>
+              <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-name">Как вас зовут?</label> <input class="input feedback__name" id="feedback-name" name="name" maxlength="20" placeholder="имя..." type="text"></p>
+              <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-email">Напишите почту для ответа:</label> <input class="input feedback__email" id="feedback-email" name="email" maxlength="30" placeholder="почтовый ящик..." type="email"></p>
               <p class="input__wrapper"><label class="input__sign feedback__input-sign" for="feedback-massage">Напишите ваш вопрос или пожелание:</label> 
-              <textarea class="input feedback__massage countInput" id="feedback-massage" name="massage" maxlength="1000" placeholder="ваше сообщение..."></textarea>
+              <textarea class="input feedback__massage countInput" id="feedback-massage" maxlength="1000" name="massage" placeholder="ваше сообщение..."></textarea>
               <p class="count-letter">Осталось <span class="count-letter_symbol">1000</span> знаков</p></p>
               <button class="button feedback__button" name="submit" type="submit">Отправить</button>
             </form>
-            <?php
-              if(isset($_POST['submit'])) {
-                $name = trim(filter_var($_POST['name'], FILTER_SANITIZE_STRING));
-                $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-                $massage = trim(filter_var($_POST['massage'], FILTER_SANITIZE_STRING));
-
-                $to = 'VRATAproject@yandex.ru';
-                $subject = 'Обратная связь с сайта';
-                $msg = "$name отправил(а) следующее обращение:\n" .
-                  "$massage";
-                mail($to, $subject, $msg, 'From:' . $email);
-              }
-            ?>
           </section>
         </div>
       </div>
