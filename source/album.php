@@ -60,7 +60,7 @@
                      ?>
                     <li class="slider__item">
                       <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3>
-                      <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="460px" alt="<?=$album_name[$i]?>">
+                      <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
                       <div class="count count-no-js"><span>1/7</span></div>
                     </li> 
                   <?php }?>

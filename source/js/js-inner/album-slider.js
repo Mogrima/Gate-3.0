@@ -126,12 +126,8 @@ function showSlides(n) {
     // выводим номер текущего слайда для подсчета
     currentCount.innerHTML = slideIndex;
 
-    if(window.matchMedia('(max-width: 767px)').matches) {
-      autoHeightImg(0);
-    }
-    if(window.matchMedia('(max-width: 1200px)').matches) {
-      autoHeightImg(50);
-    }
+    autoHeightImg(50);
+    
     // if(window.matchMedia('(max-width: 767px)').matches){
     //         var imgHeight = Math.ceil(slideImg[slideIndex - 1].getBoundingClientRect().height); // вычисляем точную высоту каждого изображения и округляем до большего целога числа
     //         console.log(imgHeight);
