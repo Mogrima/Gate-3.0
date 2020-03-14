@@ -8,7 +8,7 @@
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
-    $id = $_GET["id"];
+    $_GET["id"] = 7;
     $contents = $_GET["contents"];
     $website_title = 'Наследники богов двух миров';
     // вывод рисунков
@@ -50,7 +50,7 @@
           </div>
           <section>
         <?php 
-         $book_id = 1;
+         $book_id = 7;
          $get_id = $book_id;
         $link_comment = "/manga.php?contents=$contents";
         $link_comment_get = "";
