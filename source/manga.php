@@ -10,12 +10,6 @@
     require_once(BUS.'/mysql__connect.php');
     $id = $_GET["id"];
     $contents = $_GET["contents"];
-    // вывод информации об альбоме
-    // $album_list = "SELECT `works_title`, `works_desc` FROM `album_list` WHERE id = $id";
-    // $query = $pdo->query($album_list);
-    // $album = $query->fetch(PDO::FETCH_OBJ);
-    // $album_title = $album->works_title;
-    // $album_desc = $album->works_desc;
     $website_title = 'Наследники богов двух миров';
     // вывод рисунков
     $album_arts = "SELECT * FROM `manga` WHERE manga_title = 'Наследники богов двух миров' AND num_of_Head = $contents ORDER BY `id` ASC";
@@ -58,12 +52,12 @@
         <?php 
          $book_id = 1;
          $get_id = $book_id;
-        $link_comment = '/manga.php';
-        $link_comment_get = "?id=$get_id";
+        $link_comment = "/manga.php?contents=$contents";
+        $link_comment_get = "";
         $comments_table = 'comments_art';
         require_once(BLOCKS .'comment.php');
-         $link = '/manga.php';
-         $link_add = "&amp;id=$book_id";
+         $link = "/manga.php?contents=$contents";
+         $link_add = "";
 
           // получение полного количества новостей
           $stmt = $pdo->query("SELECT COUNT(*) FROM $comments_table WHERE article_id = $book_id");
@@ -71,7 +65,42 @@
           $c=$row[0]; //количество строк
 
           $countPage = ceil($c / $on_page);
-         require_once(BLOCKS . 'pagination.php'); ?>
+      
+        if ($countPage > 1) {
+          ?>
+        <ul class="pagination">
+          <?php if($page > 1) { ?>
+          <li class="pagination__item"><a href="<?=$link?>&amp;page=1<?=$anchor?>"
+              class="pagination__arrow  pagination__arrow--prev pagination__arrow--start"><span class="visually-hidden">в
+                начало</span></a></li>
+          <li class="pagination__item"><a href="<?=$link?>&amp;page=<?=$page-1;?><?=$anchor?>"
+              class="pagination__arrow pagination__arrow--prev"><span class="visually-hidden">на предыдущую страницу</span></a>
+          </li>
+          <?php } 
+        $numberOfLinks = 1;
+        $startLink = $page - $numberOfLinks;
+        ($startLink <= 0) ? $startLink = 1 : $startLink;
+        ($page == 1) ? $numberOfLinks = 2 : $numberOfLinks;
+        $finaltLink = $page + $numberOfLinks;
+        ($finaltLink >= $countPage) ? $finaltLink = $countPage : $finaltLink;
+        for($i = $startLink; $i<= $finaltLink; $i++) { 
+        ?>
+          <li class="pagination__item"> <a <?=($i == $page) ? "" : "href='$link&amp;page=$i$anchor'";?>
+              <?=($i == $page) ? 'class="pagination__link pagination__link--current"' : 'class="pagination__link"';?>><?=$i;?></a>
+          </li>
+          <?php }
+
+        if($page < $countPage) { ?>
+          <li class="pagination__item"><a href="<?=$link?>&amp;page=<?=$page+1;?><?=$anchor?>"
+              class="pagination__arrow pagination__arrow--next"><span class="visually-hidden">на следующую страницу</span></a>
+          </li>
+          <li class="pagination__item"><a href="<?=$link?>&amp;page=<?=$countPage;?><?=$anchor?>"
+              class="pagination__arrow pagination__arrow--next pagination__arrow--finish"><span class="visually-hidden">в
+                конец</span></a></li>
+          <?php } ?>
+        </ul>
+        <?php } 
+        ?>
         </section>
         </div>
     </div>
@@ -83,5 +112,13 @@
   <script src="./js/jquery.min.js"></script>
   <script src="fotorama/fotorama.js"></script>
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
+  <script>
+  let totalCountLetter = 600;
+  let countInput = document.querySelector('.countInput');
+  let count = document.querySelector('.count-letter_symbol');
+  countInput.addEventListener('input', function() {
+    count.innerHTML = totalCountLetter - countInput.value.length;
+  });
+  </script>
 </body>
 </html>
