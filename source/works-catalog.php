@@ -101,21 +101,12 @@
         $src_stat = '../img/works-catalog/';
         $works_link = 'book.php?id=';
         require(BLOCKS .'works_section.php');
+        $link = '/works-catalog.php';
+        $link_add = "";
+        require_once(BLOCKS . 'pagination.php');
 
         // ------------------------------------------------------------------------------------- //
         ?>
-        <!-- <ul class="pagination">
-          <div class="pagination__wrapper">
-            <li class="pagination__item"><a class="pagination__link pagination__link--current">1</a>
-            </li>
-            <li class="pagination__item"><a class="pagination__link" href="#">2</a>
-            </li>
-            <li class="pagination__item"><a class="pagination__link" href="#">3</a>
-            </li>
-            <li class="pagination__item"><a class="pagination__link" href="#">4</a>
-            </li>
-          </div>
-        </ul> -->
       </div>
     </div>
   </main>
