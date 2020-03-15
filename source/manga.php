@@ -42,7 +42,7 @@
           </ul>
           <?php require_once(BLOCKS . 'search-block.php'); ?>
           </div>
-          <div class="fotorama" data-width="800"  data-max-width="100%" data-allowfullscreen="native">
+          <div class="fotorama" data-width="100%" data-maxwidth="800" data-allowfullscreen="native">
             <?php 
             while($art = $query->fetch(PDO::FETCH_OBJ)) { ?>
             <img class="fotorama__img" src="./img/manga/<?=$art->manga_src?><?=$art->works_image?>.jpg">
