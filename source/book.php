@@ -21,7 +21,8 @@
       $desc = $row->works_desc;
       $works_image_src = '../img/works-catalog/'.$row->works_image;
       $genre = $row->genre;
-      $warning = $row->warning;?>
+      $warning = $row->warning;
+      $NC = $row->NC;?>
 </head>
 
 <body class="page">
@@ -32,7 +33,7 @@
     <div class="container">
       <div class="substrate">
         <div class="page-main__head">
-          <h1 class="title"><?=$title?> 18+</h1>
+          <h1 class="title"><?=$title?> <img src="./img/icons/<?=$NC?>.png" alt="<?=$NC?>+" width="65" height="100"></h1>
           <ul class="breadcrumb">
             <li class="breadcrumb__item">
               <a class="breadcrumb__link" href="index.php">Новости</a>
