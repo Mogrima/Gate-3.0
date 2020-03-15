@@ -89,7 +89,6 @@
                </ul> 
               
      </section>
-     <div class="substrate substrate__album substrate__album--down">
         <section>
         <?php 
          $book_id = $_GET['id'];
@@ -110,7 +109,6 @@
           $countPage = ceil($c / $on_page);
          require_once(BLOCKS . 'pagination.php'); ?>
         </section>
-     </div>
     </div>
     </main>
     <?php require_once(BLOCKS .'footer.php'); ?>
