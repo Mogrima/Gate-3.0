@@ -41,7 +41,7 @@
           <section class="contents">
             <div class="contents__wrapper">
               <p class="contents__title"><span class="contents__underline">Глава 1: Наследники</span></p>
-              <h2 class="section-header">Оглавление</h2>
+              <h2 class="section-header contents__header">Оглавление</h2>
              <ol class="contents__list">
                <li class="contents__item"><a class="contents__link" href="./manga.php?contents=1">1: Наследники Богов двух миров</a></li>
                <li class="contents__item contents__link contents__link--disabled">2: Поезд на Восток</li>
