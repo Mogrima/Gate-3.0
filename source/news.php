@@ -34,7 +34,7 @@
         <?php require_once BLOCKS .'search-block.php' ?>
         <arcticle class="article">
           <div class="article__body">
-            <img class='article__picture' alt='Рисунок новости' src='./img/<?=$news_img?>' width='214' height='216'>
+            <img class='article__picture' alt='Рисунок новости' src='./img/news/<?=$news_img?>' width='214'>
             <h1 class="article__title"><?=$title?></h1>
             <p class='article__text'><?=$text?></p>
             <p class="attention attention--msg attention--succeful-comment">
