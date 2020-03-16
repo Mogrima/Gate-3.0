@@ -22,7 +22,9 @@
       $works_image_src = '../img/works-catalog/'.$row->works_image;
       $genre = $row->genre;
       $warning = $row->warning;
-      $NC = $row->NC;?>
+      $NC = $row->NC;
+      $text = $row->text;
+      $extra = $row->extra;?>
 </head>
 
 <body class="page">
@@ -59,8 +61,11 @@
                 <?php } ?>
                 <h3 class="preview__caption">Сюжет:</h3>
                 <p class="preview__text"><?=$desc?> </p>
+                  <?=$extra?>
               </div>
+              <?php if ($text != '') { ?>
               <a class="preview__button button" href="reader.php?id=<?=$id?>">Читать</a>
+              <?php } ?>
             </div>
           </section>
           <section class="reviews">
