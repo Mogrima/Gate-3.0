@@ -4,7 +4,7 @@
     <?php
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
     // задаю через переменную путь к изображению
-    $news_image_src = '../img/'.$row->screenshot;
+    $news_image_src = '../img/news/'.$row->screenshot;
    echo "<li class='news__item clearfix'>
         <div class='header-title'>
         <h3 class='header-title__title'><a class='header-title__link' href='news-1.html'>$row->title</a></h3><time
