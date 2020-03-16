@@ -9,9 +9,34 @@
   text-align: center;
 }
 
+.title--work {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 272px;
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+  }
+}
+
 @media (min-width: @tablet-width) {
   .title {
     margin: @title-mr 0;
     font-size: @title-fz;
+  }
+
+  .title--work {
+    width: auto;
+    span {
+      width: 322px;
+      margin-left: auto;
+    }
+
+    img {
+      margin-left: auto;
+      margin-right: 0;
+    }
   }
 }

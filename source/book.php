@@ -33,7 +33,7 @@
     <div class="container">
       <div class="substrate">
         <div class="page-main__head">
-          <h1 class="title"><?=$title?> <img src="./img/icons/<?=$NC?>.png" alt="<?=$NC?>+" width="65" height="100"></h1>
+          <h1 class="title title--work"><span><?=$title?></span> <img src="./img/icons/<?=$NC?>.png" alt="<?=$NC?>+" width="65" height="100"></h1>
           <ul class="breadcrumb">
             <li class="breadcrumb__item">
               <a class="breadcrumb__link" href="index.php">Новости</a>
