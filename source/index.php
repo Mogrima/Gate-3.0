@@ -63,7 +63,7 @@
         // включаем заголовки
         $sectionTitleOn = true;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = 'SELECT * FROM `works_catalog` ORDER BY `id` DESC';
+        $sql = 'SELECT * FROM `works_catalog` ORDER BY `id` ASC';
         $query = $pdo->query($sql);
         // подключение самого шаблона католога, в котором уже прописан цикл для вывода данных
         $newHtmlClassON = true;
