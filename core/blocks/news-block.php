@@ -7,10 +7,10 @@
     $news_image_src = '../img/news/'.$row->screenshot;
    echo "<li class='news__item clearfix'>
         <div class='header-title'>
-        <h3 class='header-title__title'><a class='header-title__link' href='news-1.html'>$row->title</a></h3><time
+        <h3 class='header-title__title'><a class='header-title__link' href='news.php?id=$row->id&amp;page=$page'>$row->title</a></h3><time
             class='header-title__date' datetime='2016-01-11'>$row->date</time>
         </div>
-        <img alt='Рисунок новости' class='news__picture' height='123' src='$news_image_src' width='121'>
+        <img alt='$row->title' class='news__picture' height='123' src='$news_image_src' width='121'>
         <p class='news__text'>$row->intro</p><a class='button news__button'
         href='news.php?id=$row->id&amp;page=$page'>Читать далее</a>
     </li>";
