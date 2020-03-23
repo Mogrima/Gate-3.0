@@ -4,12 +4,14 @@
         <?php
         if (isset ($_SESSION['username'])) {
           $session_id = $_SESSION['user_id'];
-      $userquery = "SELECT user_other, gender, text, birthdate, avatar FROM user WHERE `user_id` = :session_id";
+      $userquery = "SELECT * FROM user WHERE `user_id` = :session_id";
       $userData = $pdo->prepare($userquery);
       $userData->execute([':session_id' => $session_id]);
     while($row = $userData->fetch(PDO::FETCH_OBJ)) {
 
       $avatar1 = $row->avatar;
+      $loginCurrent = $row->username;
+      $emailCurrent = $row->user_email;
         ?>
         <nav class="profile-menu profile-menu--nojs">
           <button class="profile-menu__button" type="button">
