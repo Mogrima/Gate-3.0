@@ -27,8 +27,8 @@
             <!-- во <span class="page-main__label">«Врата»</span> -->
           </h2>
           <p class="page-main__intro-text">Арт-проект <span class="page-main__label">«Врата»</span> посвящён искусству в
-            разных его формах авторства <a class="link link--reviews" href="#">Роджера</a> и <a
-              class="link link--reviews" href="#">Могримы</a>.</p>
+            разных его формах авторства <a class="link link--reviews" href="https://vk.com/id501667863" target="_blank">Роджера</a> и <a
+              class="link link--reviews" href="https://vk.com/mogrima" target="_blank">Могримы</a>.</p>
           <p class="page-main__intro-text">Здесь Вы найдёте:</p>
           <ul class="page-main__intro-list">
             <li class="page-main__intro-item"> книги: <span class="grey">проза и стихотворения</span>;</li>
