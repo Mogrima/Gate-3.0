@@ -35,8 +35,6 @@
             <li class="page-main__intro-item"> рассказы;</li>
             <li class="page-main__intro-item"> сценарии;</li>
             <li class="page-main__intro-item"> иллюстрации;</li>
-            <li class="page-main__intro-item"> а так же комикс «Бесконечная история», <span class="grey">выпуск которого
-                только начался</span>.</li>
           </ul>
           <p class="page-description page-description--flex">Отличительная черта творчества за Вратами - загадка в
             каждом произведении, дух тайны, рождаемой фантазией.
