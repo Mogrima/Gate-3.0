@@ -17,6 +17,7 @@
         padding-left: 20px;
         padding-right: 10px;
         font-family: "Book Antiqua", "Times New Roman", sans-serif;
+        text-align: center;
         color: #fffefe;
       }
       h1 {
@@ -37,6 +38,7 @@
         body {
           padding-left: 182px;
           padding-right: 20px;
+          text-align: left;
           letter-spacing: 3px;
         }
 
