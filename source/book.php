@@ -57,7 +57,7 @@
                   <h3 class="preview__caption">Жанр:</h3> <?=$genre?>
                 </div>
                 <?php if ($warning != '') { ?>
-                <p class="attention preview__attention"><strong class="preview__caption">Предупреждения:</strong><?=$warning?></p>
+                <p class="attention preview__attention"><strong class="preview__caption">Предупреждения: </strong><?=$warning?></p>
                 <?php } ?>
                 <h3 class="preview__caption">Сюжет:</h3>
                 <p class="preview__text"><?=$desc?> </p>
