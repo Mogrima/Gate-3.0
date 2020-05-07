@@ -1,22 +1,22 @@
 <footer class="page-footer">
     <div class="page-footer__wrapper">
       <nav class="footer-navigation">
-        <a class="footer-navigation__logo" href="./"><img alt="Врата" height="30" src="/img/Logo.png" width="100"></a>
+        <a class="footer-navigation__logo" href="index.php"><img alt="Врата" height="30" src="/img/Logo.png" width="100"></a>
         <ul class="footer-navigation__list">
           <li class="footer-navigation__item">
-            <a class="footer-navigation__link" href="/works-catalog.php">Книги</a>
+            <a class="footer-navigation__link" href="works-catalog.php">Книги</a>
           </li>
           <li class="footer-navigation__item">
-            <a class="footer-navigation__link" href="/gallery.php">Галерея</a>
+            <a class="footer-navigation__link" href="gallery.php">Галерея</a>
           </li>
           <li class="footer-navigation__item">
-            <a class="footer-navigation__link" href="/about.php">О нас</a>
+            <a class="footer-navigation__link" href="about.php">О нас</a>
           </li>
           <li class="footer-navigation__item">
-            <a class="footer-navigation__link" href="/feedback.php">Отзывы</a>
+            <a class="footer-navigation__link" href="feedback.php">Отзывы</a>
           </li>
           <li class="footer-navigation__item">
-            <a class="footer-navigation__link" href="/FAQ.php">FAQ</a>
+            <a class="footer-navigation__link" href="FAQ.php">FAQ</a>
           </li>
         </ul>
       </nav>

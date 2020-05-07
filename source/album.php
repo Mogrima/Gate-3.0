@@ -98,7 +98,7 @@
         $link_comment_get = "?id=$get_id";
         $comments_table = 'comments_art';
          require_once(BLOCKS .'comment.php');
-         $link = '/album.php';
+         $link = 'album.php';
          $link_add = "&amp;id=$book_id";
 
           // получение полного количества новостей

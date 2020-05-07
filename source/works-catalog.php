@@ -101,7 +101,7 @@
         $src_stat = '../img/works-catalog/';
         $works_link = 'book.php?id=';
         require(BLOCKS .'works_section.php');
-        $link = '/works-catalog.php';
+        $link = 'works-catalog.php';
         $link_add = "";
         require_once(BLOCKS . 'pagination.php');
 
