@@ -28,11 +28,6 @@ require_once(BUS .'authorize.php'); ?>
         <!--  Подложка -->
         <div class="page-main__head">
           <h1 class="title">Авторизация</h1>
-          <!-- <ul class="breadcrumb">
-            <li class="breadcrumb__item">
-              <a class="breadcrumb__link" href="index.html.html">На главную</a>
-            </li>
-          </ul> -->
           <?php require_once BLOCKS .'search-block.php' ?>
         </div>
         <section class="login login--page">
