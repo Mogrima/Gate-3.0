@@ -68,6 +68,7 @@ require_once(BUS .'signup.php'); ?>
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
   <script src="js/jquery.min.js"></script>
+  <script src="js/scripts.min.js"></script>
   <?php require_once(BLOCKS .'signup-ajax.php'); ?>
 </body>
 </html>
