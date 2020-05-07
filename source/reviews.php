@@ -31,21 +31,22 @@
           <p class="attention"><i>P.S.:</i> Прежде чем оставить свой отзыв, пожалуйста, ознакомьтесь с <a class="link link--reviews" href="#">правилами комментирования</a>. Только корректно написанные отзывы остаются на этой странице. Спасибо за понимание!</p>
         </div>
         <section class="reviews">
+        <?php require_once(BUS . 'reviews.php');?>
           <h2 class="visually-hidden">Отзывы о нас</h2>
-          <form action="#" class="reviews__form" method="post">
+          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="reviews__form" method="post">
             <div class="reviews__form-wrapper">
               <p class="input__wrapper input__wrapper--flex">
                 <label class="input__sign input__sign--left" for="reviews-name">Назовитесь:</label>
-                <input class="input reviews__input" id="reviews-name" type="text" name="name" maxlength="20" placeholder="имя..." required>
+                <input class="input reviews__input" id="reviews-name" type="text" name="name" maxlength="20" placeholder="имя..." value="<?=$loginCurrent?>" required>
               </p>
               <p class="input__wrapper input__wrapper--flex">
                 <label class="input__sign input__sign--left" for="reviews-email">Ваша почта:</label>
-                <input class="input reviews__input" id="reviews-email" type="email" name="email" maxlength="30" placeholder="почтовый ящик..." required>
+                <input class="input reviews__input" id="reviews-email" type="email" name="email" maxlength="30" placeholder="почтовый ящик..." value="<?=$emailCurrent?>" required>
               </p>
             </div>
             <p class="input__wrapper input__wrapper--flex">
               <label class="input__sign input__sign--left" for="reviews-massage">Здесь вы можете оставить свой отзыв:</label> 
-              <textarea class="input reviews__massage" id="reviews-massage" name="reviews" maxlength="600">ваш отзыв...</textarea>
+              <textarea class="input reviews__massage" id="reviews-massage" name="reviews" maxlength="600" placeholder="ваш отзыв..."></textarea>
             </p>
             <button class="button feedback__button">Выразить мнение</button>
           </form>
