@@ -71,7 +71,7 @@
         $works_title = 'Популярные иллюстрации';
         $src_stat = '../img/arts-catalog/';
         $works_link = 'album.php?id=';
-        $sql = 'SELECT * FROM `album_list` ORDER BY `id` DESC LIMIT 3';
+        $sql = 'SELECT * FROM `album_arts` WHERE `ill_of_books` = TRUE LIMIT 3';
         $query = $pdo->query($sql);
 
         require(BLOCKS .'works_section.php');
