@@ -28,6 +28,18 @@ gulp.task("css", function () {
     .pipe(server.stream());
 });
 
+// сборка css файлов
+gulp.task("style", function () {
+  return gulp.src("source/css/**/*.css")
+    .pipe(postcss([
+      autoprefixer()
+    ]))
+    .pipe(csso())
+    .pipe(gulp.dest("Intogate/css"))
+    .pipe(gulp.dest("../Intogate/css"))
+    .pipe(server.stream());
+});
+
 gulp.task("images", function () {
   return gulp.src("source/img/**/*.{png,jpg,svg}")
   .pipe(imagemin([
@@ -93,6 +105,7 @@ gulp.task("copy", function () {
   });
 
   gulp.watch("source/less/**/*.less", gulp.series("css"));
+  gulp.watch("source/css/**/*.css", gulp.series("style"));
   gulp.watch("source/js/*.js", gulp.series("scripts"));
   gulp.watch("source/*.php", gulp.series("page.php", "refresh"));
   gulp.watch("core/**/*.php", gulp.series("core", "refresh"));
