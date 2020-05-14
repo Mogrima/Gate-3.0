@@ -87,6 +87,7 @@ gulp.task("copy", function () {
 
  gulp.task("clean", function () {
   return del("Intogate");
+  return del("../Intogate");
  });
 
  gulp.task("core", function() {
@@ -122,6 +123,7 @@ gulp.task("build", gulp.series(
   "clean",
   "copy",
   "css",
+  "style",
   "scripts",
   "js:build",
   "page.php",
