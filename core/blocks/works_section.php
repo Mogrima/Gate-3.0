@@ -18,11 +18,11 @@
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
         // задаю через переменную путь к изображению
       $works_image_src = $src_stat.$row->works_image;
-      if($row->works_title == 'Бесконечная история') {
+      if($row->works_title == 'Легенды') {
         echo "<figure class='works__item'>
               <figcaption class='works__title'>$row->works_title</figcaption>
-              <img alt='$row->works_title' class='works__image' height='347' src='$works_image_src' width='258'>
-              <p class='works__description'>$row->works_desc</p><a class='button works__button' href='endlessstory.php'>Открыть</a>
+              <img alt='$row->works_title' class='works__image' height='347' src='img/ОбложкаЛегенды.jpg' width='258'>
+              <p class='works__description'>$row->works_desc</p><a class='button works__button' href='inner-album.php'>Открыть</a>
             </figure>";
       }
       else {
