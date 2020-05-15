@@ -66,7 +66,7 @@
         $on_page = 6;
         $shift = ($page - 1) * $on_page;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = "SELECT * FROM `album_list` ORDER BY `id` DESC LIMIT $shift, $on_page";
+        $sql = "SELECT * FROM `album_list` WHERE `nested` = 0 ORDER BY `id` DESC LIMIT $shift, $on_page";
         $query = $pdo->query($sql);
         $stmt = $pdo->query("SELECT COUNT(*) FROM album_list");
         $row = $stmt->fetch();
