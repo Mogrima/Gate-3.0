@@ -10,11 +10,12 @@
     require_once(BUS.'/mysql__connect.php');
     $id = $_GET["id"];
     // вывод информации об альбоме
-    $album_list = "SELECT `works_title`, `works_desc` FROM `album_list` WHERE id = $id";
+    $album_list = "SELECT `works_title`, `works_desc`, `nested` FROM `album_list` WHERE id = $id";
     $query = $pdo->query($album_list);
     $album = $query->fetch(PDO::FETCH_OBJ);
     $album_title = $album->works_title;
     $album_desc = $album->works_desc;
+    $nested = $album->nested;
     $website_title = 'Галерея: ' . $album_title;
     // вывод рисунков
     $album_arts = "SELECT * FROM `album_arts` WHERE album_id = $id ORDER BY `id` DESC";
@@ -39,6 +40,9 @@
             <li class="breadcrumb__item">
               <a class="breadcrumb__link" href="gallery.php">Галерея</a>
             </li>
+            <?php if($nested == 1) { ?>
+              <li class="breadcrumb__item"><a class="breadcrumb__link" href="inner-album.php">Легенды</a></li>
+            <?php } ?>
             <li class="breadcrumb__item breadcrumb__item--current"><?=$album_title?></li>
           </ul>
           <?php require_once(BLOCKS . 'search-block.php'); ?>
