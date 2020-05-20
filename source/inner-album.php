@@ -38,13 +38,15 @@
               $sql = "SELECT * FROM `album_list` WHERE `nested` = 1 ORDER BY `id`";
               $query = $pdo->query($sql);
               $src_stat = "img/";
+              $works_link = 'album.php?id=';
               while($row = $query->fetch(PDO::FETCH_OBJ)) {
-                $works_image_src = $src_stat.$row->works_image; ?>
+                $works_image_src = $src_stat.$row->works_image;
+                $works_linkAlbum = $works_link.$row->id ?>
               <figure class="works__item works__item--pb">
                 <figcaption class="works__title works__title--mt works__title--album">
                 <?=$row->works_title?>
                 </figcaption><img alt="История Мефистофеля" class="works__image" height="347" src="<?=$works_image_src?>" width="258">
-                <p class="works__description works__description--album"><?=$row->works_desc?></p><a class="button works__button works__button--album" href="history of Mef.html">Открыть</a>
+                <p class="works__description works__description--album"><?=$row->works_desc?></p><a class="button works__button works__button--album" href="<?=$works_linkAlbum?>">Открыть</a>
               </figure>
               <?php 
               }    
