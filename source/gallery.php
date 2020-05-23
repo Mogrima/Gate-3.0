@@ -59,7 +59,7 @@
         // выключаем (прячем) заголовок
         $sectionTitleOn = false;
         $works_link = 'album.php?id=';
-        $src_stat = '../img/';
+        $src_stat = 'img/';
         
         // --------------------- пагинация ---------------------------------------------- //
         $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
