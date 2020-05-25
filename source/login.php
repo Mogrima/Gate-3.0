@@ -21,7 +21,8 @@ require_once(BUS .'authorize.php'); ?>
           src="img/Logo.png" width="164"></a>
     </div>
   </header>
-  <?php require_once BLOCKS .'main-navigation.php' ?>
+  <?php $menu_active[0] = "page-navigation__item--active";  
+  require_once(BLOCKS .'main-navigation.php'); ?>
   <main class="page-main">
     <div class="container">
       <div class="substrate">

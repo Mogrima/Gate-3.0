@@ -26,7 +26,9 @@
 <body class="page">
   <div class="background-header"></div>
   <?php require_once(BLOCKS . 'header.php'); ?>
-  <?php require_once(BLOCKS . 'main-navigation.php'); 
+  <?php
+  $menu_active[2] = "page-navigation__item--active"; 
+  require_once(BLOCKS . 'main-navigation.php'); 
   ?>
   <main class="page-main">
     <div class="container">
