@@ -2,6 +2,7 @@
       <div class="page-header__wrapper">
         <a href="index.php" class="page-header__logo"><img class="page-header__logo-image" alt="Логотип Врата" width="164" height="54" src="img/Logo.png"></a>
         <?php
+        require_once(BUS.'/menu_links.php');
         if (isset ($_SESSION['username'])) {
           $session_id = $_SESSION['user_id'];
       $userquery = "SELECT * FROM user WHERE `user_id` = :session_id";
