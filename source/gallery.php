@@ -15,7 +15,8 @@
 <body class="page">
   <div class="background-header"></div>
   <?php require_once(BLOCKS . 'header.php'); ?>
-  <?php require_once(BLOCKS . 'main-navigation.php'); ?>
+  <?php $menu_active[2] = "page-navigation__item--active"; 
+  require_once(BLOCKS . 'main-navigation.php'); ?>
   <main class="page-main">
     <div class="container">
       <div class="substrate">
@@ -76,6 +77,7 @@
         require(BLOCKS .'works_section.php');
         $link = '/gallery.php';
         $link_add = "";
+        $anchor = '#anchor';
         require_once(BLOCKS . 'pagination.php'); ?>
       </div><!-- Подложка -->
     </div>

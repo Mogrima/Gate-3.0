@@ -103,6 +103,7 @@
         require(BLOCKS .'works_section.php');
         $link = 'works-catalog.php';
         $link_add = "";
+        $anchor = '#anchor';
         require_once(BLOCKS . 'pagination.php');
 
         // ------------------------------------------------------------------------------------- //

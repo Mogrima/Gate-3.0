@@ -1,5 +1,6 @@
 <?php $sectionTitleOn;?>
 <section class="works">
+  <a name="anchor"></a>
   <?php if($sectionTitleOn) {
     echo '<h2 class="section-header">' .$works_title.'</h2>';
   } else {

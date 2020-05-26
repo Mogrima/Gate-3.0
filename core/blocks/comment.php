@@ -1,4 +1,6 @@
+<a name="anchor"></a>
 <?php require_once(BUS .'send_comment.php');
+$anchor = '#anchor';
   if (!isset($_SESSION['user_id'])) {
     echo "<p class='reviews__form-title'>Пожалуйста, авторизуйтесь, чтобы делиться впечатлениями.</p>";
   }
