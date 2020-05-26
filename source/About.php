@@ -75,6 +75,8 @@
             <p class="about-social__description">Только сообща люди достигают наиболее значительных результатов – мы будем рады Вашему участию. Свяжитесь с Вратами в социальных сетях!</p>
             <p class="about-social__description"><a class="link link--about" href="https://vk.com/gate_art_project" target="_blank">Группа вконтакте</a> - публикуются самые свежие новости.</p>
             <p class="about-social__description"><a class="link link--about" href="https://www.deviantart.com/inaneakme" target="_blank">Девианарт</a> - представлен весь графический контент.</p>
+            <p class="about-social__description"><a class="link link--about" href="https://www.instagram.com/romonature/" target="_blank">Инстаграм</a> - мир глазами привратника.</p>
+            <p class="about-social__description"><a class="link link--about" href="https://twitter.com/Vse_vidim" target="_blank">Твиттер</a></p>
           </section>
           <section class="feedback index-columns__column index-columns__column--right">
           <?php
