@@ -10,7 +10,8 @@ require_once(BUS .'authorize.php'); ?>
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
     $website_title = 'Авторизация';
-    require_once BLOCKS .'head.php' ?>
+    require_once(BLOCKS .'head.php');
+    require_once(BUS.'/menu_links.php'); ?>
 </head>
 
 <body class="page">
@@ -21,8 +22,7 @@ require_once(BUS .'authorize.php'); ?>
           src="img/Logo.png" width="164"></a>
     </div>
   </header>
-  <?php $menu_active[0] = "page-navigation__item--active";  
-  require_once(BLOCKS .'main-navigation.php'); ?>
+  <?php require_once(BLOCKS .'main-navigation.php'); ?>
   <main class="page-main">
     <div class="container">
       <div class="substrate">
