@@ -92,14 +92,23 @@
         <?php $works_title = 'Список произведений';
         // подключение к базе данных
         require_once(BUS.'/mysql__connect.php');
-        // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = 'SELECT * FROM `works_catalog` ORDER BY `id` ASC';
-        $query = $pdo->query($sql);
         // подключение самого шаблона католога, в котором уже прописан цикл для вывода данных
         // выключаем (прячем) заголовок
         $sectionTitleOn = false;
         $src_stat = '../img/works-catalog/';
         $works_link = 'book.php?id=';
+        // --------------------- пагинация ---------------------------------------------- //
+        $page = isset($_GET["page"]) ? (int) $_GET["page"] : 1;
+        $on_page = 6;
+        $shift = ($page - 1) * $on_page;
+        // запрос на вывод данных каталога произведений из бд в порядке убывания по id
+        $sql = "SELECT * FROM `works_catalog` ORDER BY `id` DESC LIMIT $shift, $on_page";
+        $query = $pdo->query($sql);
+        $stmt = $pdo->query("SELECT COUNT(*) FROM works_catalog");
+        $row = $stmt->fetch();
+        $c=$row[0];
+        $countPage = ceil($c / $on_page);
+
         require(BLOCKS .'works_section.php');
         $link = 'works-catalog.php';
         $link_add = "";
