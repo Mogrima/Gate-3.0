@@ -1,0 +1,53 @@
+.up-button {
+  position: fixed;
+  z-index: 1;
+  bottom: 11px;
+  right: 9px;
+    width: 55px;
+  height: 55px;
+  color: @main-color;
+  border: none;
+  background: fade(@link, 60%);
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+}
+
+.shown {
+  display: inline-block;
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+}
+
+.hidden {
+  display: none;
+}
+
+@media(max-width: 768px) {
+  .up-button {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      border-radius: 4px;
+    }
+
+    &::before {
+      top: 15px;
+      right: 25px;
+      width: 5px;
+      height: 30px;
+      background-color: fade(@main-color, 80%);
+    }
+
+    &::after {
+      top: 14px;
+      right: 18px;
+      width: 15px;
+      height: 15px;
+      border-right: 4px solid fade(@main-color, 80%);
+      border-top: 4px solid fade(@main-color, 80%);
+      transform: rotate(-45deg);
+    }
+  }
+}
