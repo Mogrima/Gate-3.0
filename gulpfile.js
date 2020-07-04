@@ -108,6 +108,7 @@ gulp.task("copy", function () {
   gulp.watch("source/less/**/*.less", gulp.series("css"));
   gulp.watch("source/css/**/*.css", gulp.series("style"));
   gulp.watch("source/js/*.js", gulp.series("scripts"));
+  gulp.watch("source/js/js-inner/*.js", gulp.series("js:build"));
   gulp.watch("source/*.php", gulp.series("page.php", "refresh"));
   gulp.watch("core/**/*.php", gulp.series("core", "refresh"));
 });
