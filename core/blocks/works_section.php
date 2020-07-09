@@ -30,7 +30,7 @@
         $dinamyc_link = ($row->album_id) ? $row->album_id : $row->id;
         echo "<figure class='works__item'>
               <figcaption class='works__title'>$row->works_title</figcaption>
-              <img alt='$row->works_title' class='works__image' height='347' src='$works_image_src.$type_image' width='258'>
+              <img alt='$row->works_title' class='works__image' height='347' src='$works_image_src$type_image' width='258'>
               <p class='works__description'>$row->works_desc</p><a class='button works__button' href='$works_link$dinamyc_link'>Открыть</a>
             </figure>";
       }

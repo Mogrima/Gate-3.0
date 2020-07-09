@@ -71,7 +71,7 @@
         $src_stat = 'img/';
         $works_link = 'album.php?id=';
         $sql = 'SELECT * FROM `album_arts` WHERE `ill_of_books` = TRUE LIMIT 3';
-        $type_image = 'jpg';
+        $type_image = '.jpg';
         $query = $pdo->query($sql);
 
         require(BLOCKS . 'works_section.php');

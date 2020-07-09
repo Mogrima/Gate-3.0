@@ -6,7 +6,7 @@ $adress_current = $_SERVER["REQUEST_URI"];
 // echo "<p style='color: pink;'>Адрес текущей страницы " . $adress_current . "</p>";
 preg_match_all('|/(.+).php|isU', $adress_current, $arr);
 $url_active = $arr[0][0];
-echo "<p style='color: pink;'>Адрес текущей страницы " . $url_active . "</p>";
+// echo "<p style='color: pink;'>Адрес текущей страницы " . $url_active . "</p>";
 
 $menu = array("//index.php", 
                 "//works-catalog.php", 
