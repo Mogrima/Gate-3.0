@@ -23,7 +23,7 @@
   display: none;
 }
 
-@media(max-width: 768px) {
+@media(max-width: @mobile-width) {
   .up-button {
     &::before,
     &::after {
@@ -52,7 +52,7 @@
   }
 }
 
-@media(min-width: 768px) {
+@media(min-width: @mobile-width) {
   .up-button {
     right: 50%;
     width: auto;
@@ -62,5 +62,12 @@
     font-family: "Vollkorn","Garamond",serif;
     font-size: 16px;
     border-radius: 3px;
+  }
+}
+
+@media(min-width: @desktop-width) {
+  .up-button {
+    right: 10px;
+    margin-right: 0;
   }
 }
