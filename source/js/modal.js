@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded',function() {
     var loginLink = document.querySelector(".login-link");
     var loginForm = document.querySelector(".login__log");
     var loginClose = document.querySelector(".login__close-log");
-    var loginLogin = loginForm.querySelector("[name=user-name]");
-    var loginPassword = loginForm.querySelector("[name=user-pass]");
+    var loginLogin = loginForm.querySelector("[name=username]");
+    var loginPassword = loginForm.querySelector("[name=password]");
     
     if (loginLink != null) {
       loginLink.addEventListener("click", function (evt) {
