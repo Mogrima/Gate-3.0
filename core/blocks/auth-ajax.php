@@ -18,7 +18,7 @@
           $('#errorLogin').hide();
           $('.login__button').text('Загрузка..');
           // document.location.reload(true); // перезагрузка страницы
-          window.location.replace("./index.php");
+          window.location.replace(newUrl);
         } else {
           $('#errorLogin').show();
           $('#errorLogin').text(data);
