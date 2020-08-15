@@ -1,5 +1,5 @@
 // Элементы слайдера
-var wrapper = document.querySelector(".slider__list");
+var album_wrapper = document.querySelector(".slider__list");
 var sliderElem = document.querySelector('.slider__container');
 var slideItem = document.querySelectorAll('.slider__item');
 var slideTitle = document.querySelectorAll('.album-slider__title');
@@ -42,7 +42,7 @@ var contentWidth = contrWidth;// slideWidth + (slideOffset * 2);
 // рассчитываю от количества слайдов ширину большого контейнера
 var widthWrapper = slideItem.length * contentWidth + 'px';
 // присываиваю полученную ширину обертке
-wrapper.style.width = widthWrapper;
+album_wrapper.style.width = widthWrapper;
 // размеры слайдов превью
 var slide_previwWidth = 150; // самостоятельно устанавливаем значение
 var slide_previwOffset = 15; // самостоятельно устанавливаем значение
@@ -106,7 +106,7 @@ function autoHeightImg(add) {
             console.log(imgHeight);
             var BlockCount_Height = Math.ceil(BlockCount.getBoundingClientRect().height);
             var BlockCount_marginTop = parseInt(getComputedStyle(BlockCount, true).marginTop);
-            wrapper.style.height = imgHeight + add + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
+            album_wrapper.style.height = imgHeight + add + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
     }
 
 function showSlides(n) {
@@ -120,7 +120,7 @@ function showSlides(n) {
     }
 
     links.forEach((item) => item.classList.remove("slider__dot--active"));
-    wrapper.style.left = slideItem[slideIndex - 1].getAttribute("data-pos");
+    album_wrapper.style.left = slideItem[slideIndex - 1].getAttribute("data-pos");
     wrapper_previw.style.left = slide_previw[slideIndex - 1].getAttribute("data-pos");
     links[slideIndex - 1].classList.add('slider__dot--active');
     // выводим номер текущего слайда для подсчета
@@ -133,14 +133,14 @@ function showSlides(n) {
     //         console.log(imgHeight);
     //         var BlockCount_Height = Math.ceil(BlockCount.getBoundingClientRect().height);
     //         var BlockCount_marginTop = parseInt(getComputedStyle(BlockCount, true).marginTop);
-    //         wrapper.style.height = imgHeight + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
+    //         album_wrapper.style.height = imgHeight + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
     // }
     // if(window.matchMedia('(max-width: 1200px)').matches){
     //         var imgHeight = Math.ceil(slideImg[slideIndex - 1].getBoundingClientRect().height); // вычисляем точную высоту каждого изображения и округляем до большего целога числа
     //         console.log(imgHeight);
     //         var BlockCount_Height = Math.ceil(BlockCount.getBoundingClientRect().height);
     //         var BlockCount_marginTop = parseInt(getComputedStyle(BlockCount, true).marginTop);
-    //         wrapper.style.height = imgHeight + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
+    //         album_wrapper.style.height = imgHeight + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
     // }
 
 }
@@ -188,7 +188,7 @@ var ClickDots = function (clickTarget, itemlngh, targetClass) {
 
 ClickDots(navList, links, 'slider__dot');
 ClickDots(wrapper_previw, imgNavlgth, 'slider__img-nav');
-ClickDots(wrapper, slideImg, 'slider__img');
+ClickDots(album_wrapper, slideImg, 'slider__img');
 
   
   // var thumbElem = document.querySelector('.slider__list');
