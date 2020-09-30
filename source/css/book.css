@@ -64,6 +64,7 @@ input[type="checkbox"].visually-hidden {
 body {
   font-size: 19px;
   line-height: 1.6;
+  text-align: justify;
 }
 .book-header {
   display: relative;
@@ -156,6 +157,7 @@ h3 {
   font-family: 'Vollkorn';
   font-size: 1.2rem;
   line-height: 24px;
+  text-align: left;
   color: #fef872;
   text-decoration: none;
   /* плавный переход */
@@ -221,25 +223,18 @@ h3 {
 }
 .paragraph-wrapper {
   margin-bottom: 30px;
+  padding: 0 3%;
 }
 
 .paragraph-wrapper h3 {
   display: none;
 }
-.section-book__paragraph {
-  margin: 5px 0;
-  padding: 0 3%;
-  line-height: 1.3;
-  text-align: justify;
-  text-indent: 30px;
-}
 
 p {
   margin: 5px 0;
-  padding: 0 3%;
-  text-align: justify;
   text-indent: 30px;
 }
+
 .number-page {
   position: relative;
   width: 50px;
