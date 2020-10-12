@@ -24,13 +24,13 @@ for($i = $startLink; $i<= $finaltLink; $i++) {
   <?php }
 
  if($page < $countPage) { ?>
-  <li class="pagination__item"><a href="<?=$link?>?page=<?=$page+1;?><?=$link_add?><?=$anchor?>"
+  <li class="pagination__item"><a href="<?=$link?>?<?=$link_add?>page=<?=$page+1;?><?=$anchor?>"
       class="pagination__arrow pagination__arrow--next"><span class="visually-hidden">на следующую страницу</span></a>
   </li>
-  <li class="pagination__item"><a href="<?=$link?>?page=<?=$countPage;?><?=$link_add?><?=$anchor?>"
+  <li class="pagination__item"><a href="<?=$link?>?<?=$link_add?>page=<?=$countPage;?><?=$anchor?>"
       class="pagination__arrow pagination__arrow--next pagination__arrow--finish"><span class="visually-hidden">в
         конец</span></a></li>
   <?php } ?>
 </ul>
-<?php } 
+<?php echo "";} 
 ?>

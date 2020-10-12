@@ -14,7 +14,7 @@
 </head>
 <body class="page">
   <div class="background-header"></div>
-  <?php require_once '../blocks/header.php' ?>
+  <?php // require_once '../blocks/header.php' ?>
   <?php require_once '../blocks/main-navigation.php' ?>
   <main class="page-main">
     <div class="container">
@@ -23,7 +23,7 @@
       <?php require_once(BUS_с. '/adminSession.php'); 
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
 
-      $sql = "SELECT * FROM `test` WHERE title = 'Истории тысячи миров 2'";
+      $sql = "SELECT * FROM `works_catalog` WHERE works_title = 'Последние в своем роде'";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
       $id = $row->id;
@@ -34,7 +34,7 @@
       $chapters_count = count($chapters) - 1;
 
       $transformed_text = wordwrap($text, 130, "	&shy\n");
-      // var_dump($transformed_text);
+      var_dump($transformed_text);
 
         // получаем массив с страницами
         $page_arr = array();
@@ -87,7 +87,7 @@
       // print_r($numbering);
       // Сохраняем название главы в переменную
       $nameContent = $numbering[$n];
-      counterPage($page_arr, $n);
+      // counterPage($page_arr, $n);
 //////////////Нумерация страниц/////////////////////////////////////////////////////////////////
       // счетчик страниц
       $pages = $n + 1;

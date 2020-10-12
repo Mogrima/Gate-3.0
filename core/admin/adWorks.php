@@ -14,7 +14,7 @@
 </head>
 <body class="page">
   <div class="background-header"></div>
-  <?php require_once '../blocks/header.php' ?>
+  <?php //require_once '../blocks/header.php' ?>
   <?php require_once '../blocks/main-navigation.php' ?>
   <main class="page-main">
     <div class="container">

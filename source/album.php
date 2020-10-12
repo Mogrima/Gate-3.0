@@ -129,6 +129,96 @@
   countInput.addEventListener('input', function() {
     count.innerHTML = totalCountLetter - countInput.value.length;
   });
+
+//   function $_GET(id) {
+//     var p = window.location.search;
+//     p = p.match(new RegExp(key + '=([^&=]+)'));
+//     return p ? p[1] : false;
+// }
+
+  $('#reviews__form').submit(function(event) {
+    event.preventDefault();
+    var reviews = $('#reviews').val();
+    var user = $('#user').val();
+    var article_id = $('#article_id').val();
+    var author_id = $('#author_id').val();
+    var page = 1;
+
+    $.ajax({
+      url: "./core/business/send_comment.php",
+      type: 'POST',
+      cache: false,
+      data: {
+        'reviews': reviews,
+        'user': user,
+        'article_id': article_id,
+        'author_id': author_id
+      },
+      dataType: 'html',
+      success: function(data) {
+        if (data) {
+          // $('.attention--user_msg').hide();
+          $('.attention--user_msg').text(data);
+          $('.feedback__button').text('Загрузка..');
+          // document.location.reload(true); // перезагрузка страницы
+          // window.location.replace(newUrl);
+
+          $.ajax({
+      url: "./core/blocks/reviews.php",
+      type: 'POST',
+      cache: false,
+      data: {
+        'page': page
+      },
+      dataType: 'html',
+      success: function(data) {
+        if (data) {
+          // $('.attention--user_msg').hide();
+          $('.attention--user_msg').text(data);
+          $('.feedback__button').text('Загрузка..');
+          // document.location.reload(true); // перезагрузка страницы
+          // window.location.replace(newUrl);
+        } else {
+          console.log(data);
+          console.log(reviews, user, article_id, author_id);
+          // $('.attention--user_msg').show();
+          $('.attention--user_msg').text(data);
+        }
+      },
+      error: function(xhr, str){ //ошибка выводит соответствующее сообщение 
+        console.log('Возникла ошибка: ' + xhr.responseCode);
+         }
+    });
+
+        } else {
+          console.log(data);
+          console.log(reviews, user, article_id, author_id);
+          // $('.attention--user_msg').show();
+          $('.attention--user_msg').text(data);
+        }
+      },
+      error: function(xhr, str){ //ошибка выводит соответствующее сообщение 
+        console.log('Возникла ошибка: ' + xhr.responseCode);
+         }
+    });
+  });
+
+  // $(function() {
+  //     $('#reviews__form').submit(function(e) {
+  //       var $form = $(this);
+  //       $.ajax({
+  //         type: 'POST',
+  //         url: './core/business/send_comment.php',
+  //         data: $form.serialize()
+  //       }).done(function() {
+  //         console.log('success');
+  //       }).fail(function() {
+  //         console.log('fail');
+  //       });
+  //       //отмена действия по умолчанию для кнопки submit
+  //       e.preventDefault(); 
+  //     });
+  //   });
   </script>
     </body>
     </html>
