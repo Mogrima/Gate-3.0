@@ -23,61 +23,27 @@
     }
     $avatar_text = '';
     ?>
-<?php
-    $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-    echo 'вывод данных формы';
-    $userquery = "SELECT user_other, gender, text, birthdate, avatar FROM user WHERE user_id = '" . $_SESSION['user_id'] . "'";
-    $userData = mysqli_query($dbc, $userquery);
-    $userProfile = mysqli_fetch_array($userData);
-
-      $user_other1 = $userProfile['user_other'];
-      $gender1 = $userProfile['gender'];
-      $aboutself1 = $userProfile['text'];
-      $birthdate1 = $userProfile['birthdate'];
-      $avatar = $userProfile['avatar'];
-
-    if (isset($_POST['submit'])) {
-      $user_other = mysqli_real_escape_string($dbc, trim($_POST['user_other']));
-      $gender = mysqli_real_escape_string($dbc, trim($_POST['gender']));
-      $aboutself = mysqli_real_escape_string($dbc, trim($_POST['aboutself']));
-      $birthdate = mysqli_real_escape_string($dbc, trim($_POST['birthdate']));
-
-      $error = false;
-
-      if (!$error) {
-        // echo 'вошел в блок !error';
-        // // $query =  "UPDATE user SET user_other = '$user_other', gender = '$gender', text = '$aboutself', birthdate = '$birthdate' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-        // mysqli_query($dbc, $query);
-        // echo '<p>Your profile has been successfully updated. Would you like to <a href="viewprofile.php">view your profile</a>?</p>';
-        // // exit();
-      }
-
-      else {
-        echo '<p>вылезла ошибка error</p>';
-      }
-
-    } // End of check for form submission
-    // else {
-    //   echo 'вывод данных формы';
-    //   $query = "SELECT user_other, gender, text, birthdate FROM user WHERE user_id = '" . $_SESSION['user_id'] . "'";
-    //   $data = mysqli_query($dbc, $query);
-    //   $row = mysqli_fetch_array($data);
-    //   if ($row != NULL) {
-    //     $user_other = $row['user_other'];
-    //     $gender = $row['gender'];
-    //     $aboutself = $row['text'];
-    //     $birthdate = $row['birthdate'];
-
-    //   }
-    //   else {
-    //     echo '<p class="error">There was a problem accessing your profile.</p>';
-    //   }
-    // }
-    ?>
-
 <body class="page">
   <div class="background-header"></div>
-  <?php require_once BLOCKS .'header.php' ?>
+  <?php require_once BLOCKS .'header.php';
+   $profilequery = "SELECT * FROM user WHERE `user_id` = :session_id";
+   $profileData = $pdo->prepare($profilequery);
+   $profileData->execute([':session_id' => $session_id]);
+   while($row = $profileData->fetch(PDO::FETCH_OBJ)) {
+     $avatar = $row->avatar;
+     $gender = $row->gender;
+     $birthdate = $row->birthdate;
+   }
+
+   if(isset($_POST['submit'])) {
+    $gender = trim(filter_var($_POST['gender'], FILTER_SANITIZE_STRING));
+    $birthdate = trim(filter_var($_POST['birthdate'], FILTER_SANITIZE_STRING));
+
+    $sql = "UPDATE user SET gender = '$gender', birthdate = '$birthdate' WHERE user_id = '$session_id'";
+    $query = $pdo->prepare($sql);
+    $query->execute([$gender, $birthdate, $session_id]);
+  }
+    ?>
   <?php require_once BLOCKS .'main-navigation.php' ?>
   <main class="page-main">
     <div class="container">
@@ -85,7 +51,7 @@
       <?php require_once(BUS. '/adminSession.php'); ?>
         <div class="page-main__head">
           <h1 class="title"><?php echo ''.$_SESSION['username'].'' ?></h1>
-          <<?php require_once BLOCKS .'search-block.php' ?>
+          <?php require_once BLOCKS .'search-block.php' ?>
         </div>
         <picture class="profile__avatar">
           <source srcset="<?php echo $avatar?>" width="350" height="394" media="(min-width: 768px)">
@@ -152,134 +118,35 @@
           <section class="profile__content fade">
             <div class="profile__container profile__container--single">
               <h2 class="visually-hidden">Настройки</h2>
-              <form enctype="multipart/form-data" class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>"
-                method="POST">
-                <input type="hidden" name="MAX_FILE_SIZE" value="327680">
-                <?php
-                    if (isset($_POST['submit'])) {
-                      $currentAvatar    = mysqli_real_escape_string($dbc, trim($_POST['avatar']));
-                      $new_picture = mysqli_real_escape_string($dbc, trim($_FILES['new_picture']['name']));
-                      $new_picture_type = $_FILES['new_picture']['type'];
-                      $new_picture_size = $_FILES['new_picture']['size'];
-                      if (!empty($new_picture)) {
-                          if ((($new_picture_type == 'image/gif') || ($new_picture_type == 'image/jpeg') || ($new_picture_type == 'image/pjpeg') || ($new_picture_type == 'image/png')) && ($new_picture_size > 0) && ($new_picture_size <= MM_MAXFILESIZE)) {
-                              if ($_FILES['new_picture']['error'] == 0) {
-
-                                  $target = MM_UPLOADPATH . basename($new_picture);
-
-                                  if (move_uploaded_file($_FILES['new_picture']['tmp_name'], $target)) {
-                                      if (!empty($currentAvatar) && ($currentAvatar != $new_picture) && ($currentAvatar != 'default.png')) {
-                                          @unlink(MM_UPLOADPATH . $currentAvatar);
-                                      }
-
-                                      $query = "UPDATE user SET avatar = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-
-                                      mysqli_query($dbc, $query);
-                                      $avatar_text = '<p class="profile__avatar-btn">Вы изменили аватар, перезагрузите страницу, чтобы изменения вступили в силу</p>';
-                                      echo $avatar_text;
-
-                                      mysqli_close($dbc);
-                                  } else {
-                                      @unlink($_FILES['new_picture']['tmp_name']);
-                                      $avatar_text = '<p class="profile__avatar-btn">Извините, возникла ошибка при загрузке файла изображения.</p>';
-                                      echo $avatar_text;
-                                  }
-                              }
-                          } else {
-                            @unlink($_FILES['new_picture']['tmp_name']);
-                            $avatar_text = '<p class="profile__avatar-btn"> Изображение для аватара должно быть в формате GIF, JPEG или PNG, и его размер не должен превыmать ' . (MM_MAXFILESIZE / 1024) . ' KB.</p>';
-                            echo $avatar_text;
-
-                            }
-                      } else {
-                        $avatar_text = '<p class="profile__avatar-btn">Не было внесено никакой информации</p>';
-                        echo $avatar_text;
-                      }
-                    }
-                    ?>
-                <p class="form-settings__wrapper">
-                  <label for="new_picture" class="form-settings__sign">Файл изображения:</label>
-                  <input type="hidden" name="avatar" value="<?php if (!empty($avatar)) echo $avatar; ?>" />
-                  <input id="new_picture" class="profile__avatar-btn" type="file" name="new_picture">
-                </p>
-                <button class="profile__btn" type="submit" name="submit" value="enter">Сохранить</button>
-              </form>
               <form class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <?php
-                    if (!empty($user_other)) {
-                      $query =  "UPDATE user SET user_other = '$user_other' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-                      mysqli_query($dbc, $query);
-                      echo '<p>Вы изменили сведения о дополнительных контактах</p>';
-                    }
-                    ?>
-                <p class="form-settings__wrapper">
-                  <label class="form-settings__sign" for="contact">Добавить контакты:</label>
-                  <input class="input" id="contact" name="user_other"
-                    value="<?php if (!empty($user_other)) echo $user_other; else { echo $user_other1;} ?>" type="text">
-                </p>
-                <button class="profile__btn" type="submit" value="enter" name="submit">Сохранить</button>
-              </form>
-              <form class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <?php
-                    if (!empty($gender)) {
-                      $query =  "UPDATE user SET gender = '$gender' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-                      mysqli_query($dbc, $query);
-                      $avatar_text = '';
-                      echo '<p>Вы изменили сведения о поле</p>';
-                    }
-                  ?>
                 <span class="form-settings__sign">Ваш пол:</span>
                 <p class="form-settings__wrapper">
                   <input class="checkbox login__info-checkbox" type="radio" id="undfind" name="gender" value="I"
-                    <?php if ((!empty($gender) && $gender == 'I') || ($gender1 == 'I')) echo 'checked = "checked"'; ?>>
+                    <?php if ($gender == 'I') echo 'checked = "checked"'; ?>>
                   <label class="checkbox__name login__checkbox-name" for="undfind">
                     <span class="checkbox__indicator login__checkbox-indicator"></span>
                     Не указан
                   </label>
                   <input class="checkbox login__info-checkbox" type="radio" id="woman" name="gender" value="F"
-                    <?php if ((!empty($gender) && $gender == 'F') || ($gender1 == 'F')) echo 'checked = "checked"'; ?>>
+                    <?php if ($gender == 'F') echo 'checked = "checked"'; ?>>
                   <label class="checkbox__name login__checkbox-name" for="woman">
                     <span class="checkbox__indicator login__checkbox-indicator"></span>
                     Женский</label>
                   <input class="checkbox login__info-checkbox" type="radio" id="men" name="gender" value="M"
-                    <?php if ((!empty($gender) && $gender == 'M') || ($gender1 == 'M')) echo 'checked = "checked"'; ?>>
+                    <?php if ($gender == 'M') echo 'checked = "checked"'; ?>>
                   <label class="checkbox__name login__checkbox-name" for="men">
                     <span class="checkbox__indicator login__checkbox-indicator"></span>
                     Мужской</label>
                 </p>
-                <button class="profile__btn" type="submit" value="enter" name="submit">Сохранить</button>
-              </form>
-              <form class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <?php
-                    if (!empty($aboutself)) {
-                      $query =  "UPDATE user SET text = '$aboutself' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-                      mysqli_query($dbc, $query);
-                      echo '<p>Вы изменили сведения о дополнительных контактах</p>';
-                    }
-                    ?>
-                <p class="form-settings__wrapper">
-                  <label class="form-settings__sign form-settings__sign--mb" for="aboutself">Визитка:</label>
-                  <textarea class="input form-settings__text" name="aboutself" id="aboutself" cols="30"
-                    rows="10"><?php if (!empty($aboutself)) echo $aboutself; else { echo $aboutself1;} ?></textarea>
-                </p>
-                <button class="profile__btn" type="submit" value="enter" name="submit">Сохранить</button>
-              </form>
-              <form class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                <?php
-                    if (!empty($birthdate)) {
-                      $query =  "UPDATE user SET birthdate = '$birthdate' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-                      mysqli_query($dbc, $query);
-                      echo '<p>Вы изменили сведения о дне рожденье</p>';
-                    }
-                    ?>
                 <p class="form-settings__wrapper">
                   <label class="form-settings__sign" for="date">Дата рождения: </label>
                   <input class="input" type="date" id="date" name="birthdate"
-                    value="<?php if (!empty($birthdate)) echo $birthdate; else { echo $birthdate1;} ?>">
+                    value="<?php echo $birthdate; ?>">
                 </p>
                 <button class="profile__btn" type="submit" value="enter" name="submit">Сохранить</button>
               </form>
               <?php
+                
                   // Validate and move the uploaded picture file, if necessary
                   //    if (!empty($avatar)) {
                   //      if ((($avatar_type == 'image/gif') || ($avatar_type == 'image/jpeg') || ($avatar_type == 'image/pjpeg') ||
