@@ -10,7 +10,7 @@ if (isset($_POST['upload'])) {
   $new_picture_type = $_FILES['new_picture']['type'];
   $new_picture_size = $_FILES['new_picture']['size'];
   if (!empty($new_picture)) {
-      if ((($new_picture_type == 'image/gif') || ($new_picture_type == 'image/jpeg') || ($new_picture_type == 'image/pjpeg') || ($new_picture_type == 'image/png')) && ($new_picture_size > 0) && ($new_picture_size <= MM_MAXFILESIZE)) {
+      if ((($new_picture_type == 'image/jpeg') || ($new_picture_type == 'image/pjpeg') || ($new_picture_type == 'image/png')) && ($new_picture_size > 0) && ($new_picture_size <= MM_MAXFILESIZE)) {
           if ($_FILES['new_picture']['error'] == 0) {
 
               $target = MM_UPLOADPATH . basename($new_picture);
@@ -30,18 +30,14 @@ if (isset($_POST['upload'])) {
               } else {
                   @unlink($_FILES['new_picture']['tmp_name']);
                   $avatar_text = '<p class="profile__avatar-btn">Извините, возникла ошибка при загрузке файла изображения.</p>';
-                  echo $avatar_text;
               }
           }
       } else {
         @unlink($_FILES['new_picture']['tmp_name']);
-        $avatar_text = '<p class="profile__avatar-btn"> Изображение для аватара должно быть в формате GIF, JPEG или PNG, и его размер не должен превыmать ' . (MM_MAXFILESIZE / 1024) . ' KB.</p>';
-        echo $avatar_text;
-
+        $avatar_text = '<p class="profile__avatar-btn"> Изображение для аватара должно быть в формате JPEG или PNG, и его размер не должен превыmать ' . (MM_MAXFILESIZE / 1024) . ' KB.</p>';
         }
   } else {
-    $avatar_text = '<p class="profile__avatar-btn">Не было внесено никакой информации</p>';
-    echo $avatar_text;
+    $avatar_text = '<p class="profile__avatar-btn">Ничего не изменилось! Попробуйте добавить файл</p>';
   }
 }
 ?>
@@ -63,7 +59,6 @@ if (isset($_POST['upload'])) {
     else {
       // echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '. <a href="' .BUS. '/logout.php">Log out</a>.</p>');
     }
-    $avatar_text = '';
     ?>
 <body class="page">
   <div class="background-header"></div>
@@ -164,6 +159,7 @@ if (isset($_POST['upload'])) {
                 method="POST">
                 <input type="hidden" name="MAX_FILE_SIZE" value="327680">
                 <p class="form-settings__wrapper">
+                <?php echo $avatar_text; ?>
                   <label for="new_picture" class="form-settings__sign">Файл изображения:</label>
                   <input type="hidden" name="avatar" value="<?php if (!empty($avatar)) echo $avatar; ?>" />
                   <input id="new_picture" class="profile__avatar-btn" type="file" name="new_picture">
