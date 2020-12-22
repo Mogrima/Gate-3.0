@@ -1,13 +1,55 @@
-<?php require_once('./core/business/session.php');?>
+<?php require_once('./core/business/session.php');
+require_once('./core/business/appvars.php');
+require_once(BUS . 'connectvars.php');
+// подключение к базе данных
+require_once(BUS.'/mysql__connect.php');?>
+<?php
+if (isset($_POST['upload'])) {
+  $currentAvatar    = mysqli_real_escape_string($dbc, trim($_POST['avatar']));
+  $new_picture = mysqli_real_escape_string($dbc, trim($_FILES['new_picture']['name']));
+  $new_picture_type = $_FILES['new_picture']['type'];
+  $new_picture_size = $_FILES['new_picture']['size'];
+  if (!empty($new_picture)) {
+      if ((($new_picture_type == 'image/gif') || ($new_picture_type == 'image/jpeg') || ($new_picture_type == 'image/pjpeg') || ($new_picture_type == 'image/png')) && ($new_picture_size > 0) && ($new_picture_size <= MM_MAXFILESIZE)) {
+          if ($_FILES['new_picture']['error'] == 0) {
+
+              $target = MM_UPLOADPATH . basename($new_picture);
+
+              if (move_uploaded_file($_FILES['new_picture']['tmp_name'], $target)) {
+                  if (!empty($currentAvatar) && ($currentAvatar != $new_picture) && ($currentAvatar != 'default.png')) {
+                      @unlink(MM_UPLOADPATH . $currentAvatar);
+                  }
+
+                  $query = "UPDATE user SET avatar = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
+
+                  mysqli_query($dbc, $query);
+                  $avatar = $new_picture;
+                  Header('Location: '.$_SERVER['PHP_SELF']);
+
+                  mysqli_close($dbc);
+              } else {
+                  @unlink($_FILES['new_picture']['tmp_name']);
+                  $avatar_text = '<p class="profile__avatar-btn">Извините, возникла ошибка при загрузке файла изображения.</p>';
+                  echo $avatar_text;
+              }
+          }
+      } else {
+        @unlink($_FILES['new_picture']['tmp_name']);
+        $avatar_text = '<p class="profile__avatar-btn"> Изображение для аватара должно быть в формате GIF, JPEG или PNG, и его размер не должен превыmать ' . (MM_MAXFILESIZE / 1024) . ' KB.</p>';
+        echo $avatar_text;
+
+        }
+  } else {
+    $avatar_text = '<p class="profile__avatar-btn">Не было внесено никакой информации</p>';
+    echo $avatar_text;
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
 <?php
-    require_once('./core/business/appvars.php');
-    require_once(BUS . 'connectvars.php');
-    // подключение к базе данных
-    require_once(BUS.'/mysql__connect.php');
     $website_title = 'Профиль пользователя';
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
@@ -15,11 +57,11 @@
 <?php
     // Make sure the user is logged in before going any further.
     if (!isset($_SESSION['user_id'])) {
-      echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
+      // echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
       exit();
     }
     else {
-      echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '. <a href="' .BUS. '/logout.php">Log out</a>.</p>');
+      // echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '. <a href="' .BUS. '/logout.php">Log out</a>.</p>');
     }
     $avatar_text = '';
     ?>
@@ -54,8 +96,8 @@
           <?php require_once BLOCKS .'search-block.php' ?>
         </div>
         <picture class="profile__avatar">
-          <source srcset="<?php echo $avatar?>" width="350" height="394" media="(min-width: 768px)">
-          <img class="profile__avatar-img" src="img/user/user-avatar2x.png" alt="аватар пользователя">
+          <source srcset="img/user/<?php echo $avatar?>" media="(min-width: 768px)">
+          <img class="profile__avatar-img" src="img/user/<?php echo $avatar?>" width="350" height="394" alt="аватар пользователя">
         </picture>
         <div class="profile">
           <div class="profile__toggles profile__toggles--closed">
@@ -118,7 +160,17 @@
           <section class="profile__content fade">
             <div class="profile__container profile__container--single">
               <h2 class="visually-hidden">Настройки</h2>
-              <form class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+              <form enctype="multipart/form-data" class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                method="POST">
+                <input type="hidden" name="MAX_FILE_SIZE" value="327680">
+                <p class="form-settings__wrapper">
+                  <label for="new_picture" class="form-settings__sign">Файл изображения:</label>
+                  <input type="hidden" name="avatar" value="<?php if (!empty($avatar)) echo $avatar; ?>" />
+                  <input id="new_picture" class="profile__avatar-btn" type="file" name="new_picture">
+                </p>
+                <button class="profile__btn" type="submit" name="upload" value="upload">Сохранить</button>
+              </form>
+              <form class="form-settings"  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <span class="form-settings__sign">Ваш пол:</span>
                 <p class="form-settings__wrapper">
                   <input class="checkbox login__info-checkbox" type="radio" id="undfind" name="gender" value="I"
