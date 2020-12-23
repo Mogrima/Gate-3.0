@@ -16,7 +16,7 @@
         ?>
         <nav class="profile-menu profile-menu--nojs">
           <button class="profile-menu__button" type="button">
-              <img src="./img/user/<?php echo $avatar1?>" width="70" height="70" alt="меню пользователя">
+              <img class="profile-menu__icon" src="./img/user/<?php echo $avatar1?>" width="70" height="70" alt="меню пользователя">
               <span class="profile__name"><?php echo ''.$_SESSION['username'].'' ?></span>
               <span class="visually-hidden">Открыть</span>
           </button>
