@@ -105,7 +105,7 @@ if (isset($_POST['upload'])) {
               <button class="profile__toggle" type="button">Закладки</button>
               <button class="profile__toggle" type="button">Любимое</button>
               <button class="profile__toggle" type="button">Настройки</button>
-              <a href="#" class="profile__toggle profile__exit" title="Выйти">
+              <a href="<?=$logout_php?>" class="profile__toggle profile__exit" title="Выйти">
                 <span class="visually-hidden">Выйти</span>
                 <svg enable-background="new 0 0 492.5 492.5" width="50" height="50" version="1.1"
                   viewBox="0 0 492.5 492.5" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
