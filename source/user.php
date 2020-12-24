@@ -273,7 +273,7 @@ if (isset($_POST['upload'])) {
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
   <script src="js/profile.js"></script>
-  <script src="js/scripts.min.js"></script>
+  <?php require_once(BLOCKS . 'scripts-include.php'); ?>
 </body>
 
 </html>
