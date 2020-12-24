@@ -47,7 +47,7 @@ $anchor = '#anchor';
               <div class='header-title'>
                 <cite class='header-title__title reviews__author-name'>$rowUser->username</cite><time class='reviews__time' datetime='$row->date'>$row->date</time>
               </div>
-              <div class='reviews__author-picture'><img alt='Фото $rowUser->username' class='reviews__author-image' src='$userPic' width='70' height='70'></div>
+              <div class='reviews__author-picture'><img alt='Фото $rowUser->username' class='reviews__author-image' src='./img/user/$userPic' width='70' height='70'></div>
               <p class='reviews__text'>$row->comment</p>
               </blockquote>";;
   }
