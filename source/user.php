@@ -88,7 +88,6 @@ if (isset($_POST['upload'])) {
   <main class="page-main">
     <div class="container">
       <div class="substrate">
-      <?php require_once(BUS. '/adminSession.php'); ?>
         <div class="page-main__head">
           <h1 class="title"><?php echo ''.$_SESSION['username'].'' ?></h1>
           <?php require_once BLOCKS .'search-block.php' ?>

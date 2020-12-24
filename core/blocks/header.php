@@ -21,9 +21,12 @@
               <span class="visually-hidden">Открыть</span>
           </button>
           <ul class="profile-menu__list">
-              <li class="profile-menu__item">
-                  <a class="profile-menu__link profile-menu__link--bottom" href="<?=$logout_php?>">Выйти</a>
-              </li>
+            <li class="profile-menu__item">
+              <a class="profile-menu__link" href="/user.php">Перейти в личный кабинет</a>
+            </li>
+            <li class="profile-menu__item">
+              <a class="profile-menu__link profile-menu__link--bottom" href="<?=$logout_php?>">Выйти</a>
+            </li>
           </ul>
       </nav>
       <?php }
