@@ -5,8 +5,8 @@ require_once(BUS . 'connectvars.php');
 require_once(BUS.'/mysql__connect.php');?>
 <?php
 if (isset($_POST['upload'])) {
-  $currentAvatar    = mysqli_real_escape_string($dbc, trim($_POST['avatar']));
-  $new_picture = mysqli_real_escape_string($dbc, trim($_FILES['new_picture']['name']));
+  $currentAvatar    = trim(filter_var($_POST['avatar'], FILTER_SANITIZE_STRING));
+  $new_picture = trim(filter_var($_FILES['new_picture']['name'], FILTER_SANITIZE_STRING));
   $new_picture_type = $_FILES['new_picture']['type'];
   $new_picture_size = $_FILES['new_picture']['size'];
   if (!empty($new_picture)) {
@@ -20,13 +20,14 @@ if (isset($_POST['upload'])) {
                       @unlink(MM_UPLOADPATH . $currentAvatar);
                   }
 
-                  $query = "UPDATE user SET avatar = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
+                  $sql = "UPDATE user SET avatar = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
 
-                  mysqli_query($dbc, $query);
+                  $query = $pdo->prepare($sql);
+                  $query->execute([$new_picture, $session_id]);
                   $avatar = $new_picture;
                   Header('Location: '.$_SERVER['PHP_SELF']);
 
-                  mysqli_close($dbc);
+                  $pdo = null;
               } else {
                   @unlink($_FILES['new_picture']['tmp_name']);
                   $avatar_text = '<p class="profile__avatar-btn">Извините, возникла ошибка при загрузке файла изображения.</p>';
@@ -79,6 +80,8 @@ if (isset($_POST['upload'])) {
     $sql = "UPDATE user SET gender = '$gender', birthdate = '$birthdate' WHERE user_id = '$session_id'";
     $query = $pdo->prepare($sql);
     $query->execute([$gender, $birthdate, $session_id]);
+
+    $pdo = null;
   }
     ?>
   <?php require_once BLOCKS .'main-navigation.php' ?>
