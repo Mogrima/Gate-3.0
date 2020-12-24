@@ -4,6 +4,12 @@ require_once(BUS . 'connectvars.php');
 // подключение к базе данных
 require_once(BUS.'/mysql__connect.php');?>
 <?php
+    if (!isset($_SESSION['user_id'])) {
+      $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER[PHP_SELF]) . '/login.php';
+      header('Location: ' . $home_url);
+    }
+?>
+<?php
 if (isset($_POST['upload'])) {
   $currentAvatar    = trim(filter_var($_POST['avatar'], FILTER_SANITIZE_STRING));
   $new_picture = trim(filter_var($_FILES['new_picture']['name'], FILTER_SANITIZE_STRING));
@@ -51,16 +57,6 @@ if (isset($_POST['upload'])) {
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
 </head>
-<?php
-    // Make sure the user is logged in before going any further.
-    if (!isset($_SESSION['user_id'])) {
-      // echo '<p class="login">Please <a href="login.php">log in</a> to access this page.</p>';
-      exit();
-    }
-    else {
-      // echo('<p class="login">You are logged in as ' . $_SESSION['username'] . '. <a href="' .BUS. '/logout.php">Log out</a>.</p>');
-    }
-    ?>
 <body class="page">
   <div class="background-header"></div>
   <?php require_once BLOCKS .'header.php';
