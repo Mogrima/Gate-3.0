@@ -260,7 +260,7 @@ if (isset($_POST['upload'])) {
                   <label class="form-settings__sign" for="email">Сменить электронную почту:</label>
                   <input class="input" id="email" type="email">
                   </p> -->
-              <a class="profile__delete" href="#">Удалить профиль</a>
+              <a class="profile__delete" href="./deleteUser.php">Удалить профиль</a>
             </div>
           </section>
         </div>
