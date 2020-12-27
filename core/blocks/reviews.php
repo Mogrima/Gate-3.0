@@ -17,13 +17,16 @@
     $user_id = $row->author_id;
     $queryUser = "SELECT username, avatar FROM user WHERE `user_id` = $user_id";
     $resultUser = $pdo->query($queryUser);
-    $rowUser = $resultUser->fetch(PDO::FETCH_OBJ);
-    $userPic = $rowUser->avatar;
+    if($rowUser == 0) {
+      $userPic = 'delete.jpg';
+    } else {
+      $userPic = $rowUser->avatar;
+    }
     echo "<blockquote class='reviews__item'>
               <div class='header-title'>
-                <cite class='header-title__title reviews__author-name'>$rowUser->username</cite><time class='reviews__time' datetime='$row->date'>$row->date</time>
+                <cite class='header-title__title reviews__author-name'>$user_name</cite><time class='reviews__time' datetime='$row->date'>$row->date</time>
               </div>
-              <div class='reviews__author-picture'><img alt='Фото $rowUser->username' class='reviews__author-image' src='./img/user/$userPic' width='70' height='70'></div>
+              <div class='reviews__author-picture'><img alt='Фото $user_name' class='reviews__author-image' src='./img/user/$userPic' width='70' height='70'></div>
               <p class='reviews__text'>$row->comment</p>
               </blockquote>";;
   }
