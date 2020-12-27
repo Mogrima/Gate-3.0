@@ -37,7 +37,7 @@ require_once(BUS.'/mysql__connect.php');?>
 
 <head>
   <?php
-    $website_title = 'Профиль пользователя';
+    $website_title = 'Удаление профиля';
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
 </head>
@@ -55,15 +55,14 @@ require_once(BUS.'/mysql__connect.php');?>
         </div>
         <p class="page-description page-description--flex">Вы уверены, что хотите удалить свой профиль? Восстановить
         его будет невозможно.</p>
-        <form class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-        <a class="profile__btn" href="./user.php">Нет</a>
-        <button class="profile__btn" type="submit" value="enter" name="submit">Да</button>
+        <form class="form-settings profile__delete-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <a class="button works__button profile__delete-btn" href="./user.php">Нет, вернуться</a>
+        <button class="button works__button profile__delete-btn" type="submit" value="enter" name="submit">Да, удалить</button>
         </form>
       </div>
     </div>
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
-  <script src="js/profile.js"></script>
   <?php require_once(BLOCKS . 'scripts-include.php'); ?>
 </body>
 
