@@ -79,6 +79,16 @@ if (isset($_POST['upload'])) {
 
     $pdo = null;
   }
+
+  $sex = '';
+    
+  if ($gender == 'F') {
+    $sex = 'Женский';
+  } else if ($gender == 'M') {
+    $sex = 'Мужской';
+  } else {
+    $sex = 'Не указан';
+  }
     ?>
   <?php require_once BLOCKS .'main-navigation.php' ?>
   <main class="page-main">
@@ -112,24 +122,12 @@ if (isset($_POST['upload'])) {
               </a>
             </div>
           </div>
-          <!-- <section class="profile__content fade">
+          <section class="profile__content fade">
               <div class="profile__container profile__container--single">
                   <h2 class="visually-hidden">Общая информация</h2>
                   <p class="profile__description"><span class="profile__desc-key">Дата рождения:</span>
-                      01.12.1995</p>
-                  <p class="profile__description"><span class="profile__desc-key">Пол:</span> не указан</p>
-                  <p class="profile__description"><span class="profile__desc-key">Визитка:</span><br> Таким
-                      образом, высокотехнологичная концепция
-                      общественного уклада не оставляет шанса для позиций, занимаемых участниками
-                      в отношении поставленных задач. Но сторонники тоталитаризма в науке призваны
-                      к ответу. Разнообразный и богатый опыт говорит нам, что сплоченность команды
-                      профессионалов предполагает независимые способы реализации системы обучения
-                      кадров, соответствующей насущным потребностям. Лишь акционеры крупнейших компаний,
-                      инициированные исключительно синтетически, ограничены исключительно образом
-                      мышления. Задача организации, в особенности же разбавленное изрядной долей
-                      эмпатии, рациональное мышление требует от нас анализа экспериментов,
-                      поражающих по своей масштабности и грандиозности.
-                  </p>
+                  <?php echo $birthdate ?></p>
+                  <p class="profile__description"><span class="profile__desc-key">Пол: </span><?php echo $sex ?></p>
                   <p class="profile__description"><span class="profile__desc-key">Электронная почта:</span> <a
                           class="link link--profile" href="mailto:<?php echo ''.$_SESSION['user_email'].'' ?>"><?php echo ''.$_SESSION['user_email'].'' ?></a>
                   </p>
@@ -149,7 +147,7 @@ if (isset($_POST['upload'])) {
                       или
                       рисунки.</p>
               </div>
-              </section> -->
+              </section>
           <section class="profile__content fade">
             <div class="profile__container profile__container--single">
               <h2 class="visually-hidden">Настройки</h2>
@@ -191,75 +189,6 @@ if (isset($_POST['upload'])) {
                 </p>
                 <button class="profile__btn" type="submit" value="enter" name="submit">Сохранить</button>
               </form>
-              <?php
-                
-                  // Validate and move the uploaded picture file, if necessary
-                  //    if (!empty($avatar)) {
-                  //      if ((($avatar_type == 'image/gif') || ($avatar_type == 'image/jpeg') || ($avatar_type == 'image/pjpeg') ||
-                  //        ($avatar_type == 'image/png')) && ($avatar_size > 0) && ($avatar_size <= MM_MAXFILESIZE)) {
-                  //        if ($_FILES['file']['error'] == 0) {
-                  //          // Move the file to the target upload folder
-                  //          $target = MM_UPLOADPATH . basename($avatar);
-                  //          if (move_uploaded_file($_FILES['avatar']['tmp_name'], $target)) {
-                  //  // The new picture file move was successful, now make sure any old picture is deleted
-                  //            if (!empty($old_picture) && ($old_picture != $avatar)) {
-                  //             @unlink(MM_UPLOADPATH . $old_picture);
-                  //            }
-                  //          }
-                  //          else {
-                  // // The new picture file move failed, so delete the temporary file and set the error flag
-                  //            @unlink($_FILES['avatar']['tmp_name']);
-                  //            $error = true;
-                  //            echo '<p class="error">Sorry, there was a problem uploading your picture.</p>';
-                  //          }
-                  //        }
-                  //      }
-                  //     else {
-                  //        // The new picture file is not valid, so delete the temporary file and set the error flag
-                  //        @unlink($_FILES['avatar']['tmp_name']);
-                  //        $error = true;
-                  //        echo '<p class="error">Your picture must be a GIF, JPEG, or PNG image file no greater than ' . (MM_MAXFILESIZE / 1024) .
-                  //          ' KB in size.</p>';
-                  //      }
-                  //    }
-                  // Update the profile data in the database
-
-                      // Only set the picture column if there is a new picture
-                      //  if (!empty($new_picture)) {
-                      //    $query = "UPDATE user SET gender = '$gender', birthdate = '$birthdate', "
-                      //    . "user_other = '$other', text = '$self', picture = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-                      //  }
-                      //  else {
-
-
-                          // $query = "UPDATE user SET gender = '$gender', birthdate = '$birthdate', "
-                          // . "user_other = '$other', text = '$self' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-                      //  }
-
-
-                      // Confirm success with the user
-
-
-
-
-
-
-                  //  else {
-                  //     // Grab the profile data from the database
-
-
-
-                  //   }
-
-                  ?>
-              <!-- <p class="form-settings__wrapper">
-                  <label class="form-settings__sign" for="login">Сменить логин:</label>
-                  <input class="input" id="login" type="text">
-                  </p>
-                  <p class="form-settings__wrapper">
-                  <label class="form-settings__sign" for="email">Сменить электронную почту:</label>
-                  <input class="input" id="email" type="email">
-                  </p> -->
               <a class="profile__delete" href="./deleteUser.php">Удалить профиль</a>
             </div>
           </section>
