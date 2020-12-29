@@ -80,6 +80,12 @@ if (isset($_POST['upload'])) {
     $pdo = null;
   }
 
+  if(empty($birthdate)) {
+    $formatBirthdate = 'Не указана';
+  } else {
+    $formatBirthdate = date('d.m.Y', strtotime($birthdate));
+  }
+
   $sex = '';
     
   if ($gender == 'F') {
@@ -126,7 +132,7 @@ if (isset($_POST['upload'])) {
               <div class="profile__container profile__container--single">
                   <h2 class="visually-hidden">Общая информация</h2>
                   <p class="profile__description"><span class="profile__desc-key">Дата рождения: </span>
-                  <?php echo ($birthdate == '') ? 'Не указано' : $birthdate ?></p>
+                  <?php echo $formatBirthdate ?></p>
                   <p class="profile__description"><span class="profile__desc-key">Пол: </span><?php echo $sex ?></p>
                   <p class="profile__description"><span class="profile__desc-key">Электронная почта:</span> <a
                           class="link link--profile" href="mailto:<?php echo ''.$_SESSION['user_email'].'' ?>"><?php echo ''.$_SESSION['user_email'].'' ?></a>
