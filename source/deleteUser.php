@@ -5,7 +5,16 @@ require_once(BUS.'/mysql__connect.php');?>
     if (!isset($_SESSION['user_id'])) {
       $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER[PHP_SELF]) . '/login.php';
       header('Location: ' . $home_url);
-    }
+    } else {
+      $session_id = $_SESSION['user_id'];
+      $userquery = "SELECT avatar FROM user WHERE `user_id` = :session_id";
+      $userData = $pdo->prepare($userquery);
+      $userData->execute([':session_id' => $session_id]);
+         while($row = $userData->fetch(PDO::FETCH_OBJ)) {
+             $avatar = $row->avatar;
+        }
+      }
+
     if (isset($_POST['submit'])) {
     $deleteAvatar = "delete.jpg";
     $sql = "DELETE FROM user WHERE user_id = '" . $_SESSION['user_id'] . "'";
@@ -19,6 +28,10 @@ require_once(BUS.'/mysql__connect.php');?>
     
     $query = $pdo->prepare($sql);
     $query->execute([$deleteAvatar, $session_id]);
+
+    if($avatar != 'default.png' && $avatar != 'delete.jpg') {
+      @unlink(MM_UPLOADPATH . $avatar);
+    }
 
     $_SESSION = array();
     setcookie(session_name(), '', time() - 3600);
@@ -44,7 +57,26 @@ require_once(BUS.'/mysql__connect.php');?>
 
 <body class="page">
   <div class="background-header"></div>
-  <?php require_once BLOCKS .'header.php';?>
+  <header class="page-header">
+      <div class="page-header__wrapper">
+        <a href="index.php" class="page-header__logo"><img class="page-header__logo-image" alt="Логотип Врата" width="164" height="54" src="img/Logo.png"></a>
+        <nav class="profile-menu profile-menu--nojs">
+          <button class="profile-menu__button" type="button">
+              <img class="profile-menu__icon" src="./img/user/<?php echo $avatar?>" width="70" height="70" alt="меню пользователя">
+              <span class="profile__name"><?php echo ''.$_SESSION['username'].'' ?></span>
+              <span class="visually-hidden">Открыть</span>
+          </button>
+          <ul class="profile-menu__list">
+            <li class="profile-menu__item">
+              <a class="profile-menu__link" href="/user.php">Перейти в личный кабинет</a>
+            </li>
+            <li class="profile-menu__item">
+              <a class="profile-menu__link profile-menu__link--bottom" href="<?=$logout_php?>">Выйти</a>
+            </li>
+          </ul>
+      </nav>
+      </div>
+    </header>
   <?php require_once BLOCKS .'main-navigation.php' ?>
   <main class="page-main">
     <div class="container">
