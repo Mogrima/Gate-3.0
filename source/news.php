@@ -17,6 +17,7 @@
     $text = $row->text;
     $news_img = $row->screenshot;
     $date = $row->date;
+    $date = date('d-m-Y', strtotime($date));
     $website_title = "$title";
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');
