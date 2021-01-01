@@ -43,6 +43,8 @@ $anchor = '#anchor';
     $queryUser = "SELECT username, avatar FROM user WHERE `user_id` = $user_id";
     $resultUser = $pdo->query($queryUser);
     $rowUser = $resultUser->fetch(PDO::FETCH_OBJ);
+    $date = $row->date;
+    $date = date('H:i d-m-Y', strtotime($date));
     if($rowUser == 0) {
       $userPic = 'delete.jpg';
     } else {
@@ -50,7 +52,7 @@ $anchor = '#anchor';
     }
     echo "<blockquote class='reviews__item'>
               <div class='header-title'>
-                <cite class='header-title__title reviews__author-name'>$user_name</cite><time class='reviews__time' datetime='$row->date'>$row->date</time>
+                <cite class='header-title__title reviews__author-name'>$user_name</cite><time class='reviews__time' datetime='$date'>$date</time>
               </div>
               <div class='reviews__author-picture'><img alt='Фото $user_name' class='reviews__author-image' src='./img/user/$userPic' width='70' height='70'></div>
               <p class='reviews__text'>$row->comment</p>
