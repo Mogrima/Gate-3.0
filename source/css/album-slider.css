@@ -130,7 +130,7 @@
     /* left: 50%; */
     /* margin-left: -34px; */
     /* z-index: 100; */
-    font-family: Cormorant Infant Bold;
+    font-family: "Cormorant Infant Bold", "Garamond", "Times New Roman", Times, serif;
     font-size: 1.5rem;
     color: #b49a7b;
     text-align: center;
@@ -142,7 +142,7 @@
     margin: 0 auto;
     margin-top: 24px;
     margin-bottom: 24px;
-    font-family: Cormorant Infant Bold,serif;
+    font-family: "Cormorant Infant Bold", "Garamond", "Times New Roman", Times, serif;
     font-weight: 700;
     font-size: 1.5rem;
     line-height: 1.5;
