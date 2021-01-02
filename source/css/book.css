@@ -1,5 +1,6 @@
 ﻿@charset "UTF-8";
 @font-face {
+  font-display: swap;
   font-family: "Vollkorn Bold";
   src: url('../fonts/Vollkorn-Bold.eot');
   src: url('../fonts/Vollkorn-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Vollkorn-Bold.woff2') format('woff2'), url('../fonts/Vollkorn-Bold.woff') format('woff'), url('../fonts/Vollkorn-Bold.ttf') format('truetype'), url('../fonts/Vollkorn-Bold.svg#Vollkorn-Bold') format('svg');
@@ -7,6 +8,7 @@
   font-style: normal;
 }
 @font-face {
+  font-display: swap;
   font-family: "Vollkorn";
   src: url('../fonts/Vollkorn-Regular.eot');
   src: url('../fonts/Vollkorn-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Vollkorn-Regular.woff2') format('woff2'), url('../fonts/Vollkorn-Regular.woff') format('woff'), url('../fonts/Vollkorn-Regular.ttf') format('truetype'), url('../fonts/Vollkorn-Regular.svg#Vollkorn-Regular') format('svg');
@@ -14,6 +16,7 @@
   font-style: normal;
 }
 @font-face {
+  font-display: swap;
   font-family: "Cormorant Infant Rg";
   src: url('../fonts/Cormorant Infant/CormorantInfant-Regular.eot');
   src: url('../fonts/Cormorant Infant/CormorantInfant-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Cormorant Infant/CormorantInfant-Regular.woff2') format('woff2'), url('../fonts/Cormorant Infant/CormorantInfant-Regular.woff') format('woff'), url('../fonts/Cormorant Infant/CormorantInfant-Regular.ttf') format('truetype'), url('../fonts/Cormorant Infant/CormorantInfant-Regular.svg#CormorantInfant-Regular') format('svg');
@@ -21,6 +24,7 @@
   font-style: normal;
 }
 @font-face {
+  font-display: swap;
   font-family: "Cormorant Infant Bold";
   src: url('../fonts/Cormorant Infant/CormorantInfant-Bold.eot');
   src: url('../fonts/Cormorant Infant/CormorantInfant-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Cormorant Infant/CormorantInfant-Bold.woff2') format('woff2'), url('../fonts/Cormorant Infant/CormorantInfant-Bold.woff') format('woff'), url('../fonts/Cormorant Infant/CormorantInfant-Bold.ttf') format('truetype'), url('../fonts/Cormorant Infant/CormorantInfant-Bold.svg#CormorantInfant-Bold') format('svg');
