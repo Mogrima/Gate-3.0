@@ -12,7 +12,10 @@ require_once(BUS.'/mysql__connect.php');?>
 <?php
 if (isset($_POST['upload'])) {
   $currentAvatar    = trim(filter_var($_POST['avatar'], FILTER_SANITIZE_STRING));
-  $new_picture = trim(filter_var($_FILES['new_picture']['name'], FILTER_SANITIZE_STRING));
+  $orig_picture = trim(filter_var($_FILES['new_picture']['name'], FILTER_SANITIZE_STRING));
+  $pic_name = explode(".", $orig_picture);
+  $extension = $pic_name[1];
+  $new_picture = date('dmyHis') . $_SESSION['user_id'] . '.' . $extension;
   $new_picture_type = $_FILES['new_picture']['type'];
   $new_picture_size = $_FILES['new_picture']['size'];
   if (!empty($new_picture)) {
@@ -27,7 +30,6 @@ if (isset($_POST['upload'])) {
                   }
 
                   $sql = "UPDATE user SET avatar = '$new_picture' WHERE user_id = '" . $_SESSION['user_id'] . "'";
-
                   $query = $pdo->prepare($sql);
                   $query->execute([$new_picture, $session_id]);
                   $avatar = $new_picture;
