@@ -1,5 +1,4 @@
-<script>
-  var currentUrl = window.location.href;
+var currentUrl = window.location.href;
   var newUrl = currentUrl.split('#')[0];
   
   $('#login-form').submit(function(event) {
@@ -61,4 +60,3 @@
       }
     });
   });
-</script>
