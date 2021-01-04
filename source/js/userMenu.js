@@ -20,18 +20,21 @@ if (navUser != null) {
 var profileMenu = document.querySelector('.profile-menu');
 var ProfileBtn = document.querySelector('.profile-menu__button');
 
-profileMenu.classList.remove('profile-menu--nojs');
-profileMenu.classList.add('profile-menu--closed');
+if (profileMenu != null) {
+  profileMenu.classList.remove('profile-menu--nojs');
+  profileMenu.classList.add('profile-menu--closed');
 
-ProfileBtn.addEventListener('click', function () {
-  if (profileMenu.classList.contains('profile-menu--closed')) {
-    profileMenu.classList.remove('profile-menu--closed');
-    profileMenu.classList.add('profile-menu--opened');
-  } else {
-    profileMenu.classList.add('profile-menu--closed');
-    profileMenu.classList.remove('profile-menu--opened');
-  }
-});
+
+  ProfileBtn.addEventListener('click', function () {
+    if (profileMenu.classList.contains('profile-menu--closed')) {
+      profileMenu.classList.remove('profile-menu--closed');
+      profileMenu.classList.add('profile-menu--opened');
+    } else {
+      profileMenu.classList.add('profile-menu--closed');
+      profileMenu.classList.remove('profile-menu--opened');
+    }
+  });
+}
 window.addEventListener("keydown", function (evt) {
   if (evt.keyCode === 27) {
     evt.preventDefault();
