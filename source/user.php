@@ -146,6 +146,22 @@ if (isset($_POST['upload'])) {
                   <h2 class="visually-hidden">Закладки</h2>
                   <p class="profile__description">Здесь будут отображаться оставленные вами закладки в
                       произведениях.</p>
+                  <ul>
+                  <?php
+                  $sql = "SELECT title_book, bookmark FROM `bookmarks` WHERE user_id = '$session_id'";
+                  $query = $pdo->query($sql);
+                  while($row = $query->fetch(PDO::FETCH_OBJ)) {
+                    $title_book = $row->title_book;
+                    $bookmark = $row->bookmark;
+
+                    echo "<li class='reviews__item'>
+                            <h3 class='header-title'>$title_book</h3>
+                            <a class='reviews__text' href='$bookmark' target='_blank'>Читать</a>
+                            <a href='#'>Удалить закладку</a>
+                          </li>";
+                  }
+                   ?>
+                   </ul>
               </div>
               </section>
               <section class="profile__content fade">
