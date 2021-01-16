@@ -11,21 +11,18 @@ $bookquery = "SELECT * FROM bookmarks WHERE user_id = '$session_id' AND title_bo
 $bookData = $pdo->prepare($bookquery);
 $bookData->execute([$session_id, $title]);
 $row = $bookData->fetch(PDO::FETCH_OBJ);
-// if($row->title_book != 0) {
-//   $new_book = false;
-// }
-  $bookmark = $row->bookmark;
-  $title_book = $row->title_book;
-  // echo $title_book; 
+
+$bookmark = $row->bookmark;
+$title_book = $row->title_book;
 
   if (!empty($title_book)) {
     $new_book = false;
   } 
 
   if(isset($_POST['submit'])) {
-    $user_id = trim(filter_var($_POST['user_id'], FILTER_SANITIZE_NUMBER_INT));
-    $title_book = trim(filter_var($_POST['title_book'], FILTER_SANITIZE_STRING));
-    $bookmark = trim(filter_var($_POST['bookmark'], FILTER_SANITIZE_URL));
+    $user_id = trim(filter_var($session_id, FILTER_SANITIZE_NUMBER_INT));
+    $title_book = trim(filter_var($title, FILTER_SANITIZE_STRING));
+    $bookmark = trim(filter_var($current_url, FILTER_SANITIZE_URL));
 
     if($new_book) {
       $bookmark_sql = "INSERT INTO bookmarks(user_id, title_book, bookmark) VALUES ('$user_id', '$title_book', '$bookmark')";

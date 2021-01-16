@@ -93,9 +93,6 @@ require_once(BUS.'/bookmarks.php');
       if(empty($bookmark) || $bookmark != $current_url) {
   ?>
       <form action="<?php echo $current_url ?>" method="POST">
-      <input type="hidden" name="user_id" value="<?=$session_id?>" readonly>
-      <input type="hidden" name="title_book" value="<?=$title?>" readonly>
-      <input type="hidden" name="bookmark" value="<?=$current_url?>" readonly>
       <button type="submit" value="submit" name="submit">Добавить закладку</button>
       </form>
  <?php } 
