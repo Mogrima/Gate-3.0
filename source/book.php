@@ -64,7 +64,7 @@
                   <?=$extra?>
               </div>
               <?php if ($text != '') { ?>
-              <a class="preview__button button" href="reader.php?id=<?=$id?>">Читать</a>
+              <a class="preview__button button" href="reader.php?id=<?=$id?>&n=0">Читать</a>
               <?php } ?>
             </div>
           </section>

@@ -5,7 +5,8 @@
   // подключение к базе данных
   require_once(BUS.'/mysql__connect.php');
 ?>
-      <?php
+<?php 
+//////////////////////////////////////////////////////////////////////////////////////
       $book_id = $_GET["id"];
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
 
@@ -62,7 +63,8 @@
       $pages = $n + 1;
       $pages_next = $pages + 1;
       $pages_prev = $pages - 1;
-/////////////Конец нумерации страниц////////////////////////////////////////////////////////////     
+/////////////Конец нумерации страниц////////////////////////////////////////////////////////////   
+require_once(BUS.'/bookmarks.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -87,32 +89,17 @@
 		<a class="link-book link-book--to-back" href="works-catalog.php">К другим книгам</a>
 	</header>
   <?php
-  $current_url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-  $session_id = $_SESSION['user_id'];
-  if(isset($_POST['submit'])) {
-    $bookmark_sql = "UPDATE bookmarks SET user_id = '$session_id', title_book = '$title', bookmark = '$current_url'";
-    $bookmark_query = $pdo->prepare($bookmark_sql);
-    $bookmark_query->execute([$session_id, $title, $current_url]);
-    Header('Location: '.$current_url);
-  
-    // $pdo = null;
-  }
-  
-    if (isset($_SESSION['user_id'])) {
-      $bookquery = "SELECT bookmark FROM bookmarks WHERE `user_id` = :session_id";
-      $bookData = $pdo->prepare($bookquery);
-      $bookData->execute([':session_id' => $session_id]);
-      while($row = $bookData->fetch(PDO::FETCH_OBJ)) {
-        $bookmark = $row->bookmark;
-      } 
+  if (isset($_SESSION['user_id'])) {
       if(empty($bookmark) || $bookmark != $current_url) {
-        echo $current_url;
-        ?>
-      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-      <button type="submit" value="enter" name="submit">Добавить закладку</button>
+  ?>
+      <form action="<?php echo $current_url ?>" method="POST">
+      <input type="hidden" name="user_id" value="<?=$session_id?>" readonly>
+      <input type="hidden" name="title_book" value="<?=$title?>" readonly>
+      <input type="hidden" name="bookmark" value="<?=$current_url?>" readonly>
+      <button type="submit" value="submit" name="submit">Добавить закладку</button>
       </form>
  <?php } 
-    }
+  }
  ?>
 			<nav class="content-nav">
 				<label for="content-nav__toggle" class="content-nav__toggle" onclick></label>
