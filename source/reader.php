@@ -89,15 +89,8 @@ require_once(BUS.'/bookmarks.php');
 		<a class="link-book link-book--to-back" href="works-catalog.php">К другим книгам</a>
 	</header>
   <?php
-  if (isset($_SESSION['user_id'])) {
-      if(empty($bookmark) || $bookmark != $current_url) {
+  require_once(BLOCKS.'/bookmarks.php');
   ?>
-      <form action="<?php echo $current_url ?>" method="POST">
-      <button type="submit" value="submit" name="submit">Добавить закладку</button>
-      </form>
- <?php } 
-  }
- ?>
 			<nav class="content-nav">
 				<label for="content-nav__toggle" class="content-nav__toggle" onclick></label>
 				<h2 class="content-nav__title">Оглавление</h2>
