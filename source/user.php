@@ -49,6 +49,19 @@ if (isset($_POST['upload'])) {
     $avatar_text = '<p class="profile__avatar-btn">Ничего не изменилось! Попробуйте добавить файл</p>';
   }
 }
+
+if(isset($_GET['id'])) {
+
+  $id = $_GET['id'];
+
+  $sql = "DELETE FROM bookmarks WHERE id = $id";
+  $query = $pdo->prepare($sql);
+  $query->execute([$id]);
+  Header('Location: user.php');
+
+  $pdo = null;
+
+  }
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -148,16 +161,17 @@ if (isset($_POST['upload'])) {
                       произведениях.</p>
                   <ul>
                   <?php
-                  $sql = "SELECT title_book, bookmark FROM `bookmarks` WHERE user_id = '$session_id'";
+                  $sql = "SELECT id, title_book, bookmark FROM `bookmarks` WHERE user_id = '$session_id'";
                   $query = $pdo->query($sql);
                   while($row = $query->fetch(PDO::FETCH_OBJ)) {
+                    $bookmark_id = $row->id;
                     $title_book = $row->title_book;
                     $bookmark = $row->bookmark;
 
                     echo "<li class='reviews__item'>
                             <h3 class='header-title'>$title_book</h3>
                             <a class='reviews__text' href='$bookmark' target='_blank'>Читать</a>
-                            <a href='#'>Удалить закладку</a>
+                            <a href='user.php?id=$bookmark_id'>Удалить закладку</a>
                           </li>";
                   }
                    ?>
