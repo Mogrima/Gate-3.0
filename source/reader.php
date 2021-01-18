@@ -163,6 +163,7 @@ require_once(BUS.'/bookmarks.php');
         ?>
 			</div>
 		</article>
-	</main>
+  </main>
+  <script src="./js/modals.js"></script>
 </body>
 </html>
