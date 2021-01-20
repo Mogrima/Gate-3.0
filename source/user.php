@@ -157,9 +157,9 @@ if(isset($_GET['id'])) {
               <section class="profile__content fade">
               <div class="profile__container profile__container--single">
                   <h2 class="visually-hidden">Закладки</h2>
-                  <p class="profile__description">Здесь будут отображаться оставленные вами закладки в
+                  <p class="profile__description">Здесь отображаются оставленные вами закладки в
                       произведениях.</p>
-                  <ul>
+                  <ul class="bookmark">
                   <?php
                   $sql = "SELECT id, title_book, bookmark FROM `bookmarks` WHERE user_id = '$session_id'";
                   $query = $pdo->query($sql);
@@ -168,10 +168,12 @@ if(isset($_GET['id'])) {
                     $title_book = $row->title_book;
                     $bookmark = $row->bookmark;
 
-                    echo "<li class='reviews__item'>
-                            <h3 class='header-title'>$title_book</h3>
-                            <a class='reviews__text' href='$bookmark' target='_blank'>Читать</a>
-                            <a href='user.php?id=$bookmark_id'>Удалить закладку</a>
+                    echo "<li class='reviews__item bookmark__item'>
+                            <h3 class='bookmark__title'>$title_book</h3>
+                            <div class='bookmark__wrapper'>
+                              <a class='profile__btn profile__btn--book' href='$bookmark' target='_blank'>Читать</a>
+                              <a class='profile__delete' href='user.php?id=$bookmark_id'>Удалить закладку</a>
+                            </div>
                           </li>";
                   }
                    ?>
