@@ -88,9 +88,6 @@ require_once(BUS.'/bookmarks.php');
 		<h1 class="title book-header__title"><?=$title?></h1>
 		<a class="link-book link-book--to-back" href="works-catalog.php">К другим книгам</a>
 	</header>
-  <?php
-  require_once(BLOCKS.'/bookmarks.php');
-  ?>
 			<nav class="content-nav">
 				<label for="content-nav__toggle" class="content-nav__toggle" onclick></label>
 				<h2 class="content-nav__title">Оглавление</h2>
@@ -114,7 +111,10 @@ require_once(BUS.'/bookmarks.php');
 	    <div class="mask-content"></div>
 	<main class="book-main">
 		<article class="section-book">
-			<h2 class="section-book__title"><?=$numbering[$n]?></h2>
+			<div class="book-subtitle">
+        <h2 class="section-book__title"><?=$numbering[$n]?></h2>
+        <?php require_once(BLOCKS.'/bookmarks.php'); ?>
+      </div>
 			<div class="book-columns">
 				<div class="book-columns__column book-columns__column--left">
 					<div class="paragraph-wrapper">

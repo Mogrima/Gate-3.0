@@ -95,15 +95,40 @@ body {
   background-image: url("../img/icons/ornament5.svg");
   background-repeat: no-repeat;
 }
-.section-book__title {
+
+.book-subtitle {
+  display: flex;
   margin: 0 1% 40px;
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.02);
+}
+
+.section-book__title {
+  margin: 0;
   padding: 0 0 10px;
   font-family: "Cormorant Infant Bold", "Garamond", "Times New Roman", Times, serif;
   font-size: 1.5rem;
   color: #000000;
   text-align: left;
-  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.02);
   text-shadow: 0 0 2px #fff;
+}
+
+.book-bookmark__form {
+  margin-left: auto;
+}
+
+.book-bookmark {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.book-bookmark__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.book-bookmark__icon:hover path {
+  fill: #efb818;
 }
 
 h3 {
@@ -479,6 +504,12 @@ body {
   visibility: visible;
   opacity: 1;
   transition: opacity 0.5s, visibility 0.5s;
+}
+
+@media (max-width: 767px) {
+  .book-subtitle {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 900px) {
