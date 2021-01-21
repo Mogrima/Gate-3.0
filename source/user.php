@@ -169,7 +169,7 @@ if(isset($_GET['id'])) {
                     $bookmark = $row->bookmark;
 
                     echo "<li class='reviews__item bookmark__item'>
-                            <h3 class='bookmark__title'>$title_book</h3>
+                            <h3 class='bookmark__title'> «$title_book"."»</h3>
                             <div class='bookmark__wrapper'>
                               <a class='profile__btn profile__btn--book' href='$bookmark' target='_blank'>Читать</a>
                               <a class='profile__delete' href='user.php?id=$bookmark_id'>Удалить закладку</a>

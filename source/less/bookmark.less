@@ -6,11 +6,19 @@
 
 .bookmark__item {
   background-color: #1a172a;
+
+  &::before {
+    content: "";
+    border-radius: 0;
+    background: transparent;
+    background-image: url("../img/bookmark.svg");
+  }
 }
 
 .bookmark__title {
   margin-top: 0;
   margin-bottom: 30px;
+  font-weight: normal;
 }
 
 .bookmark__wrapper {
