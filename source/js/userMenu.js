@@ -34,7 +34,7 @@ if (profileMenu != null) {
       profileMenu.classList.remove('profile-menu--opened');
     }
   });
-}
+
 window.addEventListener("keydown", function (evt) {
   if (evt.keyCode === 27) {
     evt.preventDefault();
@@ -52,3 +52,5 @@ document.addEventListener('click', function (event) {
     profileMenu.classList.add("profile-menu--closed");
   }
 });
+}
+};

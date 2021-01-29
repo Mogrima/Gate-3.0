@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded',function() {
+// document.addEventListener('DOMContentLoaded',function() {
   if(window.matchMedia('(min-width: 768px)').matches) {
     var overlay = document.querySelector(".overlay");
     var storage = localStorage.getItem("user-name");
@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded',function() {
     var registrationLink = document.querySelector(".registration-link");
     var registrationForm = document.querySelector(".login__reg");
     var registrationClose = document.querySelector(".login__close-reg");
-    var registrationlogin = registrationForm.querySelector("[name=user-name]");
-    var registrationEmail = registrationForm.querySelector("[name=user-email]");
+    var registrationlogin = registrationForm.querySelector(".reg-name");
+    var registrationEmail = registrationForm.querySelector(".reg-email");
     
     if (registrationLink != null) {
       registrationLink.addEventListener("click", function (evt) {
@@ -85,4 +85,4 @@ document.addEventListener('DOMContentLoaded',function() {
     });
     
   }
-});
+// });

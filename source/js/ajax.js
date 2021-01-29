@@ -1,3 +1,4 @@
+window.onload = function() {
 var currentUrl = window.location.href;
   var newUrl = currentUrl.split('#')[0];
   

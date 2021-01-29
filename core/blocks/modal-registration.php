@@ -5,11 +5,11 @@
     <form id="reg-form" action="core/business/signup__modal.php" method="post">
       <p class="input__wrapper">
         <label for="username" class="visually-hidden">Ваше имя...</label>
-        <input id="username" class="input login__input" type="text" name="username" placeholder="Ваше имя..." required>
+        <input id="username" class="input login__input reg-name" type="text" name="username" placeholder="Ваше имя..." required>
       </p>
       <p class="input__wrapper">
         <label for="useremail" class="visually-hidden">Ваш почтовый ящик...</label>
-        <input id="useremail" class="input login__input" type="email" name="useremail" placeholder="Ваш почтовый ящик..." required>
+        <input id="useremail" class="input login__input reg-email" type="email" name="useremail" placeholder="Ваш почтовый ящик..." required>
       </p>
       <p class="input__wrapper">
         <label for="userpass" class="visually-hidden">Придумайте пароль</label>
