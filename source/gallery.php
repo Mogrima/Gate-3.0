@@ -28,7 +28,12 @@
             </li>
             <li class="breadcrumb__item breadcrumb__item--current">Галерея</li>
           </ul>
-          <?php require_once(BLOCKS . 'search-block.php'); ?>
+          <?php require_once(BLOCKS . 'search-block.php'); 
+          if(isset($_POST['sort'])) {
+            $filters = $_POST['filter'];
+            echo var_dump($filters);
+          }
+          ?>
           <p class="page-description">Рисование будоражило меня с незапамятных лет, часто открывая моей памяти дорогу к истокам.
              При помощи графического планшета и вдохновенного настроя светлой грусти порой возможно совершить чудо - воссоздать 
              живых и мертвых, пробудить историю, да и просто дать полную волю вымыслу.</p>
@@ -38,23 +43,23 @@
           <p class="page-description page-description--flex">Приятного просмотра!</p>
         </div>
         <p class="attention"><i>P.S.:</i> Делитесь своими впечатлениями, оставляйте свои комментарии – это легко и быстро можно сделать под каждым альбомом в Галерее! Только Вы способны помочь в совершенствовании своим откликом – это столь ценно для нас.</p>
-        <!-- <section class="filters">
+        <section class="filters">
           <h2 class="visually-hidden">Фильтр рисунков</h2>
-          <form action="#" class="filter" method="get">
+          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="filter" method="POST">
             <fieldset class="filter__fieldset filter__fieldset--gallery">
               <legend class="filter__title filter__title--center">Сортировка:</legend>
                   <ul class="filter__list filter__list--center">
                     <div class="filter__wrapper-gallery">
-                    <li class="filter__item-gallery"><input checked class="checkbox" id="popular-checkbox" name="popular" type="checkbox"> <label class="checkbox__name" for="popular-checkbox"><span class="checkbox__indicator"></span> По популярности</label></li>
-                    <li class="filter__item-gallery"><input class="checkbox" id="old-checkbox" name="old" type="checkbox"> <label class="checkbox__name" for="old-checkbox"><span class="checkbox__indicator"></span> Иллюстрации из книг</label></li>
-                    <li class="filter__item-gallery"><input class="checkbox" id="free-checkbox" name="free" type="checkbox"> <label class="checkbox__name" for="free-checkbox"><span class="checkbox__indicator"></span> Цветные</label></li>
-                    <li class="filter__item-gallery"><input class="checkbox" id="colorless" name="pay" type="checkbox"> <label class="checkbox__name" for="colorless"><span class="checkbox__indicator"></span> Черно-белые</label></li>
-                    <li class="filter__item-gallery"><input class="checkbox" id="history" name="pay" type="checkbox"> <label class="checkbox__name" for="history"><span class="checkbox__indicator"></span> Истории</label></li>
+                    <li class="filter__item-gallery"><input checked class="checkbox" id="popular" name="filter[]" type="checkbox" value="popular"> <label class="checkbox__name" for="popular"><span class="checkbox__indicator"></span> По популярности</label></li>
+                    <li class="filter__item-gallery"><input class="checkbox" id="ill_of_books" name="filter[]" type="checkbox" value="ill_of_books"> <label class="checkbox__name" for="ill_of_books"><span class="checkbox__indicator"></span> Иллюстрации из книг</label></li>
+                    <li class="filter__item-gallery"><input class="checkbox" id="color" name="filter[]" type="checkbox" value="color"> <label class="checkbox__name" for="color"><span class="checkbox__indicator"></span> Цветные</label></li>
+                    <li class="filter__item-gallery"><input class="checkbox" id="b_a_w" name="filter[]" type="checkbox" value="b_a_w"> <label class="checkbox__name" for="b_a_w"><span class="checkbox__indicator"></span> Черно-белые</label></li>
+                    <li class="filter__item-gallery"><input class="checkbox" id="history" name="filter[]" type="checkbox" value="history"> <label class="checkbox__name" for="history"><span class="checkbox__indicator"></span> Истории</label></li>
                     </div>
                   </ul>
-            </fieldset><button class="filter__button filter__button--center">Применить</button>
+            </fieldset><button class="filter__button filter__button--center" type="submit" value="sort" name="sort">Применить</button>
           </form>
-        </section> -->
+        </section>
         <?php $works_title = 'Список альбомов и рисунков';
         // выключаем (прячем) заголовок
         $sectionTitleOn = false;
