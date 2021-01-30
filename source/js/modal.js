@@ -4,12 +4,13 @@
     var storage = localStorage.getItem("user-name");
     
     var registrationLink = document.querySelector(".registration-link");
+    if (registrationLink != null) {
     var registrationForm = document.querySelector(".login__reg");
     var registrationClose = document.querySelector(".login__close-reg");
     var registrationlogin = registrationForm.querySelector(".reg-name");
     var registrationEmail = registrationForm.querySelector(".reg-email");
     
-    if (registrationLink != null) {
+    
       registrationLink.addEventListener("click", function (evt) {
         evt.preventDefault();
         registrationForm.classList.add("modal-show");
@@ -21,7 +22,7 @@
           registrationlogin.focus();
         }
       });
-    }
+    
     
     registrationClose.addEventListener("click", function (evt) {
       evt.preventDefault();
@@ -39,14 +40,16 @@
         }
       }
     });
+    }
     
     var loginLink = document.querySelector(".login-link");
     var loginForm = document.querySelector(".login__log");
     var loginClose = document.querySelector(".login__close-log");
+
+    if (loginLink != null) {
     var loginLogin = loginForm.querySelector("[name=username]");
     var loginPassword = loginForm.querySelector("[name=password]");
     
-    if (loginLink != null) {
       loginLink.addEventListener("click", function (evt) {
         evt.preventDefault();
         loginForm.classList.add("modal-show");
@@ -58,7 +61,6 @@
           loginLogin.focus();
         }
       });
-    }
     
     loginClose.addEventListener("click", function (evt) {
       evt.preventDefault();
@@ -83,6 +85,6 @@
       loginForm.classList.remove("modal-show");
       overlay.classList.remove("modal-show");
     });
-    
+  }
   }
 // });

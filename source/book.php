@@ -101,9 +101,11 @@
   let totalCount = 600;
   let countInput = document.querySelector('.countInput');
   let count = document.querySelector('.count-letter_symbol');
+  if (countInput != null) {
   countInput.addEventListener('input', function() {
     count.innerHTML = totalCount - countInput.value.length;
   });
+}
   </script>
 </body>
 
