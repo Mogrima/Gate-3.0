@@ -75,6 +75,9 @@ return gulp.src("source/js/js-inner/*.js") // директория откуда 
 gulp.task("copy", function () {
   return gulp.src([
   "source/fonts/**/*.{woff,woff2}",
+  "source/*.xml",
+  "source/*.txt",
+  "source/*.html",
   "source/img/**",
   "source/favicon/**",
   "source/*.ico"
