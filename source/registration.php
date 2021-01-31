@@ -71,5 +71,6 @@ require_once(BUS .'signup.php'); ?>
   <?php require_once(BLOCKS .'footer.php'); ?>
   <script src="https://www.google.com/recaptcha/api.js?render=6LfJljAaAAAAAHHrGwm6lU1CcfQUs9CK4IOHzF_p"></script>
   <script src="js/jquery.min.js"></script>
+  <?php require_once(BUS .'signup-ajax.php'); ?>
 </body>
 </html>

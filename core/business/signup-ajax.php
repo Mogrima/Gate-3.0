@@ -1,5 +1,5 @@
 <script>
- $('#reg-form').submit(function(event) {
+  $('#reg-form').submit(function(event) {
     event.preventDefault();
     let tk = '';
     grecaptcha.ready(function() {
@@ -28,7 +28,7 @@
           $('#errorReg').hide();
           $('.login__button').text('Загрузка..');
           // document.location.reload(true); // перезагрузка страницы
-          window.location.replace(newUrl);
+          window.location.replace("./index.php");
         } else {
           $('#errorReg').show();
           $('#errorReg').text(data);
