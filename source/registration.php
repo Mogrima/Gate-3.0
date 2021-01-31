@@ -58,6 +58,7 @@ require_once(BUS .'signup.php'); ?>
               <div class="login__info login__info--start">
                 <input id="remember" class="checkbox login__info-checkbox" type="checkbox" name="remember"> <label for="remember" class="checkbox__name login__checkbox-name"><span class="checkbox__indicator login__checkbox-indicator"></span>Запомните меня</label>
               </div>
+              <input type="hidden" id="token" name="token">
               <button class="button login__button" value="submit" name="submit" type="submit">Зарегистрироваться</button>
             </form>
             <!-- <button>Закрыть</button> -->
@@ -68,7 +69,7 @@ require_once(BUS .'signup.php'); ?>
     </div>
   </main>
   <?php require_once(BLOCKS .'footer.php'); ?>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfJljAaAAAAAHHrGwm6lU1CcfQUs9CK4IOHzF_p"></script>
   <script src="js/jquery.min.js"></script>
-  <script src="js/scripts.min.js"></script>
 </body>
 </html>

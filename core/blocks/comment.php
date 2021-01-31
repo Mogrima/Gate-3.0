@@ -23,6 +23,7 @@ $anchor = '#anchor';
       }
     }
     ?>
+    <input type="hidden" id="token2" name="token">
   <button class="button feedback__button" name="submit" type="submit">Выразить мнение</button>
 </form>
 <?php } ?>

@@ -22,6 +22,7 @@
       <div class="login__info login__info--start">
         <input id="remember" class="checkbox login__info-checkbox" type="checkbox" name="remember" checked="checked"> <label for="remember" class="checkbox__name login__checkbox-name"><span class="checkbox__indicator login__checkbox-indicator"></span>Запомните меня</label>
       </div>
+      <input type="hidden" id="token" name="token">
       <button class="button login__button" type="submit">Зарегистрироваться</button>
     </form>
     <a class="login__info login__info--last link link--modal" href="registration.php"><span>Если форма работает некорректно</span></a>

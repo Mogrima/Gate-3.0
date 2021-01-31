@@ -128,9 +128,19 @@
   let count = document.querySelector('.count-letter_symbol');
   if (countInput != null) {
   countInput.addEventListener('input', function() {
-    count.innerHTML = totalCount - countInput.value.length;
+    count.innerHTML = totalCountLetter - countInput.value.length;
   });
-}
+};
+  
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let tk = '';
+    grecaptcha.ready(function () {
+      grecaptcha.execute('6LfJljAaAAAAAHHrGwm6lU1CcfQUs9CK4IOHzF_p', { action: 'homepage' }).then(function (token) {
+        tk = token;
+        document.getElementById('token2').value = token;
+      });
+    });
+});
   </script>
     </body>
     </html>
