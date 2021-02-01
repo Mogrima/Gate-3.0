@@ -54,23 +54,23 @@
           <?php require_once BLOCKS . 'search-block.php' ?>
         </div>
         <!--$works_title заголовок section works  -->
-        <?php $works_title = 'Популярные произведения';
+        <?php $works_title = 'Последние произведения';
         $src_stat = '../img/works-catalog/';
         $works_link = 'book.php?id=';
         // включаем заголовки
         $sectionTitleOn = true;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = 'SELECT * FROM `works_catalog` ORDER BY `id` ASC LIMIT 3';
+        $sql = 'SELECT * FROM `works_catalog` ORDER BY `id` DESC LIMIT 3';
         $query = $pdo->query($sql);
         // подключение самого шаблона католога, в котором уже прописан цикл для вывода данных
         $newHtmlClassON = true;
         $newHtmlClass = ' works__wrapper--popular';
         require(BLOCKS . 'works_section.php');
         // ------------------------------------------------------------------------------------- //
-        $works_title = 'Популярные иллюстрации';
+        $works_title = 'Последние иллюстрации';
         $src_stat = 'img/';
         $works_link = 'album.php?id=';
-        $sql = 'SELECT * FROM `album_arts` WHERE `ill_of_books` = TRUE LIMIT 3';
+        $sql = 'SELECT * FROM `album_arts` ORDER BY `id` DESC LIMIT 3';
         $type_image = '.jpg';
         $query = $pdo->query($sql);
 
