@@ -42,52 +42,44 @@
           <span class="page-description__pleasant">Приятного чтения!</span></p>
         </div>
         <p class="attention"><i>P.S.:</i> Оставляйте свои рецензии, размещенные под каждым описанием книги – помогите другим гостям Врат в выборе! Только Вы способны помочь в совершенствовании своим откликом – это столь ценно для нас.</p>
-        <!-- <section class="filters">
+        <section class="filters">
           <h2 class="visually-hidden">Фильтр книг</h2>
           <h3 class="section-header filters__title">Выберете то, что Вас интересует:</h3>
           <p class="filters__note">Если Вы впервые на сайте – выберите наиболее приятный Вам жанр из представленных. Это позволит достичь наиболее комфортного первого знакомства.</p>
-          <form action="#" class="filter" method="get">
+          <form action="#" class="filter" method="POST">
             <div class="filter__wrapper">
-              <fieldset class="filter__fieldset">
-                <legend class="filter__title">Сортировка:</legend>
-                <ul class="filter__list">
-                  <li><input checked class="checkbox" id="popular-checkbox" name="popular" type="checkbox"> <label class="checkbox__name" for="popular-checkbox"><span class="checkbox__indicator"></span>По популярности</label></li>
-                  <li><input class="checkbox" id="old-checkbox" name="old" type="checkbox"> <label class="checkbox__name" for="old-checkbox"><span class="checkbox__indicator"></span>По давности</label></li>
-                  <li><input class="checkbox" id="free-checkbox" name="free" type="checkbox"> <label class="checkbox__name" for="free-checkbox"><span class="checkbox__indicator"></span> Бесплатные</label></li>
-                  <li><input class="checkbox" id="pay-checkbox" name="pay" type="checkbox"> <label class="checkbox__name" for="pay-checkbox"><span class="checkbox__indicator"></span>Платные</label></li>
-                </ul>
-              </fieldset>
               <fieldset class="filter__fieldset">
                 <legend class="filter__title">Формат:</legend>
                 <ul class="filter__list">
-                  <li><input class="checkbox" id="fiction-checkbox" name="fiction" type="checkbox"> <label class="checkbox__name" for="fiction-checkbox"><span class="checkbox__indicator"></span>Художественная литература</label></li>
-                  <li><input class="checkbox" id="poetry-checkbox" name="poetry" type="checkbox"> <label class="checkbox__name" for="poetry-checkbox"><span class="checkbox__indicator"></span>Стихотворения</label></li>
-                  <li><input class="checkbox" id="articles-checkbox" name="articles" type="checkbox"> <label class="checkbox__name" for="articles-checkbox"><span class="checkbox__indicator"></span>Статьи</label></li>
-                  <li><input checked class="checkbox" id="worlds-checkbox" name="worlds" type="checkbox"> <label class="checkbox__name" for="worlds-checkbox"><span class="checkbox__indicator"></span>О мирах</label></li>
+                  <li><input class="checkbox" id="fiction" name="fiction" type="checkbox"> <label class="checkbox__name" for="fiction"><span class="checkbox__indicator"></span>Художественная литература</label></li>
+                  <li><input class="checkbox" id="poetry" name="poetry" type="checkbox"> <label class="checkbox__name" for="poetry"><span class="checkbox__indicator"></span>Стихотворения</label></li>
+                  <li><input class="checkbox" id="scenario" name="scenario" type="checkbox"> <label class="checkbox__name" for="scenario"><span class="checkbox__indicator"></span>Сценарии</label></li>
+                  <li><input checked class="checkbox" id="worlds" name="worlds" type="checkbox"> <label class="checkbox__name" for="worlds"><span class="checkbox__indicator"></span>О мирах</label></li>
                 </ul>
               </fieldset>
               <fieldset class="filter__fieldset">
                 <legend class="filter__title">Размер:</legend>
                 <ul class="filter__list">
-                  <li><input checked class="checkbox" id="little-checkbox" name="little" type="checkbox"> <label class="checkbox__name" for="little-checkbox"><span class="checkbox__indicator"></span>Рассказы</label></li>
-                  <li><input class="checkbox" id="middle-checkbox" name="middle" type="checkbox"> <label class="checkbox__name" for="middle-checkbox"><span class="checkbox__indicator"></span><span>Средний <span class="checkbox__clar">(150 - 200 стр.)</span></span></label></li>
-                  <li><input class="checkbox" id="big-checkbox" name="big" type="checkbox"> <label class="checkbox__name" for="big-checkbox"><span class="checkbox__indicator"></span><span>Большой <span class="checkbox__clar"> (больше 200 стр.)</span></span></label></li>
+                  <li><input checked class="checkbox" id="little" name="little" type="checkbox"> <label class="checkbox__name" for="little"><span class="checkbox__indicator"></span>Рассказы</label></li>
+                  <li><input class="checkbox" id="middle" name="middle" type="checkbox"> <label class="checkbox__name" for="middle"><span class="checkbox__indicator"></span><span>Средний <span class="checkbox__clar">(150 - 200 стр.)</span></span></label></li>
+                  <li><input class="checkbox" id="big" name="big" type="checkbox"> <label class="checkbox__name" for="big"><span class="checkbox__indicator"></span><span>Большой <span class="checkbox__clar"> (больше 200 стр.)</span></span></label></li>
                 </ul>
               </fieldset>
               <fieldset class="filter__fieldset">
                 <legend class="filter__title">Жанры:</legend>
                 <ul class="filter__list">
-                  <li><input checked class="checkbox" id="tale-checkbox" name="tale" type="checkbox"> <label class="checkbox__name" for="tale-checkbox"><span class="checkbox__indicator"></span>Сказка</label></li>
-                  <li><input class="checkbox" id="novel-checkbox" name="novel" type="checkbox"> <label class="checkbox__name" for="novel-checkbox"><span class="checkbox__indicator"></span>Роман</label></li>
-                  <li><input class="checkbox" id="encyclopedia-checkbox" name="encyclopedia" type="checkbox"> <label class="checkbox__name" for="encyclopedia-checkbox"><span class="checkbox__indicator"></span>Энциклопедия</label></li>
-                  <li><input class="checkbox" id="drama-checkbox" name="drama" type="checkbox"> <label class="checkbox__name" for="drama-checkbox"><span class="checkbox__indicator"></span>Драма</label></li>
-                  <li><input class="checkbox" id="memoirs-checkbox" name="memoirs" type="checkbox"> <label class="checkbox__name" for="memoirs-checkbox"><span class="checkbox__indicator"></span>Мемуары</label></li>
-                  <li><input class="checkbox" id="folk-checkbox" name="folk" type="checkbox"> <label class="checkbox__name" for="folk-checkbox"><span class="checkbox__indicator"></span>Фольклеристика</label></li>
+                  <li><input checked class="checkbox" id="tale" name="tale" type="checkbox"> <label class="checkbox__name" for="tale"><span class="checkbox__indicator"></span>Сказка</label></li>
+                  <li><input class="checkbox" id="novel" name="novel" type="checkbox"> <label class="checkbox__name" for="novel"><span class="checkbox__indicator"></span>Роман</label></li>
+                  <li><input class="checkbox" id="encyclopedia" name="encyclopedia" type="checkbox"> <label class="checkbox__name" for="encyclopedia"><span class="checkbox__indicator"></span>Энциклопедия</label></li>
+                  <li><input class="checkbox" id="drama" name="drama" type="checkbox"> <label class="checkbox__name" for="drama"><span class="checkbox__indicator"></span>Трагедия</label></li>
+                  <li><input class="checkbox" id="life" name="life" type="checkbox"> <label class="checkbox__name" for="life"><span class="checkbox__indicator"></span>Быт</label></li>
+                  <li><input class="checkbox" id="philosophy" name="philosophy" type="checkbox"> <label class="checkbox__name" for="philosophy"><span class="checkbox__indicator"></span>Философия</label></li>
+                  <li><input class="checkbox" id="folk" name="folk" type="checkbox"> <label class="checkbox__name" for="folk"><span class="checkbox__indicator"></span>Фольклористика</label></li>
                 </ul>
               </fieldset>
-            </div><button class="filter__button">Применить</button>
+            </div><button class="filter__button" type="submit" value="sort" name="sort">Применить</button>
           </form>
-        </section> -->
+        </section>
         <!--$works_title заголовок section works  -->
         <?php $works_title = 'Список произведений';
         // подключение к базе данных

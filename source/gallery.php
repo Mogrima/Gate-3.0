@@ -33,6 +33,9 @@
             $filters = $_POST['filter'];
             echo var_dump($filters);
           }
+          function get_Filtred_works($type, $filters) {
+            $sql = "SELECT * FROM $type WHERE id = $book_id";
+          }
           ?>
           <p class="page-description">Рисование будоражило меня с незапамятных лет, часто открывая моей памяти дорогу к истокам.
              При помощи графического планшета и вдохновенного настроя светлой грусти порой возможно совершить чудо - воссоздать 
@@ -50,8 +53,7 @@
               <legend class="filter__title filter__title--center">Сортировка:</legend>
                   <ul class="filter__list filter__list--center">
                     <div class="filter__wrapper-gallery">
-                    <li class="filter__item-gallery"><input checked class="checkbox" id="popular" name="filter[]" type="checkbox" value="popular"> <label class="checkbox__name" for="popular"><span class="checkbox__indicator"></span> По популярности</label></li>
-                    <li class="filter__item-gallery"><input class="checkbox" id="ill_of_books" name="filter[]" type="checkbox" value="ill_of_books"> <label class="checkbox__name" for="ill_of_books"><span class="checkbox__indicator"></span> Иллюстрации из книг</label></li>
+                    <li class="filter__item-gallery"><input class="checkbox" id="ill_of_books" name="filter[]" type="checkbox" value="ill_of_books" checked> <label class="checkbox__name" for="ill_of_books"><span class="checkbox__indicator"></span> Иллюстрации из книг</label></li>
                     <li class="filter__item-gallery"><input class="checkbox" id="color" name="filter[]" type="checkbox" value="color"> <label class="checkbox__name" for="color"><span class="checkbox__indicator"></span> Цветные</label></li>
                     <li class="filter__item-gallery"><input class="checkbox" id="b_a_w" name="filter[]" type="checkbox" value="b_a_w"> <label class="checkbox__name" for="b_a_w"><span class="checkbox__indicator"></span> Черно-белые</label></li>
                     <li class="filter__item-gallery"><input class="checkbox" id="history" name="filter[]" type="checkbox" value="history"> <label class="checkbox__name" for="history"><span class="checkbox__indicator"></span> Истории</label></li>
