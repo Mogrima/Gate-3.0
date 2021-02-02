@@ -31,10 +31,31 @@
           <?php require_once(BLOCKS . 'search-block.php'); 
           if(isset($_POST['sort'])) {
             $filters = $_POST['filter'];
-            echo var_dump($filters);
+            ;
+            $count_filtres_checked = count($filters);
+            // get_Filtred_works();
+            $filter_sql = "\"SELECT works_title, works_image FROM album_arts WHERE ";
+          for($i = 0; $i < ($count_filtres_checked - 1); $i++) {
+            $filters[$i] = $filters[$i] . " = 1, ";
           }
-          function get_Filtred_works($type, $filters) {
-            $sql = "SELECT * FROM $type WHERE id = $book_id";
+          for($i = 0; $i < $count_filtres_checked; $i++) {
+            $filter_sql = $filter_sql . $filters[$i];
+          }
+          
+          $filter_sql = $filter_sql . "\"";
+          }
+          echo var_dump($filters);
+          $filtred_works = array();
+          echo  $filter_sql;
+
+          function get_Filtred_works() {
+            $sql = "SELECT works_title, works_image FROM album_arts";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            $row = $query->fetch(PDO::FETCH_OBJ);
+
+            // $title_works = $row->$title;
+            // $title_src = $row->$src;
           }
           ?>
           <p class="page-description">Рисование будоражило меня с незапамятных лет, часто открывая моей памяти дорогу к истокам.
