@@ -42,5 +42,10 @@
       </div>
       <p class="page-footer__copyright copyright"><b class="copyright__developers">Разработано: Ro&Mo</b><br>
           <span class="copyright__reserved">© Все права защищены. 2018</span></p>
+      <div class="footer__captcha">
+        <b class="footer__captcha-title">This site is protected by reCAPTCHA and the Google</b>
+        <a class="footer-navigation__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a class="footer-navigation__link" href="https://policies.google.com/terms">Terms of Service</a> apply.
+      </div>
     </div>
   </footer>
