@@ -1,7 +1,6 @@
 .gallery {
     position: relative;
     width: 800px;
-    /*height: 1200px;*/
     margin: 0 auto;
 }
 
@@ -10,7 +9,6 @@
     display: flex;
     flex-direction: column;
     width: 800px;
-    /* height: 100%; */
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 50px;
@@ -38,14 +36,6 @@
     transition: left .5s ease-in-out;
 }
 
-/* #slide_slice {
-    position: relative;
-    width: 10px;
-    background: black;
-    opacity: 0.5;
-    z-index: 100;
-} */
-
 .slider__list-preview {
     height: 200px;
 }
@@ -57,19 +47,12 @@
     float: left;
     min-height: 350px;
     white-space: normal;
-    /* width: 460px; */
     width: 800px;
     text-align: center;
-    /* padding-top: 70px; */
-    /* margin-right: 170px;
-    margin-left: 170px; */
 }
 
 .slider__img {
-    /* width: 100%; */
-    /* width: 460px; */
     height: auto;
-    /* background-size: cover; */
 }
 
 .slider__item-preview {
@@ -83,13 +66,11 @@
 
 .slider__dots {
     margin: 0 auto;
-    /* width: 550px; */
     min-height: 50px;
 }
 
 .slider__dots {
     display: flex;
-    /* justify-content: space-between; */
     flex-wrap: wrap;
     padding: 0px;
     
@@ -124,12 +105,6 @@
     width: 100px;
     margin: 0 auto;
     margin-top: 10px;
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* bottom: 318px; */
-    /* left: 50%; */
-    /* margin-left: -34px; */
-    /* z-index: 100; */
     font-family: "Cormorant Infant Bold", "Garamond", "Times New Roman", Times, serif;
     font-size: 1.5rem;
     color: #b49a7b;
@@ -172,14 +147,12 @@
 
 .album-slider__next {
     right: -63px;
-    /* right: 0; */
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
 }
 
 .album-slider__prev {
     left: -63px;
-    /* left: 0; */
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
 }
@@ -215,9 +188,6 @@
 }
 
 .gallery-no-js .slider__list {
-    /*display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;*/
     width: auto;
 }
 
@@ -233,7 +203,6 @@
 	float: none;
 	width: 767px;
 	margin: 0 auto;
-	/* margin-right: 15px; */
 	text-align: center;
 }
 
@@ -288,7 +257,6 @@
     }
 
     .album-slider__next, .album-slider__prev {
-       /* top: 42px;*/
        top: -5px;
         background-color: transparent;
     }
@@ -314,10 +282,6 @@
 }
 
  @media(min-width: 768px) and (max-width: 1200px) {
-    .gallery {
-        /* height: 1100px; */
-    }
-
     .gallery-no-js {
         height: auto;
     }

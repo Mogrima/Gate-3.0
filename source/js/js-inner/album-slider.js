@@ -193,39 +193,3 @@ var ClickDots = function (clickTarget, itemlngh, targetClass) {
 ClickDots(navList, links, 'slider__dot');
 ClickDots(wrapper_previw, imgNavlgth, 'slider__img-nav');
 ClickDots(album_wrapper, slideImg, 'slider__img');
-
-  
-  // var thumbElem = document.querySelector('.slider__list');
-
-  // thumbElem.addEventListener('mousedown', function(event) {
-  //     // var item = e.target;
-  //     for(let i = 0; i < slideItem.length + 1; i++) {
-
-  //         console.log('dsds');
-  //         var newLeft = event.target.getAttribute("data-pos");
-
-
-  //         document.onmousemove = function(event) {
-  //         console.log('fasfas');
-
-  //         console.log(newLeft);
-  //         thumbElem.style.left = newLeft - 520;
-  //         // thumbElem.style.left = newLeft - 520 + 'px';
-  //     };
-
-  //     // Сбрасывание перетаскивания
-  //     document.onmouseup = function() {
-  //         console.log('gdsgsgd');
-  //         document.onmousemove = document.onmouseup = null;
-  //     };
-
-  // }
-  // });
-  // thumbElem.addEventListener('dragstart', function() {
-  //     console.log('jgkjkjksgjs');
-  //     return false;
-  // }) 
-
-
-
-  // timeline - блок с горизонтальным скроллом
