@@ -68,7 +68,9 @@ var addDataPosSlide = function () {
     for (var i = 0; i < slideItem.length; i++) {
         pos = i * -contentWidth; // вычисляем data-pos
         slideItem[i].setAttribute("data-pos", pos + "px"); // присваиваем каждому слайду data-pos
-        createDots("li"); // создаем дотсы для каждого слайда
+        if(slideItem.length < 16) {
+            createDots("li"); // создаем дотсы для каждого слайда // Но если слайдов не больше 16
+        }
     }
 };
 
@@ -85,7 +87,7 @@ for (let i = 0; i < slide_previw.length; i++) {
 }
 
 // размер контейнера дотсов зависит от количества дотсов и всегда центруется (это в css)
-if(window.matchMedia('(min-width: 768px)').matches){
+if((slideItem.length < 16) && (window.matchMedia('(min-width: 768px)').matches)){
     navList.style.width = (links.length * 12) * 2 + 'px';
 }
 
@@ -122,7 +124,9 @@ function showSlides(n) {
     links.forEach((item) => item.classList.remove("slider__dot--active"));
     album_wrapper.style.left = slideItem[slideIndex - 1].getAttribute("data-pos");
     wrapper_previw.style.left = slide_previw[slideIndex - 1].getAttribute("data-pos");
-    links[slideIndex - 1].classList.add('slider__dot--active');
+    if(slideItem.length < 16) {
+        links[slideIndex - 1].classList.add('slider__dot--active');
+    }
     // выводим номер текущего слайда для подсчета
     currentCount.innerHTML = slideIndex;
 
