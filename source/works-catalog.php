@@ -78,10 +78,8 @@
                 </ul>
               </fieldset>
             </div><button class="filter__button" type="submit" value="sort" name="sort">Применить</button>
-            <a class="filter__button" href="./works-catalog.php">Сбросить фильтр</a>
           </form>
         </section>
-        <!--$works_title заголовок section works  -->
         <?php 
          $title = 'works_title';
          $src = 'book_id';
@@ -110,20 +108,18 @@
             $book_name[] = $row->$title;                 
              } 
 
-          $sql1 = "SELECT * FROM `works_catalog` WHERE works_title = ";
+          $sql_selected = "SELECT id, works_title, works_image FROM `works_catalog` WHERE works_title = ";
         
           $count_books = count($book_name);
 
           for($i = 0; $i < $count_books; $i++) {
             $book_name[$i] = "'".$book_name[$i]."'" . " OR works_title = ";
-            $sql1 = $sql1 . $book_name[$i];
+            $sql_selected = $sql_selected . $book_name[$i];
           }
-          $sql1 = substr($sql1, 0, -17);
-          $sql1 = $sql1 . " ORDER BY `id` DESC";
+          $sql_selected = substr($sql_selected, 0, -17);
+          $sql_selected = $sql_selected . " ORDER BY `id` DESC";
           
           }
-          echo var_dump($book_name);
-          echo $sql1;
         
         $works_title = 'Список произведений';
         // подключение к базе данных
@@ -138,9 +134,9 @@
         $on_page = 6;
         $shift = ($page - 1) * $on_page;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = "SELECT * FROM `works_catalog` ORDER BY `id` DESC LIMIT $shift, $on_page";
-        if(!empty($sql1)) {
-          $sql = $sql1;
+        $sql = "SELECT id, works_title, works_image FROM `works_catalog` ORDER BY `id` DESC LIMIT $shift, $on_page";
+        if(!empty($sql_selected)) {
+          $sql = $sql_selected;
         }
         $query = $pdo->query($sql);
         $stmt = $pdo->query("SELECT COUNT(*) FROM works_catalog");
