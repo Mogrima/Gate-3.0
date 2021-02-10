@@ -51,37 +51,81 @@
               <fieldset class="filter__fieldset">
                 <legend class="filter__title">Формат:</legend>
                 <ul class="filter__list">
-                  <li><input class="checkbox" id="fiction" name="fiction" type="checkbox"> <label class="checkbox__name" for="fiction"><span class="checkbox__indicator"></span>Художественная литература</label></li>
-                  <li><input class="checkbox" id="poetry" name="poetry" type="checkbox"> <label class="checkbox__name" for="poetry"><span class="checkbox__indicator"></span>Стихотворения</label></li>
-                  <li><input class="checkbox" id="scenario" name="scenario" type="checkbox"> <label class="checkbox__name" for="scenario"><span class="checkbox__indicator"></span>Сценарии</label></li>
-                  <li><input checked class="checkbox" id="worlds" name="worlds" type="checkbox"> <label class="checkbox__name" for="worlds"><span class="checkbox__indicator"></span>О мирах</label></li>
+                  <li><input class="checkbox" id="fiction" name="filter[]" value="fiction" type="checkbox"> <label class="checkbox__name" for="fiction"><span class="checkbox__indicator"></span>Художественная литература</label></li>
+                  <li><input class="checkbox" id="poetry" name="filter[]" value="poetry" type="checkbox"> <label class="checkbox__name" for="poetry"><span class="checkbox__indicator"></span>Стихотворения</label></li>
+                  <li><input class="checkbox" id="scenario" name="filter[]" value="scenario" type="checkbox"> <label class="checkbox__name" for="scenario"><span class="checkbox__indicator"></span>Сценарии</label></li>
+                  <li><input checked class="checkbox" id="worlds" name="filter[]" value="worlds" type="checkbox"> <label class="checkbox__name" for="worlds"><span class="checkbox__indicator"></span>О мирах</label></li>
                 </ul>
               </fieldset>
               <fieldset class="filter__fieldset">
                 <legend class="filter__title">Размер:</legend>
                 <ul class="filter__list">
-                  <li><input checked class="checkbox" id="little" name="little" type="checkbox"> <label class="checkbox__name" for="little"><span class="checkbox__indicator"></span>Рассказы</label></li>
-                  <li><input class="checkbox" id="middle" name="middle" type="checkbox"> <label class="checkbox__name" for="middle"><span class="checkbox__indicator"></span><span>Средний <span class="checkbox__clar">(150 - 200 стр.)</span></span></label></li>
-                  <li><input class="checkbox" id="big" name="big" type="checkbox"> <label class="checkbox__name" for="big"><span class="checkbox__indicator"></span><span>Большой <span class="checkbox__clar"> (больше 200 стр.)</span></span></label></li>
+                  <li><input checked class="checkbox" id="little" name="filter[]" value="little" type="checkbox"> <label class="checkbox__name" for="little"><span class="checkbox__indicator"></span>Рассказы</label></li>
+                  <li><input class="checkbox" id="middle" name="filter[]" value="middle" type="checkbox"> <label class="checkbox__name" for="middle"><span class="checkbox__indicator"></span><span>Средний <span class="checkbox__clar">(150 - 200 стр.)</span></span></label></li>
+                  <li><input class="checkbox" id="big" name="filter[]" value="big" type="checkbox"> <label class="checkbox__name" for="big"><span class="checkbox__indicator"></span><span>Большой <span class="checkbox__clar"> (больше 200 стр.)</span></span></label></li>
                 </ul>
               </fieldset>
               <fieldset class="filter__fieldset">
                 <legend class="filter__title">Жанры:</legend>
                 <ul class="filter__list">
-                  <li><input checked class="checkbox" id="tale" name="tale" type="checkbox"> <label class="checkbox__name" for="tale"><span class="checkbox__indicator"></span>Сказка</label></li>
-                  <li><input class="checkbox" id="novel" name="novel" type="checkbox"> <label class="checkbox__name" for="novel"><span class="checkbox__indicator"></span>Роман</label></li>
-                  <li><input class="checkbox" id="encyclopedia" name="encyclopedia" type="checkbox"> <label class="checkbox__name" for="encyclopedia"><span class="checkbox__indicator"></span>Энциклопедия</label></li>
-                  <li><input class="checkbox" id="drama" name="drama" type="checkbox"> <label class="checkbox__name" for="drama"><span class="checkbox__indicator"></span>Трагедия</label></li>
-                  <li><input class="checkbox" id="life" name="life" type="checkbox"> <label class="checkbox__name" for="life"><span class="checkbox__indicator"></span>Быт</label></li>
-                  <li><input class="checkbox" id="philosophy" name="philosophy" type="checkbox"> <label class="checkbox__name" for="philosophy"><span class="checkbox__indicator"></span>Философия</label></li>
-                  <li><input class="checkbox" id="folk" name="folk" type="checkbox"> <label class="checkbox__name" for="folk"><span class="checkbox__indicator"></span>Фольклористика</label></li>
+                  <li><input checked class="checkbox" id="tale" name="filter[]" value="tale" type="checkbox"> <label class="checkbox__name" for="tale"><span class="checkbox__indicator"></span>Сказка</label></li>
+                  <li><input class="checkbox" id="novel" name="filter[]" value="novel" type="checkbox"> <label class="checkbox__name" for="novel"><span class="checkbox__indicator"></span>Роман</label></li>
+                  <li><input class="checkbox" id="encyclopedia" name="filter[]" value="encyclopedia" type="checkbox"> <label class="checkbox__name" for="encyclopedia"><span class="checkbox__indicator"></span>Энциклопедия</label></li>
+                  <li><input class="checkbox" id="drama" name="filter[]" value="drama" type="checkbox"> <label class="checkbox__name" for="drama"><span class="checkbox__indicator"></span>Трагедия</label></li>
+                  <li><input class="checkbox" id="life" name="filter[]" value="life" type="checkbox"> <label class="checkbox__name" for="life"><span class="checkbox__indicator"></span>Быт</label></li>
+                  <li><input class="checkbox" id="philosophy" name="filter[]" value="philosophy" type="checkbox"> <label class="checkbox__name" for="philosophy"><span class="checkbox__indicator"></span>Философия</label></li>
+                  <li><input class="checkbox" id="folk" name="filter[]" value="folk" type="checkbox"> <label class="checkbox__name" for="folk"><span class="checkbox__indicator"></span>Фольклористика</label></li>
                 </ul>
               </fieldset>
             </div><button class="filter__button" type="submit" value="sort" name="sort">Применить</button>
+            <a class="filter__button" href="./works-catalog.php">Сбросить фильтр</a>
           </form>
         </section>
         <!--$works_title заголовок section works  -->
-        <?php $works_title = 'Список произведений';
+        <?php 
+         $title = 'works_title';
+         $src = 'book_id';
+         $type = 'filters_books';
+
+        function get_Filtred_works($filters, $title, $src, $type) {
+          $count_filtres_checked = count($filters);
+          $filter_sql = "SELECT  $title, $src FROM $type WHERE ";
+          for($i = 0; $i < $count_filtres_checked; $i++) {
+            $filters[$i] = $filters[$i] . " = 1 OR ";
+            $filter_sql = $filter_sql . $filters[$i];
+          }
+          $filter_sql = substr($filter_sql, 0, -4);
+          $filter_sql = $filter_sql . " ORDER BY `id` DESC";
+          return $filter_sql;
+          }
+  
+        if(isset($_POST['sort'])) {
+          $filters = $_POST['filter'];
+          $filter_sql = get_Filtred_works($filters, $title, $src, $type);
+
+
+          $query = $pdo->query($filter_sql);
+          $book_name = array();
+          while($row = $query->fetch(PDO::FETCH_OBJ)) {
+            $book_name[] = $row->$title;                 
+             } 
+
+          $sql1 = "SELECT * FROM `works_catalog` WHERE works_title = ";
+        
+          $count_books = count($book_name);
+
+          for($i = 0; $i < $count_books; $i++) {
+            $book_name[$i] = "'".$book_name[$i]."'" . " OR works_title = ";
+            $sql1 = $sql1 . $book_name[$i];
+          }
+          $sql1 = substr($sql1, 0, -17);
+          $sql1 = $sql1 . " ORDER BY `id` DESC";
+          
+          }
+          echo var_dump($book_name);
+          echo $sql1;
+        
+        $works_title = 'Список произведений';
         // подключение к базе данных
         require_once(BUS.'/mysql__connect.php');
         // подключение самого шаблона католога, в котором уже прописан цикл для вывода данных
@@ -95,6 +139,9 @@
         $shift = ($page - 1) * $on_page;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
         $sql = "SELECT * FROM `works_catalog` ORDER BY `id` DESC LIMIT $shift, $on_page";
+        if(!empty($sql1)) {
+          $sql = $sql1;
+        }
         $query = $pdo->query($sql);
         $stmt = $pdo->query("SELECT COUNT(*) FROM works_catalog");
         $row = $stmt->fetch();
