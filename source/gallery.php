@@ -73,33 +73,14 @@
           }
   
         if(isset($_POST['sort'])) {
-            $filters = $_POST['filter'];
-            // $count_filtres_checked = count($filters);
-            $filter_sql = get_Filtred_works($filters, $title, $src, $type);
+          $filters = $_POST['filter'];
+          $filter_sql = get_Filtred_works($filters, $title, $src, $type);
 
-          // $filter_sql = "SELECT  $title, $src FROM $type WHERE ";
-          // for($i = 0; $i < $count_filtres_checked; $i++) {
-          //   $filters[$i] = $filters[$i] . " = 1 OR ";
-          //   $filter_sql = $filter_sql . $filters[$i];
-          // }
-          // for($i = 0; $i < $count_filtres_checked; $i++) {
-            
-          // }
-
-          // $filter_sql = substr($filter_sql, 0, -4);
-          // $filter_sql = $filter_sql . " ORDER BY `id` DESC";
-
-         // $filter_sql1 = "SELECT works_title, works_image FROM album_arts WHERE ill_of_books = 1 OR b_a_w = 1 OR history = 1";
 
           $query = $pdo->query($filter_sql);
-          
-          //}
-          echo var_dump($filters);
-          echo  $filter_sql;
-
           ?>
            <section class="gallery gallery-no-js">
-         <div class="slider__container"> 
+              <div class="slider__container"> 
                 <ul class="slider__list"> 
                 <?php
                 $album_name = array();

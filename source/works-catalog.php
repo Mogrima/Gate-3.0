@@ -108,7 +108,7 @@
             $book_name[] = $row->$title;                 
              } 
 
-          $sql_selected = "SELECT id, works_title, works_image FROM `works_catalog` WHERE works_title = ";
+          $sql_selected = "SELECT id, works_title, works_desc, works_image FROM `works_catalog` WHERE works_title = ";
         
           $count_books = count($book_name);
 
@@ -134,7 +134,7 @@
         $on_page = 6;
         $shift = ($page - 1) * $on_page;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
-        $sql = "SELECT id, works_title, works_image FROM `works_catalog` ORDER BY `id` DESC LIMIT $shift, $on_page";
+        $sql = "SELECT id, works_title, works_desc, works_image FROM `works_catalog` ORDER BY `id` DESC LIMIT $shift, $on_page";
         if(!empty($sql_selected)) {
           $sql = $sql_selected;
         }
