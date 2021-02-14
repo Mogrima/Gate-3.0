@@ -77,7 +77,13 @@
                   <li><input class="checkbox" id="folk" name="filter[]" value="folk" type="checkbox"> <label class="checkbox__name" for="folk"><span class="checkbox__indicator"></span>Фольклористика</label></li>
                 </ul>
               </fieldset>
-            </div><button class="filter__button" type="submit" value="sort" name="sort">Применить</button>
+            </div>
+            <div class="filter__wrapper-button">
+              <button class="filter__button" type="submit" value="sort" name="sort">Применить</button>
+              <?php if(isset($_POST['sort'])) {
+                echo '<a class="filter__button filter__button--reset" href="./works-catalog.php">Сбросить</a>';
+              }?>
+            </div>
           </form>
         </section>
         <?php 
@@ -137,6 +143,7 @@
         $sql = "SELECT id, works_title, works_desc, works_image FROM `works_catalog` ORDER BY `id` DESC LIMIT $shift, $on_page";
         if(!empty($sql_selected)) {
           $sql = $sql_selected;
+          // unset($sql_selected);
         }
         $query = $pdo->query($sql);
         $stmt = $pdo->query("SELECT COUNT(*) FROM works_catalog");
