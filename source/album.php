@@ -1,14 +1,42 @@
-<?php require_once('./core/business/session.php');?>
+<?php require_once('./core/business/session.php');
+$current_url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+require_once('./core/business/appvars.php');
+require_once(BUS . 'connectvars.php');
+// подключение к базе данных
+require_once(BUS.'/mysql__connect.php');  
+// получение id альбома
+$id = $_GET["id"];
+
+// вывод рисунков
+$album_arts = "SELECT * FROM `album_arts` WHERE album_id = $id ORDER BY `id` DESC";
+$arts_query = $pdo->query($album_arts);
+
+if(isset($_POST['favorite'])) {
+    $favorite = trim(filter_var($_POST['favorite'], FILTER_SANITIZE_STRING));
+    $works_title = trim(filter_var($_POST['works_title'], FILTER_SANITIZE_STRING));
+    $user_id = trim(filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT));
+    $works_id = trim(filter_var($_POST['works_id'], FILTER_SANITIZE_STRING));
+
+    // if($new_book) {
+      $favorite_sql = "INSERT INTO favorite(user_id, works_title, works_image) VALUES ('$user_id', '$works_title', '$favorite')";
+      $favorite_query = $pdo->prepare($favorite_sql);
+      $favorite_query->execute(['favorite' => $favorite, 'works_title' => $works_title, 'favorite' => $favorite]);
+      // echo $favorite;
+      // echo $user_id;
+      // echo $works_title;
+    // } else {
+    //   $bookmark_sql = "UPDATE bookmarks SET user_id = '$user_id', title_book = '$title_book', bookmark = '$bookmark' WHERE title_book = '$title_book' AND user_id = '$user_id'";
+    //   $bookmark_query = $pdo->prepare($bookmark_sql);
+    //   $bookmark_query->execute([$user_id, $title_book, $bookmark]);
+    // }
+    Header('Location: '. $current_url . '#' . $works_id);
+  }
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
   <?php
-    require_once('./core/business/appvars.php');
-    require_once(BUS . 'connectvars.php');
-    // подключение к базе данных
-    require_once(BUS.'/mysql__connect.php');
-    $id = $_GET["id"];
     // вывод информации об альбоме
     $album_list = "SELECT `works_title`, `works_desc`, `nested` FROM `album_list` WHERE id = $id";
     $query = $pdo->query($album_list);
@@ -17,9 +45,7 @@
     $album_desc = $album->works_desc;
     $nested = $album->nested;
     $website_title = 'Галерея: ' . $album_title;
-    // вывод рисунков
-    $album_arts = "SELECT * FROM `album_arts` WHERE album_id = $id ORDER BY `id` DESC";
-    $query = $pdo->query($album_arts);
+    
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
     <link href="css/album-slider.css" rel="stylesheet">
@@ -55,17 +81,57 @@
                 <?php
                 $album_name = array();
                 $album_src = array();
-                  while($art = $query->fetch(PDO::FETCH_OBJ)) {
+                  while($art = $arts_query->fetch(PDO::FETCH_OBJ)) {
                     $album_name[] = $art->works_title;;
                     $album_src[] = $art->works_image;
                   } 
                   $arts_count = count($album_name);
+                  
+                  $favorite_array = array();
+
+                  for($i = 0; $i < $arts_count; $i++) {
+                  $toggle_favorite = '';
+                  $works_image = $album_src[$i];
+                  $favoritequery = "SELECT works_image FROM favorite WHERE user_id = '$session_id' AND works_image = '$works_image'";
+                  $favoriteData = $pdo->prepare($favoritequery);
+                  $favoriteData->execute([$session_id, $works_image]);
+                  while($favoriterow = $favoriteData->fetch(PDO::FETCH_OBJ)) {
+                    $toggle_favorite = $favoriterow->works_image;
+                  }
+                  
+                  if (!empty($toggle_favorite)) {
+                    $favorite_array[] = false;
+                  } else {
+                    $favorite_array[] = true;
+                  }
+                  unset($toggle_favorite);
+                }
+
                   for($i = 0; $i < $arts_count; $i++) {
                      ?>
                     <li class="slider__item">
-                      <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3>
+                      
+                      <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
                       <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
                       <div class="count count-no-js"><span>1/7</span></div>
+                      <?php
+                          if (isset($_SESSION['user_id'])) {
+                              if($favorite_array[$i]) {
+                          ?>
+                          <form class="book-bookmark__form" action="<?php echo $current_url ?>" method="POST">
+                            <input type="hidden" name="works_id" value="<?=$i?>" readonly>
+                            <input type="hidden" name="works_title" value="<?=$album_name[$i]?>" readonly>
+                            <button class="book-bookmark" type="submit" value="<?=$album_src[$i]?>" name="favorite">
+                              <span>Добавить в любимое</span>
+                            </button>
+                          </form>
+                          <?php } else { ?>
+                            <button class="book-bookmark" type="submit" value="submit" name="button" disabled>
+                              <span>Удалить из любимого</span>
+                            </button>
+                          <?php  }
+                          }
+                          ?>
                     </li> 
                   <?php }?>
                 </ul> 
