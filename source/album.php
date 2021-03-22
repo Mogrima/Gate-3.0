@@ -17,20 +17,23 @@ if(isset($_POST['favorite'])) {
     $user_id = trim(filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT));
     $works_id = trim(filter_var($_POST['works_id'], FILTER_SANITIZE_STRING));
 
-    // if($new_book) {
-      $favorite_sql = "INSERT INTO favorite(user_id, works_title, works_image) VALUES ('$user_id', '$works_title', '$favorite')";
-      $favorite_query = $pdo->prepare($favorite_sql);
-      $favorite_query->execute(['favorite' => $favorite, 'works_title' => $works_title, 'favorite' => $favorite]);
-      // echo $favorite;
-      // echo $user_id;
-      // echo $works_title;
-    // } else {
-    //   $bookmark_sql = "UPDATE bookmarks SET user_id = '$user_id', title_book = '$title_book', bookmark = '$bookmark' WHERE title_book = '$title_book' AND user_id = '$user_id'";
-    //   $bookmark_query = $pdo->prepare($bookmark_sql);
-    //   $bookmark_query->execute([$user_id, $title_book, $bookmark]);
-    // }
+    $favorite_sql = "INSERT INTO favorite(user_id, works_title, works_image) VALUES ('$user_id', '$works_title', '$favorite')";
+    $favorite_query = $pdo->prepare($favorite_sql);
+    $favorite_query->execute(['favorite' => $favorite, 'works_title' => $works_title, 'favorite' => $favorite]);
+    
     Header('Location: '. $current_url . '#' . $works_id);
   }
+
+if(isset($_POST['favorite_delete'])) {
+  $favorite_delete = trim(filter_var($_POST['favorite_delete'], FILTER_SANITIZE_STRING));
+  $user_id = trim(filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT));
+  $works_id = trim(filter_var($_POST['works_id'], FILTER_SANITIZE_STRING));
+
+  $favorite_sql = "DELETE FROM favorite WHERE user_id = '$user_id' AND works_image = '$favorite_delete'";
+  $favorite_query = $pdo->prepare($favorite_sql);
+  $favorite_query->execute([$favorite_delete, $user_id]);
+  Header('Location: '. $current_url . '#' . $works_id);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -126,9 +129,12 @@ if(isset($_POST['favorite'])) {
                             </button>
                           </form>
                           <?php } else { ?>
-                            <button class="book-bookmark" type="submit" value="submit" name="button" disabled>
-                              <span>Удалить из любимого</span>
-                            </button>
+                            <form class="book-bookmark__form" action="<?php echo $current_url ?>" method="POST">
+                              <input type="hidden" name="works_id" value="<?=$i?>" readonly>
+                              <button class="book-bookmark" type="submit" value="<?=$album_src[$i]?>" name="favorite_delete">
+                                <span>Удалить из любимого</span>
+                              </button>
+                            </form>
                           <?php  }
                           }
                           ?>
