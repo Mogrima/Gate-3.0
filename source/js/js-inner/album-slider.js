@@ -14,6 +14,8 @@ var slide_previw = document.querySelectorAll('.slider__item-preview');
 var next = document.querySelector('.slider__next');
 var prev = document.querySelector('.slider__prev');
 
+let url = new URL(document.location.href);
+
 // Убираю класс no-js
 
 var gallery = document.querySelector('.gallery');
@@ -101,6 +103,12 @@ let currentCount = document.querySelector('.count__current');
 let totalSlides = slideItem.length;
 totalCount.innerHTML = totalSlides;
 
+if(url.hash != '') {
+    let urlIndex = Number(url.hash.slice(1)) 
+    slideIndex = urlIndex + 1;
+    console.log(slideIndex);
+}
+
 showSlides(slideIndex);
 
 function autoHeightImg(add) {
@@ -109,6 +117,7 @@ function autoHeightImg(add) {
             var BlockCount_Height = Math.ceil(BlockCount.getBoundingClientRect().height);
             var BlockCount_marginTop = parseInt(getComputedStyle(BlockCount, true).marginTop);
             album_wrapper.style.height = imgHeight + add + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
+            // album_wrapper.style.height = 500 + "px";
     }
 
 function showSlides(n) {
@@ -124,6 +133,7 @@ function showSlides(n) {
     links.forEach((item) => item.classList.remove("slider__dot--active"));
     album_wrapper.style.left = slideItem[slideIndex - 1].getAttribute("data-pos");
     wrapper_previw.style.left = slide_previw[slideIndex - 1].getAttribute("data-pos");
+
     if(slideItem.length < 16) {
         links[slideIndex - 1].classList.add('slider__dot--active');
     }
