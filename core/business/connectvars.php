@@ -4,4 +4,6 @@
   define('DB_USER', 'root');
   define('DB_PASSWORD', '');
   define('DB_NAME', 'gate');
+
+  require_once('warningErrorHandler.php');
 ?>
