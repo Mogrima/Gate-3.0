@@ -81,6 +81,7 @@ if(isset($_GET['id'])) {
    while($row = $profileData->fetch(PDO::FETCH_OBJ)) {
      $avatar = $row->avatar;
      $gender = $row->gender;
+     $email = $row->user_email;
      $birthdate = $row->birthdate;
    }
 
@@ -91,8 +92,6 @@ if(isset($_GET['id'])) {
     $sql = "UPDATE user SET gender = '$gender', birthdate = '$birthdate' WHERE user_id = '$session_id'";
     $query = $pdo->prepare($sql);
     $query->execute([$gender, $birthdate, $session_id]);
-
-    $pdo = null;
   }
 
   if(empty($birthdate)) {
@@ -150,7 +149,7 @@ if(isset($_GET['id'])) {
                   <?php echo $formatBirthdate ?></p>
                   <p class="profile__description"><span class="profile__desc-key">Пол: </span><?php echo $sex ?></p>
                   <p class="profile__description"><span class="profile__desc-key">Электронная почта:</span> <a
-                          class="link link--profile" href="mailto:<?php echo ''.$_SESSION['user_email'].'' ?>"><?php echo ''.$_SESSION['user_email'].'' ?></a>
+                          class="link link--profile" href="mailto:<?=$email?>"><?=$email?></a>
                   </p>
               </div>
               </section>
