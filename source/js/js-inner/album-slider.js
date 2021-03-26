@@ -49,7 +49,9 @@ album_wrapper.style.width = widthWrapper;
 var slide_previwWidth = 150; // самостоятельно устанавливаем значение
 var slide_previwOffset = 15; // самостоятельно устанавливаем значение
 var content_previwWidth = slide_previwWidth + (slide_previwOffset * 2);
-wrapper_previw.style.width = widthWrapper; // ширину контейнера превью делаем такой же как и ширина длинного контейнера основного слайдера  
+if(wrapper_previw) {
+    wrapper_previw.style.width = widthWrapper; // ширину контейнера превью делаем такой же как и ширина длинного контейнера основного слайдера  
+}
 
 // Динамически создаю пункты навигации в зависимости
 // от количества слайдов, передвая функцию в цикл перебора массива слайдов и расчета позицию left
@@ -132,7 +134,9 @@ function showSlides(n) {
 
     links.forEach((item) => item.classList.remove("slider__dot--active"));
     album_wrapper.style.left = slideItem[slideIndex - 1].getAttribute("data-pos");
-    wrapper_previw.style.left = slide_previw[slideIndex - 1].getAttribute("data-pos");
+    if(wrapper_previw) {
+        wrapper_previw.style.left = slide_previw[slideIndex - 1].getAttribute("data-pos");
+    }
 
     if(slideItem.length < 16) {
         links[slideIndex - 1].classList.add('slider__dot--active');
