@@ -71,6 +71,7 @@ if(isset($_GET['id'])) {
     $website_title = 'Профиль пользователя';
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
+    <link href="css/album-slider.css" rel="stylesheet">
 </head>
 <body class="page">
   <div class="background-header"></div>
@@ -180,12 +181,46 @@ if(isset($_GET['id'])) {
               </div>
               </section>
               <section class="profile__content fade">
-              <div class="profile__container profile__container--single">
-                  <h2 class="visually-hidden">Любимое</h2>
-                  <p class="profile__description">Здесь будут отображаться отмеченные вами произведения
-                      или
-                      рисунки.</p>
-              </div>
+                <div>
+                  <div class="profile__container profile__container--single">
+                    <h2 class="visually-hidden">Любимое</h2>
+                    <p class="profile__description">Здесь отображаются отмеченные вами рисунки.</p>
+                  </div>
+                  <?php
+                  $album_arts = "SELECT works_title, works_image FROM `favorite` WHERE user_id = $session_id ORDER BY `id` DESC";
+                  $arts_query = $pdo->query($album_arts);
+                  $album_name = array();
+                  $album_src = array();
+                  while($art = $arts_query->fetch(PDO::FETCH_OBJ)) {
+                    $album_name[] = $art->works_title;;
+                    $album_src[] = $art->works_image;
+                  } 
+                  $arts_count = count($album_name);
+                  ?>
+                  <section class="gallery gallery-no-js">
+                    <div class="slider__container">
+                      <ul class="slider__list">
+                        <?php for($i = 0; $i < $arts_count; $i++) {?>
+                        <li class="slider__item">
+                        
+                          <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
+                          <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
+                          <div class="count count-no-js"><span>1/7</span></div>
+                        </li> 
+                        <?php }?>
+                      </ul> 
+                      <div class="count count-js"> 
+                        <span class="count__current">1</span> из 
+                        <span class="count__total">5</span> 
+                      </div>
+                      
+                      </div>
+                      <button class="slider__next album-slider__next"><!-- Следущий --></button> 
+                      <button class="slider__prev album-slider__prev"><!-- Предыдущий--></button> 
+                      <ul class="slider__dots"> 
+                      </ul> 
+                  </section>
+                </div>
               </section>
           <section class="profile__content fade">
             <div class="profile__container profile__container--single">
@@ -238,6 +273,17 @@ if(isset($_GET['id'])) {
   <?php require_once(BLOCKS .'footer.php'); ?>
   <script src="js/profile.js"></script>
   <?php require_once(BLOCKS . 'scripts-include.php'); ?>
+  <script src="js/album-slider.js"></script>
+  <script>
+  let totalCountLetter = 600;
+  let countInput = document.querySelector('.countInput');
+  let count = document.querySelector('.count-letter_symbol');
+  if (countInput != null) {
+  countInput.addEventListener('input', function() {
+    count.innerHTML = totalCountLetter - countInput.value.length;
+  });
+};
+  </script>
 </body>
 
 </html>
