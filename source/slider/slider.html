@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>Адаптивная галерея изображений</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500&amp;subset=cyrillic" rel="stylesheet">
+	<link href="slider.style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="headline">Aдаптивная галерея изображений</div>
+		<div id="gallery" class="gallery gallery1">
+			<div class="slider">
+				<div class="stage">
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_01.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_02.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_03.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_04.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_05.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_06.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_07.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_08.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_09.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<img src="images/img_10.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_11.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_12.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_13.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_14.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_15.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+					<div>
+						<h3 class="works__title album-slider__title">Рисунок</h3>
+						<img src="images/img_16.jpg" width="768px" alt="">
+						<div class="count count-no-js"><span>1/7</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="control">
+				<div class="nav-ctrl">
+					<span class="prev" data-shift="prev">prev</span>
+					<span class="next" data-shift="next">next</span>
+				</div>
+				<ul class="dots-ctrl"></ul>
+			</div>
+		</div>
+	</div>
+
+	<script src="slider.function.js"></script>
+	<script type="text/javascript">
+		var gallery1 = new Gallery('gallery', {
+			// включаем постраничную навигацию
+			dots: true,
+			// включаем управление с клавиатуры клавишами навигации "вправо / влево"
+			keyControl: true,
+			// включаем адаптивность
+			responsive: true,
+			// настройки галереи в зависимости от разрешения
+			adaptive: {
+				// настройка работает в диапазоне разрешений 320-560px
+				320: {
+					// одновременно выводится 1 элемент
+					visibleItems: 1
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

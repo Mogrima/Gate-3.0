@@ -1,0 +1,160 @@
+/* reset */
+html,
+body,
+div,
+span,
+h1,
+ul,
+li {
+  margin: 0;
+  padding: 0
+}
+
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+img {
+  display: block;
+  border: none
+}
+
+body {
+  font: normal 16px/20px Roboto, 'Helvetica CY', Verdana, sans-serif;
+  color: #333;
+  background-color: #fff
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1280px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 40px 15px 0
+}
+
+.show {
+  display: block
+}
+
+.headline {
+  max-width: 1024px;
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0 auto 30px
+}
+
+/* transition */
+.nav-ctrl span,
+.dots-ctrl span {
+  transition: all 0.3s
+}
+
+/*** CONTENT ***/
+.gallery {
+  width: 100%;
+  max-width: 800px;
+  visibility: hidden;
+  margin: 0 auto 30px;
+  background-color: #2e294b;
+}
+
+.slider {
+  width: 100%;
+
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.stage {
+  overflow: hidden
+}
+
+.stage>div {
+  float: left;
+  position: relative
+}
+
+.stage>div img {
+  /* width: 100%; */
+  max-width: 800px;
+  height: auto
+}
+
+.control {
+  width: 100%;
+  text-align: center;
+  position: relative
+}
+
+.nav-ctrl {
+  display: none;
+  line-height: 20px;
+  margin-top: 10px
+}
+
+.nav-ctrl span {
+  width: 100px;
+  height: 30px;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 30px;
+  color: #eee;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 5px;
+  border: solid 1px #357ebd;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  outline: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #428bca;
+  cursor: pointer;
+  transition: all 0.3s
+}
+
+.nav-ctrl span:hover {
+  border-color: #285e8e;
+  background-color: #3276b1
+}
+
+.nav-ctrl .disable,
+.nav-ctrl .disable:hover {
+  border: solid 1px #357ebd;
+  background-color: #428bca;
+  opacity: 0.4;
+  cursor: default
+}
+
+.dots-ctrl {
+  display: none;
+  margin-top: 10px
+}
+
+.dots-ctrl li {
+  display: inline-block
+}
+
+.dots-ctrl span {
+  width: 10px;
+  height: 10px;
+  display: block;
+  margin: 5px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #0099ff;
+  opacity: 0.4;
+  cursor: pointer
+}
+
+.dots-ctrl .active span,
+.dots-ctrl span:hover {
+  opacity: 1
+}
