@@ -118,7 +118,7 @@ function autoHeightImg(add) {
             console.log(imgHeight);
             var BlockCount_Height = Math.ceil(BlockCount.getBoundingClientRect().height);
             var BlockCount_marginTop = parseInt(getComputedStyle(BlockCount, true).marginTop);
-            album_wrapper.style.height = imgHeight + add + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + "px";
+            album_wrapper.style.height = imgHeight + add + BlockCount_Height + BlockCount_marginTop + slideTitle[slideIndex - 1].getBoundingClientRect().height + 80 + "px";
             // album_wrapper.style.height = 500 + "px";
     }
 

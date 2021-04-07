@@ -124,15 +124,15 @@ if(isset($_POST['favorite_delete'])) {
                           <form class="book-bookmark__form" action="<?php echo $current_url ?>" method="POST">
                             <input type="hidden" name="works_id" value="<?=$i?>" readonly>
                             <input type="hidden" name="works_title" value="<?=$album_name[$i]?>" readonly>
-                            <button class="book-bookmark" type="submit" value="<?=$album_src[$i]?>" name="favorite">
-                              <span>Добавить в любимое</span>
+                            <button class="icon-favorite icon-favorite--close" type="submit" value="<?=$album_src[$i]?>" name="favorite">
+                              <span class="visually-hidden">Добавить в любимое</span>
                             </button>
                           </form>
                           <?php } else { ?>
                             <form class="book-bookmark__form" action="<?php echo $current_url ?>" method="POST">
                               <input type="hidden" name="works_id" value="<?=$i?>" readonly>
-                              <button class="book-bookmark" type="submit" value="<?=$album_src[$i]?>" name="favorite_delete">
-                                <span>Удалить из любимого</span>
+                              <button class="icon-favorite icon-favorite--open" type="submit" value="<?=$album_src[$i]?>" name="favorite_delete">
+                                <span class="visually-hidden">Удалить из любимого</span>
                               </button>
                             </form>
                           <?php  }
