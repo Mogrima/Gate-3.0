@@ -5,6 +5,7 @@
 		// настройки по-умолчанию
 		this.defaults = {
 			margin: 16,		// расстояние между элементами [px]
+			widthSlider: 800,
 			visibleItems: 1,		// сколько элементов показывать одновременно
 			border: 0,		// толщина рамки изображения прописанная в CSS [px]
 			responsive: false,	// адаптивная галерея
@@ -31,6 +32,11 @@
 		this.stage = this.gallery.querySelector('.stage');
 		// элементы слайдера
 		this.items = this.gallery.querySelectorAll('.stage > div');
+		// все изображения слайдера
+		this.arts = this.gallery.querySelectorAll('.slider__img');
+		// Первое изображение в слайдере - нужно для взятие ширины, т.к. все рисунки одинаковой ширины,
+		// можно взять только только одно изображения
+		this.art = this.gallery.querySelector('.slider__img');
 		// количество элементов в слайдере
 		this.count = this.items.length;
 
@@ -92,6 +98,7 @@
 	fn.setSizeCarousel = function () {
 		// получаем ширину слайдера - вьюпорт, в котором прокручиваются элементы галереи
 		this.widthSlider = this.slider.offsetWidth;
+		this.widthArt = this.art.offsetWidth;
 
 		// если разрешена адаптация галереи, то необходимо, используя свойство
 		// 'options.adaptive', получить значения разрешений (контрольные точки),
@@ -112,21 +119,21 @@
 		// от ширины слайдера вычитаем сумму отступов
 		// уменьшенную на 1, т.к. отступ последнего видимого элемента не попадает
 		// в окно слайдера (контейнер '.stage')
-		var width = (this.widthSlider - this.options.margin * (this.options.visibleItems - 1)) / this.options.visibleItems;
-
+		var width = this.widthArt;
+		this.slider.style.width = this.options.widthSlider + 'px';
 		// значение, по которому отсчитываются координаты
 		// состоит из ширины элемента слайдера и его margin-right
 		// другими словами - растоянием между левыми границами элементов слайдера
-		this.width = width + this.options.margin;
+		this.width = width + this.options.margin + this.options.margin;
 		// ширина контейнера '.stage', непосредственно в котором
 		// расположены элементы слайдера
 		this.widths = this.width * this.count;
 		// задаётся стиль ширины контейнера '.stage'
 		this.stage.style.width = this.widths + 'px';
 		// перебираем коллекцию элементов слайдера и
-		// прописываем ширину и правый и левый отступ для каждого элемента
-		[].forEach.call(this.items, function (el) {
-			el.style.cssText = 'width:' + width + 'px; margin-right:' + this.options.margin + 'px; margin-left:' + this.options.margin + 'px;';
+		// прописываем правый и левый отступ для каждого элемента
+		[].forEach.call(this.arts, function (el) {
+			el.style.cssText = 'margin-right:' + this.options.margin + 'px; margin-left:' + this.options.margin + 'px;';
 		}.bind(this));
 
 		// после того, как каркас галереи построен, все размеры элементов
