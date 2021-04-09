@@ -219,7 +219,7 @@
 			// формируем постраничную навигацию
 			this.creatDotsCtrl();
 			// делаем постраничную навигацию видимой
-			this.dotsCtrl.style.display = 'inline-block';
+			this.dotsCtrl.style.display = 'flex';
 		} else {
 			// делаем постраничную навигацию невидимой
 			this.dotsCtrl.removeAttribute('style');
@@ -240,11 +240,13 @@
 			// элементы, управляющие постраничной навигацией
 			li = document.createElement('li'),
 			// создаём элемент span, который будет отображать точку
-			span = document.createElement('span'),
+			// span = document.createElement('span'),
 			clone;
+			// span.classList.add('slider__dot');
+			li.classList.add('slider__dot');
 
 		// добавляем созданный элемент 'span' в элемент списка 'li'
-		li.appendChild(span);
+		// li.appendChild(span);
 		while (i < this.count) {
 			// создаём клон полученного элемента списка
 			clone = li.cloneNode(true);
@@ -286,13 +288,13 @@
 	fn.setDotsStyle = function () {
 		// перебираем массив и делаем все элементы массива неактивными
 		this.spots.forEach(function (item, i, spots) {
-			item.classList.remove('active');
+			item.classList.remove('slider__dot--active');
 		});
 		// находим индекс элемента, который необходимо сделать активным
 		// метод Math.trunc() возвращает целую часть числа путём удаления всех дробных знаков.
 		var index = (this.next < this.max) ? Math.trunc(this.next / this.options.visibleItems) : this.spots.length - 1;
 		// добавляем класс элементу с найденным индексом
-		this.spots[index].classList.add('active');
+		this.spots[index].classList.add('slider__dot--active');
 		return;
 	};
 
@@ -362,7 +364,7 @@
 	fn.navControl = function (e) {
 		// если клик был сделан не по элементу 'span' объекта
 		// navCtrl, прекращаем работу функции
-		if (e.target.tagName != 'SPAN') return;
+		if (e.target.tagName != 'LI') return;
 		// определяем направление прокручивания галереи
 		// зависит от кнопки, по которой был сделан клик
 		// -1 - prev, 1 - next
@@ -379,12 +381,12 @@
 		// если клик был сделан не по элементу 'span' объекта dotsCtrl или
 		// по активному элементу, соотвествующему текущей странице,
 		// прекращаем работу функции
-		if (e.target.tagName != 'SPAN' || e.target.parentNode.classList.contains('active')) return;
+		if (e.target.tagName != 'LI' || e.target.classList.contains('slider__dot--active')) return;
 
 		// находим индекс элемента 'span' в массиве 'spots'
 		// этот индекс понадобится для поиска координаты
 		// в массиве 'coordinates'
-		var index = this.spots.indexOf(e.target.parentNode);
+		var index = this.spots.indexOf(e.target);
 		// если элемент в массиве 'spots' не найден, прекращаем работу функции
 		if (index == -1) return false;
 		// получаем индекс координаты, до которой будет прокручиваться галерея

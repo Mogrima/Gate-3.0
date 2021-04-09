@@ -137,24 +137,3 @@ body {
   display: none;
   margin-top: 10px
 }
-
-.dots-ctrl li {
-  display: inline-block
-}
-
-.dots-ctrl span {
-  width: 10px;
-  height: 10px;
-  display: block;
-  margin: 5px;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background-color: #0099ff;
-  opacity: 0.4;
-  cursor: pointer
-}
-
-.dots-ctrl .active span,
-.dots-ctrl span:hover {
-  opacity: 1
-}
