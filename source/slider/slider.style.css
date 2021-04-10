@@ -85,44 +85,9 @@ body {
   height: auto
 }
 
-.control {
-  width: 100%;
-  text-align: center;
-  position: relative
-}
-
 .nav-ctrl {
-  display: none;
   line-height: 20px;
   margin-top: 10px
-}
-
-.nav-ctrl span {
-  width: 100px;
-  height: 30px;
-  display: inline-block;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 30px;
-  color: #eee;
-  font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 0 5px;
-  border: solid 1px #357ebd;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  outline: none;
-  -webkit-user-select: none;
-  user-select: none;
-  background-color: #428bca;
-  cursor: pointer;
-  transition: all 0.3s
-}
-
-.nav-ctrl span:hover {
-  border-color: #285e8e;
-  background-color: #3276b1
 }
 
 .nav-ctrl .disable,

@@ -216,7 +216,7 @@
 			// устанавливаем стили для кнопок 'prev' и 'next'
 			this.setNavStyle();
 			// делаем навигацию видимой
-			this.navCtrl.style.display = 'block';
+			// this.navCtrl.style.display = 'block';
 		} else {
 			// делаем навигацию невидимой
 			this.navCtrl.removeAttribute('style');
@@ -243,17 +243,11 @@
 
 		var i = 0,
 			point = 0,
-			// создаём элемент списка, внутри которых будут находится
-			// элементы, управляющие постраничной навигацией
+			// создаём элемент списка, управляющий постраничной навигацией
 			li = document.createElement('li'),
-			// создаём элемент span, который будет отображать точку
-			// span = document.createElement('span'),
 			clone;
-			// span.classList.add('slider__dot');
 			li.classList.add('slider__dot');
 
-		// добавляем созданный элемент 'span' в элемент списка 'li'
-		// li.appendChild(span);
 		while (i < this.count) {
 			// создаём клон полученного элемента списка
 			clone = li.cloneNode(true);
@@ -369,9 +363,9 @@
 
 	// управление галерей кнопками 'prev / next'
 	fn.navControl = function (e) {
-		// если клик был сделан не по элементу 'span' объекта
+		// если клик был сделан не по элементу 'BUTTON' объекта
 		// navCtrl, прекращаем работу функции
-		if (e.target.tagName != 'LI') return;
+		if (e.target.tagName != 'BUTTON') return;
 		// определяем направление прокручивания галереи
 		// зависит от кнопки, по которой был сделан клик
 		// -1 - prev, 1 - next
@@ -385,12 +379,12 @@
 	// пролистываем галерею на колличество видимых элементов
 	// с помощью постраничной навигации
 	fn.dotsControl = function (e) {
-		// если клик был сделан не по элементу 'span' объекта dotsCtrl или
+		// если клик был сделан не по элементу 'LI' объекта dotsCtrl или
 		// по активному элементу, соотвествующему текущей странице,
 		// прекращаем работу функции
 		if (e.target.tagName != 'LI' || e.target.classList.contains('slider__dot--active')) return;
 
-		// находим индекс элемента 'span' в массиве 'spots'
+		// находим индекс элемента 'LI' в массиве 'spots'
 		// этот индекс понадобится для поиска координаты
 		// в массиве 'coordinates'
 		var index = this.spots.indexOf(e.target);
