@@ -1,3 +1,12 @@
+<?php 
+$current_url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+require_once('./core/business/appvars.php');
+require_once(BUS . 'connectvars.php');
+// подключение к базе данных
+require_once(BUS.'/mysql__connect.php');  
+// получение id альбома
+$id = $_GET["id"];
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
