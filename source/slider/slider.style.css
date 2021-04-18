@@ -90,14 +90,6 @@ body {
   margin-top: 10px
 }
 
-.nav-ctrl .disable,
-.nav-ctrl .disable:hover {
-  border: solid 1px #357ebd;
-  background-color: #428bca;
-  opacity: 0.4;
-  cursor: default
-}
-
 .dots-ctrl {
   display: none;
   margin-top: 10px

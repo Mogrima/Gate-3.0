@@ -266,22 +266,20 @@
 	};
 
 	fn.setNavStyle = function () {
-		// убираем у всех кнопок класс 'disable', теперь
-		// обе кнопки выглядят активными
-		this.btnPrev.classList.remove('disable');
-		this.btnNext.classList.remove('disable');
+		this.btnPrev.style.display = 'block';
+		this.btnNext.style.display = 'block';
 
 		if (this.current == 0) {
 			// если первый элемент является текущим, то блокируем попытку просмотра
 			// предыдущего элемента, т.к. его не существует и делаем кнопку
 			// 'prev' неактивной
-			this.btnPrev.classList.add('disable');
+			this.btnPrev.style.display = 'none';
 		} else if (this.current >= this.count - this.options.visibleItems) {
 			// если последний элемент появился на экране, при этом не важен
 			// его индекс, блокируем и делаем неактивной кнопку просмотра след.
 			// элемента на экране будет наблюдаться столько элементов,
 			// сколько указано в visibleItems
-			this.btnNext.classList.add('disable');
+			this.btnNext.style.display = 'none';
 		}
 		return;
 	};
