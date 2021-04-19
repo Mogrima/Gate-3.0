@@ -72,12 +72,14 @@ $arts_query = $pdo->query($album_arts);
 			adaptive: {
 				// настройка работает в диапазоне разрешений 320-768px
 				320: {
-					widthSlider: 312,
+					widthSlider: 320,
+					margin: 20,
 					// одновременно выводится 1 элемент
 					visibleItems: 1
 				},
 				768: {
-					widthSlider: 452
+					widthSlider: 480,
+					margin: 20
 				},
 				1200: {
 					widthSlider: 800
