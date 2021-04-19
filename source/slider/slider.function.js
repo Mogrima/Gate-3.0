@@ -9,8 +9,6 @@
 			visibleItems: 1,		// сколько элементов показывать одновременно
 			border: 0,		// толщина рамки изображения прописанная в CSS [px]
 			responsive: false,	// адаптивная галерея
-			autoScroll: false,	// автоматическое прокручивание
-			interval: 3000,	// задержка при автоматическом прокручивании [ms]
 			nav: true,	// показать/скрыть кнопки next/prev
 			dots: false,	// показать/скрыть постраничную навигацию
 			keyControl: false,	// управление клавишами вправо / влево
@@ -216,8 +214,6 @@
 			this.btnNext = this.navCtrl.querySelector('[data-shift=next]');
 			// устанавливаем стили для кнопок 'prev' и 'next'
 			this.setNavStyle();
-			// делаем навигацию видимой
-			// this.navCtrl.style.display = 'block';
 		} else {
 			// делаем навигацию невидимой
 			this.navCtrl.removeAttribute('style');
@@ -273,12 +269,12 @@
 
 		if (this.current == 0) {
 			// если первый элемент является текущим, то блокируем попытку просмотра
-			// предыдущего элемента, т.к. его не существует и делаем кнопку
-			// 'prev' неактивной
+			// предыдущего элемента, т.к. его не существует и убираем кнопку
+			// 'prev'
 			this.btnPrev.style.display = 'none';
 		} else if (this.current >= this.count - this.options.visibleItems) {
 			// если последний элемент появился на экране, при этом не важен
-			// его индекс, блокируем и делаем неактивной кнопку просмотра след.
+			// его индекс, убираем кнопку просмотра след.
 			// элемента на экране будет наблюдаться столько элементов,
 			// сколько указано в visibleItems
 			this.btnNext.style.display = 'none';
@@ -316,13 +312,6 @@
 	fn.registerEvents = function () {
 		// регистрируем обработчик изменения размеров окна браузера
 		window.addEventListener('resize', this.resize.bind(this));
-		// автоматическое прокручивание, запускается установкой в настройках
-		// значения свойства 'autoScroll' в true
-		// т.к. мы делаем слайдер, а не карусель использовать автоскролл лучше
-		// при выводе только одного изображения
-		if (this.options.autoScroll) {
-			setInterval(this.autoScroll.bind(this), this.options.interval);
-		}
 		// управление кликом по кнопкам 'prev / next' объекта 'navCtrl'
 		this.navCtrl.addEventListener('click', this.navControl.bind(this));
 		// управление постраничной навигацией точками
@@ -358,17 +347,6 @@
 
 		// флаг, информирующий о том, что обработчики событий установлены
 		this.events = true;
-	};
-
-	// автоматическое прокручивание галереи
-	fn.autoScroll = function (e) {
-		// получаем координату Х элемента, до которого должен переместиться слайдер
-		// галерея всегда прокручивается вправо, поэтому аргумент, через который
-		// передаётся direction, всегда равен 1
-		var x = this.getNextCoordinates.call(this, 1);
-		// запускаем прокручивание галереи
-		this.scroll.apply(this, [x, this.options.baseTransition]);
-		return;
 	};
 
 	// управление галерей кнопками 'prev / next'
@@ -521,7 +499,7 @@
 		if (typeof (direction) !== 'number') return this.coordinates[this.current];
 
 		// direction - направление перемещения: -1 - left, 1 - right
-		if (this.options.autoScroll && this.current >= this.count - this.options.visibleItems) {
+		if (this.current >= this.count - this.options.visibleItems) {
 			this.next = 0;
 		} else {
 			// попытка прокрутить к предыдущему элементу, когда текущим является первый элемент
