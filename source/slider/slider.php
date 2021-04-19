@@ -1,11 +1,14 @@
 <?php 
 $current_url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-require_once('./core/business/appvars.php');
-require_once(BUS . 'connectvars.php');
+require_once('../../core/business/appvars.php');
+require_once('../../core/business/connectvars.php');
 // подключение к базе данных
-require_once(BUS.'/mysql__connect.php');  
+require_once('../../core/business/mysql__connect.php');  
 // получение id альбома
-$id = $_GET["id"];
+$id = 2;
+
+$album_arts = "SELECT * FROM `album_arts` WHERE album_id = $id ORDER BY `id` DESC";
+$arts_query = $pdo->query($album_arts);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -15,7 +18,7 @@ $id = $_GET["id"];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Адаптивная галерея изображений</title>
 	<link href="slider.style.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/album-slider.css">
+	<link rel="stylesheet" href="album-slider.css">
 </head>
 
 <body>
@@ -24,85 +27,27 @@ $id = $_GET["id"];
 		<div id="gallery" class="gallery gallery1">
 			<div class="slider">
 				<div class="stage">
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Asmodei.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Baal.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Nell.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Азазель.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Астарот.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Басманов.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Вельзевул.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Гефест.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Винеа.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<img class="slider__img" src="../img/portraits/Гремор.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Денгребрия.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Ксальбадора.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Леший.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Лилит.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Маммон.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
-					<div>
-						<h3 class="works__title album-slider__title">Рисунок</h3>
-						<img class="slider__img" src="../img/portraits/Сатана.jpg" width="768px" alt="">
-						<div class="count count-no-js"><span>1/7</span></div>
-					</div>
+				<?php
+					$album_name = array();
+					$album_src = array();
+						while($art = $arts_query->fetch(PDO::FETCH_OBJ)) {
+							$album_name[] = $art->works_title;;
+							$album_src[] = $art->works_image;
+						} 
+						$arts_count = count($album_name);
+						
+						for($i = 0; $i < $arts_count; $i++) {
+								?>
+							<li class="slider__item">
+								
+								<h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
+								<img class="slider__img" src="images/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
+							</li> 
+						<?php }?>
+				</div>
+				<div class="count count-js"> 
+					<span class="count__current">1</span> из 
+					<span class="count__total">5</span> 
 				</div>
 			</div>
 			<div class="nav-ctrl">
