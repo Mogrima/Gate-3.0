@@ -220,10 +220,12 @@
 		}
 
 		if (this.options.dots === true) {
-			// формируем постраничную навигацию
-			this.creatDotsCtrl();
-			// делаем постраничную навигацию видимой
-			this.dotsCtrl.style.display = 'flex';
+			if(this.count < 16) {
+				// формируем постраничную навигацию
+				this.creatDotsCtrl();
+				// делаем постраничную навигацию видимой
+				this.dotsCtrl.style.display = 'flex';
+			}
 		} else {
 			// делаем постраничную навигацию невидимой
 			this.dotsCtrl.removeAttribute('style');
@@ -293,7 +295,8 @@
 	};
 
 	fn.setDotsStyle = function () {
-		// перебираем массив и делаем все элементы массива неактивными
+		if(this.count < 16) {
+			// перебираем массив и делаем все элементы массива неактивными
 		this.spots.forEach(function (item, i, spots) {
 			item.classList.remove('slider__dot--active');
 		});
@@ -302,6 +305,7 @@
 		let index = (this.next < this.max) ? Math.trunc(this.next / this.options.visibleItems) : this.spots.length - 1;
 		// добавляем класс элементу с найденным индексом
 		this.spots[index].classList.add('slider__dot--active');
+		}
 		return;
 	};
 
