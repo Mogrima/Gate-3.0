@@ -31,7 +31,7 @@
 		// контейнер, непосредственно в котором расположены элементы слайдера
 		this.stage = this.gallery.querySelector('.stage');
 		// элементы слайдера
-		this.items = this.gallery.querySelectorAll('.stage > div');
+		this.items = this.gallery.querySelectorAll('.stage > li');
 		// все изображения слайдера
 		this.arts = this.gallery.querySelectorAll('.slider__img');
 		// Первое изображение в слайдере - нужно для взятие ширины, т.к. все рисунки одинаковой ширины,
@@ -84,6 +84,7 @@
 
 		// формируем каркас галереи
 		this.setSizeCarousel();
+		this.countSlides();
 		// заполняем массив с координатами X каждого элемента слайдера
 		this.setCoordinates();
 		// формируем управление слайдером в зависимости от настроек
@@ -262,6 +263,7 @@
 			// слайдер при постраничной навигации
 			point = (i <= this.max) ? point - this.width * this.options.visibleItems : -this.width * this.max;
 		}
+		this.countSlides();
 		this.setDotsStyle();
 	};
 
@@ -284,6 +286,16 @@
 		return;
 	};
 
+	fn.countSlides = function () {
+		let index = (this.next < this.max) ? Math.trunc(this.next / this.options.visibleItems) : this.count - 1;
+		let totalCount = document.querySelector('.count__total');
+		let currentCount = document.querySelector('.count__current');
+		let totalSlides = this.items.length;
+		totalCount.innerHTML = totalSlides;
+		currentCount.innerHTML = index + 1;
+		return;
+	};
+
 	fn.setDotsStyle = function () {
 		// перебираем массив и делаем все элементы массива неактивными
 		this.spots.forEach(function (item, i, spots) {
@@ -291,7 +303,7 @@
 		});
 		// находим индекс элемента, который необходимо сделать активным
 		// метод Math.trunc() возвращает целую часть числа путём удаления всех дробных знаков.
-		var index = (this.next < this.max) ? Math.trunc(this.next / this.options.visibleItems) : this.spots.length - 1;
+		let index = (this.next < this.max) ? Math.trunc(this.next / this.options.visibleItems) : this.spots.length - 1;
 		// добавляем класс элементу с найденным индексом
 		this.spots[index].classList.add('slider__dot--active');
 		return;
@@ -540,6 +552,7 @@
 		// после прокручивания, индекс след. элемента становится текущим
 		this.current = (this.next < this.max) ? this.next : this.max;
 
+		this.countSlides();
 		// меняем стили отображения кнопок управления в зависимости от
 		// текущего индекса
 		if (this.options.nav) this.setNavStyle();
