@@ -22,40 +22,38 @@ $arts_query = $pdo->query($album_arts);
 </head>
 
 <body>
-	<div class="wrap">
-		<div class="headline">Aдаптивная галерея изображений</div>
-		<div id="gallery" class="gallery gallery1">
-			<div class="slider">
-				<div class="stage">
-				<?php
-					$album_name = array();
-					$album_src = array();
-						while($art = $arts_query->fetch(PDO::FETCH_OBJ)) {
-							$album_name[] = $art->works_title;;
-							$album_src[] = $art->works_image;
-						} 
-						$arts_count = count($album_name);
-						
-						for($i = 0; $i < $arts_count; $i++) {
-								?>
-							<li class="slider__item">
-								
-								<h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
-								<img class="slider__img" src="images/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
-							</li> 
-						<?php }?>
-				</div>
-				<div class="count count-js"> 
-					<span class="count__current">1</span> из 
-					<span class="count__total">5</span> 
-				</div>
+	<h1 class="headline">Aдаптивная галерея изображений</h1>
+	<div id="gallery" class="gallery gallery1">
+		<div class="slider">
+			<div class="stage">
+			<?php
+				$album_name = array();
+				$album_src = array();
+					while($art = $arts_query->fetch(PDO::FETCH_OBJ)) {
+						$album_name[] = $art->works_title;;
+						$album_src[] = $art->works_image;
+					} 
+					$arts_count = count($album_name);
+					
+					for($i = 0; $i < $arts_count; $i++) {
+							?>
+						<li class="slider__item">
+							
+							<h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
+							<img class="slider__img" src="images/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
+						</li> 
+					<?php }?>
 			</div>
-			<div class="nav-ctrl">
-				<button class="prev slider__prev album-slider__prev" type="button" data-shift="prev"><!-- Предыдущий--></button>
-				<button class="next slider__next album-slider__next" type="button" data-shift="next"><!-- Следущий --></button>
+			<div class="count count-js"> 
+				<span class="count__current">1</span> из 
+				<span class="count__total">5</span> 
 			</div>
-				<ul class="dots-ctrl slider__dots"></ul>
-			</div>
+		</div>
+		<div class="nav-ctrl">
+			<button class="prev slider__prev album-slider__prev" type="button" data-shift="prev"><!-- Предыдущий--></button>
+			<button class="next slider__next album-slider__next" type="button" data-shift="next"><!-- Следущий --></button>
+		</div>
+			<ul class="dots-ctrl slider__dots"></ul>
 		</div>
 	</div>
 
