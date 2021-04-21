@@ -1,7 +1,3 @@
-.show {
-  display: block
-}
-
 .headline {
   max-width: 1024px;
   font-weight: 500;
@@ -10,28 +6,13 @@
 }
 
 /* transition */
-.nav-ctrl span,
-.dots-ctrl span {
+.album-slider__prev,
+.album-slider__next,
+.slider__dot {
   transition: all 0.3s
 }
 
 /*** CONTENT ***/
-.gallery {
-  width: 100%;
-  max-width: 800px;
-  visibility: hidden;
-  margin: 0 auto 30px;
-  background-color: #2e294b;
-}
-
-.slider {
-  width: 100%;
-
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
 .stage {
   overflow: hidden
 }
