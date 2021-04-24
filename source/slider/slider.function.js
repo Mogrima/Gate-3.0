@@ -7,6 +7,7 @@
 			margin: 16,		// расстояние между элементами [px]
 			widthSlider: 800,
 			visibleItems: 1,		// сколько элементов показывать одновременно
+			preview: true,
 			border: 0,		// толщина рамки изображения прописанная в CSS [px]
 			responsive: false,	// адаптивная галерея
 			nav: true,	// показать/скрыть кнопки next/prev
@@ -28,6 +29,7 @@
 		this.slider = this.gallery.querySelector('.slider');
 		// контейнер, непосредственно в котором расположены элементы слайдера
 		this.stage = this.gallery.querySelector('.stage');
+		this.preview_stage = this.gallery.querySelector('.slider__list-preview');
 		// элементы слайдера
 		this.items = this.gallery.querySelectorAll('.stage > li');
 		// все изображения слайдера
@@ -37,6 +39,7 @@
 		this.art = this.gallery.querySelector('.slider__img');
 		// количество элементов в слайдере
 		this.count = this.items.length;
+		this.preview_width = this.count * 150;
 
 		this.current = 0;		// index координаты текущего элемента
 		this.next = 0;			// index координаты следующего элемента
@@ -129,6 +132,7 @@
 		this.widths = this.width * this.count;
 		// задаётся стиль ширины контейнера '.stage'
 		this.stage.style.width = this.widths + 'px';
+		this.preview_stage.style.width = this.widths + 'px';
 		// перебираем коллекцию элементов слайдера и
 		// прописываем правый и левый отступ для каждого элемента
 		[].forEach.call(this.arts, function (el) {
@@ -524,9 +528,12 @@
 		// прописываем новые стили для смещения (прокручивания) галереи
 		// к следующему элементу
 		this.stage.style.cssText = 'width:' + this.widths + 'px; ' +
-			'height:' + this.items[0].offsetHeight + 'px; ' +
 			'transform:translateX(' + x + 'px); ' +
 			'transition:' + transition + 's';
+			
+		this.preview_stage.style.cssText = 'width:' + this.widths + 'px; ' +
+		'transform:translateX(' + 180 * (x / 800) + 'px); ' +
+		'transition:' + transition + 's';
 		// после прокручивания, индекс след. элемента становится текущим
 		this.current = (this.next < this.max) ? this.next : this.max;
 

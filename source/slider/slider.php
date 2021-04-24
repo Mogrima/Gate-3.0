@@ -25,7 +25,7 @@ $arts_query = $pdo->query($album_arts);
 	<h1 class="headline">Aдаптивная галерея изображений</h1>
 	<div id="gallery" class="gallery gallery1">
 		<div class="slider">
-			<div class="stage">
+			<ul class="stage">
 			<?php
 				$album_name = array();
 				$album_src = array();
@@ -43,7 +43,15 @@ $arts_query = $pdo->query($album_arts);
 							<img class="slider__img" src="images/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
 						</li> 
 					<?php }?>
-			</div>
+			</ul>
+			<ul class="slider__list-preview"> 
+				<?php
+				for($i = 0; $i < $arts_count; $i++) { ?>
+					<li class="slider__item-preview">
+						<img class="slider__img-nav" src="images/<?=$album_src[$i]?>-preview.jpg" width="150" alt="<?=$album_name[$i]?>">
+					</li> 
+				<?php } ?>
+			</ul> 
 			<div class="count count-js"> 
 				<span class="count__current">1</span> из 
 				<span class="count__total">5</span> 

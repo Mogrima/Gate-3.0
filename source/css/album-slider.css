@@ -30,9 +30,6 @@
 .slider__list-preview {
     margin: 0;
     padding: 0;
-    width: 2600px;
-    position: relative;
-    left: 0px;
     transition: left .5s ease-in-out;
 }
 
