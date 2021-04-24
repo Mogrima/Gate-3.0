@@ -1,7 +1,7 @@
 ; (function () {
 	'use strict';
 
-	var Gallery = function (id, setup) {
+	let Gallery = function (id, setup) {
 		// настройки по-умолчанию
 		this.defaults = {
 			margin: 16,		// расстояние между элементами [px]
@@ -56,7 +56,7 @@
 	window.Gallery = Gallery;
 	// для сокращения записи, создадим переменную, которая будет ссылаться
 	// на прототип 'Gallery'
-	var fn = Gallery.prototype;
+	let fn = Gallery.prototype;
 
 	// настройка и инициализация галереи после изменения
 	// текущей ширины страницы
@@ -72,7 +72,7 @@
 			this.current = (this.current <= this.max) ? this.current : this.max;
 			// после изменения каркаса слайдера под новое разрешение,
 			// находим новую координату текущего элемента
-			var x = this.coordinates[this.current];
+			let x = this.coordinates[this.current];
 			// прокручиваем слайдер до элемента, который до начала ресайзинга
 			// был текущим
 			this.scroll.apply(this, [x, this.options.baseTransition]);
@@ -121,7 +121,7 @@
 		// от ширины слайдера вычитаем сумму отступов
 		// уменьшенную на 1, т.к. отступ последнего видимого элемента не попадает
 		// в окно слайдера (контейнер '.stage')
-		var width = this.widthArt;
+		let width = this.widthArt;
 		this.slider.style.width = this.options.widthSlider + 'px';
 		// значение, по которому отсчитываются координаты
 		// состоит из ширины элемента слайдера и его margin-right
@@ -146,21 +146,21 @@
 	};
 
 	fn.setAdaptiveOptions = function () {
-		var points = [], // массив с контрольными точками
+		let points = [], // массив с контрольными точками
 			point, // текущая контрольная точка
 			// размер видимой части окна браузера
 			width = document.documentElement.clientWidth;
 
 		// получаем массив из контрольных точек (break point)
-		for (var key in this.options.adaptive) {
+		for (let key in this.options.adaptive) {
 			points.push(key);
 		}
 
 		// сравнивая ширину страницы (документа) со значениями break point из массива,
 		// определяем ближайшую контрольную точку 'снизу'. Эта точка будет служить
 		// ключом к объекту с настройками для данного диапазона ширины страницы
-		for (var i = 0, j = points.length; i < j; i++) {
-			var a = points[i],
+		for (let i = 0, j = points.length; i < j; i++) {
+			let a = points[i],
 				b = (points[i + 1] !== undefined) ? points[i + 1] : points[i];
 
 			if (width <= points[0]) {
@@ -174,8 +174,8 @@
 
 		// записываем полученные из object[point] настройки в options
 		// данные настройки будут записаны поверх существующих
-		var setting = this.options.adaptive[point];
-		for (var key in setting) {
+		let setting = this.options.adaptive[point];
+		for (let key in setting) {
 			this.options[key] = setting[key];
 		}
 		return;
@@ -184,7 +184,7 @@
 	// заполняем массив с коодинатами X каждого элемента слайдера 
 	fn.setCoordinates = function () {
 		// координата первого элемента, от неё и будет идти отсчёт
-		var point = 0;
+		let point = 0;
 		// добавляем новое свойство в объект 'options'
 		// пока это пустой массив
 		this.coordinates = [];
@@ -244,7 +244,7 @@
 		// разрешения (ширины экрана)
 		this.dotsCtrl.innerHTML = '';
 
-		var i = 0,
+		let i = 0,
 			point = 0,
 			// создаём элемент списка, управляющий постраничной навигацией
 			li = document.createElement('li'),
@@ -365,7 +365,7 @@
 		// определяем направление прокручивания галереи
 		// зависит от кнопки, по которой был сделан клик
 		// -1 - prev, 1 - next
-		var direction = (e.target.getAttribute('data-shift') == 'next') ? 1 : -1,
+		let direction = (e.target.getAttribute('data-shift') == 'next') ? 1 : -1,
 			// получаем координату Х элемента, до которого должен переместиться слайдер
 			x = this.getNextCoordinates(direction);
 		// запускаем прокручивание галереи
@@ -383,7 +383,7 @@
 		// находим индекс элемента 'LI' в массиве 'spots'
 		// этот индекс понадобится для поиска координаты
 		// в массиве 'coordinates'
-		var index = this.spots.indexOf(e.target);
+		let index = this.spots.indexOf(e.target);
 		// если элемент в массиве 'spots' не найден, прекращаем работу функции
 		if (index == -1) return false;
 		// получаем индекс координаты, до которой будет прокручиваться галерея
@@ -393,10 +393,10 @@
 		// всегда visibleItems элементов
 		this.next = (this.next <= this.max) ? this.next : this.max;
 		// координата, до которой будет происходить scroll
-		var x = this.coordinates[this.next];
+		let x = this.coordinates[this.next];
 
 		// вычисляем, на сколько элементов будет прокручена галерея
-		var delta = Math.abs(this.current - this.next),
+		let delta = Math.abs(this.current - this.next),
 			// увеличиваем время анимации скролла в зависимости от количества
 			// прокручиваемых элементов
 			transition = this.options.baseTransition + delta * 0.07;
@@ -407,14 +407,14 @@
 
 	// листаем галерею с помощью клавиатуры
 	fn.keyControl = function (e) {
-		var left = 37,	// код клавиши 'стрелочка влево' 
+		let left = 37,	// код клавиши 'стрелочка влево' 
 			right = 39;	// код клавиши 'стрелочка вправо'
 		// проверяем код нажатой клавиши и исходя из полученного
 		// кода определяем направление прокручивания галереи
 		// если код не соотвествует клавишам 'влево' или 'вправо',
 		// прекращаем работу функции
 		if (e.which !== right && e.which !== left) return;
-		var direction = (e.which === right) ? 1 : -1,
+		let direction = (e.which === right) ? 1 : -1,
 			// получаем координату Х элемента, до которого должна переместиться галерея
 			x = this.getNextCoordinates(direction);
 		// запускаем прокручивание галереи
@@ -427,9 +427,9 @@
 		e.preventDefault();
 		// определяем направление перемещения в зависимости от направления
 		// вращения колёсика мыши
-		var direction = (e.deltaY > 0) ? 1 : -1;
+		let direction = (e.deltaY > 0) ? 1 : -1;
 		// получаем координату Х элемента, до которого должен переместиться слайдер
-		var x = this.getNextCoordinates(direction);
+		let x = this.getNextCoordinates(direction);
 		// запускаем прокручивание галереи
 		this.scroll(x, this.options.baseTransition);
 	};
@@ -465,7 +465,7 @@
 		if (Math.abs(this.shift) < 3) return;
 
 		// общая ширина всех невидимых в данный момент элементов слайдера
-		var remaining = this.widths - this.width * this.options.visibleItems,
+		let remaining = this.widths - this.width * this.options.visibleItems,
 			// разница между текущей координатой и смещением курсора от
 			// точки старта, с которой начато перетаскивание
 			delta = this.coordinates[this.current] - this.shift;
@@ -489,9 +489,9 @@
 		if (this.pressed === false) return;
 
 		// рассчитываем направление прокрутки галереи
-		var direction = (Math.abs(this.shift) > this.width / 2) ? Math.round(this.shift / this.width) : '';
+		let direction = (Math.abs(this.shift) > this.width / 2) ? Math.round(this.shift / this.width) : '';
 		// определяем координату X ближайшего элемента
-		var x = this.getNextCoordinates(direction);
+		let x = this.getNextCoordinates(direction);
 
 		// запускаем доводку прокручивания галереи к ближайшему элементу
 		this.scroll(x, this.options.baseTransition);
@@ -552,10 +552,10 @@
 	// и выдаёт общий результат
 	function extend(out) {
 		out = out || {};
-		for (var i = 1; i < arguments.length; i++) {
+		for (let i = 1; i < arguments.length; i++) {
 			if (!arguments[i])
 				continue;
-			for (var key in arguments[i]) {
+			for (let key in arguments[i]) {
 				if (arguments[i].hasOwnProperty(key))
 					out[key] = arguments[i][key];
 			}
