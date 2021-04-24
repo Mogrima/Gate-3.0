@@ -11,7 +11,7 @@
     width: 800px;
     margin: 0 auto;
     padding-top: 20px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     background-color: #2e294b;
     overflow: hidden;
 }
@@ -72,15 +72,14 @@
 
 .slider__dots {
     margin: 0 auto;
-    min-height: 50px;
 }
 
 .slider__dots {
     display: flex;
     flex-wrap: wrap;
     padding: 0px;
-    
-    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 .slider__dot {

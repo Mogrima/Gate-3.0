@@ -61,7 +61,9 @@ $arts_query = $pdo->query($album_arts);
 			<button class="prev slider__prev album-slider__prev" type="button" data-shift="prev"><!-- Предыдущий--></button>
 			<button class="next slider__next album-slider__next" type="button" data-shift="next"><!-- Следущий --></button>
 		</div>
+		<div class="slider__wrapper-dots">
 			<ul class="dots-ctrl slider__dots"></ul>
+		</div>
 		</div>
 	</div>
 
