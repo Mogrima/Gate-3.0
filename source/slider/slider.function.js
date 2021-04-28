@@ -1,6 +1,14 @@
 ; (function () {
 	'use strict';
 
+	// Убираю класс no-js
+
+	const gallery = document.querySelector('.gallery');
+
+	if (gallery.classList.contains('gallery-no-js')) {
+    gallery.classList.remove('gallery-no-js');
+	}
+
 	let Gallery = function (id, setup) {
 		// настройки по-умолчанию
 		this.defaults = {

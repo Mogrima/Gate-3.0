@@ -23,9 +23,9 @@ $arts_query = $pdo->query($album_arts);
 
 <body>
 	<h1 class="headline">Aдаптивная галерея изображений</h1>
-	<div id="gallery" class="gallery gallery1">
+	<div id="gallery" class="gallery gallery-no-js gallery1">
 		<div class="slider">
-			<ul class="stage">
+			<ul class="slider__list stage">
 			<?php
 				$album_name = array();
 				$album_src = array();
