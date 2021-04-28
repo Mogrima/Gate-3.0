@@ -87,10 +87,12 @@ $arts_query = $pdo->query($album_arts);
 				},
 				768: {
 					widthSlider: 480,
-					margin: 20
+					margin: 20,
+					preview: true
 				},
-				1200: {
-					widthSlider: 800
+				1199: {
+					widthSlider: 800,
+					preview: true
 				}
 			}
 		});
