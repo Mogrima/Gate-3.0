@@ -4,6 +4,10 @@
     margin: 0 auto;
 }
 
+.gallery__wrapper {
+    margin-bottom: 20px;
+}
+
 .slider {
     position: relative;
     display: flex;
@@ -77,6 +81,7 @@
 .slider__dots {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     padding: 0px;
     padding-top: 10px;
     padding-bottom: 20px;
@@ -94,6 +99,10 @@
     background-color: #483837;
     border: none;
     border-radius: 50%;
+}
+
+.slider__dot:last-child {
+    margin-right: 0;
 }
 
 .slider__dot:hover {

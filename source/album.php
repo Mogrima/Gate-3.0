@@ -79,6 +79,7 @@ if(isset($_POST['favorite_delete'])) {
           <p class="page-description"><?=$album_desc?></p>
           </div>
           <section id="gallery" class="gallery gallery-no-js gallery1">
+            <div class="gallery__wrapper">
             <div class="slider"> 
                 <ul class="slider__list stage"> 
                 <?php
@@ -161,7 +162,8 @@ if(isset($_POST['favorite_delete'])) {
               <div class="slider__wrapper-dots">
 			          <ul class="dots-ctrl slider__dots"></ul>
 		          </div>
-     </section>
+            </div>
+          </section>
      <?php require_once(BLOCKS .'rules-comment.php'); ?>
         <section>
         <?php 

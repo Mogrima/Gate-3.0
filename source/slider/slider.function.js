@@ -238,6 +238,7 @@
 				this.creatDotsCtrl();
 				// делаем постраничную навигацию видимой
 				this.dotsCtrl.style.display = 'flex';
+				this.dotsCtrl.style.width = (this.count * 12) * 2 + 'px';
 			}
 		} else {
 			// делаем постраничную навигацию невидимой
