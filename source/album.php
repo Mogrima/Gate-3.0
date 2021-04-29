@@ -52,6 +52,7 @@ if(isset($_POST['favorite_delete'])) {
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
     <link href="css/album-slider.css" rel="stylesheet">
+    <link href="css/slider.style.css" rel="stylesheet">
 <body class="page">
   <div class="background-header"></div>
   <?php require_once(BLOCKS . 'header.php'); ?>
@@ -77,10 +78,9 @@ if(isset($_POST['favorite_delete'])) {
           <?php require_once(BLOCKS . 'search-block.php'); ?>
           <p class="page-description"><?=$album_desc?></p>
           </div>
-          <section class="gallery gallery-no-js">
-         <div class="slider__container"> 
-                <!-- <li id="slide_slice"> --> 
-                <ul class="slider__list"> 
+          <section id="gallery" class="gallery gallery-no-js gallery1">
+            <div class="slider"> 
+                <ul class="slider__list stage"> 
                 <?php
                 $album_name = array();
                 $album_src = array();
@@ -116,7 +116,6 @@ if(isset($_POST['favorite_delete'])) {
                       
                       <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
                       <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
-                      <div class="count count-no-js"><span>1/7</span></div>
                       <?php
                           if (isset($_SESSION['user_id'])) {
                               if($favorite_array[$i]) {
@@ -141,29 +140,27 @@ if(isset($_POST['favorite_delete'])) {
                     </li> 
                   <?php }?>
                 </ul> 
-                <!-- </div> --> 
+                <ul class="slider__list-preview"> 
+                <?php
+                for($i = 0; $i < $arts_count; $i++) { ?>
+                  <li class="slider__item-preview">
+                    <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150" alt="<?=$album_name[$i]?>">
+                  </li> 
+                <?php } ?>
+              </ul> 
                  <!-- Подсчет слайдов --> 
                <div class="count count-js"> 
                   <span class="count__current">1</span> из 
                   <span class="count__total">5</span> 
                </div>
-               
                </div> 
-               <button class="slider__next album-slider__next"><!-- Следущий --></button> 
-               <button class="slider__prev album-slider__prev"><!-- Предыдущий--></button> 
-               <div class="slider__container-preview"> 
-                <ul class="slider__list-preview"> 
-                 <?php
-                 for($i = 0; $i < $arts_count; $i++) { ?>
-                    <li class="slider__item-preview">
-                      <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150" alt="<?=$album_name[$i]?>">
-                    </li> 
-                 <?php } ?>
-                </ul> 
-               </div> 
-               <ul class="slider__dots"> 
-               </ul> 
-              
+               <div class="nav-ctrl">
+                <button class="prev slider__prev album-slider__prev" type="button" data-shift="prev"><!-- Предыдущий--></button>
+                <button class="next slider__next album-slider__next" type="button" data-shift="next"><!-- Следущий --></button>
+		          </div>
+              <div class="slider__wrapper-dots">
+			          <ul class="dots-ctrl slider__dots"></ul>
+		          </div>
      </section>
      <?php require_once(BLOCKS .'rules-comment.php'); ?>
         <section>
@@ -193,7 +190,36 @@ if(isset($_POST['favorite_delete'])) {
   <?php require_once(BLOCKS .'modal-registration.php'); ?>
   <div class="overlay"></div>
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
-  <script src="js/album-slider.js"></script>
+  <script src="js/slider.function.js"></script>
+	<script>
+		var gallery1 = new Gallery('gallery', {
+			// включаем постраничную навигацию
+			dots: true,
+			// включаем управление с клавиатуры клавишами навигации "вправо / влево"
+			keyControl: true,
+			// включаем адаптивность
+			responsive: true,
+			// настройки галереи в зависимости от разрешения
+			adaptive: {
+				// настройка работает в диапазоне разрешений 320-768px
+				320: {
+					widthSlider: 320,
+					margin: 20,
+					// одновременно выводится 1 элемент
+					visibleItems: 1
+				},
+				768: {
+					widthSlider: 480,
+					margin: 20,
+					preview: true
+				},
+				1199: {
+					widthSlider: 800,
+					preview: true
+				}
+			}
+		});
+	</script>
   <script>
   let totalCountLetter = 600;
   let countInput = document.querySelector('.countInput');
