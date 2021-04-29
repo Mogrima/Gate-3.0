@@ -6,6 +6,7 @@
 
 .gallery__wrapper {
     margin-bottom: 20px;
+    background-color: #2e294b;
 }
 
 .slider {
@@ -16,7 +17,6 @@
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 10px;
-    background-color: #2e294b;
     overflow: hidden;
 }
 
