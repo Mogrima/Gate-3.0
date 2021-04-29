@@ -51,8 +51,8 @@ if(isset($_POST['favorite_delete'])) {
     
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
-    <link href="css/album-slider.css" rel="stylesheet">
-    <link href="css/slider.style.css" rel="stylesheet">
+  <link href="css/album-slider.css" rel="stylesheet">
+  <link href="css/slider.style.css" rel="stylesheet">
 <body class="page">
   <div class="background-header"></div>
   <?php require_once(BLOCKS . 'header.php'); ?>
@@ -60,7 +60,8 @@ if(isset($_POST['favorite_delete'])) {
   ?>
   <main class="page-main">
     <div class="container">
-      <div class="substrate substrate__album"> <!--  Подложка -->
+      <div class="substrate substrate__album">
+        <!--  Подложка -->
         <div class="page-main__head">
           <h1 class="title"><?=$album_title?></h1>
           <ul class="breadcrumb">
@@ -71,17 +72,17 @@ if(isset($_POST['favorite_delete'])) {
               <a class="breadcrumb__link" href="gallery.php">Галерея</a>
             </li>
             <?php if($nested == 1) { ?>
-              <li class="breadcrumb__item"><a class="breadcrumb__link" href="inner-album.php">Легенды</a></li>
+            <li class="breadcrumb__item"><a class="breadcrumb__link" href="inner-album.php">Легенды</a></li>
             <?php } ?>
             <li class="breadcrumb__item breadcrumb__item--current"><?=$album_title?></li>
           </ul>
           <?php require_once(BLOCKS . 'search-block.php'); ?>
           <p class="page-description"><?=$album_desc?></p>
-          </div>
-          <section id="gallery" class="gallery gallery-no-js gallery1">
-            <div class="gallery__wrapper">
-            <div class="slider"> 
-                <ul class="slider__list stage"> 
+        </div>
+        <section id="gallery" class="gallery gallery-no-js gallery1">
+          <div class="gallery__wrapper">
+            <div class="slider">
+              <ul class="slider__list stage">
                 <?php
                 $album_name = array();
                 $album_src = array();
@@ -113,60 +114,65 @@ if(isset($_POST['favorite_delete'])) {
 
                   for($i = 0; $i < $arts_count; $i++) {
                      ?>
-                    <li class="slider__item">
-                      
-                      <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
-                      <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
-                      <?php
+                <li class="slider__item">
+
+                  <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
+                  <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
+                  <?php
                           if (isset($_SESSION['user_id'])) {
                               if($favorite_array[$i]) {
                           ?>
-                          <form action="<?php echo $current_url ?>" method="POST">
-                            <input type="hidden" name="works_id" value="<?=$i?>" readonly>
-                            <input type="hidden" name="works_title" value="<?=$album_name[$i]?>" readonly>
-                            <button class="icon-favorite icon-favorite--close" type="submit" value="<?=$album_src[$i]?>" name="favorite">
-                              <span class="visually-hidden">Добавить в любимое</span>
-                            </button>
-                          </form>
-                          <?php } else { ?>
-                            <form action="<?php echo $current_url ?>" method="POST">
-                              <input type="hidden" name="works_id" value="<?=$i?>" readonly>
-                              <button class="icon-favorite icon-favorite--open" type="submit" value="<?=$album_src[$i]?>" name="favorite_delete">
-                                <span class="visually-hidden">Удалить из любимого</span>
-                              </button>
-                            </form>
-                          <?php  }
+                  <form action="<?php echo $current_url ?>" method="POST">
+                    <input type="hidden" name="works_id" value="<?=$i?>" readonly>
+                    <input type="hidden" name="works_title" value="<?=$album_name[$i]?>" readonly>
+                    <button class="icon-favorite icon-favorite--close" type="submit" value="<?=$album_src[$i]?>"
+                      name="favorite">
+                      <span class="visually-hidden">Добавить в любимое</span>
+                    </button>
+                  </form>
+                  <?php } else { ?>
+                  <form action="<?php echo $current_url ?>" method="POST">
+                    <input type="hidden" name="works_id" value="<?=$i?>" readonly>
+                    <button class="icon-favorite icon-favorite--open" type="submit" value="<?=$album_src[$i]?>"
+                      name="favorite_delete">
+                      <span class="visually-hidden">Удалить из любимого</span>
+                    </button>
+                  </form>
+                  <?php  }
                           }
                           ?>
-                    </li> 
-                  <?php }?>
-                </ul> 
-                <ul class="slider__list-preview"> 
+                </li>
+                <?php }?>
+              </ul>
+              <ul class="slider__list-preview">
                 <?php
                 for($i = 0; $i < $arts_count; $i++) { ?>
-                  <li class="slider__item-preview">
-                    <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150" alt="<?=$album_name[$i]?>">
-                  </li> 
+                <li class="slider__item-preview">
+                  <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150"
+                    alt="<?=$album_name[$i]?>">
+                </li>
                 <?php } ?>
-              </ul> 
-                 <!-- Подсчет слайдов --> 
-               <div class="count count-js"> 
-                  <span class="count__current">1</span> из 
-                  <span class="count__total">5</span> 
-               </div>
-               </div> 
-               <div class="nav-ctrl">
-                <button class="prev slider__prev album-slider__prev" type="button" data-shift="prev"><!-- Предыдущий--></button>
-                <button class="next slider__next album-slider__next" type="button" data-shift="next"><!-- Следущий --></button>
-		          </div>
-              <div class="slider__wrapper-dots">
-			          <ul class="dots-ctrl slider__dots"></ul>
-		          </div>
+              </ul>
+              <!-- Подсчет слайдов -->
+              <div class="count count-js">
+                <span class="count__current">1</span> из
+                <span class="count__total">5</span>
+              </div>
             </div>
-          </section>
-     <?php require_once(BLOCKS .'rules-comment.php'); ?>
+            <div class="nav-ctrl">
+              <button class="prev slider__prev album-slider__prev" type="button" data-shift="prev">
+                <!-- Предыдущий--></button>
+              <button class="next slider__next album-slider__next" type="button" data-shift="next">
+                <!-- Следущий --></button>
+            </div>
+            <div class="slider__wrapper-dots">
+              <ul class="dots-ctrl slider__dots"></ul>
+            </div>
+          </div>
+        </section>
+        <?php require_once(BLOCKS .'rules-comment.php'); ?>
         <section>
-        <?php 
+          <?php 
          $book_id = $_GET['id'];
          $type = 'album';
          $get_id = $book_id;
@@ -185,62 +191,58 @@ if(isset($_POST['favorite_delete'])) {
           $countPage = ceil($c / $on_page);
          require_once(BLOCKS . 'pagination.php'); ?>
         </section>
-    </div>
-    </main>
-    <?php require_once(BLOCKS .'footer.php'); ?>
+      </div>
+  </main>
+  <?php require_once(BLOCKS .'footer.php'); ?>
   <?php require_once(BLOCKS .'modal-login.php'); ?>
   <?php require_once(BLOCKS .'modal-registration.php'); ?>
   <div class="overlay"></div>
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
   <script src="js/slider.function.js"></script>
-	<script>
-		var gallery1 = new Gallery('gallery', {
-			// включаем постраничную навигацию
-			dots: true,
-			// включаем управление с клавиатуры клавишами навигации "вправо / влево"
-			keyControl: true,
-			// включаем адаптивность
-			responsive: true,
-			// настройки галереи в зависимости от разрешения
-			adaptive: {
-				// настройка работает в диапазоне разрешений 320-768px
-				320: {
-					widthSlider: 320,
-					margin: 20,
-					// одновременно выводится 1 элемент
-					visibleItems: 1
-				},
-				768: {
-					widthSlider: 480,
-					margin: 20,
-					preview: true
-				},
-				1199: {
-					widthSlider: 800,
-					preview: true
-				}
-			}
-		});
-	</script>
   <script>
-  let totalCountLetter = 600;
-  let countInput = document.querySelector('.countInput');
-  let count = document.querySelector('.count-letter_symbol');
-  if (countInput != null) {
-  countInput.addEventListener('input', function() {
-    count.innerHTML = totalCountLetter - countInput.value.length;
-  });
-};
-  
-  document.addEventListener('DOMContentLoaded', (event) => {
-    let tk = '';
-    grecaptcha.ready(function () {
-      grecaptcha.execute('6LfJljAaAAAAAHHrGwm6lU1CcfQUs9CK4IOHzF_p', { action: 'homepage' }).then(function (token) {
-        tk = token;
-        document.getElementById('token2').value = token;
+    var gallery1 = new Gallery('gallery', {
+      dots: true,
+      keyControl: true,
+      responsive: true,
+      adaptive: {
+        320: {
+          widthSlider: 320,
+          margin: 20,
+          visibleItems: 1
+        },
+        768: {
+          widthSlider: 480,
+          margin: 20,
+          preview: true
+        },
+        1199: {
+          widthSlider: 800,
+          preview: true
+        }
+      }
+    });
+  </script>
+  <script>
+    let totalCountLetter = 600;
+    let countInput = document.querySelector('.countInput');
+    let count = document.querySelector('.count-letter_symbol');
+    if (countInput != null) {
+      countInput.addEventListener('input', function () {
+        count.innerHTML = totalCountLetter - countInput.value.length;
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      let tk = '';
+      grecaptcha.ready(function () {
+        grecaptcha.execute('6LfJljAaAAAAAHHrGwm6lU1CcfQUs9CK4IOHzF_p', {
+          action: 'homepage'
+        }).then(function (token) {
+          tk = token;
+          document.getElementById('token2').value = token;
+        });
       });
     });
-});
   </script>
-    </body>
-    </html>
+</body>
+</html>
