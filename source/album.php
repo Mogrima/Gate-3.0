@@ -52,7 +52,6 @@ if(isset($_POST['favorite_delete'])) {
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
   <link href="css/album-slider.css" rel="stylesheet">
-  <link href="css/slider.style.css" rel="stylesheet">
 <body class="page">
   <div class="background-header"></div>
   <?php require_once(BLOCKS . 'header.php'); ?>
@@ -79,10 +78,10 @@ if(isset($_POST['favorite_delete'])) {
           <?php require_once(BLOCKS . 'search-block.php'); ?>
           <p class="page-description"><?=$album_desc?></p>
         </div>
-        <section id="gallery" class="gallery gallery-no-js gallery1">
+        <section id="gallery" class="gallery gallery-no-js">
           <div class="gallery__wrapper">
             <div class="slider">
-              <ul class="slider__list stage">
+              <ul class="slider__list">
                 <?php
                 $album_name = array();
                 $album_src = array();
@@ -116,7 +115,7 @@ if(isset($_POST['favorite_delete'])) {
                      ?>
                 <li class="slider__item">
 
-                  <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
+                  <h3 class="album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
                   <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
                   <?php
                           if (isset($_SESSION['user_id'])) {
@@ -154,19 +153,19 @@ if(isset($_POST['favorite_delete'])) {
                 <?php } ?>
               </ul>
               <!-- Подсчет слайдов -->
-              <div class="count count-js">
+              <div class="count">
                 <span class="count__current">1</span> из
                 <span class="count__total">5</span>
               </div>
             </div>
-            <div class="nav-ctrl">
-              <button class="prev slider__prev album-slider__prev" type="button" data-shift="prev">
+            <div class="slider__ctrl">
+              <button class="slider__prev album-slider__prev" type="button" data-shift="prev">
                 <!-- Предыдущий--></button>
-              <button class="next slider__next album-slider__next" type="button" data-shift="next">
+              <button class="slider__next album-slider__next" type="button" data-shift="next">
                 <!-- Следущий --></button>
             </div>
             <div class="slider__wrapper-dots">
-              <ul class="dots-ctrl slider__dots"></ul>
+              <ul class="slider__dots"></ul>
             </div>
           </div>
         </section>
@@ -200,7 +199,7 @@ if(isset($_POST['favorite_delete'])) {
   <?php require_once(BLOCKS .'scripts-include.php'); ?>
   <script src="js/slider.function.js"></script>
   <script>
-    var gallery1 = new Gallery('gallery', {
+    var gallery = new Gallery('gallery', {
       dots: true,
       keyControl: true,
       responsive: true,

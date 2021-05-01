@@ -36,10 +36,10 @@
 		// контейнер в котором отображаются элементы галереи
 		this.slider = this.gallery.querySelector('.slider');
 		// контейнер, непосредственно в котором расположены элементы слайдера
-		this.stage = this.gallery.querySelector('.stage');
+		this.stage = this.gallery.querySelector('.slider__list');
 		this.preview_stage = this.gallery.querySelector('.slider__list-preview');
 		// элементы слайдера
-		this.items = this.gallery.querySelectorAll('.stage > li');
+		this.items = this.gallery.querySelectorAll('.slider__list > li');
 		// все изображения слайдера
 		this.arts = this.gallery.querySelectorAll('.slider__img');
 		// Первое изображение в слайдере - нужно для взятие ширины, т.к. все рисунки одинаковой ширины,
@@ -216,9 +216,9 @@
 	// формирования навигации галереи
 	fn.initControl = function () {
 		// объект с кнопками навигации 'prev / next'
-		this.navCtrl = this.gallery.querySelector('.nav-ctrl');
+		this.navCtrl = this.gallery.querySelector('.slider__ctrl');
 		// объект перелистывания галереи с помощью пагинации
-		this.dotsCtrl = this.gallery.querySelector('.dots-ctrl');
+		this.dotsCtrl = this.gallery.querySelector('.slider__dots');
 
 		if (this.options.nav === true) {
 			// кнопка 'prev'
