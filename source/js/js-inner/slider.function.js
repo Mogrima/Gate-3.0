@@ -4,6 +4,14 @@
 	// Убираю класс no-js
 
 	const gallery = document.querySelector('.gallery');
+	let url = new URL(document.location.href);
+	let urlIndex, urlhash, point;
+	let transition;
+
+	if(url.hash != '') {
+		urlIndex = Number(url.hash.slice(1));
+		urlhash = true;
+	}
 
 	if (gallery.classList.contains('gallery-no-js')) {
     gallery.classList.remove('gallery-no-js');
@@ -40,6 +48,8 @@
 		this.preview_stage = this.gallery.querySelector('.slider__list-preview');
 		// элементы слайдера
 		this.items = this.gallery.querySelectorAll('.slider__list > li');
+		//
+		this.anchors = this.gallery.querySelectorAll('.album__item-achor');
 		// все изображения слайдера
 		this.arts = this.gallery.querySelectorAll('.slider__img');
 		// Первое изображение в слайдере - нужно для взятие ширины, т.к. все рисунки одинаковой ширины,
@@ -142,6 +152,24 @@
 		if(this.options.preview) {
 			this.preview_stage.style.width = this.widths + 'px';
 		}
+		if (urlhash) {
+			let sizeOfimg;
+			if(point == 768) {
+				sizeOfimg = -480;
+			} else if (point == 320) {
+				sizeOfimg = -320;
+			} else {
+				sizeOfimg = -800;
+			}
+			this.stage.style.cssText = 'width:' + this.widths + 'px; ' +
+			'transform:translateX(' + sizeOfimg * urlIndex + 'px); ' +
+			'transition:' + transition + 's';
+			if(this.options.preview) {
+				this.preview_stage.style.cssText = 'width:' + this.widths + 'px; ' +
+				'transform:translateX(' + -180 * urlIndex + 'px); ' +
+				'transition:' + transition + 's';
+			}
+		}
 		// перебираем коллекцию элементов слайдера и
 		// прописываем правый и левый отступ для каждого элемента
 		[].forEach.call(this.arts, function (el) {
@@ -156,7 +184,7 @@
 
 	fn.setAdaptiveOptions = function () {
 		let points = [], // массив с контрольными точками
-			point, // текущая контрольная точка
+			// point, // текущая контрольная точка объявляется теперь глобально
 			// размер видимой части окна браузера
 			width = document.documentElement.clientWidth;
 
@@ -282,6 +310,9 @@
 	fn.setNavStyle = function () {
 		this.btnPrev.style.display = 'block';
 		this.btnNext.style.display = 'block';
+		if(urlhash) {
+			this.current = urlIndex;
+		}
 
 		if (this.current == 0) {
 			// если первый элемент является текущим, то блокируем попытку просмотра
@@ -304,7 +335,11 @@
 		let currentCount = document.querySelector('.count__current');
 		let totalSlides = this.items.length;
 		totalCount.innerHTML = totalSlides;
-		currentCount.innerHTML = index + 1;
+		if(urlhash) {
+			currentCount.innerHTML = urlIndex + 1;
+		} else {
+			currentCount.innerHTML = index + 1;
+		}
 		return;
 	};
 
@@ -406,7 +441,7 @@
 		let x = this.coordinates[this.next];
 
 		// вычисляем, на сколько элементов будет прокручена галерея
-		let delta = Math.abs(this.current - this.next),
+		let delta = Math.abs(this.current - this.next);
 			// увеличиваем время анимации скролла в зависимости от количества
 			// прокручиваемых элементов
 			transition = this.options.baseTransition + delta * 0.07;
@@ -525,7 +560,11 @@
 			return;
 		}
 		// получаем индекс следующего элемента
-		this.next += direction;
+			this.next += direction;
+			if(urlhash) {
+				this.next = urlIndex + direction;
+				urlhash = false;
+			}
 		// возвращаем координату след. элемента - координату, до которой
 		// необходимо продвинуть галерею
 		return this.coordinates[this.next];
@@ -541,14 +580,12 @@
 			'transform:translateX(' + x + 'px); ' +
 			'transition:' + transition + 's';
 		if(this.options.preview) {
-			let preview_width = this.gallery.querySelector('.slider').clientWidth;
 			this.preview_stage.style.cssText = 'width:' + this.widths + 'px; ' +
-			'transform:translateX(' + 180 * (x / preview_width) + 'px); ' +
+			'transform:translateX(' + 180 * (x / this.slider.clientWidth) + 'px); ' +
 			'transition:' + transition + 's';
 		}
 		// после прокручивания, индекс след. элемента становится текущим
 		this.current = (this.next < this.max) ? this.next : this.max;
-
 		this.countSlides();
 		// меняем стили отображения кнопок управления в зависимости от
 		// текущего индекса

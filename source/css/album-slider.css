@@ -39,6 +39,10 @@
   text-align: center;
 }
 
+.album__item-achor {
+  display: none;
+}
+
 .slider__img {
   width: 768px;
   height: 1000px;
@@ -213,6 +217,10 @@
   width: 767px;
   margin: 0 auto;
   text-align: center;
+}
+
+.gallery-no-js .album__item-achor {
+  display: block;
 }
 
 .gallery-no-js .slider__img {

@@ -115,7 +115,7 @@ if(isset($_POST['favorite_delete'])) {
                      ?>
                 <li class="slider__item">
 
-                  <h3 class="album-slider__title"><?=$album_name[$i]?></h3><a name="<?=$i?>"></a>
+                  <h3 class="album-slider__title"><?=$album_name[$i]?></h3><a class="album__item-achor gallery-no-js" name="<?=$i?>"></a>
                   <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
                   <?php
                           if (isset($_SESSION['user_id'])) {
