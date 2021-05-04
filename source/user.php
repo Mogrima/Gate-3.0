@@ -83,12 +83,13 @@ if(isset($_POST['favorite_delete'])) {
 <html lang="ru">
 
 <head>
-<?php
+  <?php
     $website_title = 'Профиль пользователя';
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
-    <link href="css/album-slider.css" rel="stylesheet">
+  <link href="css/album-slider.css" rel="stylesheet">
 </head>
+
 <body class="page">
   <div class="background-header"></div>
   <?php require_once BLOCKS .'header.php';
@@ -137,7 +138,8 @@ if(isset($_POST['favorite_delete'])) {
         </div>
         <picture class="profile__avatar">
           <source srcset="img/user/<?php echo $avatar?>" media="(min-width: 768px)">
-          <img class="profile__avatar-img" src="img/user/<?php echo $avatar?>" width="350" height="394" alt="аватар пользователя">
+          <img class="profile__avatar-img" src="img/user/<?php echo $avatar?>" width="350" height="394"
+            alt="аватар пользователя">
         </picture>
         <div class="profile">
           <div class="profile__toggles profile__toggles--closed">
@@ -160,23 +162,23 @@ if(isset($_POST['favorite_delete'])) {
             </div>
           </div>
           <section class="profile__content fade">
-              <div class="profile__container profile__container--single">
-                  <h2 class="visually-hidden">Общая информация</h2>
-                  <p class="profile__description"><span class="profile__desc-key">Дата рождения: </span>
-                  <?php echo $formatBirthdate ?></p>
-                  <p class="profile__description"><span class="profile__desc-key">Пол: </span><?php echo $sex ?></p>
-                  <p class="profile__description"><span class="profile__desc-key">Электронная почта:</span> <a
-                          class="link link--profile" href="mailto:<?=$email?>"><?=$email?></a>
-                  </p>
-              </div>
-              </section>
-              <section class="profile__content fade">
-              <div class="profile__container profile__container--single">
-                  <h2 class="visually-hidden">Закладки</h2>
-                  <p class="profile__description">Здесь отображаются оставленные вами закладки в
-                      произведениях.</p>
-                  <ul class="bookmark">
-                  <?php
+            <div class="profile__container profile__container--single">
+              <h2 class="visually-hidden">Общая информация</h2>
+              <p class="profile__description"><span class="profile__desc-key">Дата рождения: </span>
+                <?php echo $formatBirthdate ?></p>
+              <p class="profile__description"><span class="profile__desc-key">Пол: </span><?php echo $sex ?></p>
+              <p class="profile__description"><span class="profile__desc-key">Электронная почта:</span> <a
+                  class="link link--profile" href="mailto:<?=$email?>"><?=$email?></a>
+              </p>
+            </div>
+          </section>
+          <section class="profile__content fade">
+            <div class="profile__container profile__container--single">
+              <h2 class="visually-hidden">Закладки</h2>
+              <p class="profile__description">Здесь отображаются оставленные вами закладки в
+                произведениях.</p>
+              <ul class="bookmark">
+                <?php
                   $sql = "SELECT id, title_book, bookmark FROM `bookmarks` WHERE user_id = '$session_id'";
                   $query = $pdo->query($sql);
                   while($row = $query->fetch(PDO::FETCH_OBJ)) {
@@ -193,16 +195,16 @@ if(isset($_POST['favorite_delete'])) {
                           </li>";
                   }
                    ?>
-                   </ul>
+              </ul>
+            </div>
+          </section>
+          <section class="profile__content fade">
+            <div>
+              <div class="profile__container profile__container--single">
+                <h2 class="visually-hidden">Любимое</h2>
+                <p class="profile__description">Здесь отображаются отмеченные вами рисунки.</p>
               </div>
-              </section>
-              <section class="profile__content fade">
-                <div>
-                  <div class="profile__container profile__container--single">
-                    <h2 class="visually-hidden">Любимое</h2>
-                    <p class="profile__description">Здесь отображаются отмеченные вами рисунки.</p>
-                  </div>
-                  <?php
+              <?php
                   $album_arts = "SELECT works_title, works_image FROM `favorite` WHERE user_id = $session_id ORDER BY `id` DESC";
                   $arts_query = $pdo->query($album_arts);
                   $album_name = array();
@@ -213,50 +215,53 @@ if(isset($_POST['favorite_delete'])) {
                   } 
                   $arts_count = count($album_name);
                   ?>
-                  <section id="gallery" class="gallery gallery-no-js">
-                    <div class="gallery__wrapper">
-                    <div class="slider">
-                      <ul class="slider__list">
-                        <?php for($i = 0; $i < $arts_count; $i++) {?>
-                        <li class="slider__item">
-                        
-                          <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3>
-                          <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
-                          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                              <input type="hidden" name="works_id" value="<?=$i?>" readonly>
-                              <button class="icon-favorite icon-favorite--open" type="submit" value="<?=$album_src[$i]?>" name="favorite_delete">
-                                <span class="visually-hidden">Удалить из любимого</span>
-                              </button>
-                            </form>
-                        </li> 
-                        <?php }?>
-                      </ul> 
-                      <ul class="slider__list-preview">
-                        <?php
+              <section id="gallery" class="gallery gallery-no-js">
+                <div class="gallery__wrapper">
+                  <div class="slider">
+                    <ul class="slider__list">
+                      <?php for($i = 0; $i < $arts_count; $i++) {?>
+                      <li class="slider__item">
+
+                        <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3>
+                        <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px"
+                          alt="<?=$album_name[$i]?>">
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                          <input type="hidden" name="works_id" value="<?=$i?>" readonly>
+                          <button class="icon-favorite icon-favorite--open" type="submit" value="<?=$album_src[$i]?>"
+                            name="favorite_delete">
+                            <span class="visually-hidden">Удалить из любимого</span>
+                          </button>
+                        </form>
+                      </li>
+                      <?php }?>
+                    </ul>
+                    <ul class="slider__list-preview">
+                      <?php
                         for($i = 0; $i < $arts_count; $i++) { ?>
-                        <li class="slider__item-preview">
-                          <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150"
-                            alt="<?=$album_name[$i]?>">
-                        </li>
-                        <?php } ?>
-                      </ul>
-                      <!-- Подсчет слайдов -->
-                      <div class="count">
-                        <span class="count__current">1</span> из
-                        <span class="count__total">5</span>
-                      </div>
+                      <li class="slider__item-preview">
+                        <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150"
+                          alt="<?=$album_name[$i]?>">
+                      </li>
+                      <?php } ?>
+                    </ul>
+                    <!-- Подсчет слайдов -->
+                    <div class="count">
+                      <span class="count__current">1</span> из
+                      <span class="count__total">5</span>
                     </div>
-                    <div class="slider__ctrl">
-                      <button class="slider__prev album-slider__prev" type="button" data-shift="prev">
-                        <!-- Предыдущий--></button>
-                      <button class="slider__next album-slider__next" type="button" data-shift="next">
-                        <!-- Следущий --></button>
-                    </div>
-                    <div class="slider__wrapper-dots">
-                      <ul class="slider__dots"></ul>
-                    </div>
-                    </div>
-                  </section>
+                  </div>
+                  <div class="slider__ctrl">
+                    <button class="slider__prev album-slider__prev" type="button" data-shift="prev">
+                      <!-- Предыдущий--></button>
+                    <button class="slider__next album-slider__next" type="button" data-shift="next">
+                      <!-- Следущий --></button>
+                  </div>
+                  <div class="slider__wrapper-dots">
+                    <ul class="slider__dots"></ul>
+                  </div>
+                </div>
+              </section>
+          </section>
           <section class="profile__content fade">
             <div class="profile__container profile__container--single">
               <h2 class="visually-hidden">Настройки</h2>
@@ -264,14 +269,14 @@ if(isset($_POST['favorite_delete'])) {
                 method="POST">
                 <input type="hidden" name="MAX_FILE_SIZE" value="327680">
                 <p class="form-settings__wrapper">
-                <?php echo $avatar_text; ?>
+                  <?php echo $avatar_text; ?>
                   <label for="new_picture" class="form-settings__sign">Файл изображения:</label>
                   <input type="hidden" name="avatar" value="<?php if (!empty($avatar)) echo $avatar; ?>" />
                   <input id="new_picture" class="profile__avatar-btn" type="file" name="new_picture">
                 </p>
                 <button class="profile__btn" type="submit" name="upload" value="upload">Сохранить</button>
               </form>
-              <form class="form-settings"  action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+              <form class="form-settings" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <span class="form-settings__sign">Ваш пол:</span>
                 <p class="form-settings__wrapper">
                   <input class="checkbox login__info-checkbox" type="radio" id="undfind" name="gender" value="I"
@@ -293,8 +298,7 @@ if(isset($_POST['favorite_delete'])) {
                 </p>
                 <p class="form-settings__wrapper">
                   <label class="form-settings__sign" for="date">Дата рождения: </label>
-                  <input class="input" type="date" id="date" name="birthdate"
-                    value="<?php echo $birthdate; ?>">
+                  <input class="input" type="date" id="date" name="birthdate" value="<?php echo $birthdate; ?>">
                 </p>
                 <button class="profile__btn" type="submit" value="enter" name="submit">Сохранить</button>
               </form>
@@ -331,16 +335,18 @@ if(isset($_POST['favorite_delete'])) {
         }
       }
     });
+
   </script>
   <script>
-  let totalCountLetter = 600;
-  let countInput = document.querySelector('.countInput');
-  let count = document.querySelector('.count-letter_symbol');
-  if (countInput != null) {
-  countInput.addEventListener('input', function() {
-    count.innerHTML = totalCountLetter - countInput.value.length;
-  });
-};
+    let totalCountLetter = 600;
+    let countInput = document.querySelector('.countInput');
+    let count = document.querySelector('.count-letter_symbol');
+    if (countInput != null) {
+      countInput.addEventListener('input', function () {
+        count.innerHTML = totalCountLetter - countInput.value.length;
+      });
+    };
+
   </script>
 </body>
 
