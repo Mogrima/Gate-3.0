@@ -71,6 +71,11 @@ if(isset($_POST['favorite_delete'])) {
   $favorite_sql = "DELETE FROM favorite WHERE user_id = '$user_id' AND works_image = '$favorite_delete'";
   $favorite_query = $pdo->prepare($favorite_sql);
   $favorite_query->execute([$favorite_delete, $user_id]);
+  if($works_id == 0) {
+    $works_id = 0;
+  } else {
+    $works_id = $works_id - 1;
+  }
   Header('Location: '. $current_url . '#' . $works_id);
 }
 ?>
@@ -217,10 +222,10 @@ if(isset($_POST['favorite_delete'])) {
                         
                           <h3 class="works__title album-slider__title"><?=$album_name[$i]?></h3>
                           <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
-                          <form class="book-bookmark__form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                               <input type="hidden" name="works_id" value="<?=$i?>" readonly>
-                              <button class="book-bookmark" type="submit" value="<?=$album_src[$i]?>" name="favorite_delete">
-                                <span>Удалить из любимого</span>
+                              <button class="icon-favorite icon-favorite--open" type="submit" value="<?=$album_src[$i]?>" name="favorite_delete">
+                                <span class="visually-hidden">Удалить из любимого</span>
                               </button>
                             </form>
                         </li> 
