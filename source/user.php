@@ -199,11 +199,9 @@ if(isset($_POST['favorite_delete'])) {
             </div>
           </section>
           <section class="profile__content fade">
-            <div>
               <div class="profile__container profile__container--single">
                 <h2 class="visually-hidden">Любимое</h2>
                 <p class="profile__description">Здесь отображаются отмеченные вами рисунки.</p>
-              </div>
               <?php
                   $album_arts = "SELECT works_title, works_image FROM `favorite` WHERE user_id = $session_id ORDER BY `id` DESC";
                   $arts_query = $pdo->query($album_arts);
@@ -261,6 +259,7 @@ if(isset($_POST['favorite_delete'])) {
                   </div>
                 </div>
               </section>
+              </div>
           </section>
           <section class="profile__content fade">
             <div class="profile__container profile__container--single">
@@ -335,17 +334,6 @@ if(isset($_POST['favorite_delete'])) {
         }
       }
     });
-
-  </script>
-  <script>
-    let totalCountLetter = 600;
-    let countInput = document.querySelector('.countInput');
-    let count = document.querySelector('.count-letter_symbol');
-    if (countInput != null) {
-      countInput.addEventListener('input', function () {
-        count.innerHTML = totalCountLetter - countInput.value.length;
-      });
-    };
 
   </script>
 </body>

@@ -48,8 +48,6 @@
 		this.preview_stage = this.gallery.querySelector('.slider__list-preview');
 		// элементы слайдера
 		this.items = this.gallery.querySelectorAll('.slider__list > li');
-		//
-		this.anchors = this.gallery.querySelectorAll('.album__item-achor');
 		// все изображения слайдера
 		this.arts = this.gallery.querySelectorAll('.slider__img');
 		// Первое изображение в слайдере - нужно для взятие ширины, т.к. все рисунки одинаковой ширины,
