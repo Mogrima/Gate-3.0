@@ -10,6 +10,13 @@ require_once(BUS.'/mysql__connect.php');?>
     }
 ?>
 <?php
+$adress_current = $_SERVER["REQUEST_URI"];
+preg_match_all('|/(.+).php|isU', $adress_current, $arr);
+$adress_current = $arr[0][0];
+$user_page = false;
+if($adress_current == '/user.php') {
+  $user_page = true;
+}
 if (isset($_POST['upload'])) {
   $currentAvatar    = trim(filter_var($_POST['avatar'], FILTER_SANITIZE_STRING));
   $orig_picture = trim(filter_var($_FILES['new_picture']['name'], FILTER_SANITIZE_STRING));
@@ -92,7 +99,8 @@ if(isset($_POST['favorite_delete'])) {
 
 <body class="page">
   <div class="background-header"></div>
-  <?php require_once BLOCKS .'header.php';
+  <?php $user_header_class = 'page-header__wrapper--profile';
+    require_once BLOCKS .'header.php';
    $profilequery = "SELECT * FROM user WHERE `user_id` = :session_id";
    $profileData = $pdo->prepare($profilequery);
    $profileData->execute([':session_id' => $session_id]);

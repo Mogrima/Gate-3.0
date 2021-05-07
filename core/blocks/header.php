@@ -1,5 +1,5 @@
 <header class="page-header">
-      <div class="page-header__wrapper">
+      <div class="page-header__wrapper <?=$user_header_class?>">
         <a href="index.php" class="page-header__logo"><img class="page-header__logo-image" alt="Логотип Врата" width="164" height="54" src="img/Logo.png"></a>
         <?php
         require_once(BUS.'/menu_links.php');
@@ -13,6 +13,7 @@
       $avatar1 = $row->avatar;
       $loginCurrent = $row->username;
       $emailCurrent = $row->user_email;
+      if(!$user_page) {
         ?>
         <nav class="profile-menu profile-menu--nojs">
           <button class="profile-menu__button" type="button">
@@ -29,7 +30,7 @@
             </li>
           </ul>
       </nav>
-      <?php }
+      <?php } }
     } else {
       ?>
         <nav class="page-header__user-block user-navigation user-navigation--nojs user-navigation--closed">
