@@ -139,7 +139,7 @@ if(isset($_POST['favorite_delete'])) {
   <?php require_once BLOCKS .'main-navigation.php' ?>
   <main class="page-main">
     <div class="container">
-      <div class="substrate">
+      <div class="substrate substrate--profile">
         <div class="page-main__head">
           <h1 class="title"><?php echo ''.$_SESSION['username'].'' ?></h1>
           <?php require_once BLOCKS .'search-block.php' ?>
@@ -206,7 +206,7 @@ if(isset($_POST['favorite_delete'])) {
               </ul>
             </div>
           </section>
-          <section class="profile__content fade">
+          <section class="profile__content profile__content--slider fade">
               <div class="profile__container profile__container--single">
                 <h2 class="visually-hidden">Любимое</h2>
                 <p class="profile__description">Здесь отображаются отмеченные вами рисунки.</p>

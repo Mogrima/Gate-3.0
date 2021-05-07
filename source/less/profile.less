@@ -245,7 +245,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 768px) and (max-width: @desktop-width) {
+@media (min-width: @mobile-width) and (max-width: @desktop-width) {
   .profile {
     box-sizing: border-box;
     width: 768px;
@@ -264,13 +264,18 @@
   .profile__exit {
     right: 0;
   }
+
+  .profile__content {
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 
 @media (max-width: @mobile-width) {
   .profile {
     box-sizing: border-box;
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
   }
 
   .profile__toggles-open {
@@ -330,7 +335,6 @@
     flex-direction: column;
     width: 300px;
     margin: 0 auto;
-    padding-top: 60px;
   }
 
   .profile__toggles--closed .profile__toggle {
@@ -350,8 +354,32 @@
     border-radius: 6px;
   }
 
+  .profile__content {
+    width: auto;
+    padding-top: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    &--slider {
+      padding: 0;
+    }
+  }
+
   .profile__exit {
     width: 50px;
     background-color: transparent;
+  }
+
+  .profile__btn {
+    width: auto;
+    margin-top: 15px;
+    margin-bottom: 24px;
+    padding: 10px;
+    font-size: 14px;
+
+    &--book {
+      margin: 0;
+      padding: 8px 15px;
+    }
   }
 }
