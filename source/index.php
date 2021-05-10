@@ -8,7 +8,7 @@
   require_once(BUS . 'connectvars.php');
   // подключение к базе данных
   require_once(BUS . '/mysql__connect.php');
-  $website_title = 'Врата. Версия 6';
+  $website_title = 'Врата';
   require_once(BUS . '/pagevars.php');
   require_once(BLOCKS . 'head.php'); ?>
 </head>

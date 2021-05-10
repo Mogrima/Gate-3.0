@@ -8,10 +8,7 @@
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
-    $website_title = 'Книги';
-    require_once(BUS.'/pagevars.php');
-    require_once(BLOCKS . 'head.php'); 
-    
+     
     $book_id = $_GET["id"];
     $sql = "SELECT * FROM `works_catalog` WHERE id = $book_id";
       $result = $pdo->query($sql);
@@ -24,7 +21,11 @@
       $warning = $row->warning;
       $NC = $row->NC;
       $text = $row->text;
-      $extra = $row->extra;?>
+      $extra = $row->extra;
+    $website_title = $title;
+    require_once(BUS.'/pagevars.php');
+    require_once(BLOCKS . 'head.php'); 
+  ?>
 </head>
 
 <body class="page">
