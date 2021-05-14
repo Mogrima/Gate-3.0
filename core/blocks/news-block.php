@@ -14,7 +14,7 @@
         </div>
         <img alt='$row->title' class='news__picture' height='123' src='$news_image_src' width='121'>
         <p class='news__text'>$row->intro</p><a class='button news__button'
-        href='news.php?id=$row->id&amp;page=$page'>Читать далее</a>
+        href='news.php?id=$row->id'>Читать далее</a>
     </li>";
     } ?>
     </ul>
