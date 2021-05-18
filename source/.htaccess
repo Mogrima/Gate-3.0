@@ -1,0 +1,20 @@
+RewriteEngine on
+RewriteBase /
+# RewriteRule ^news/([^/\.]+)/?$1 news.php?id=$1 [L]
+# RewriteRule ^news.php?$ news.php [NC, L]
+
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}\.php -f
+# RewriteRule ^(.*)$ $1.html
+
+# RewriteRule ^(.*)\.php$ $1.html
+RewriteRule intogate.net/album.php?=(.*)\* $1.php
+
+# RewriteRule ^https://intogate.net/index.php /https://intogate.net/ [R=301,L]
+
+# Перенаправление c www на адрес без www
+RewriteCond %{HTTP_HOST} ^www.intogate\.net$ [NC]
+RewriteRule ^(.*)$ https://intogate.net/$1 [R=301,L]
+
+# Перенаправление при возникновении ошибки 404
+ErrorDocument 404 /404.php
