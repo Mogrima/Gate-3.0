@@ -23,7 +23,7 @@
       <?php require_once(BUS_с. '/adminSession.php'); 
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
 
-      $sql = "SELECT * FROM `works_catalog` WHERE works_title = '13 состояний'";
+      $sql = "SELECT * FROM `works_catalog` WHERE works_title = 'Сборник стихов «Компас ветров»'";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
       $id = $row->id;
