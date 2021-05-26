@@ -41,13 +41,16 @@ if(isset($_POST['favorite_delete'])) {
 <head>
   <?php
     // вывод информации об альбоме
-    $album_list = "SELECT `works_title`, `works_desc`, `nested` FROM `album_list` WHERE id = $id";
+    $album_list = "SELECT `works_title`, `works_desc`, `nested`, `meta_html` FROM `album_list` WHERE id = $id";
     $query = $pdo->query($album_list);
     $album = $query->fetch(PDO::FETCH_OBJ);
     $album_title = $album->works_title;
     $album_desc = $album->works_desc;
     $nested = $album->nested;
-    $website_title = 'Галерея: ' . $album_title;
+    $meta = $album->meta_html;
+    $metas = explode('&shy', $meta);
+    $website_title = $metas[0];
+    $metadesription =  $metas[1];
     
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
