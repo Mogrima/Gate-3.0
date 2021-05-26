@@ -36,6 +36,10 @@
         <arcticle class="article">
           <div class="article__body">
             <img class='article__picture' alt='Рисунок новости' src='img/news/<?=$news_img?>' width='214'>
+            <?php if (preg_match("/Анонс!/", $title)) {
+                  $replacement = "<span style='color: red'>Анонс!</span>";
+                  $title = preg_replace("/Анонс!/", $replacement, $title);
+            } ?>
             <h1 class="article__title"><?=$title?></h1>
             <p class='article__text'><?=$text?></p>
             <p class="attention attention--msg attention--succeful-comment">
