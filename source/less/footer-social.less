@@ -13,7 +13,7 @@
 
 .footer-social__list {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 
@@ -26,10 +26,10 @@
 
 .footer-social__item {
   margin-right: 20px;
-}
 
-.footer-social__item:last-child {
-  margin-right: 0;
+  &:last-child {
+    margin-left: 10px;
+  }
 }
 
 @media (max-width: @mobile-width) {
@@ -39,7 +39,7 @@
   }
 
   .footer-social__list {
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .footer-social__title {
