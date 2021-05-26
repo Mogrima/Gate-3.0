@@ -9,7 +9,8 @@ require_once(BUS .'authorize.php'); ?>
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
-    $website_title = 'Авторизация';
+    $website_title = 'Авторизация на сайте | Intogate.net';
+    $metadesription = "Представьтесь, чтобы перейти к личному хранилищу полюбившихся произведений из галереи. Врата";
     require_once(BLOCKS .'head.php');
     require_once(BUS.'/menu_links.php'); ?>
 </head>

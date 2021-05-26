@@ -8,8 +8,9 @@
   require_once(BUS . 'connectvars.php');
   // подключение к базе данных
   require_once(BUS . '/mysql__connect.php');
-  $website_title = 'Врата';
+  $website_title = 'Врата - творческая галерея книг и иллюстраций | Intogate.net';
   require_once(BUS . '/pagevars.php');
+  $metadesription = "Отличительная черта творчества за Вратами - загадка в каждом произведении. Здесь Вы найдете: книги, рассказы, сценарии и иллюстрации авторства Роджера и Могримы.";
   require_once(BLOCKS . 'head.php'); ?>
 </head>
 

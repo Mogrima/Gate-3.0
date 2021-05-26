@@ -7,8 +7,9 @@
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
-    $website_title = 'Книги';
+    $website_title = 'Онлайн библиотека читать книги бесплатно | Intogate.net';
     require_once(BUS.'/pagevars.php');
+    $metadesription = "Добро пожаловать на основной раздел сайта - нашу Библиотеку. Попробуйте ознакомиться с одной из книг, представленных в архиве Врат.";
     require_once(BLOCKS . 'head.php'); ?>
 </head>
 <body class="page">

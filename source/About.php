@@ -8,8 +8,9 @@
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
-    $website_title = 'Врата: О нас';
+    $website_title = 'Авторы проекта — рассказчики о былых цивилизациях | Intogate.net';
     require_once(BUS.'/pagevars.php');
+    $metadesription = "Кто мы? Если взглянуть иначе - важен ли этот вопрос? Важным остается лишь то, что мы отважились сделать за жизнь, столь короткую, словно затянувшийся сон.";
     require_once(BLOCKS .'head.php');?>
 </head>
 <body class="page page-about">

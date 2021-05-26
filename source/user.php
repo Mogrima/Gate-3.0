@@ -91,8 +91,9 @@ if(isset($_POST['favorite_delete'])) {
 
 <head>
   <?php
-    $website_title = 'Профиль пользователя';
+    $website_title = 'Личный профиль путника | Intogate.net';
     require_once(BUS.'/pagevars.php');
+    $metadesription = "Хранилище Ваших закладок в произведениях и понравившихся иллюстраций. Врата";
     require_once(BLOCKS .'head.php');?>
   <link href="css/album-slider.css" rel="stylesheet">
 </head>

@@ -1,6 +1,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="format-detection" content="telephone=no">
+<meta name="description" content="<?=$metadesription?>"/>
 <title><?=$website_title?></title>
 <link rel="preload" href="fonts/Cormorant Infant/CormorantInfant-Regular.woff" as="font" crossorigin="anonymous">
 <link rel="preload" href="fonts/Cormorant Infant/CormorantInfant-Regular.woff2" as="font" crossorigin="anonymous">

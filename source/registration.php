@@ -8,7 +8,8 @@ require_once(BUS .'signup.php'); ?>
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
-    $website_title = 'Регистрация';
+    $website_title = 'Регистрация на сайте | Intogate.net';
+    $metadesription = "Регистрация на сайте позволит Вам открыть собственное хранилище любых полюбившихся произведений из галереи. Врата";
     require_once(BLOCKS .'head.php');
     require_once(BUS.'/menu_links.php'); ?>
 </head>

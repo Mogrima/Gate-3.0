@@ -8,8 +8,9 @@
     require_once(BUS . 'connectvars.php');
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
-    $website_title = 'Галерея';
+    $website_title = 'Галерея персонажей: легенды демонов, ангелов, богов. Врата | Intogate.net';
     require_once(BUS.'/pagevars.php');
+    $metadesription = "Порой возможно при помощи вдохновенного настроя воссоздать живых и мертвых, пробудить историю, открывая дорогу к истокам памяти.";
     require_once(BLOCKS .'head.php');
     if(isset($_POST['favorite'])) {
       $favorite = trim(filter_var($_POST['favorite'], FILTER_SANITIZE_STRING));
