@@ -105,7 +105,7 @@
                 }
               }
             ?>
-            <h2 class="section-header index-columns__title">Обратная связь</h2>
+            <h2 class="section-header index-columns__title"><a name="feedback"></a>Обратная связь</h2>
             <p class="feedback__description">Вы всегда можете оставить свое пожелание, замечание или предложение сугубо тет-а-тет, отправив его на нашу электронную почту, заполнив простую форму обратной связи. Это займет всего пару минут, нам важно Ваше мнение!</p>
             <?php
               if (isset($user_msg)) {
