@@ -97,19 +97,39 @@ body {
 }
 
 .book-subtitle {
+  position: relative;
   display: flex;
-  margin: 0 1% 40px;
-  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.02);
+  min-height: 50px;
+  margin: 0 1% 0;
+  /* box-shadow: 0 10px 0 rgba(0, 0, 0, 0.02); */
+  /* серая полоса под заголовком главы  */
+}
+
+.book-subtitle::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .section-book__title {
-  margin: 0;
-  padding: 0 0 10px;
+  min-height: 55px;
+  margin: 0 2% 0;
+  margin-bottom: 34px;
+  padding: 0 0 15px;
   font-family: "Cormorant Infant Bold", "Garamond", "Times New Roman", Times, serif;
   font-size: 1.5rem;
   color: #000000;
   text-align: left;
   text-shadow: 0 0 2px #fff;
+}
+
+.book-columns--poetry .section-book__title {
+  text-shadow: 0 0 2px green
 }
 
 .book-bookmark__form {
@@ -242,6 +262,7 @@ h3 {
 .book-columns {
   display: flex;
   justify-content: space-between;
+  margin-top: -50px;
 }
 
 .book-columns__column {
@@ -256,6 +277,10 @@ h3 {
 
 .paragraph-wrapper h3 {
   display: none;
+}
+
+.book-columns--poetry p {
+  text-indent: 0;
 }
 
 p {
@@ -510,6 +535,10 @@ body {
   .book-subtitle {
     flex-wrap: wrap;
   }
+
+  .book-subtitle::after {
+    content: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -536,6 +565,15 @@ body {
     margin-bottom: 15px;
   }
 
+  .section-book__title--hollow {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+
+  .book-columns--poetry .section-book__title {
+    text-align: center;
+  }
+
   .book-columns {
     display: block;
   }
@@ -543,6 +581,12 @@ body {
   .book-columns__column {
     width: 100%;
     margin: 0;
+  }
+
+.book-columns--poetry .paragraph-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .number-page {

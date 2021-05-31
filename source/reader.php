@@ -16,10 +16,17 @@
       $id = $row->id;
       $title = $row->works_title;
       $text = $row->text;
+      $genre = $row->genre;
       $lines = explode("</p>", $text);
       $chapterPages = count($lines) - 1;
       $chapters = explode('</chapter>', $text);
       $chapters_count = count($chapters) - 1;
+
+      $addClass = "";
+
+      if ($genre == 'Поэзия') {
+        $addClass = "book-columns--poetry";
+      }
 
         // получаем массив с страницами
         $page_arr = array();
@@ -112,17 +119,25 @@ require_once(BUS.'/bookmarks.php');
 	<main class="book-main">
 		<article class="section-book">
 			<div class="book-subtitle">
-        <h2 class="section-book__title"><?=$numbering[$n]?></h2>
         <?php require_once(BLOCKS.'/bookmarks.php'); ?>
       </div>
-			<div class="book-columns">
+			<div class="book-columns <?=$addClass?>">
 				<div class="book-columns__column book-columns__column--left">
+        <h2 class="section-book__title"><?=$numbering[$n]?></h2>
 					<div class="paragraph-wrapper">
 					<?php counterPage($page_arr, $n);?>
 					</div>
 					<div class="number-page"><span><?=$pages?></span></div>
 				</div>
 				<div class="book-columns__column book-columns__column--right">
+        <?php
+        if($numbering[$n] != $numbering[$n+1]) {
+          ?>
+          <h2 class="section-book__title section-book__title--second"><?=$numbering[$n+1]?></h2>
+<?php } else {
+        ?>
+          <div class="section-book__title section-book__title--second section-book__title--hollow"></div>
+       <?php } ?>
 					<div class="paragraph-wrapper">
           <?php 
           $n_x = $n + 1;
