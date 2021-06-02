@@ -19,7 +19,7 @@
   <?php
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
         // задаю через переменную путь к изображению
-      $works_image_src = $src_stat.$row->works_image;
+      $works_image_src = $src_stat.$row->works_image.$type_image;
       if($row->works_title == 'Легенды') { ?>
         <figure class='works__item'>
           <figcaption class='works__title'><?=$row->works_title?></figcaption>
@@ -34,10 +34,10 @@
         <figure class='works__item'>
           <figcaption class='works__title'><?=$row->works_title?></figcaption>
           <?php if (!$descOff) { ?>
-          <img alt='<?=$row->works_title?>' class='works__image' height='347' src='<?=$works_image_src;$type_image?>' width='258'>
+          <img alt='<?=$row->works_title?>' class='works__image' height='347' src='<?=$works_image_src?>' width='258'>
           <p class='works__description'><?=$row->works_desc?></p> 
           <?php } else { ?>
-          <img alt='<?=$row->works_title?>' class='works__image works__image--mb' height='347' src='<?=$works_image_src;$type_image?>' width='258'>
+          <img alt='<?=$row->works_title?>' class='works__image works__image--mb' height='347' src='<?=$works_image_src?>' width='258'>
           <?php } ?>
           <a class='button works__button' href='<?=$dinamyc_link?>'>Открыть</a>
         </figure>
