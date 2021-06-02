@@ -218,6 +218,7 @@
         <?php $works_title = 'Список альбомов и рисунков';
         // выключаем (прячем) заголовок
         $sectionTitleOn = false;
+        $descOff = false;
         $works_link = 'album.php?id=';
         $src_stat = 'img/';
         

@@ -8,6 +8,7 @@
   } 
 
   $newHtmlClassON;
+  $descOff;
   
   if($newHtmlClassON) {
     echo '<div class="works__wrapper' .$newHtmlClass. '">';
@@ -19,21 +20,28 @@
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
         // задаю через переменную путь к изображению
       $works_image_src = $src_stat.$row->works_image;
-      if($row->works_title == 'Легенды') {
-        echo "<figure class='works__item'>
-              <figcaption class='works__title'>$row->works_title</figcaption>
-              <img alt='$row->works_title' class='works__image' height='347' src='img/ОбложкаЛегенды.jpg' width='258'>
-              <p class='works__description'>$row->works_desc</p><a class='button works__button' href='inner-album.php'>Открыть</a>
-            </figure>";
-      }
+      if($row->works_title == 'Легенды') { ?>
+        <figure class='works__item'>
+          <figcaption class='works__title'><?=$row->works_title?></figcaption>
+          <img alt='<?=$row->works_title?>' class='works__image' height='347' src='img/ОбложкаЛегенды.jpg' width='258'>
+          <p class='works__description'><?=$row->works_desc?></p> 
+          <a class='button works__button' href='inner-album.php'>Открыть</a>
+        </figure>
+     <?php }
       else {
         $dinamyc_link = ($row->album_id) ? $row->album_id : $row->id;
-        echo "<figure class='works__item'>
-              <figcaption class='works__title'>$row->works_title</figcaption>
-              <img alt='$row->works_title' class='works__image' height='347' src='$works_image_src$type_image' width='258'>
-              <p class='works__description'>$row->works_desc</p><a class='button works__button' href='$works_link$dinamyc_link'>Открыть</a>
-            </figure>";
-      }
+        $dinamyc_link = $works_link . $dinamyc_link; ?>
+        <figure class='works__item'>
+          <figcaption class='works__title'><?=$row->works_title?></figcaption>
+          <?php if (!$descOff) { ?>
+          <img alt='<?=$row->works_title?>' class='works__image' height='347' src='<?=$works_image_src;$type_image?>' width='258'>
+          <p class='works__description'><?=$row->works_desc?></p> 
+          <?php } else { ?>
+          <img alt='<?=$row->works_title?>' class='works__image works__image--mb' height='347' src='<?=$works_image_src;$type_image?>' width='258'>
+          <?php } ?>
+          <a class='button works__button' href='<?=$dinamyc_link?>'>Открыть</a>
+        </figure>
+      <?php } 
     }
   ?>
 </section>
