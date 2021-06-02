@@ -60,6 +60,7 @@
         $works_link = 'book.php?id=';
         // включаем заголовки
         $sectionTitleOn = true;
+        $descOff = true;
         // запрос на вывод данных каталога произведений из бд в порядке убывания по id
         $sql = 'SELECT * FROM `works_catalog` ORDER BY `id` DESC LIMIT 3';
         $query = $pdo->query($sql);
