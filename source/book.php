@@ -22,6 +22,8 @@
       $NC = $row->NC;
       $text = $row->text;
       $extra = $row->extra;
+      $priority = $row->priority;
+      $releaseDate = $row->releaseDate;
     $website_title = $title;
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS . 'head.php'); 
@@ -57,6 +59,12 @@
                 <div class="preview__genre">
                   <h3 class="preview__caption">Жанр:</h3> <?=$genre?>
                 </div>
+                <?php if ($releaseDate != '') { ?>
+                <p><strong class="preview__caption">Дата выхода: </strong><?=$releaseDate?></p>
+                <?php } ?>
+                <?php if ($priority != '') { ?>
+                <p><strong class="preview__caption">Очередность: </strong><?=$priority?></p>
+                <?php } ?>
                 <?php if ($warning != '') { ?>
                 <p class="attention preview__attention"><strong class="preview__caption">Предупреждения: </strong><?=$warning?></p>
                 <?php } ?>
