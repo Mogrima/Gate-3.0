@@ -17,6 +17,9 @@
       $title = $row->works_title;
       $text = $row->text;
       $genre = $row->genre;
+      $meta = $row->meta_html;
+      $metas = explode('&shy', $meta);
+      $metadesription =  $metas[1];
       $lines = explode("</p>", $text);
       $chapterPages = count($lines) - 1;
       $chapters = explode('</chapter>', $text);
@@ -80,6 +83,7 @@ require_once(BUS.'/bookmarks.php');
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="format-detection" content="telephone=no">
   <title><?=$title?></title>
+  <meta name="description" content="<?=$metadesription?>"/>
   <link href="img/favicon.png" rel="apple-touch-icon" sizes="180x180">
   <link href="img/favicon.png" rel="icon" sizes="32x32" type="image/png">
   <link href="img/favicon.png" rel="icon" sizes="16x16" type="image/png">
