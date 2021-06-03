@@ -24,7 +24,10 @@
       $extra = $row->extra;
       $priority = $row->priority;
       $releaseDate = $row->releaseDate;
-    $website_title = $title;
+      $meta = $row->meta_html;
+      $metas = explode('&shy', $meta);
+      $website_title = $metas[0];
+      $metadesription =  $metas[1];
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS . 'head.php'); 
   ?>
