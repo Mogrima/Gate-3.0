@@ -25,6 +25,8 @@ $succeful = false;
         $query->execute(['username' => $username, 'author_id' => $author_id, 'mess' => $mess, 'article_id' => $article_id]);
         $user_msg = 'Ваше впечатление опубликовано';
         $succeful = true;
+        // $err_info =$query->errorInfo();
+        // var_dump($err_info);
       }
       else {
         $user_msg = 'Ваш отзыв превысил 600 знаков';

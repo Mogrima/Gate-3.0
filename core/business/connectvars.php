@@ -5,5 +5,5 @@
   define('DB_PASSWORD', '');
   define('DB_NAME', 'gate');
 
-  require_once('warningErrorHandler.php');
+  // require_once('warningErrorHandler.php');
 ?>
