@@ -1,6 +1,6 @@
 <?php require_once('./core/business/session.php');?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:article="http://ogp.me/ns/article#" lang="ru-RU">
 
 <head>
   <?php
@@ -12,6 +12,19 @@
     require_once(BUS.'/pagevars.php');
     $metadesription = "Кто мы? Если взглянуть иначе - важен ли этот вопрос? Важным остается лишь то, что мы отважились сделать за жизнь, столь короткую, словно затянувшийся сон.";
     require_once(BLOCKS .'head.php');?>
+     <meta property="og:locale" content="ru_RU" />
+     <meta property="og:site_name" content="Intogate" />
+     <meta property="og:title" content="<?=$website_title?>"/>
+     <meta property="og:description" content="<?=$metadesription?>"/>
+     <meta property="og:image" content="https://intogate.net/img/MoRo.jpg"/>
+     <meta property="og:type" content="article"/>
+     <meta property="og:url" content= "https://intogate.net/about.php" />
+     <meta property="article:publisher" content="https://intogate.net/" />
+     <meta property="article:author" content="Roger and Mogrima" />
+     <meta property="article:published_time" content="2020-10-09T08:13:50+00:00" />
+     <meta property="article:modified_time" content="2020-10-09T08:13:52+00:00" />
+     <meta name="twitter:creator" content="@Vse_vidim">
+     <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="page page-about">
   <div class="background-header"></div>

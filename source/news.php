@@ -1,6 +1,6 @@
 <?php require_once('./core/business/session.php');?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="ru">
 
 <head>
   <?php
@@ -10,10 +10,12 @@
     require_once(BUS.'/mysql__connect.php');
     $id = $_GET["id"];
     $page = $_GET["page"];
+    $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     $sql = "SELECT * FROM `news` WHERE id = $id";
     $result = $pdo->query($sql);
     $row = $result->fetch(PDO::FETCH_OBJ);
     $title = $row->title;
+    $intro = $row->intro;
     $text = $row->text;
     $news_img = $row->screenshot;
     $date = $row->date;
@@ -22,6 +24,16 @@
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');
     ?>
+    <meta property="og:site_name" content="Intogate" />
+    <meta property="og:title" content="<?=$title?>"/>
+    <meta property="og:description" content="<?=$intro?>"/>
+    <meta property="og:image" content="https://intogate.net/img/news/defaultnews.png"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content= "<?=$url?>" />
+    <meta name="twitter:creator" content="@Vse_vidim">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="article:publisher" content="https://intogate.net/" />
+    <meta property="article:author" content="Roger and Mogrima" />
 </head>
 
 <body class="page">

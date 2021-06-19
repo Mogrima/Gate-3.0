@@ -1,6 +1,6 @@
 <?php require_once('./core/business/session.php');?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="ru">
 
 <head>
   <?php
@@ -9,6 +9,7 @@
     // подключение к базе данных
     require_once(BUS.'/mysql__connect.php');
      
+    $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; 
     $book_id = $_GET["id"];
     $sql = "SELECT * FROM `works_catalog` WHERE id = $book_id";
       $result = $pdo->query($sql);
@@ -16,6 +17,7 @@
       $id = $row->id;
       $title = $row->works_title;
       $desc = $row->works_desc;
+      $works_image = $row->works_image;
       $works_image_src = '../img/works-catalog/'.$row->works_image;
       $genre = $row->genre;
       $warning = $row->warning;
@@ -31,6 +33,18 @@
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS . 'head.php'); 
   ?>
+  <meta property="og:site_name" content="Intogate" />
+  <meta property="og:title" content="<?=$website_title?>"/>
+  <meta property="og:description" content="<?=$metadesription?>"/>
+  <meta property="og:image" content="https://intogate.net/img/works-catalog/<?=$works_image?>"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content= "<?=$url?>" />
+  <meta name="twitter:creator" content="@Vse_vidim">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="article:publisher" content="https://intogate.net/" />
+  <meta property="article:author" content="Roger" />
+  <meta property="article:published_time" content="2020-10-09T08:13:50+00:00" />
+  <meta property="article:modified_time" content="2020-10-09T08:13:52+00:00" />
 </head>
 
 <body class="page">

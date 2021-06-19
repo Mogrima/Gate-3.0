@@ -1,6 +1,6 @@
 <?php require_once('./core/business/session.php'); ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="ru">
 
 <head>
   <?php
@@ -12,6 +12,14 @@
   require_once(BUS . '/pagevars.php');
   $metadesription = "Отличительная черта творчества за Вратами - загадка в каждом произведении. Здесь Вы найдете: книги, рассказы, сценарии и иллюстрации авторства Роджера и Могримы.";
   require_once(BLOCKS . 'head.php'); ?>
+  <meta property="og:site_name" content="Intogate" />
+  <meta property="og:title" content="Врата - творческая галерея книг и иллюстраций"/>
+  <meta property="og:description" content="Отличительная черта творчества за Вратами - загадка в каждом произведении. Здесь Вы найдете: книги, рассказы, сценарии и иллюстрации авторства Роджера и Могримы."/>
+  <meta property="og:image" content="https://intogate.net/img/Ill_of_Hell/картаНижнегомира1.jpg"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content= "https://intogate.net/" />
+  <meta name="twitter:creator" content="@Vse_vidim">
+  <meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="page">

@@ -36,16 +36,18 @@ if(isset($_POST['favorite_delete'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="ru">
 
 <head>
   <?php
+   $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     // вывод информации об альбоме
-    $album_list = "SELECT `works_title`, `works_desc`, `nested`, `meta_html` FROM `album_list` WHERE id = $id";
+    $album_list = "SELECT `works_title`, `works_desc`, `works_image`, `nested`, `meta_html` FROM `album_list` WHERE id = $id";
     $query = $pdo->query($album_list);
     $album = $query->fetch(PDO::FETCH_OBJ);
     $album_title = $album->works_title;
     $album_desc = $album->works_desc;
+    $cover_album = $album->works_image;
     $nested = $album->nested;
     $meta = $album->meta_html;
     $metas = explode('&shy', $meta);
@@ -54,7 +56,16 @@ if(isset($_POST['favorite_delete'])) {
     
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
+    <meta property="og:site_name" content="Intogate" />
+    <meta property="og:title" content="<?=$website_title?>"/>
+    <meta property="og:description" content="<?=$metadesription?>"/>
+    <meta property="og:image" content="https://intogate.net/img/<?=$cover_album?>"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "<?=$url?>" />
+    <meta name="twitter:creator" content="@Vse_vidim">
+  <meta name="twitter:card" content="summary_large_image">
   <link href="css/album-slider.css" rel="stylesheet">
+  </head>
 <body class="page">
   <div class="background-header"></div>
   <?php require_once(BLOCKS . 'header.php'); ?>

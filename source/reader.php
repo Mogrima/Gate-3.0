@@ -9,6 +9,7 @@
 //////////////////////////////////////////////////////////////////////////////////////
       $book_id = $_GET["id"];
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
+      $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; 
 
       $sql = "SELECT * FROM `works_catalog` WHERE id = $book_id";
       $result = $pdo->query($sql);
@@ -17,6 +18,7 @@
       $title = $row->works_title;
       $text = $row->text;
       $genre = $row->genre;
+      $works_image = $row->works_image;
       $meta = $row->meta_html;
       $metas = explode('&shy', $meta);
       $metadesription =  $metas[1];
@@ -77,11 +79,20 @@
 require_once(BUS.'/bookmarks.php');
 ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:book="https://ogp.me/ns/book#" lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="format-detection" content="telephone=no">
+  <meta property="og:site_name" content="Intogate" />
+  <meta property="og:title" content="<?=$title?>"/>
+  <meta property="og:description" content="<?=$metadesription?>"/>
+  <meta property="og:image" content="https://intogate.net/img/works-catalog/<?=$works_image?>"/>
+  <meta property="og:type" content="book"/>
+  <meta property="og:url" content= "<?=$url?>">
+  <meta name="twitter:creator" content="@Vse_vidim">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="book:author" content="Roger" />
   <title><?=$title?></title>
   <meta name="description" content="<?=$metadesription?>"/>
   <link href="img/favicon.png" rel="apple-touch-icon" sizes="180x180">

@@ -1,6 +1,6 @@
 <?php require_once('./core/business/session.php');?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="ru">
 
 <head>
   <?php
@@ -36,6 +36,14 @@
     Header('Location: '. $current_url . '#' . $works_id);
   }
   ?>
+  <meta property="og:site_name" content="Intogate" />
+  <meta property="og:title" content="<?=$website_title?>"/>
+  <meta property="og:description" content="<?=$metadesription?>"/>
+  <meta property="og:image" content="https://intogate.net/img/Ill_of_Hell/картаНижнегомира1.jpg"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content= "https://intogate.net/gallery.php" />
+  <meta name="twitter:creator" content="@Vse_vidim">
+  <meta name="twitter:card" content="summary_large_image">
   <link href="css/album-slider.css" rel="stylesheet">
 </head>
 
