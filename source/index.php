@@ -15,7 +15,7 @@
   <meta property="og:site_name" content="Intogate" />
   <meta property="og:title" content="Врата - творческая галерея книг и иллюстраций"/>
   <meta property="og:description" content="Отличительная черта творчества за Вратами - загадка в каждом произведении. Здесь Вы найдете: книги, рассказы, сценарии и иллюстрации авторства Роджера и Могримы."/>
-  <meta property="og:image" content="https://intogate.net/img/Ill_of_Hell/картаНижнегомира1.jpg"/>
+  <meta property="og:image" content="https://intogate.net/img/top-graph.jpg"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content= "https://intogate.net/" />
   <meta name="twitter:creator" content="@Vse_vidim">

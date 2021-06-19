@@ -15,7 +15,7 @@ require_once(BUS .'signup.php'); ?>
     <meta property="og:site_name" content="Intogate" />
     <meta property="og:title" content="<?=$website_title?>"/>
     <meta property="og:description" content="<?=$metadesription?>"/>
-    <meta property="og:image" content="https://intogate.net/img/bg_main.jpg"/>
+    <meta property="og:image" content="https://intogate.net/img/top-graph.jpg"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content= "https://intogate.net/registration.php" />
     <meta name="twitter:creator" content="@Vse_vidim">
