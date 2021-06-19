@@ -54,7 +54,7 @@
         <section class="filters">
           <h2 class="visually-hidden">Фильтр книг</h2>
           <h3 class="section-header filters__title">Выберете то, что Вас интересует:</h3>
-          <p class="filters__note">Если Вы впервые на сайте – выберите наиболее приятный Вам жанр из представленных. Это позволит достичь наиболее комфортного первого знакомства.</p>
+          <p class="filters__note">Если Вы впервые на сайте – выберите наиболее приятный Вам жанр из представленных. Это позволит достичь комфортного первого знакомства.</p>
           <form action="#" class="filter" method="POST">
             <div class="filter__wrapper">
               <fieldset class="filter__fieldset">
