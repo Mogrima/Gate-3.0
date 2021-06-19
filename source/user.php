@@ -87,7 +87,7 @@ if(isset($_POST['favorite_delete'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:profile="https://ogp.me/ns/profile#" lang="ru">
 
 <head>
   <?php
@@ -95,6 +95,15 @@ if(isset($_POST['favorite_delete'])) {
     require_once(BUS.'/pagevars.php');
     $metadesription = "Хранилище Ваших закладок в произведениях и понравившихся иллюстраций. Врата";
     require_once(BLOCKS .'head.php');?>
+    <meta property="og:site_name" content="Intogate" />
+    <meta property="og:title" content="<?=$website_title?>"/>
+    <meta property="og:description" content="<?=$metadesription?>"/>
+    <meta property="og:image" content="https://intogate.net/img/bg_main.jpg"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "https://intogate.net/user.php" />
+    <meta name="twitter:creator" content="@Vse_vidim">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="profile:username" content="<?=$loginCurrent?>" />
   <link href="css/album-slider.css" rel="stylesheet">
 </head>
 

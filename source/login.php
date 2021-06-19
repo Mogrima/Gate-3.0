@@ -2,7 +2,7 @@
 require_once('./core/business/appvars.php');
 require_once(BUS .'authorize.php'); ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="ru">
 
 <head>
   <?php
@@ -13,6 +13,14 @@ require_once(BUS .'authorize.php'); ?>
     $metadesription = "Представьтесь, чтобы перейти к личному хранилищу полюбившихся произведений из галереи. Врата";
     require_once(BLOCKS .'head.php');
     require_once(BUS.'/menu_links.php'); ?>
+    <meta property="og:site_name" content="Intogate" />
+    <meta property="og:title" content="<?=$website_title?>"/>
+    <meta property="og:description" content="<?=$metadesription?>"/>
+    <meta property="og:image" content="https://intogate.net/img/bg_main.jpg"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "https://intogate.net/login.php" />
+    <meta name="twitter:creator" content="@Vse_vidim">
+    <meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="page">

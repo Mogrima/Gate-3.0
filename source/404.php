@@ -1,6 +1,6 @@
 <?php require_once('./core/business/session.php');?>
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="ru">
 
 <head>
   <?php
@@ -8,6 +8,14 @@
     $website_title = 'Страница не найдена';
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
+    <meta property="og:site_name" content="Intogate" />
+    <meta property="og:title" content="Страница не найдена"/>
+    <meta property="og:description" content="Вы избрали неправильный путь, либо источника больш не существует"/>
+    <meta property="og:image" content="https://intogate.net/img/bg_main.jpg"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "https://intogate.net/404.php" />
+    <meta name="twitter:creator" content="@Vse_vidim">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
       html {
         max-height: 1450px;
