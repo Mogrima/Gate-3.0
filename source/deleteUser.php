@@ -51,6 +51,7 @@ require_once(BUS.'/mysql__connect.php');?>
 <head>
   <?php
     $website_title = 'Удаление профиля';
+    $metadesription = "Безвозвратное удаление вашего профиля";
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');?>
 </head>

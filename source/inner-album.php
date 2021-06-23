@@ -9,7 +9,7 @@
     require_once(BUS.'/mysql__connect.php');
     $website_title = 'Альбомы с историями конкретных личностей. Мефистофель, Фокалор, Ноир | Intogate.net';
     require_once(BUS.'/pagevars.php');
-    $metadesription = 'Иллюстрации к некоторым из освещенных в книге "Легенды двух миров" историй';
+    $metadesription = "Иллюстрации к некоторым из освещенных в книге 'Легенды двух миров' историй";
     require_once(BLOCKS .'head.php');?>
     <meta property="og:site_name" content="Intogate" />
     <meta property="og:title" content="<?=$website_title?>"/>

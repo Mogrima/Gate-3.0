@@ -15,18 +15,18 @@
     $result = $pdo->query($sql);
     $row = $result->fetch(PDO::FETCH_OBJ);
     $title = $row->title;
-    $intro = $row->intro;
     $text = $row->text;
     $news_img = $row->screenshot;
     $date = $row->date;
     $date = date('d-m-Y', strtotime($date));
     $website_title = "$title";
+    $metadesription = $row->intro;;
     require_once(BUS.'/pagevars.php');
     require_once(BLOCKS .'head.php');
     ?>
     <meta property="og:site_name" content="Intogate" />
     <meta property="og:title" content="<?=$title?>"/>
-    <meta property="og:description" content="<?=$intro?>"/>
+    <meta property="og:description" content="<?=$metadesription?>"/>
     <meta property="og:image" content="https://intogate.net/img/news/defaultnews.png"/>
     <meta property="og:type" content="article"/>
     <meta property="og:url" content= "<?=$url?>" />
