@@ -13,8 +13,8 @@
         <li class="page-navigation__item <?php echo $res = ($url_active ==  $menu[3]) ? "page-navigation__item--active" : "";?>">
           <a class="page-navigation__link page-navigation__link--peach" href="about.php">О нас</a>
         </li>
-        <li class="page-navigation__item <?php echo $res = ($url_active ==  $menu[5]) ? "page-navigation__item--active" : "";?>">
-          <a class="page-navigation__link page-navigation__link--purple" href="FAQ.php">FAQ</a>
+        <li class="page-navigation__item page-navigation__item--anonc <?php echo $res = ($url_active ==  $menu[5]) ? "page-navigation__item--active" : "";?>">
+          <span class="page-navigation__link page-navigation__link--purple">Персонажи</span>
         </li>
       </ul>
   </nav>

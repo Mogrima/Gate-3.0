@@ -27,6 +27,18 @@
   margin-bottom: 0;
   padding-right: 29px;
   text-align: center;
+
+  &--anonc {
+    position: relative;
+
+    &::before {
+      content: "Анонс!";
+      position: absolute;
+      top: -23px;
+      left: 2px;
+      color: red;
+    }
+  }
 }
 
 .page-navigation__link {
@@ -104,6 +116,13 @@
 
   .page-navigation__item {
     padding-right: 0;
+
+    &--anonc {
+  
+      &::before {
+        top: 6px;
+      }
+    }
   }
 
   .page-navigation--closed .page-navigation__toggle::before {
