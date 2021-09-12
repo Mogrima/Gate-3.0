@@ -24,7 +24,7 @@ gulp.task("css", function () {
     .pipe(csso())
     .pipe(rename("style.min.css"))
     .pipe(gulp.dest("Intogate/css"))
-    .pipe(gulp.dest("../Intogate/css"))
+    .pipe(gulp.dest("../Intogatelocal/css"))
     .pipe(server.stream());
 });
 
@@ -36,7 +36,7 @@ gulp.task("style", function () {
     ]))
     .pipe(csso())
     .pipe(gulp.dest("Intogate/css"))
-    .pipe(gulp.dest("../Intogate/css"))
+    .pipe(gulp.dest("../Intogatelocal/css"))
     .pipe(server.stream());
 });
 
@@ -54,7 +54,7 @@ gulp.task("images", function () {
 gulp.task("page.php", function () {
   return gulp.src("source/*.php")
   .pipe(gulp.dest("Intogate"))
-  .pipe(gulp.dest("../Intogate"));
+  .pipe(gulp.dest("../Intogatelocal"));
 });
 
 gulp.task("scripts", function() {
@@ -63,13 +63,13 @@ gulp.task("scripts", function() {
       // .pipe(uglify()) // вызов плагина uglify - сжатие кода
       .pipe(rename({ suffix: '.min' })) // вызов плагина rename - переименование файла с приставкой .min
       .pipe(gulp.dest("Intogate/js"))
-      .pipe(gulp.dest("../Intogate/js")); // директория продакшена, т.е. куда сложить готовый файл
+      .pipe(gulp.dest("../Intogatelocal/js")); // директория продакшена, т.е. куда сложить готовый файл
 });
 gulp.task("js:build", function() {
 return gulp.src("source/js/js-inner/*.js") // директория откуда брать исходники
       // .pipe(uglify()) // вызов плагина uglify - сжатие кода
       .pipe(gulp.dest("Intogate/js"))
-      .pipe(gulp.dest("../Intogate/js"));
+      .pipe(gulp.dest("../Intogatelocal/js"));
 });
 
 gulp.task("copy", function () {
@@ -85,18 +85,18 @@ gulp.task("copy", function () {
   base: "source"
   })
   .pipe(gulp.dest("Intogate"))
-  .pipe(gulp.dest("../Intogate"));
+  .pipe(gulp.dest("../Intogatelocal"));
  });
 
  gulp.task("clean", function () {
   return del("Intogate");
-  return del("../Intogate");
+  return del("../Intogatelocal");
  });
 
  gulp.task("core", function() {
    return gulp.src("core/**/*.php")
     .pipe(gulp.dest("Intogate/core"))
-    .pipe(gulp.dest("../Intogate/core"));
+    .pipe(gulp.dest("../Intogatelocal/core"));
   });
 
   gulp.task("server", function () {
