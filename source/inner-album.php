@@ -60,6 +60,7 @@
               <?php 
               }    
               ?>
+              <p class="page-description page-description--author">Художница фонов к иллюстрациям — <a class="link link--reviews" href="https://vk.com/doodles_by_dru" target="_blank">Анастасия Дружинина</a>.</p>
             </div>
           </section>
       </div> <!--  Подложка -->
