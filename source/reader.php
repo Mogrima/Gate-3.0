@@ -170,7 +170,7 @@ require_once(BUS.'/bookmarks.php');
         </a>
         <?php
       }
-      else if (count($page_arr) - $n <= 3) {
+      else if ((count($page_arr) == ($n + 2)) || (count($page_arr) == ($n + 1))) {
         $x_2 = $n - 2;
         ?>
         <a class="link-book page-navigation__link page-navigation__link--prev" href="reader.php?id=<?=$book_id?>&amp;n=<?=$x_2?>"><span class="visually-hidden">Предыдущая страница</span>
@@ -180,7 +180,12 @@ require_once(BUS.'/bookmarks.php');
       }
       else {
         $x = $n + 1;
-        $x_2 = $n - 2;
+        if (($n - 1) == 0) {
+          $x_2 = 0;
+        } 
+        else {
+          $x_2 = $n - 2;
+        }
         ?>
         <a class="link-book page-navigation__link page-navigation__link--prev" href="reader.php?id=<?=$book_id?>&amp;n=<?=$x_2?>"><span class="visually-hidden">Предыдущая страница</span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 106.5 17.79"><defs><style>.cls-1{fill:#1a172a;}</style></defs><g id="Слой_2" data-name="Слой 2"><g id="Layer_2" data-name="Layer 2"><path class="cls-1" d="M106.1,8.17a.88.88,0,0,0-.5-.17A76.24,76.24,0,0,1,83.65,5.14a42.32,42.32,0,0,1-4.81-1.75,2.14,2.14,0,1,0-3.31.2l0,.05.06,0a.65.65,0,0,0,.17.16h0l.11.06s0,0,0,0A42.37,42.37,0,0,0,87.65,8H19.42a2.5,2.5,0,0,0-4.66,0h-1.3A3.56,3.56,0,0,0,6.57,8H4.83a2.51,2.51,0,1,0,0,1.79H6.57a3.55,3.55,0,0,0,6.89,0h1.3a2.49,2.49,0,0,0,4.66,0H87.65c-8,1.73-11.78,4.1-11.86,4.15a.9.9,0,0,0-.2.19h0l-.06.07a2.15,2.15,0,1,0,3.32.19c3.7-1.63,12.4-4.61,26.76-4.61a1,1,0,0,0,.35-.07.91.91,0,0,0,.55-.82A.89.89,0,0,0,106.1,8.17ZM10,10.68a1.79,1.79,0,1,1,1.75-2.15.91.91,0,0,0-.08.37.86.86,0,0,0,.08.36A1.79,1.79,0,0,1,10,10.68Z"/></g></g></svg>
