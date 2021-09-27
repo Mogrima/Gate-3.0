@@ -20,10 +20,19 @@
     <div class="container">
       <div class="substrate">
       <div>
+      <!-- Алгоритм добавки книги в читалку
+    1. В тексте выделить все заголовки тегом h3
+    2. Конвертировать docx в fb2, чтобы каждый абзац был завернут в
+  тег p, удалить лишние теги
+    3. завернуть каждую главу в тег chapter
+    4. загрузить текст в таком виде в бд
+    5. в этом скрипте выгрузить новую книгу и скопировать исходный код
+  книги с символами разделения строки
+    6. Загрузить конечную версию в бд  -->
       <?php require_once(BUS_с. '/adminSession.php'); 
       $n = isset($_GET["n"]) ? (int) $_GET["n"] : 0;
 
-      $sql = "SELECT * FROM `works_catalog` WHERE works_title = 'Сборник стихов «Компас ветров»'";
+      $sql = "SELECT * FROM `works_catalog` WHERE works_title = 'Урок'";
       $result = $pdo->query($sql);
       $row = $result->fetch(PDO::FETCH_OBJ);
       $id = $row->id;
