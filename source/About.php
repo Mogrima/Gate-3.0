@@ -81,16 +81,13 @@
           <p class="about-content__text">Какая красота скрывается в омуте представлений, какими бы они ни были, в причудливой игре воображения. И даже в попытке отыскать истину среди рациональных фактов есть солидное место домыслу. Мы воображаем о многом, а порой ни о чем, но именно мысли наполняют нашу жизнь. Я стремлюсь вообразить народы: их зарю и упадки, их волю и слабость. Вообразить героев, чьи чувства проходят сквозь мою душу как ноты очаровывающих мелодий, вынуждая оцепенеть в ожидании финала – развязки их путей. Этими мыслями, этими впечатлениями я и хочу поделиться с Вами.</p>
           <p class="about-content__text">Воображение обладает неоспоримой силой, давая человеку шанс, столь бесценный, - освободить свою уставшую душу от скуки и серости окружающего. Вообразите лишь на мгновение, что Врата отведут вас к ларцу, в котором заперты древние сокровища – останки былых цивилизаций, реликвии разных народов и эпох, вещицы родом со всех уголков необъятной Вселенной. Вот же ключ. Вы волны разглядывать их сколько угодно – безделушки из ларца никуда не исчезнут. Главное – это сопутствующее настроение.</p>
           <p class="about-content__text about-content__text--right">Мы желаем Вам интересного пути.</p>
-          <p class="about-content__text about-content__text--PS"><i>P.S. :</i> Менее пространные ответы на вопросы, которые могли у вас возникнуть, всегда можно отыскать в соседствующем разделе <a class="link link--about" href="FAQ.php">FAQ</a>.</p>
         </section>
         <div class="index-columns index-columns--border">
           <section class="about-social index-columns__column index-columns__column--left">
             <h2 class="section-header index-columns__title">Мы в социальных сетях</h2>
             <p class="about-social__description">Только сообща люди достигают наиболее значительных результатов – мы будем рады Вашему участию. Свяжитесь с Вратами в социальных сетях!</p>
             <p class="about-social__description"><a class="link link--about" href="https://vk.com/gate_art_project" target="_blank">Группа вконтакте</a> - публикуются самые свежие новости.</p>
-            <p class="about-social__description"><a class="link link--about" href="https://www.deviantart.com/inaneakme" target="_blank">Девианарт</a> - представлен весь графический контент.</p>
             <p class="about-social__description"><a class="link link--about" href="https://www.instagram.com/romonature/" target="_blank">Инстаграм</a> - мир глазами привратника.</p>
-            <p class="about-social__description"><a class="link link--about" href="https://twitter.com/Vse_vidim" target="_blank">Твиттер</a></p>
           </section>
           <section class="feedback index-columns__column index-columns__column--right">
           <?php
