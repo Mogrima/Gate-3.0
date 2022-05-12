@@ -48,21 +48,21 @@
           <p class="about-content__text about-content__text--first">Итак, эта страница предназначена для более тесного знакомства между Вами – нашими гостями и нами – авторами. Сайт, на который Вы попали, - сборник кропотливо перенесенных воспоминаний, от самой первой нашей жизни, до жизней тех, кто был отделен от нас рамками времени и пространства, как и банальными обстоятельствами. Содержимое воспоминаний, отраженное в книгах и графике, может показаться несколько специфичным, броским или же туманным, в зависимости от того произведения, что первым попадется Вам на глаза. Но не стоит допускать шаблонность – мы ни в коем случае не мистификаторы, не оккультисты и не обманщики. Только лишь <i>рассказчики.</i></p>
           <div class="about-content__authors">
             <figure class="about-content__photo">
-              <a class="about__open-photo-1" href="#"><img alt="Роджер" class="about-content__photo-image" height="150" src="img/about/Ro.jpg" width="250"></a>
+              <a class="about__open-photo-1" href="#"><img alt="Иан" class="about-content__photo-image" height="150" src="img/about/Ro.jpg" width="250"></a>
               <figcaption class="about-content__caption">
-                Роджер
+                Иан
               </figcaption>
             </figure>
             <figure class="about-content__photo about-content__photo--right">
-              <a class="about__open-photo-2" href="#"><img alt="Могрима" class="about-content__photo-image" height="150" src="img/about/Mo.jpg" width="250"></a>
+              <a class="about__open-photo-2" href="#"><img alt="Рене" class="about-content__photo-image" height="150" src="img/about/Mo.jpg" width="250"></a>
               <figcaption class="about-content__caption">
-                Могрима
+                Рене
               </figcaption>
             </figure>
           </div>
           <p class="about-content__text">Кто мы? А если взглянуть иначе – а важен ли этот вопрос? Важным должно остаться лишь то, что мы отважились сделать за жизнь, столь короткую, словно затянувшийся сон перед долгожданным пробуждением. Кажется, словно еще немного – и вот открыты глаза, и теплое утреннее солнце, заглянувшее в гости, согревает лицо. Что мы снова дома. Но то мираж – действительность остается непреклонна, возвращая день ото дню к обыденной жизни. Важным остается то, что мы из себя представляем, то, что мы предлагаем <i>вашему вниманию.</i></p>
           <p class="about-content__text">Мы нашли чем занять предстоящие годы ожидания, сделали выбор: рассказать то, что знаем. От безобидных сказок до вполне серьезных вопросов. Истории, захватывающие полет воображения, оставляющие след в сознании – вот та ценность, на которую будет разменяно время – самый драгоценный ресурс. Когда во власти один из самых роскошных языков во всем мире задача, сама по себе, - огранить замысел вереницей подходящих слов, отполировав впечатление подходящими иллюстрации. Что мы и стараемся сделать.</p>
-          <p class="about-content__text">Так уж вышло что я – <i><a class="link link--about" href="https://vk.com/id501667863" target="_blank">Роджер</a></i>, не столь ужасно, как мне представляется, излагаю мысль в слове, так же как и немного смыслю в графическом изображении тех образов, что стремлюсь показать. Иными словами, я автор текстов и иллюстраций. В то время как моя верная спутница – <i><a class="link link--about" href="https://vk.com/mogrima" target="_blank">Могрима</a></i>, мое вдохновение, столь умна, что самостоятельно изучила несколько языков, дабы при помощи кода воплотить нашу задумку в веб среде. Так нашим союзом воссоздано все, что содержится во Вратах. Именно мы находимся «по ту сторону» вашего экрана.</p>
+          <p class="about-content__text">Так уж вышло что я – <i><a class="link link--about" href="https://vk.com/id501667863" target="_blank">Иан</a></i>, не столь ужасно, как мне представляется, излагаю мысль в слове, так же как и немного смыслю в графическом изображении тех образов, что стремлюсь показать. Иными словами, я автор текстов и иллюстраций. В то время как моя верная спутница – <i><a class="link link--about" href="https://vk.com/mogrima" target="_blank">Рене</a></i>, мое вдохновение, столь умна, что самостоятельно изучила несколько языков, дабы при помощи кода воплотить нашу задумку в веб среде. Так нашим союзом воссоздано все, что содержится во Вратах. Именно мы находимся «по ту сторону» вашего экрана.</p>
           <figure class="about-content__photo">
             <a class="about__open-photo-3" href="#"><img alt="Одна из первых напечатанных книг" class="about-content__photo-image about-content__photo-image--border" height="150" src="img/about/photo-1.jpg" width="250"></a>
             <figcaption class="about-content__caption">
@@ -144,10 +144,10 @@
   <?php require_once(BLOCKS .'footer.php'); ?>
   <!-- Модальные окна -->
   <div class="popup__photo popup__photo--1">
-    <img class="popup__image popup__image--round" alt="Роджер. Большой размер" height="500" src="img/about/Ro.jpg" width="500"> <button class="close photo-close-1">Закрыть</button>
+    <img class="popup__image popup__image--round" alt="Иан. Большой размер" height="500" src="img/about/Ro.jpg" width="500"> <button class="close photo-close-1">Закрыть</button>
   </div>
   <div class="popup__photo popup__photo--2">
-    <img class="popup__image popup__image--round" alt="Могрима. Большой размер" height="500" src="img/about/Mo.jpg" width="500"> <button class="close photo-close-2">Закрыть</button>
+    <img class="popup__image popup__image--round" alt="Рене. Большой размер" height="500" src="img/about/Mo.jpg" width="500"> <button class="close photo-close-2">Закрыть</button>
   </div>
   <div class="popup__photo popup__photo--3">
     <img class="popup__image" alt="Одна из первых напечатанных книг. Большой размер" height="500" src="img/about/photo-1.jpg" width="500"> <button class="close photo-close-3">Закрыть</button>
