@@ -72,10 +72,8 @@
     <div class="container">
       <div class="substrate">
       <?php require_once(BUS_с. '/adminSession.php'); ?>
-      <a href="_adNews.php" class="button">Новости</a>
-      <a href="adWorks.php" class="button">Произведения</a>
-      <a href="book.php" class="button">Книга</a>
-      <a href="drawings.php" class="button">Рисунки и Альбомы</a>
+      <a href="addrawing.php" class="button">Добавить рисунок</a>
+      <a href="adWorks.php" class="button">Альбомы</a>
       </div>
     </div>
   </main>

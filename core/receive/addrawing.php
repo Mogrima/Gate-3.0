@@ -72,10 +72,51 @@
     <div class="container">
       <div class="substrate">
       <?php require_once(BUS_с. '/adminSession.php'); ?>
-      <a href="_adNews.php" class="button">Новости</a>
-      <a href="adWorks.php" class="button">Произведения</a>
-      <a href="book.php" class="button">Книга</a>
-      <a href="drawings.php" class="button">Рисунки и Альбомы</a>
+      <?php
+      $sql = "SELECT * FROM `album_list` ORDER BY `id` DESC";
+      $query = $pdo->query($sql);
+
+       ?> 
+      <form class="form-addnews" action="../business/receive/senddraw.php" method="post" enctype="multipart/form-data">
+        <!-- <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> -->
+        <label for="news_title">Название рисунка</label>
+        <input class="input input__title" id="news_title" type="text" name="title" value="<?php if(!empty($title)) echo $title; ?>">
+        <label for="album_list">Альбом рисунка</label>
+        <select id="album_list" name="album_list">
+        <?php 
+
+    while($row = $query->fetch(PDO::FETCH_OBJ)) { ?>
+                    <option value="<?=$row->id?>"><?=$row->works_title?></option>
+          <?php } ?>
+
+        </select>
+        
+
+        <fieldset class="filter__fieldset filter__fieldset--gallery">
+              <legend class="filter__title filter__title--center">Сортировка:</legend>
+              <ul class="filter__list filter__list--center">
+                <div class="filter__wrapper-gallery">
+                  <li class="filter__item-gallery"><input class="checkbox" id="ill_of_books" name="ill_of_books"
+                      type="checkbox" value="1"> <label class="checkbox__name"
+                      for="ill_of_books"><span class="checkbox__indicator"></span> Иллюстрации из книг</label></li>
+                  <li class="filter__item-gallery"><input class="checkbox" id="color" name="color" type="checkbox"
+                      value="1"> <label class="checkbox__name" for="color"><span class="checkbox__indicator"></span>
+                      Цветные</label></li>
+                  <li class="filter__item-gallery"><input class="checkbox" id="b_a_w" name="b_a_w" type="checkbox"
+                      value="1"> <label class="checkbox__name" for="b_a_w"><span class="checkbox__indicator"></span>
+                      Черно-белые</label></li>
+                  <li class="filter__item-gallery"><input class="checkbox" id="history" name="history" type="checkbox"
+                      value="1"> <label class="checkbox__name" for="history"><span
+                        class="checkbox__indicator"></span> Истории</label></li>
+                </div>
+              </ul>
+            </fieldset>
+
+
+        <label for="screenshot">Файл изображения:</label>
+        <input class="input" id="screenshot" type="file" name="screenshot">
+        <button class="button addnews-button" type="submit" name="submit">Добавить</button>
+        </form>
       </div>
     </div>
   </main>
