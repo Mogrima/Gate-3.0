@@ -30,7 +30,7 @@
             </ul>
       </div>
       <p class="page-footer__copyright copyright"><b class="copyright__developers">Разработано: Ro&Mo</b><br>
-          <span class="copyright__reserved">© Все права защищены. 2018 - 2021</span></p>
+          <span class="copyright__reserved">© Все права защищены. 2018 - 2022</span></p>
       <div class="footer__captcha">
         <b class="footer__captcha-title">This site is protected by reCAPTCHA and the Google</b>
         <a class="footer-navigation__link" href="https://policies.google.com/privacy">Privacy Policy</a> and
