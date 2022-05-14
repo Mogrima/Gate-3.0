@@ -19,7 +19,7 @@
   <?php
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
         // задаю через переменную путь к изображению
-      $works_image_src = $src_stat.$row->works_image.$type_image;
+      $works_image_src = $src_stat.$row->works_image;
       if($row->works_title == 'Легенды') { ?>
         <figure class='works__item'>
           <figcaption class='works__title'><?=$row->works_title?></figcaption>

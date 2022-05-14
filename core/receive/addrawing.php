@@ -4,6 +4,39 @@
   require_once(BUS_с. 'connectvars.php');
   // подключение к базе данных
   require_once(BUS_с. 'mysql__connect.php');
+
+  if(isset($_POST['submit'])) {
+    // Извлечение данных профиля из суперглобального массива $_POST
+    $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
+    $album = (int)trim(filter_var($_POST['album_list'], FILTER_SANITIZE_STRING));
+    $ill_of_books = (trim(filter_var($_POST['ill_of_books'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+    $b_a_w = (trim(filter_var($_POST['b_a_w'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+    $color = (trim(filter_var($_POST['color'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+    $history = (trim(filter_var($_POST['history'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+
+  $apend=($_FILES['screenshot']['name']); 
+  $uploadfile = '../../img/' . $apend; 
+
+    if(!empty($title) && !empty($album)) {
+      if(($_FILES['screenshot']['type'] == 'image/gif' || $_FILES['screenshot']['type'] == 'image/jpeg' || $_FILES['screenshot']['type'] == 'image/png') && ($_FILES['screenshot']['size'] != 0)) 
+{ 
+  if (move_uploaded_file($_FILES['screenshot']['tmp_name'], $uploadfile)) 
+   { 
+   }
+} else {
+}
+      
+              $sql = "INSERT INTO album_arts(album_id, works_title, works_image, ill_of_books, b_a_w, color, history) VALUES('$album', '$title', '$apend', '$ill_of_books', '$b_a_w', '$color', '$history')";
+
+              $query = $pdo->prepare($sql);
+              $query->execute([$album, $title, $apend, $ill_of_books, $b_a_w, $color, $history]);
+              
+              Header('Location: '.$_SERVER['PHP_SELF']);
+    }
+    else {
+    }
+  }
+  
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -77,7 +110,7 @@
       $query = $pdo->query($sql);
 
        ?> 
-      <form class="form-addnews" action="../business/receive/senddraw.php" method="post" enctype="multipart/form-data">
+      <form class="form-addnews" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
         <!-- <input type="hidden" name="MAX_FILE_SIZE" value="1000000"> -->
         <label for="news_title">Название рисунка</label>
         <input class="input input__title" id="news_title" type="text" name="title" value="<?php if(!empty($title)) echo $title; ?>">
