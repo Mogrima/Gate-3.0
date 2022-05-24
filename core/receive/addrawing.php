@@ -13,14 +13,20 @@
     $color = (trim(filter_var($_POST['color'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
     $history = (trim(filter_var($_POST['history'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
 
-  $name_file=($_FILES['screenshot']['name']); 
+  $name_file=($_FILES['screenshot']['name']);
   $uploadfile = '../../img/' . $name_file; 
+
+  $name_file_preview=($_FILES['screenshot']['name']); 
+  $uploadfile_preview = '../../img/' . $name_file; 
 
     if(!empty($title) && !empty($album)) {
       if(($_FILES['screenshot']['type'] == 'image/gif' || $_FILES['screenshot']['type'] == 'image/jpeg' || 
       $_FILES['screenshot']['type'] == 'image/png') && ($_FILES['screenshot']['size'] != 0)) { 
         move_uploaded_file($_FILES['screenshot']['tmp_name'], $uploadfile);
 }      
+    if(($_FILES['screenshot-preview']['type'] == 'image/png') && ($_FILES['screenshot-preview']['size'] != 0)) { 
+        move_uploaded_file($_FILES['screenshot-preview']['tmp_name'], $uploadfile_preview);
+} 
       $sql = "INSERT INTO album_arts(album_id, works_title, works_image, ill_of_books, b_a_w, color, history) VALUES('$album', '$title', '$name_file', '$ill_of_books', '$b_a_w', '$color', '$history')";
 
       $query = $pdo->prepare($sql);
@@ -142,6 +148,8 @@
 
         <label for="screenshot">Файл изображения:</label>
         <input class="input" id="screenshot" type="file" name="screenshot">
+        <label for="screenshot-preview">Файл превью для слайдера:</label>
+        <input class="input" id="screenshot-preview" type="file" name="screenshot-preview">
         <button class="button addnews-button" type="submit" name="submit">Добавить</button>
         </form>
       </div>
