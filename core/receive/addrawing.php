@@ -16,15 +16,18 @@
   $name_file=($_FILES['screenshot']['name']);
   $uploadfile = '../../img/' . $name_file; 
 
-  $name_file_preview=($_FILES['screenshot']['name']); 
-  $uploadfile_preview = '../../img/' . $name_file; 
+  $name_file_preview=($_FILES['screenshot-preview']['name']); 
+
+  $image = explode('.', $name_file_preview);
+  $uploadfile_preview = '../../img/' . $image[0] . '-preview.' . $image[1]; 
 
     if(!empty($title) && !empty($album)) {
       if(($_FILES['screenshot']['type'] == 'image/gif' || $_FILES['screenshot']['type'] == 'image/jpeg' || 
       $_FILES['screenshot']['type'] == 'image/png') && ($_FILES['screenshot']['size'] != 0)) { 
         move_uploaded_file($_FILES['screenshot']['tmp_name'], $uploadfile);
 }      
-    if(($_FILES['screenshot-preview']['type'] == 'image/png') && ($_FILES['screenshot-preview']['size'] != 0)) { 
+if(($_FILES['screenshot-preview']['type'] == 'image/gif' || $_FILES['screenshot-preview']['type'] == 'image/jpeg' || 
+    $_FILES['screenshot-preview']['type'] == 'image/png') && ($_FILES['screenshot-preview']['size'] != 0)) { 
         move_uploaded_file($_FILES['screenshot-preview']['tmp_name'], $uploadfile_preview);
 } 
       $sql = "INSERT INTO album_arts(album_id, works_title, works_image, ill_of_books, b_a_w, color, history) VALUES('$album', '$title', '$name_file', '$ill_of_books', '$b_a_w', '$color', '$history')";
