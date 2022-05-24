@@ -6,7 +6,6 @@
   require_once(BUS_с. 'mysql__connect.php');
 
   if(isset($_POST['submit'])) {
-    // Извлечение данных профиля из суперглобального массива $_POST
     $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
     $album = (int)trim(filter_var($_POST['album_list'], FILTER_SANITIZE_STRING));
     $ill_of_books = (trim(filter_var($_POST['ill_of_books'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
@@ -14,27 +13,22 @@
     $color = (trim(filter_var($_POST['color'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
     $history = (trim(filter_var($_POST['history'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
 
-  $apend=($_FILES['screenshot']['name']); 
-  $uploadfile = '../../img/' . $apend; 
+  $name_file=($_FILES['screenshot']['name']); 
+  $uploadfile = '../../img/' . $name_file; 
 
     if(!empty($title) && !empty($album)) {
-      if(($_FILES['screenshot']['type'] == 'image/gif' || $_FILES['screenshot']['type'] == 'image/jpeg' || $_FILES['screenshot']['type'] == 'image/png') && ($_FILES['screenshot']['size'] != 0)) 
-{ 
-  if (move_uploaded_file($_FILES['screenshot']['tmp_name'], $uploadfile)) 
-   { 
-   }
-} else {
-}
-      
-              $sql = "INSERT INTO album_arts(album_id, works_title, works_image, ill_of_books, b_a_w, color, history) VALUES('$album', '$title', '$apend', '$ill_of_books', '$b_a_w', '$color', '$history')";
+      if(($_FILES['screenshot']['type'] == 'image/gif' || $_FILES['screenshot']['type'] == 'image/jpeg' || 
+      $_FILES['screenshot']['type'] == 'image/png') && ($_FILES['screenshot']['size'] != 0)) { 
+        move_uploaded_file($_FILES['screenshot']['tmp_name'], $uploadfile);
+}      
+      $sql = "INSERT INTO album_arts(album_id, works_title, works_image, ill_of_books, b_a_w, color, history) VALUES('$album', '$title', '$name_file', '$ill_of_books', '$b_a_w', '$color', '$history')";
 
-              $query = $pdo->prepare($sql);
-              $query->execute([$album, $title, $apend, $ill_of_books, $b_a_w, $color, $history]);
-              
-              Header('Location: '.$_SERVER['PHP_SELF']);
+      $query = $pdo->prepare($sql);
+      $query->execute([$album, $title, $name_file, $ill_of_books, $b_a_w, $color, $history]);
+      
+      Header('Location: '.$_SERVER['PHP_SELF']);
     }
-    else {
-    }
+    
   }
   
 ?>
