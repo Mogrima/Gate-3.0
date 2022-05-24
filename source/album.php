@@ -126,11 +126,19 @@ if(isset($_POST['favorite_delete'])) {
                 }
 
                   for($i = 0; $i < $arts_count; $i++) {
+                    $image = explode('.', $album_src[$i]);
+                    if($image[1] != NULL) {
+                      $src = $image[0];
+                      $type = $image[1];
+                    } else {
+                      $type = 'jpg';
+                    }
                      ?>
+                     
                 <li class="slider__item">
 
                   <h3 class="album-slider__title"><?=$album_name[$i]?></h3><a class="album__item-achor gallery-no-js" name="<?=$i?>"></a>
-                  <img class="slider__img" src="img/<?=$album_src[$i]?>.jpg" width="768px" alt="<?=$album_name[$i]?>">
+                  <img class="slider__img" src="img/<?=$image[0]?>.<?=$type?>" width="768px" alt="<?=$album_name[$i]?>">
                   <?php
                           if (isset($_SESSION['user_id'])) {
                               if($favorite_array[$i]) {
@@ -159,9 +167,17 @@ if(isset($_POST['favorite_delete'])) {
               </ul>
               <ul class="slider__list-preview">
                 <?php
-                for($i = 0; $i < $arts_count; $i++) { ?>
+                for($i = 0; $i < $arts_count; $i++) { 
+                  $image = explode('.', $album_src[$i]);
+                  if($image[1] != NULL) {
+                    $src = $image[0];
+                    $type = $image[1];
+                  } else {
+                    $type = 'jpg';
+                  }
+                  ?>
                 <li class="slider__item-preview">
-                  <img class="slider__img-nav" src="img/<?=$album_src[$i]?>-preview.jpg" width="150"
+                  <img class="slider__img-nav" src="img/<?=$image[0]?>-preview.<?=$type?>" width="150"
                     alt="<?=$album_name[$i]?>">
                 </li>
                 <?php } ?>
@@ -187,7 +203,7 @@ if(isset($_POST['favorite_delete'])) {
         <section>
           <?php 
          $book_id = $_GET['id'];
-         $type = 'album';
+         $image = 'album';
          $get_id = $book_id;
         $link_comment = '/album.php';
         $link_comment_get = "?id=$get_id";
