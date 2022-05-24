@@ -81,7 +81,6 @@
         $src_stat = 'img/';
         $works_link = 'album.php?id=';
         $sql = 'SELECT * FROM `album_arts` ORDER BY `id` DESC LIMIT 3';
-        $type_image = '.jpg';
         $query = $pdo->query($sql);
 
         require(BLOCKS . 'works_section.php');
