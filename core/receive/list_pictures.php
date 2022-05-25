@@ -80,8 +80,17 @@
        <ul>
         <?php 
 
-    while($row = $query->fetch(PDO::FETCH_OBJ)) { ?>
+    while($row = $query->fetch(PDO::FETCH_OBJ)) {
+      $image = explode('.', $row->works_image);
+      if($image[1] != NULL) {
+        $src = $image[0];
+        $type = $image[1];
+      } else {
+        $type = 'jpg';
+      }
+       ?>
                    <li>
+                     <img src="../../img/<?=$image[0]?>.<?=$type?>" alt="" width="150">
                       <a href="" title="<?=$row->id?>"><?=$row->works_title?></a>
                     </li>
           <?php } ?>
