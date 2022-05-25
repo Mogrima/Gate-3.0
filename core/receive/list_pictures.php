@@ -72,9 +72,20 @@
     <div class="container">
       <div class="substrate">
       <?php require_once(BUS_с. '/adminSession.php'); ?>
-      <a href="addrawing.php" class="button">Добавить рисунок</a>
-      <a href="list_pictures.php" class="button">Список рисунков</a>
-      <a href="adWorks.php" class="button">Альбомы</a>
+      <?php
+      $sql = "SELECT * FROM `album_arts` ORDER BY `id` DESC";
+      $query = $pdo->query($sql);
+
+       ?> 
+       <ul>
+        <?php 
+
+    while($row = $query->fetch(PDO::FETCH_OBJ)) { ?>
+                   <li>
+                      <a href="" title="<?=$row->id?>"><?=$row->works_title?></a>
+                    </li>
+          <?php } ?>
+        </ul>
       </div>
     </div>
   </main>
