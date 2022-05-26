@@ -4,6 +4,16 @@
   require_once(BUS_с. 'connectvars.php');
   // подключение к базе данных
   require_once(BUS_с. 'mysql__connect.php');
+
+  if (isset($_POST['delete'])) {
+    $id_picture = $_POST['id'];
+    $sql = "DELETE FROM `album_arts` WHERE id = $id_picture";
+
+    $query = $pdo->prepare($sql);
+    $query->execute([$id]);
+    $url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER[PHP_SELF]) . '/list_pictures.php';
+    header('Location: ' . $url);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -100,6 +110,10 @@
                     </li>
           <?php } ?>
         </ul>
+        <form class="form-addnews" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <input type="hidden" name="id" value="<?=$id?>">
+          <button type="submit" name="delete" value="delete">Удалить рисунок</button>
+        </form>
       </div>
     </div>
   </main>
