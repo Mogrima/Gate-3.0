@@ -73,7 +73,8 @@
       <div class="substrate">
       <?php require_once(BUS_с. '/adminSession.php'); ?>
       <?php
-      $sql = "SELECT * FROM `album_arts` ORDER BY `id` DESC";
+      $id = $_GET["id"];
+      $sql = "SELECT * FROM `album_arts` WHERE id = $id";
       $query = $pdo->query($sql);
 
        ?> 
@@ -90,7 +91,7 @@
       }
 
       $dinamyc_link = $row->id;
-      $stat_link = 'detail_picture.php?id=';
+      $stat_link = 'picture.php?id=';
       $dinamyc_link = $stat_link . $dinamyc_link;
        ?>
                    <li>
