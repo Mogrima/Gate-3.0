@@ -10,9 +10,18 @@
     $sql = "DELETE FROM `album_arts` WHERE id = $id_picture";
 
     $query = $pdo->prepare($sql);
-    $query->execute([$id]);
+    $query->execute();
     $url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER[PHP_SELF]) . '/list_pictures.php';
     header('Location: ' . $url);
+  }
+
+  if (isset($_POST['edit_album'])) {
+    $id_album = $_POST['album_list'];
+    $id_picture = $_POST['id'];
+    $sql = "UPDATE album_arts SET album_id = '$id_album' WHERE id = $id_picture";
+    $query = $pdo->prepare($sql);
+    $query->execute([$id_album, $id_picture]);
+    Header('Location: '.$_SERVER['PHP_SELF'] . '?id=' . $id_picture);
   }
 ?>
 <!DOCTYPE html>
@@ -93,6 +102,8 @@
 
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
       $image = explode('.', $row->works_image);
+
+      $album_id = $row->album_id;
       if($image[1] != NULL) {
         $src = $image[0];
         $type = $image[1];
