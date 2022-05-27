@@ -23,6 +23,15 @@
     $query->execute([$id_album, $id_picture]);
     Header('Location: '.$_SERVER['PHP_SELF'] . '?id=' . $id_picture);
   }
+
+  if (isset($_POST['edit_picture'])) {
+    $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
+    $id_picture = $_POST['id'];
+    $sql = "UPDATE album_arts SET works_title = '$title' WHERE id = $id_picture";
+    $query = $pdo->prepare($sql);
+    $query->execute([$title, $id_picture]);
+    Header('Location: '.$_SERVER['PHP_SELF'] . '?id=' . $id_picture);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -104,6 +113,7 @@
       $image = explode('.', $row->works_image);
 
       $album_id = $row->album_id;
+      $picture_title = $row->works_title;
       if($image[1] != NULL) {
         $src = $image[0];
         $type = $image[1];
@@ -135,6 +145,14 @@
 
         </select>
         <button type="submit" name="edit_album" value="edit_album">Изменить альбом</button>
+        </form>
+
+        <form class="form-addnews" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?=$id?>">
+        <label for="news_title">Название рисунка</label>
+        <input class="input input__title" id="news_title" type="text" name="title" value="<?=$picture_title?>">
+
+        <button class="button addnews-button" type="submit" name="edit_picture">Изменить</button>
         </form>
 
         <form class="form-addnews" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
