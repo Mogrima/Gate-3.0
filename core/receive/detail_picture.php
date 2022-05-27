@@ -121,6 +121,22 @@
                     </li>
           <?php } ?>
         </ul>
+
+        <form class="form-addnews" action="<?php echo $_SERVER['PHP_SELF']; ?>?id=<?=$id?>" method="post">
+        <input type="hidden" name="id" value="<?=$id?>">
+        <label for="album_list">Альбом рисунка</label>
+        <select id="album_list" name="album_list">
+        <?php 
+          $sql_album_list = "SELECT * FROM `album_list` ORDER BY `id` DESC";
+          $query_album_list = $pdo->query($sql_album_list);
+          while($row_album_list = $query_album_list->fetch(PDO::FETCH_OBJ)) { ?>
+            <option value="<?=$row_album_list->id?>" <?php if ($row_album_list->id == $album_id) { ?> selected <?php } ?> ><?=$row_album_list->works_title?></option>
+        <?php } ?>
+
+        </select>
+        <button type="submit" name="edit_album" value="edit_album">Изменить альбом</button>
+        </form>
+
         <form class="form-addnews" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <input type="hidden" name="id" value="<?=$id?>">
           <button type="submit" name="delete" value="delete">Удалить рисунок</button>
