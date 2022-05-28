@@ -27,9 +27,13 @@
   if (isset($_POST['edit_picture'])) {
     $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
     $id_picture = $_POST['id'];
-    $sql = "UPDATE album_arts SET works_title = '$title' WHERE id = $id_picture";
+    $ill_of_books = (trim(filter_var($_POST['ill_of_books'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+    $b_a_w = (trim(filter_var($_POST['b_a_w'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+    $color = (trim(filter_var($_POST['color'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+    $history = (trim(filter_var($_POST['history'], FILTER_SANITIZE_STRING)) == "") ? 0 : 1;
+    $sql = "UPDATE album_arts SET works_title = '$title', ill_of_books = $ill_of_books, b_a_w = $b_a_w, color = $color, history = $history WHERE id = $id_picture";
     $query = $pdo->prepare($sql);
-    $query->execute([$title, $id_picture]);
+    $query->execute([$title, $ill_of_books, $b_a_w, $color, $history, $id_picture]);
     Header('Location: '.$_SERVER['PHP_SELF'] . '?id=' . $id_picture);
   }
 ?>
