@@ -4,6 +4,16 @@
   require_once(BUS_с. 'connectvars.php');
   // подключение к базе данных
   require_once(BUS_с. 'mysql__connect.php');
+
+  if (isset($_POST['edit_album'])) {
+    $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
+    $id_album = $_POST['id'];
+    
+    $sql = "UPDATE album_list SET works_title = '$title' WHERE id = $id_album";
+    $query = $pdo->prepare($sql);
+    $query->execute([$title, $id_album]);
+    Header('Location: '.$_SERVER['PHP_SELF'] . '?id=' . $id_album);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -82,6 +92,7 @@
         <?php 
 
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
+      $title = $row->works_title;
       $image = explode('.', $row->works_image);
       if($image[1] != NULL) {
         $src = $image[0];
@@ -100,6 +111,12 @@
                     </li>
           <?php } ?>
         </ul>
+        <form class="form-addnews" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="<?=$id?>">
+          <label for="news_title">Название Альбома</label>
+          <input class="input input__title" id="news_title" type="text" name="title" value="<?=$title?>">
+          <button class="button addnews-button" type="submit" name="edit_album">Изменить</button>
+        </form>
       </div>
     </div>
   </main>
