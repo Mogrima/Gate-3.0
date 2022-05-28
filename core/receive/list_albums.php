@@ -72,9 +72,33 @@
     <div class="container">
       <div class="substrate">
       <?php require_once(BUS_с. '/adminSession.php'); ?>
-      <a href="addrawing.php" class="button">Добавить рисунок</a>
-      <a href="list_pictures.php" class="button">Список рисунков</a>
-      <a href="list_albums.php" class="button">Список Альбомов</a>
+      <?php
+      $sql = "SELECT * FROM `album_list` ORDER BY `id` DESC";
+      $query = $pdo->query($sql);
+
+       ?> 
+       <ul>
+        <?php 
+
+    while($row = $query->fetch(PDO::FETCH_OBJ)) {
+      $image = explode('.', $row->works_image);
+      if($image[1] != NULL) {
+        $src = $image[0];
+        $type = $image[1];
+      } else {
+        $type = 'jpg';
+      }
+
+      $dinamyc_link = $row->id;
+      $stat_link = 'detail_picture.php?id=';
+      $dinamyc_link = $stat_link . $dinamyc_link;
+       ?>
+                   <li>
+                     <img src="../../img/<?=$image[0]?>.<?=$type?>" alt="" width="150">
+                      <a href="<?=$dinamyc_link?>" title="<?=$row->id?>"><?=$row->works_title?></a>
+                    </li>
+          <?php } ?>
+        </ul>
       </div>
     </div>
   </main>
