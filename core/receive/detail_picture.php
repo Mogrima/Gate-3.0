@@ -114,6 +114,10 @@
 
       $album_id = $row->album_id;
       $picture_title = $row->works_title;
+      $ill_of_books = $row->ill_of_books;
+      $b_a_w = $row->b_a_w;
+      $color = $row->color;
+      $history = $row->history;
       if($image[1] != NULL) {
         $src = $image[0];
         $type = $image[1];
@@ -152,6 +156,25 @@
         <label for="news_title">Название рисунка</label>
         <input class="input input__title" id="news_title" type="text" name="title" value="<?=$picture_title?>">
 
+        <fieldset class="filter__fieldset filter__fieldset--gallery">
+              <legend class="filter__title filter__title--center">Сортировка:</legend>
+              <ul class="filter__list filter__list--center">
+                <div class="filter__wrapper-gallery">
+                  <li class="filter__item-gallery"><input class="checkbox" id="ill_of_books" name="ill_of_books"
+                      type="checkbox" value="1" <?php if ($ill_of_books == '1') { ?> checked <?php } ?> > <label class="checkbox__name"
+                      for="ill_of_books"><span class="checkbox__indicator"></span> Иллюстрации из книг</label></li>
+                  <li class="filter__item-gallery"><input class="checkbox" id="color" name="color" type="checkbox"
+                      value="1" <?php if ($color == '1') { ?> checked <?php } ?>> <label class="checkbox__name" for="color"><span class="checkbox__indicator"></span>
+                      Цветные</label></li>
+                  <li class="filter__item-gallery"><input class="checkbox" id="b_a_w" name="b_a_w" type="checkbox"
+                      value="1" <?php if ($$b_a_w == '1') { ?> checked <?php } ?> > <label class="checkbox__name" for="b_a_w"><span class="checkbox__indicator"></span>
+                      Черно-белые</label></li>
+                  <li class="filter__item-gallery"><input class="checkbox" id="history" name="history" type="checkbox"
+                      value="1" <?php if ($history == '1') { ?> checked <?php } ?>> <label class="checkbox__name" for="history"><span
+                        class="checkbox__indicator"></span> Истории</label></li>
+                </div>
+              </ul>
+            </fieldset>
         <button class="button addnews-button" type="submit" name="edit_picture">Изменить</button>
         </form>
 
