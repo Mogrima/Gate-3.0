@@ -10,10 +10,18 @@
     $text = trim(filter_var($_POST['text'], FILTER_SANITIZE_STRING));
     $meta_html = trim(filter_var($_POST['meta_html'], FILTER_SANITIZE_STRING));
     $id_album = $_POST['id'];
+
+    $name_file=($_FILES['screenshot']['name']);
+    $uploadfile = '../../img/' . $name_file; 
+
+    if(($_FILES['screenshot']['type'] == 'image/gif' || $_FILES['screenshot']['type'] == 'image/jpeg' || 
+    $_FILES['screenshot']['type'] == 'image/png') && ($_FILES['screenshot']['size'] != 0)) { 
+      move_uploaded_file($_FILES['screenshot']['tmp_name'], $uploadfile);
+    } 
     
-    $sql = "UPDATE album_list SET works_title = '$title', works_desc = '$text', meta_html = '$meta_html' WHERE id = $id_album";
+    $sql = "UPDATE album_list SET works_title = '$title', works_desc = '$text', works_image = '$name_file', meta_html = '$meta_html' WHERE id = $id_album";
     $query = $pdo->prepare($sql);
-    $query->execute([$title, $text, $meta_html, $id_album]);
+    $query->execute([$title, $text, $name_file, $meta_html, $id_album]);
     Header('Location: '.$_SERVER['PHP_SELF'] . '?id=' . $id_album);
   }
 ?>
@@ -123,6 +131,8 @@
           <textarea class="input input__title" id="meta_html" name="meta_html" value="<?=$meta_html?>"><?=$meta_html?></textarea>
           <label for="text">Описание альбома</label>
           <textarea class="input input__title" id="text" name="text" value="<?=$text?>"><?=$text?></textarea>
+          <label for="screenshot">Файл обложки:</label>
+          <input class="input" id="screenshot" type="file" name="screenshot">
           <button class="button addnews-button" type="submit" name="edit_album">Изменить</button>
         </form>
       </div>
