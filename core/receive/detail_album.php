@@ -8,11 +8,12 @@
   if (isset($_POST['edit_album'])) {
     $title = trim(filter_var($_POST['title'], FILTER_SANITIZE_STRING));
     $text = trim(filter_var($_POST['text'], FILTER_SANITIZE_STRING));
+    $meta_html = trim(filter_var($_POST['meta_html'], FILTER_SANITIZE_STRING));
     $id_album = $_POST['id'];
     
-    $sql = "UPDATE album_list SET works_title = '$title', works_desc = '$text' WHERE id = $id_album";
+    $sql = "UPDATE album_list SET works_title = '$title', works_desc = '$text', meta_html = '$meta_html' WHERE id = $id_album";
     $query = $pdo->prepare($sql);
-    $query->execute([$title, $text, $id_album]);
+    $query->execute([$title, $text, $meta_html, $id_album]);
     Header('Location: '.$_SERVER['PHP_SELF'] . '?id=' . $id_album);
   }
 ?>
@@ -95,6 +96,7 @@
     while($row = $query->fetch(PDO::FETCH_OBJ)) {
       $title = $row->works_title;
       $text = $row->works_desc;
+      $meta_html = $row->meta_html;
       $image = explode('.', $row->works_image);
       if($image[1] != NULL) {
         $src = $image[0];
@@ -117,6 +119,8 @@
           <input type="hidden" name="id" value="<?=$id?>">
           <label for="news_title">Название альбома</label>
           <input class="input input__title" id="news_title" type="text" name="title" value="<?=$title?>">
+          <label for="meta_html">Мета-информация альбома</label>
+          <textarea class="input input__title" id="meta_html" name="meta_html" value="<?=$meta_html?>"><?=$meta_html?></textarea>
           <label for="text">Описание альбома</label>
           <textarea class="input input__title" id="text" name="text" value="<?=$text?>"><?=$text?></textarea>
           <button class="button addnews-button" type="submit" name="edit_album">Изменить</button>
